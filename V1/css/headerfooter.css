@@ -4,10 +4,12 @@
 }
 .nav ul{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     height: 88px;
+    flex-wrap: wrap;
+    max-width: 970px;
 }
 .nav li{
     font-size: 18px;

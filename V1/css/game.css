@@ -1,0 +1,8 @@
+.game_left{
+    width: 860px;
+    float: left;
+}
+.game_right{
+    width: 320px;
+    float: right;
+}
