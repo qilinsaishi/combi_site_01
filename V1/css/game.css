@@ -25,6 +25,7 @@
 }
 .game_title{
     padding: 0 20px;
+    margin-bottom: 20px;
 }
 .game_team1_img{
     width: 144px;
@@ -33,6 +34,7 @@
     background-size: 100%;
     background-repeat: no-repeat;
     padding-top: 76px;
+    margin-bottom: 9px;
 }
 .game_team1_img img{
     display: block;
@@ -43,10 +45,15 @@
     color: #333;
     display: block;
     text-align: center;
-
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 10px;
 }
 .game_vs{
     display: flex;
+    height: 62px;
+    align-items: center;
+    margin-bottom: 10px;
 }
 .game_vs span{
     font-family: shuzi;
@@ -59,6 +66,9 @@
 }
 .game_type{
     min-width: 250px
+}
+.game_type{
+    font-size: 0;
 }
 .game_vs .span1{
     background: #FF5C6A;
@@ -79,14 +89,39 @@
 .game_type .span1{
     font-size: 20px;
     color: #333;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
 }
 .game_type .span2{
     font-size: 30px;
     color: #333;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 26px;
+}
+.game_type .game_vs .span1{
+    height: 42px;
+    line-height: 42px;
+    font-size: 36px;
+    margin-bottom: 0;
+}
+.game_type .game_vs .span2{
+    height: 42px;
+    line-height: 42px;
+    font-size: 36px;
+    margin-bottom: 0;
+}
+.game_vs img{
+    width: 48px;
+    height: 62px;
+    margin: 0 20px;
 }
 .game_type p{
     font-size: 20px;
     color: #999;
+    height: 20px;
+    line-height: 20px;
 }
 .game_team_depiction{
     display: flex;
@@ -104,4 +139,42 @@
     -webkit-line-clamp:2;
     overflow: hidden;
     text-overflow:ellipsis;
+}
+.game_title_more{
+    transform: rotate(90deg);
+    width: 10px;
+    height: 18px;
+    display: block;
+    margin: 0 auto;
+}
+.game_detail{
+    width: 860px;
+    min-height: 1800px;
+    border-radius: 8px;
+    border: 1px solid #EEEEEE;
+    background: #fff;
+}
+.game_detail_ul{
+    display: flex;
+}
+.game_detail_ul li{
+    display: flex;
+    width: 140px;
+    height: 38px;
+}
+.game_detail_ul li a{
+    display: flex;
+}
+.game_detail_img1{
+    width: 30px;
+    height: 30px;
+}
+.game_detail_img1 img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.game_detail_ul span{
+    font-size: 20px;
+    color: #999;
 }
