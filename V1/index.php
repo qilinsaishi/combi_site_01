@@ -1,5 +1,12 @@
 <?php
 require_once "function/init.php";
+$params = [
+    "lolTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>"lol","rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "kplTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>"kpl","rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "dota2TeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>"dota2","rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
+];
+$return = curl_post($config['api_get'],json_encode($params),1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -306,13 +313,13 @@ require_once "function/init.php";
                             <div class="game_title clearfix game_team_e">
                                 <span class="title">王者荣耀热门战队</span>
                                 <div class="more">
-                                    <a href="##">
+                                    <a href="<?php echo $config['site_url'];?>/teamList">
                                         <span>更多</span>
                                         <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                     </a>
                                 </div>
                             </div>
-                            <ul class="game_team_list_detial">
+                            <ul class="game_team_list_detail">
                                 <li class="active col-xs-6">
                                     <a href="##">
                                         <div class="a1">
@@ -438,7 +445,7 @@ require_once "function/init.php";
                                     </a>
                                 </div>
                             </div>
-                            <ul class="game_team_list_detial">
+                            <ul class="game_team_list_detail">
                                 <li class="col-xs-6">
                                     <a href="##">
                                         <div class="a1">
@@ -564,7 +571,7 @@ require_once "function/init.php";
                                     </a>
                                 </div>
                             </div>
-                            <ul class="game_team_list_detial">
+                            <ul class="game_team_list_detail">
                                 <li class="active col-xs-6">
                                     <a href="##">
                                         <div class="a1">
@@ -744,8 +751,8 @@ require_once "function/init.php";
                             <a href="##">DOTA2</a>
                         </li>
                     </ul>
-                    <div class="hot_player_detial"> 
-                        <div class="hot_player_detial_div active">
+                    <div class="hot_player_detail"> 
+                        <div class="hot_player_detail_div active">
                             <ul class="clearfix">
                                 <li class="active">
                                     <a href="##">
@@ -829,7 +836,7 @@ require_once "function/init.php";
                                 </li>
                             </ul>
                         </div>
-                        <div class="hot_player_detial_div">
+                        <div class="hot_player_detail_div">
                             <ul class="clearfix">
                                 <li class="active">
                                     <a href="##">
@@ -913,7 +920,7 @@ require_once "function/init.php";
                                 </li>
                             </ul>
                         </div>
-                        <div class="hot_player_detial_div">
+                        <div class="hot_player_detail_div">
                             <ul class="clearfix">
                                 <li class="active">
                                     <a href="##">
@@ -1022,7 +1029,7 @@ require_once "function/init.php";
                                 <li><a href="##">DOTA2</a></li>
                             </ul>
                             <div class="news_dianjing_list">
-                                <div class="news_dianjing_detial active">
+                                <div class="news_dianjing_detail active">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <div class="news_dianjing_top_div">
@@ -1057,7 +1064,7 @@ require_once "function/init.php";
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="news_dianjing_detial">
+                                <div class="news_dianjing_detail">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
@@ -1090,7 +1097,7 @@ require_once "function/init.php";
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="news_dianjing_detial">
+                                <div class="news_dianjing_detail">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
@@ -1123,7 +1130,7 @@ require_once "function/init.php";
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="news_dianjing_detial">
+                                <div class="news_dianjing_detail">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
@@ -1176,7 +1183,7 @@ require_once "function/init.php";
                                 <li><a href="##">DOTA2</a></li>
                             </ul>
                             <div class="news_dianjing_list">
-                                <div class="news_dianjing_detial active">
+                                <div class="news_dianjing_detail active">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
@@ -1209,7 +1216,7 @@ require_once "function/init.php";
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="news_dianjing_detial">
+                                <div class="news_dianjing_detail">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
@@ -1242,7 +1249,7 @@ require_once "function/init.php";
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="news_dianjing_detial">
+                                <div class="news_dianjing_detail">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
@@ -1275,7 +1282,7 @@ require_once "function/init.php";
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="news_dianjing_detial">
+                                <div class="news_dianjing_detail">
                                     <div class="news_dianjing_top">
                                         <a href="##">
                                             <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
@@ -1405,15 +1412,15 @@ require_once "function/init.php";
         })
         $(".hot_player_list").on("click",'li',function(){
             $(".hot_player_list li").removeClass("active").eq($(this).index()).addClass("active");
-            $(".hot_player_detial_div").removeClass("active").eq($(this).index()).addClass("active");
+            $(".hot_player_detail_div").removeClass("active").eq($(this).index()).addClass("active");
         })
         $(".news_dianjing1").on("click",'li',function(){
             $(".news_dianjing1 li").removeClass("active").eq($(this).index()).addClass("active");
-            $(".news_dianjing_tab1 .news_dianjing_detial").removeClass("active").eq($(this).index()).addClass("active");
+            $(".news_dianjing_tab1 .news_dianjing_detail").removeClass("active").eq($(this).index()).addClass("active");
         })
         $(".news_dianjing2").on("click",'li',function(){
             $(".news_dianjing2 li").removeClass("active").eq($(this).index()).addClass("active");
-            $(".news_dianjing_tab2 .news_dianjing_detial").removeClass("active").eq($(this).index()).addClass("active");
+            $(".news_dianjing_tab2 .news_dianjing_detail").removeClass("active").eq($(this).index()).addClass("active");
         })
     </script>
 </body>
