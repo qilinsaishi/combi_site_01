@@ -32,6 +32,11 @@
     background: url("../images/game_team1.png");
     background-size: 100%;
     background-repeat: no-repeat;
+    padding-top: 76px;
+}
+.game_team1_img img{
+    display: block;
+    margin: 0 auto;
 }
 .game_team1 span{
     font-size: 24px;
