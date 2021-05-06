@@ -8,7 +8,8 @@ foreach ($config['game'] as $game => $gameName)
 {
     $params[$game."TeamList"] =
         ["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>$game,"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7];
-
+    $params[$game."PlayerList"] =
+        ["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>16,"game"=>$game,"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
 ?>
@@ -327,7 +328,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             <ul class="game_team_list_detail">
                                 <?php foreach ($return[$game."TeamList"]['data'] as $key => $teamInfo) {?>
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
-                                    <a href="##">
+                                    <a href="<?php echo $config['site_url'];?>/teamDetail/<?php echo $teamInfo['tid'];?>">
                                         <div class="a1">
                                             <img src="<?php echo $config['site_url']."/images/WElogo.png";/*$teamInfo['logo']*/;?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                         </div>
@@ -340,8 +341,9 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <?php }?>
                     </div>
                     <ul class="game_fenlei clearfix">
+                        <?php foreach($config['game'] as $game => $game_name){?>
 
-                        <li class="a1">
+                        <li class="<?php if($game == $config['default_game']){echo "active";}else{echo "a1";}?>">
                             <div class="tab1">
                                 <img src="<?php echo $config['site_url'];?>/images/tab1.png" alt="">
                             </div>
@@ -352,28 +354,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 </div>
                             </div>
                         </li>
-                        <li class="active">
-                            <div class="tab1">
-                                <img src="<?php echo $config['site_url'];?>/images/tab1.png" alt="">
-                            </div>
-                            <div class="game_fenlei_container">
-                                <div class="game_fenlei_div">
-                                    <img src="<?php echo $config['site_url'];?>/images/lol_white.png" alt="" class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/lol_orange.png" alt="" class="a2">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="a1">
-                            <div class="tab1">
-                                <img src="<?php echo $config['site_url'];?>/images/tab1.png" alt="">
-                            </div>
-                            <div class="game_fenlei_container">
-                                <div class="game_fenlei_div">
-                                   <img src="<?php echo $config['site_url'];?>/images/dota2_white.png" alt="" class="a1">
-                                   <img src="<?php echo $config['site_url'];?>/images/dota2_orange.png" alt="" class="a2">
-                                </div>
-                            </div>
-                        </li>
+                        <?php }?>
                     </ul>
                 </div>
             </div>
@@ -393,269 +374,29 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                 </div>
                 <div class="row">   
                     <ul class="hot_player_list clearfix">
-                        <li class="active">
-                            <a href="##">英雄联盟</a>
+                        <?php foreach ($config['game'] as $game => $game_name){?>
+                        <li <?php if($game == $config['default_game']){echo 'class="active"';}?>>
+                            <a href="##"><?php echo $game_name;?></a>
                         </li>
-                        <li>
-                            <a href="##">王者荣耀</a>
-                        </li>
-                        <li>
-                            <a href="##">DOTA2</a>
-                        </li>
+                        <?php }?>
                     </ul>
-                    <div class="hot_player_detail"> 
-                        <div class="hot_player_detail_div active">
+                    <div class="hot_player_detail">
+                        <?php foreach ($config['game'] as $game => $game_name){?>
+                        <div class="hot_player_detail_div<?php if($game == $config['default_game']){echo ' active ';}?>">
                             <ul class="clearfix">
-                                <li class="active">
-                                    <a href="##">
+                                <?php foreach ($return[$game."PlayerList"]['data'] as $key => $playerInfo) {?>
+                                <li <?php if($key == 0 && $game == $config['default_game']){echo ' class="active"';}?>>
+                                    <a href="<?php echo $config['site_url'];?>/playerDetail/<?php echo $playerInfo['pid'];?>">
                                         <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
+                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="<?php echo $playerInfo['player_name'];?>">
                                         </div>
-                                        <span>FoFo</span>
+                                        <span><?php echo $playerInfo['player_name'];?></span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
+                                <?php }?>
                             </ul>
                         </div>
-                        <div class="hot_player_detail_div">
-                            <ul class="clearfix">
-                                <li class="active">
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>1111</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="hot_player_detail_div">
-                            <ul class="clearfix">
-                                <li class="active">
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>3333</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>FoFo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="">
-                                        </div>
-                                        <span>HuanFeng</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
