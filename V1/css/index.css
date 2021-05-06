@@ -207,6 +207,15 @@
     display: flex;
     flex-wrap: wrap;
 }
+.game_team_list_detail .a1{
+    width: 124px;
+    height: 114px;
+}
+.game_team_list_detail .a1 img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
 .game_team_list_detail li{
     width: 128px;
     height: 182px;
