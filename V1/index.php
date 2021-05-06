@@ -329,117 +329,12 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
                                     <a href="##">
                                         <div class="a1">
-                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                            <img src="<?php echo $config['site_url']."/images/WElogo.png";/*$teamInfo['logo']*/;?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                         </div>
-                                        <span>WE</span>
+                                        <span><?php echo $teamInfo['team_name'];?></span>
                                     </a>
                                 </li>
                                 <?php }?>
-                                <li class="col-xs-6">
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        <div class="a1">
-                                            <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <span>WE</span>
-                                    </a>
-                                </li>
-
                             </ul>
                         </div>
                         <?php }?>
