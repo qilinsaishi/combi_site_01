@@ -15,9 +15,27 @@ foreach ($config['game'] as $game => $gameName)
     $params[$game."StraList"] =
         ["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
 }
-echo json_encode($params);
-die();
 $return = curl_post($config['api_get'],json_encode($params),1);
+//文章类型
+$newsTypeList = ["News"];
+//返回值键名数组
+$keyList = array_keys($return);
+foreach($newsTypeList as $newsType)
+{
+    $Newlist = [];
+    //循环挑出指定后缀的，组合到一起
+    foreach($keyList as $key)
+    {
+        if(substr($key,-1*strlen($newsType."List")) == $newsType."List")
+        {
+            $Newlist = array_merge($Newlist,$return[$key]['data']);
+        }
+    }
+    //根据发布日期倒序，获取前十个
+    array_multisort(array_column($Newlist,"site_time"),SORT_DESC,$Newlist);
+    //保存
+    $return["all".$newsType."List"] = ["data"=>array_slice($Newlist,0,10)];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -414,7 +432,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <div class="game_title clearfix game_team_new">
                             <span class="title">电竞资讯</span>
                             <div class="more">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/newsList">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -423,145 +441,54 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <div class="news_dianjing news_dianjing_tab1">
                             <ul class="clearfix news_dianjing1">
                                 <li class="active"><a href="##">综合</a></li>
-                                <li><a href="##">英雄联盟</a></li>
-                                <li><a href="##">王者荣耀</a></li>
-                                <li><a href="##">DOTA2</a></li>
+                                <?php foreach($config['game'] as $game => $game_name){?>
+                                <li><a href="##"><?php echo $game_name;?></a></li>
+                                <?php }?>
                             </ul>
                             <div class="news_dianjing_list">
-                                <div class="news_dianjing_detail active">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <div class="news_dianjing_top_div">
-                                                <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                            </div>
-                                            <span>2021 LCS春季赛</span>
-                                        </a>
+                                <?php $allGameList = array_keys($config['game']);
+                                array_unshift($allGameList,"all");
+                                foreach($allGameList as $game)
+                                {
+                                    $infoListKey = $game."NewsList";
+                                    $infoList = $return[$infoListKey];
+                                    $gameName = $config["game"][$game]??"综合";
+                                    ?>
+                                    <div class="news_dianjing_detail<?php if($game=="all"){echo " active";}?>">
+                                        <?php foreach($infoList['data'] as $key => $info){?>
+                                        <?php if($key==0){?>
+                                                <div class="news_dianjing_top">
+                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                        <div class="news_dianjing_top_div">
+                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                        </div>
+                                                        <span><?php echo $info['title'];?></span>
+                                                    </a>
+                                                </div>
+                                            <?php }?><?php }?>
+                                        <div class="news_dianjing_mid">
+                                            <?php foreach($infoList['data'] as $key => $info){?>
+                                                <?php if($key>=1 && $key<=2){?>
+                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                        <div class="news_dianjing_mid_img">
+                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                        </div>
+                                                        <span><?php echo $info['title'];?></span>
+                                                    </a>
+                                                <?php }?><?php }?>
+                                        </div>
+                                        <div class="news_dianjing_news">
+                                            <ul>
+                                                <?php foreach($infoList['data'] as $key => $info){?>
+                                                <?php if($key>=3){?>
+                                                <li><a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                        <?php echo $info['title'];?>
+                                                    </a></li>
+                                                <?php }?><?php }?>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="news_dianjing_detail">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            <span>2021 LCS春季赛2222222</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="news_dianjing_detail">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            <span>2021 LCS春季赛3333333</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="news_dianjing_detail">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            <span>2021 LCS春季赛4444444</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -569,7 +496,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <div class="game_title clearfix game_team_new">
                             <span class="title">游戏攻略</span>
                             <div class="more">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/straList">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -577,143 +504,55 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         </div>
                         <div class="news_dianjing news_dianjing_tab2">
                             <ul class="clearfix news_dianjing2">
-                                <li class="active"><a href="##">英雄联盟</a></li>
-                                <li><a href="##">王者荣耀</a></li>
-                                <li><a href="##">DOTA2</a></li>
+                                <?php $i = 1;foreach($config['game'] as $game => $game_name){?>
+                                    <li <?php if($i==1){echo ' class="active"';}?>><a href="##"><?php echo $game_name;?></a></li>
+                                <?php $i++;}?>
                             </ul>
                             <div class="news_dianjing_list">
-                                <div class="news_dianjing_detail active">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            <span>2021 LCS春季赛</span>
-                                        </a>
+                                <?php $allGameList = array_keys($config['game']);
+                                foreach($allGameList as $key => $game)
+                                {
+                                    $infoListKey = $game."StraList";
+                                    $infoList = $return[$infoListKey];
+                                    //$gameName = $config["game"][$game]??"综合";
+                                    ?>
+                                    <div class="news_dianjing_detail<?php if($key==0){echo ' active';}?>">
+                                        <?php foreach($infoList['data'] as $key => $info){?>
+                                            <?php if($key==0){?>
+                                                <div class="news_dianjing_top">
+                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                        <div class="news_dianjing_top_div">
+                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                        </div>
+                                                        <span><?php echo $info['title'];?></span>
+                                                    </a>
+                                                </div>
+                                            <?php }?><?php }?>
+                                        <div class="news_dianjing_mid">
+                                            <?php foreach($infoList['data'] as $key => $info){?>
+                                                <?php if($key>=1 && $key<=2){?>
+                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                        <div class="news_dianjing_mid_img">
+                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                        </div>
+                                                        <span><?php echo $info['title'];?></span>
+                                                    </a>
+                                                <?php }?><?php }?>
+                                        </div>
+                                        <div class="news_dianjing_news">
+                                            <ul>
+                                                <?php foreach($infoList['data'] as $key => $info){?>
+                                                    <?php if($key>=3){?>
+                                                        <li><a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                                <?php echo $info['title'];?>
+                                                            </a></li>
+                                                    <?php }?><?php }?>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="news_dianjing_detail">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            <span>2021 LCS春季赛2222222</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="news_dianjing_detail">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            <span>2021 LCS春季赛3333333</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="news_dianjing_detail">
-                                    <div class="news_dianjing_top">
-                                        <a href="##">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            <span>2021 LCS春季赛4444444</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_mid">
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>竞燃杯｜企业电竞联赛</span>
-                                        </a>
-                                        <a href="##">
-                                            <div class="news_dianjing_mid_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_team.png" alt="">
-                                            </div>
-                                            <span>CSGO精英对抗赛</span>
-                                        </a>
-                                    </div>
-                                    <div class="news_dianjing_news">
-                                        <ul>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                            <li><a href="##">英雄联盟｜11.7版本更新了什么 11.7版本更新内7版本更新了什么</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
