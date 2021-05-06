@@ -135,24 +135,25 @@
         }
         return;
     }
-    function renderHeaderJsCss($config)
+    function renderHeaderJsCss($config,$customCss = [])
     {
-        echo '<link rel="stylesheet" type="text/css" href="'.$config['site_url'].'/css/bootstrap.min.css" />';
-        //echo '<!--[if lt IE 9]>';
-        echo '<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>';
-        echo '<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>';
-        //echo '<![endif]-->';
-        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/swiper.min.css" type="text/css" />';
-        echo '<link rel="stylesheet" type="text/css" href="'.$config['site_url'].'/css/style.css?v=1" />';
-        echo '<script src="'.$config['site_url'].'/js/jquery-1.8.3.min.js" type="text/javascript"></script>';
-        echo '<script src="'.$config['site_url'].'/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>';
-        echo '<script src="'.$config['site_url'].'/js/main.js" type="text/javascript"></script>';
-        echo '<script src="'.$config['site_url'].'/js/tongji.js" type="text/javascript"></script>';
+        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/bootstrap.min.css" type="text/css" />';
+        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css" type="text/css" />';
+        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/headerfooter.css" type="text/css" />';
+        foreach($customCss as $file)
+        {
+            if(trim($file)!="")
+            {
+                echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css" type="text/css" />';
+            }
+        }
+        echo '<script src="'.$config['site_url'].'/js/flexible.js" type="text/javascript"></script>';
     }
     function renderFooterJsCss($config)
     {
-        echo '<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>';
-        echo '<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
+        echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
+        echo '<script src="'.$config['site_url'].'/js/bootstrap.js" type="text/javascript"></script>';
+        echo '<script src="'.$config['site_url'].'/js/index.js" type="text/javascript"></script>';
     }
     function renderCertification()
     {
