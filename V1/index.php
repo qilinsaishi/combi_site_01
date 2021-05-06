@@ -1,6 +1,7 @@
 <?php
 require_once "function/init.php";
 $params = [
+    "matchList"=>["page"=>1,"page_size"=>8,"source"=>"scoregg","cacheWith"=>"currentPage","cache_time"=>86400],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
 //依次加入所有游戏
@@ -99,184 +100,32 @@ foreach($newsTypeList as $newsType)
                 </div>
                 <div class="row">
                     <ul class="game_match_ul dn_wap">
+                        <?php foreach($return['matchList']['data'] as $matchInfo){?>
                         <li class="col-md-3 col-xs-12">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/matchDetail/<?php echo $matchInfo['match_id'];?>">
                                 <div class="game_match_top">
-                                    <span class="game_match_name">常规赛常规</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
+                                    <span class="game_match_name"><?php echo $matchInfo['tournament_info']['tournament_name'];?></span>
+                                    <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?></span>
                                 </div>
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
+                                            <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
                                         </div>
-                                        <span>常规赛常规常规</span>
+                                        <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                     </div>
                                     <div class="left center">
                                         <span>VS</span>
-                                        <span>英雄联盟</span>
+                                        <span><?php echo $config['game'][$matchInfo['game']];?></span>
                                     </div>
                                     <div class="left ov_1">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>常规赛常规常规</span>
+                                        <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
+                                        <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        <li class="col-md-3 col-xs-12">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img2">
-                                        <span>SNS</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-3 col-xs-6">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img1">
-                                        <span>SNS</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-3 col-xs-6">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img1">
-                                        <span>SNS</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-3 col-xs-6">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img1">
-                                        <span>SNS</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-3 col-xs-6">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img1">
-                                        <span>SNS</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-3 col-xs-6">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img1">
-                                        <span>SNS</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-3 col-xs-6">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img1">
-                                        <span>SNS</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        <?php }?>
                     </ul>
                     <ul class="game_match_ul dn_pc">
                         <li class="col-md-3 col-xs-12 col-sm-6">
@@ -354,7 +203,7 @@ foreach($newsTypeList as $newsType)
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
                                     <a href="<?php echo $config['site_url'];?>/teamDetail/<?php echo $teamInfo['tid'];?>">
                                         <div class="a1">
-                                            <img src="<?php echo $config['site_url']."/images/WElogo.png";/*$teamInfo['logo']*/;?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                         </div>
                                         <span><?php echo $teamInfo['team_name'];?></span>
                                     </a>
@@ -412,7 +261,7 @@ foreach($newsTypeList as $newsType)
                                 <li <?php if($key == 0 && $game == $config['default_game']){echo ' class="active"';}?>>
                                     <a href="<?php echo $config['site_url'];?>/playerDetail/<?php echo $playerInfo['pid'];?>">
                                         <div class="hot_player_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="<?php echo $playerInfo['player_name'];?>">
+                                            <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>">
                                         </div>
                                         <span><?php echo $playerInfo['player_name'];?></span>
                                     </a>
