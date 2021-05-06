@@ -126,7 +126,7 @@
         {
             if($key == $current)
             {
-                echo '<li class="on"><a href="'.$config['site_url'].'/'.$value['url'].'">'.$value['name'].'</a></li>';
+                echo '<li class="active"><a href="'.$config['site_url'].'/'.$value['url'].'">'.$value['name'].'</a></li>';
             }
             else
             {
@@ -137,7 +137,7 @@
     }
     function renderHeaderJsCss($config,$customCss = [])
     {
-        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/bootstrap.min.css" type="text/css" />';
+        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/bootstrap.css" type="text/css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css" type="text/css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/headerfooter.css" type="text/css" />';
         foreach($customCss as $file)
