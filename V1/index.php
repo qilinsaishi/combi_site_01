@@ -1,11 +1,15 @@
 <?php
 require_once "function/init.php";
 $params = [
-    "lolTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>"lol","rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "kplTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>"kpl","rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "dota2TeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>"dota2","rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
+//依次加入所有游戏
+foreach ($config['game'] as $game => $gameName)
+{
+    $params[$game."TeamList"] =
+        ["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>$game,"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7];
+
+}
 $return = curl_post($config['api_get'],json_encode($params),1);
 ?>
 <!DOCTYPE html>
