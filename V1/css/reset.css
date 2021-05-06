@@ -117,13 +117,6 @@ a {
 }
 /*声明 思源字体-Light*/
 @font-face {
-    font-family: 'KaiGenGothicSC-Light';
-    src: url('../font/shuzi.ttf');
-    src:
-      /* url('../font/join/KaiGenGothicSC-Light.eot?#font-spider') format('embedded-opentype'),
-      url('../font/join/KaiGenGothicSC-Light.woff') format('woff'), */
-      url('../font/shuzi.ttf') format('truetype');
-      /* url('../font/join/KaiGenGothicSC-Light.svg') format('svg'); */
-    font-weight: normal;
-    font-style: normal;
+    font-family: "shuzi";
+    src: url("../font/shuzi.ttf") format("truetype");
   }
