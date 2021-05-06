@@ -351,14 +351,21 @@
 .game_detail_div_item2_right .game_detail_div_item2_img{
     right: 10px;
 }
+.game_detail_div_item3{
+    padding: 0 20px;
+}
 .game_detail_div_item3_top{
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
 }
 .game_detail_div_item3_top .left{
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+}
+.game_detail_div_item3_top .left span{
+    font-size: 24px;
+    font-family: shuzi;
 }
 .game_detail_div_item3_top .left_img{
     width: 28px;
@@ -397,4 +404,35 @@
 }
 .gold_progress_bar{
     position: absolute;
+}
+.pk-detail-con{width: 100%;text-align: center;color: #e3c898;font-size: .32rem;}
+.progress, .progress-bar{position: relative;}
+.progress{width: 100%;height: 8px;line-height: 8px;color: #f3eee1;letter-spacing: 1px;font-size:14px;overflow: hidden;z-index: 1;background-color: #0C8DFC;border-radius: 19px;}
+.progress-bar{height: 8px;text-align: left;background-color: #FF5C6A;-moz-transition: width .6s ease;-webkit-transition: width .6s ease;transition: width .6s ease;}
+.progress, .progress-bar{background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 50%);background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 50%);background-image: linear-gradient(rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 50%);}
+.lightning, .team-name{position: absolute;}
+.lightning{top: 0;right: -13px;width: 25px;height: 8px;background: url("img/pk-lightning.png") no-repeat center;background-size: cover;}
+
+.game_detail_div1_item3{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.game_detail_div1_item3 .left{
+    display: flex;
+    align-items: center;
+}
+.game_detail_div1_item3 .img1{
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+}
+.game_detail_div1_item3 .img2{
+    width: 14px;
+    height: 20px;
+}
+.line2{
+    width: 100%;
+    height: 1px;
+    background: #eee;
 }
