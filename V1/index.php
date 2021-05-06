@@ -695,8 +695,8 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             </div>
                             <div class="game_fenlei_container">
                                 <div class="game_fenlei_div">
-                                    <img src="<?php echo $config['site_url'];?>/images/wzry_white.png" alt="" class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/wzry_orange.png" alt="" class="a2">
+                                    <img src="<?php echo $config['site_url'];?>/images/kpl_white.png" alt="" class="a1">
+                                    <img src="<?php echo $config['site_url'];?>/images/kpl_orange.png" alt="" class="a2">
                                 </div>
                             </div>
                         </li>
@@ -706,8 +706,8 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             </div>
                             <div class="game_fenlei_container">
                                 <div class="game_fenlei_div">
-                                    <img src="<?php echo $config['site_url'];?>/images/LOL_white.png" alt="" class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/LOL_orange.png" alt="" class="a2">
+                                    <img src="<?php echo $config['site_url'];?>/images/lol_white.png" alt="" class="a1">
+                                    <img src="<?php echo $config['site_url'];?>/images/lol_orange.png" alt="" class="a2">
                                 </div>
                             </div>
                         </li>
@@ -717,8 +717,8 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             </div>
                             <div class="game_fenlei_container">
                                 <div class="game_fenlei_div">
-                                   <img src="<?php echo $config['site_url'];?>/images/dota_white.png" alt="" class="a1">
-                                   <img src="<?php echo $config['site_url'];?>/images/dota_orange.png" alt="" class="a2">
+                                   <img src="<?php echo $config['site_url'];?>/images/dota2_white.png" alt="" class="a1">
+                                   <img src="<?php echo $config['site_url'];?>/images/dota2_orange.png" alt="" class="a2">
                                 </div>
                             </div>
                         </li>
