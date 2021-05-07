@@ -151,8 +151,22 @@
         echo '<script src="'.$config['site_url'].'/js/lazyload.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/flexible.js" type="text/javascript"></script>';
     }
-    function renderFooterJsCss($config)
+    function renderFooterJsCss($config,$customCss = [],$customJs = [])
     {
+        foreach($customCss as $file)
+        {
+            if(trim($file)!="")
+            {
+                echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css" type="text/css" />';
+            }
+        }
+        foreach($customJs as $file)
+        {
+            if(trim($file)!="")
+            {
+                echo '<link rel="stylesheet" href="'.$config['site_url'].'/js/'.$file.'.js" type="text/javascript" />';
+            }
+        }
         echo '<script src="'.$config['site_url'].'/js/bootstrap.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/index.js" type="text/javascript"></script>';
     }
