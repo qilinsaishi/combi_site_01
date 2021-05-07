@@ -102,7 +102,7 @@
   .game_match_ul li:hover{
       box-shadow: 0px 16px 40px 0px rgba(51, 51, 51, 0.14);
       border-radius: 4px;
-      border-bottom: 6px solid #FA8169;
+      border-bottom: 6px solid #ff6649;
       transform: translateY(0px);
   }
   .game_match_ul li:hover a{
@@ -359,11 +359,11 @@
 }
 .hot_player_list li a{
     font-size: 20px;
-    color: #FA8E69;
+    color: #ff6649;
     padding: 0 20px;
 }
 .hot_player_list li.active{
-    background: #FA8E69;
+    background: #ff6649;
     border-radius: 20px;
 }
 .hot_player_list li.active a{
@@ -396,7 +396,7 @@
     height: 100px;
     margin-bottom: 14px;
     border-radius: 50%;
-    border: 2px solid #FA8E69;
+    border: 2px solid #ff6649;
     overflow: hidden;
     position: relative;
 }
@@ -436,7 +436,7 @@
     background: #fff;
     box-shadow: 0px 16px 40px 0px rgba(51, 51, 51, 0.14);
     border-radius: 4px;
-    border-bottom: 6px solid #FA8169;
+    border-bottom: 6px solid #ff6649;
 }
 .hot_player_detail_div.active{
     display: block;
@@ -483,12 +483,12 @@
 }
 .news_dianjing li a{
     font-size: 20px;
-    color: #FA8E69;
+    color: #ff6649;
     line-height: 40px;
     height: 40px;
 }
 .news_dianjing li.active{
-    background: #FA8E69;
+    background: #ff6649;
     border-radius: 20px; 
 }
 .news_dianjing li.active a{
@@ -554,7 +554,7 @@ margin-bottom: 14px;
     line-height: 60px;
 }
 .news_dianjing .news_dianjing_news li:hover a{
-    color: #D73C3C;
+    color: #ff6649;
 }
 .news_dianjing_news li:nth-child(7){
     border-bottom: none;

@@ -899,6 +899,70 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .table-wrap .table.red tbody tr:nth-child(even) {
     background: #FFF9F7;
 }
+.vs_data3_left{
+    display: none;
+}
+.vs_data3_left.active{
+    display: block;
+}
+.vs_data3_left .title{
+    width: 200px;
+    height: 40px;
+    background: #F5F6F7;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    color: #666;
+    margin: 0 auto 20px;
+}
+/* 赛前数据 */
+.compare-bar{
+    width: 820px;
+    margin-bottom: 30px;
+}
+.vs_data3_pad{
+    padding:0 20px;
+}
+.win_rate{
+    font-size: 24px;
+    color: #333;
+    font-family: shuzi;
+}
+.top-data{
+    margin-bottom: 12px;
+}
+.fr{
+    float: right;
+}
+.fl{
+    float: left;
+}
+.rate,.average_time{
+    width: 50px;
+    height: 24px;
+    /* background: #f7f8fa; */
+    border-radius: 3px;
+    font-size: 24px;
+    color: #333;
+    line-height: 24px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 4px;
+}
+.time1,.time2{
+    font-size: 20px;
+    color: #333;
+}
+.time2{
+    color: #999;
+}
+.rate_data_left{
+    width: 405px;
+}
+.average_time{
+    width: 100%;
+}
   /* 移动 */
   @media only screen and (max-width: 1024px){
     .game_title{

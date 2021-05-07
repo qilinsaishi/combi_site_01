@@ -91,3 +91,60 @@
 .progress2.red > span:before{
   background: #FF5C6A;
 }
+
+.progress3 {
+  height: 8px;
+  width: 408px;
+  background: #eee;
+  border-radius: 4px;
+}
+.progress3 > span {
+  position: relative;
+  float: left;
+  margin: 0 -1px;
+  min-width: 30px;
+  height: 8px;
+  line-height: 16px;
+  text-align: right;
+  background: #cccccc;
+  border-radius: 4px;
+}
+.progress3 > span > span {
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #404040;
+}
+.progress3.blue > span:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 8px;
+  background: #0C8DFC;
+  border-radius: 10px;
+}
+.progress3.red > span:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 8px;
+  background: #FF5C6A;
+  border-radius: 10px;
+}
+.progress4{
+  transform: rotate(180deg);
+}
+.progress4.blue > span:before {
+  background: #0C8DFC;
+}
+.progress4.red > span:before {
+  background: #FF5C6A;
+}
