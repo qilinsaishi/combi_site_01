@@ -47,7 +47,9 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                     <div class="game_title_top">
                         <div class="game_team1">
                             <div class="game_team1_img">
-                                <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                <div class="game_team1_img1">
+                                    <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
                         </div>
@@ -63,7 +65,9 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         </div>
                         <div class="game_team1">
                             <div class="game_team1_img">
-                                <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                <div class="game_team1_img1">
+                                    <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
                         </div>
@@ -170,7 +174,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                     </div>
                                 </div>
                                 <div class="pk-detail-con">
-                                    <div class="progress" >
+                                    <div class="progress">
                                         <div class="progress-bar" style="width: 58%;">
                                             <i class="lightning"></i>
                                         </div>
@@ -209,7 +213,295 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 <div class="line2"></div>
                             </div>
                             <div class="game_detail_item4">
-
+                                <div class="war_vs">
+                                    <div class="war_situation">
+                                        <span class="war_red">一塔</span>
+                                        <span class="war_blue">一血</span>
+                                        <span>先五杀</span>
+                                        <span>先十杀</span>
+                                        <span>一小龙</span>
+                                        <span>一大龙</span>
+                                        <span>一先锋</span>
+                                    </div>
+                                    <div class="war_situation">
+                                        <span class="war_red">一塔</span>
+                                        <span class="war_blue">一血</span>
+                                        <span>先五杀</span>
+                                        <span>先十杀</span>
+                                        <span>一小龙</span>
+                                        <span>一大龙</span>
+                                        <span>一先锋</span>
+                                    </div>
+                                </div>
+                                <div class="bans_pincks">
+                                    <div class="left">
+                                        <div class="bans bans_bot">
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="line3"></div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
+                                            </div>
+                                        </div>
+                                        <div class="bans picks">
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="line3"></div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="center">
+                                        <span>Bans</span>
+                                        <span>Picks</span>
+                                    </div>
+                                    <div class="left">
+                                        <div class="bans bans_bot">
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="line3"></div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                            </div>
+                                        </div>
+                                        <div class="bans picks">
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="line3"></div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                            </div>
+                                            <div class="bans_img">
+                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="game_detail_item5">
+                                <ul class="vs_data1">
+                                    <li class="">
+                                        <a href="##">
+                                            输出
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="##">
+                                            承伤
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="##">
+                                            经济
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="##">
+                                            补刀
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="##">
+                                            LFL评分
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="vs_data2">
+                                    <div class="vs_data2_item">
+                                        <div class="left">
+                                            <div class="vs_data_combat">
+                                                <div class="progress1_parent">
+                                                    <div class="progress1">
+                                                        <span style="width: 40%;"><span>95721</span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="progress1_parent">
+                                                    <div class="progress1">
+                                                        <span style="width: 60%;"><span>120529</span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="progress1_parent">
+                                                    <div class="progress1">
+                                                        <span style="width: 100%;"><span>120529</span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="progress1_parent">
+                                                    <div class="progress1">
+                                                        <span style="width: 40%;"><span>95721</span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="progress1_parent">
+                                                    <div class="progress1">
+                                                        <span style="width: 60%;"><span>120529</span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="left right">
+                                            <div class="vs_data_combat">
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                                <div class="progress1_parent">
+                                                    <div class="progress2">
+                                                        <span style="width: 40%;"><span>95721</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                                <div class="progress1_parent">
+                                                    <div class="progress2">
+                                                        <span style="width: 60%;"><span>120529</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                                <div class="progress1_parent">
+                                                    <div class="progress2">
+                                                        <span style="width: 100%;"><span>120529</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                                <div class="progress1_parent">
+                                                    <div class="progress2">
+                                                        <span style="width: 40%;"><span>95721</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vs_data_combat">
+                                                <div class="vs_player">
+                                                    <div class="vs_player_game">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <div class="vs_player_reality">
+                                                        <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
+                                                    </div>
+                                                </div>
+                                                <div class="progress1_parent">
+                                                    <div class="progress2">
+                                                        <span style="width: 60%;"><span>120529</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -243,12 +535,23 @@ $return = curl_post($config['api_get'],json_encode($params),1);
         <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
     </div>
 </div>
-<?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
+<script src="<?php echo $config['site_url'];?>/js/jquery.min.js"></script>
+<script src="<?php echo $config['site_url'];?>/js/index.js"></script>
+<script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
 <script>
     // 溢出隐藏，点击不隐藏
-    $(".game_title").on("click",".game_title_more",function(){
+    $(".game_title").on("click", ".game_title_more", function () {
         $(".game_title").find(".game_team_depiction p").toggleClass("active");
         $(".game_title_more").toggleClass("active")
+    })
+
+    // vs_data1切换
+    $(".vs_data1").on("click", 'li', function () {
+        var _this = $(this).index() - 1;
+        $(".vs_data1 li").removeClass("active").eq($(this).index()).addClass("active");
+        $(".vs_data1 li").removeClass("active1").eq(_this).addClass("active1");
+        $(".vs_data2 .vs_data2_item").removeClass("active").eq($(this).index()).addClass("active");
+        // $(".game_team_div").removeClass("active").eq($(this).index()).addClass("active");
     })
 </script>
 </body>
