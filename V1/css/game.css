@@ -170,7 +170,7 @@
 }
 .game_detail_ul{
     display: flex;
-    width: 444px;
+    /*width: 444px;*/
     justify-content: space-between;
     margin: 0 auto 10px;
 

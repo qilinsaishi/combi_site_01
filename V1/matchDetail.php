@@ -7,6 +7,10 @@ $params = [
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
+//$return['matchDetail']['data']['match_data'] = json_decode($return['matchDetail']['data']['match_data'],true);
+print_R(($return['matchDetail']['data']['match_data']['result_list']));
+//die();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +52,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <div class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                    <img class="imgauto" src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
@@ -58,7 +62,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             <span class="span2"><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?></span>
                             <div class="game_vs">
                                 <span class="span1"><?php echo $return['matchDetail']['data']['home_score'];?></span>
-                                <img src="<?php echo $config['site_url'];?>/images/vs.png" alt="">
+                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/vs.png" alt="">
                                 <span class="span2"><?php echo $return['matchDetail']['data']['away_score'];?></span>
                             </div>
                             <p><?php echo date("Y.m.d H:i:s",strtotime($return['matchDetail']['data']['start_time'])+$config['hour_lag']*3600)?>·已结束</p>
@@ -66,96 +70,109 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <div class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                    <img class="imgauto" src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
                         </div>
                     </div>
                     <div class="game_team_depiction">
-                        <p class="active"><?php echo strip_tags($return['matchDetail']['data']['home_team_info']['description']);?></p>
-                        <p class="active"><?php echo strip_tags($return['matchDetail']['data']['away_team_info']['description']);?></p>
+                        <p class="active"><?php echo strip_tags(checkJson($return['matchDetail']['data']['home_team_info']['description']));?></p>
+                        <p class="active"><?php echo strip_tags(checkJson($return['matchDetail']['data']['away_team_info']['description']));?></p>
                     </div>
                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
                 <div class="game_detail">
                     <ul class="game_detail_ul">
-                        <li class="active">
-                            <a href="##">
-                                <div class="game_detail_img1">
-                                    <img src="<?php echo $config['site_url'];?>/images/game_detail1.png" alt="">
-                                </div>
-                                <span>GAME 1</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_detail_img1">
-                                    <img src="<?php echo $config['site_url'];?>/images/game_detial2.png" alt="">
-                                </div>
-                                <span>GAME 2</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_detail_img1">
-                                    <img src="<?php echo $config['site_url'];?>/images/game_detail1.png" alt="">
-                                </div>
-                                <span>GAME 3</span>
-                            </a>
-                        </li>
+                        <?php foreach($return['matchDetail']['data']['match_data']['result_list'] as $key => $round_info) {?>
+                            <li <?php if($key==0){echo ' class="active"';} ?>>
+                                <a href="##">
+                                    <div class="game_detail_img1">
+                                        <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?>
+                                            <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
+                                        <?php }else{?>
+                                            <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                        <?php }?>
+                                    </div>
+                                    <span>GAME <?php echo ($key+1);?></span>
+                                </a>
+                            </li>
+                        <?php }?>
                     </ul>
                     <div class="game_detail_div">
-                        <div class="game_detail_div_item">
+                        <?php foreach($return['matchDetail']['data']['match_data']['result_list'] as $key => $round_info) {?>
+                        <div class="game_detail_div_item<?php if($key==0){ echo ' active';}?>">
                             <div class="game_detail_item1">
                                 <div class="left">
                                     <div class="imgwidth40 imgheight40">
-                                        <img src="<?php echo $config['site_url'];?>/images/game_detail1.png" alt="" class="imgauto">
+                                        <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                     </div>
-                                    <span>WE</span>
-                                    <div class="imgwidth30 imgheight30">
-                                        <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
-                                    </div>
+                                    <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
+                                    <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?>
+                                        <div class="imgwidth30 imgheight30">
+                                            <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                        </div>
+                                    <?php }?>
                                 </div>
                                 <div class="center">
                                     <span class="game_detail_line1"></span>
                                     <span class="game_detail_circle1"></span>
-                                    <span class="fz font_color_r">95</span>
+                                    <span class="fz font_color_r"><?php echo $round_info['kills_a'];?></span>
                                     <div class="img_game_detail_vs">
                                         <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="" class="imgauto">
                                     </div>
-                                    <span class="fz font_color_b">72</span>
+                                    <span class="fz font_color_b"><?php echo $round_info['kills_b'];?></span>
                                     <span class="game_detail_circle1"></span>
                                     <span class="game_detail_line1"></span>
                                 </div>
                                 <div class="left right">
+                                    <?php if($round_info['win_teamID']==$return['matchDetail']['data']['away_id']){?>
+                                        <div class="imgwidth30 imgheight30">
+                                            <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                        </div>
+                                    <?php }?>
+                                    <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
                                     <div class="imgwidth40 imgheight40">
-                                        <img src="<?php echo $config['site_url'];?>/images/game_detail1.png" alt="" class="imgauto">
+                                        <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                     </div>
-                                    <span>WE</span>
                                 </div>
                             </div>
                             <div class="game_detail_item2">
-                                <div class="game_detail_item2_left">
-                                    <div class="game_detail_item2_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
+                                <?php foreach($round_info['record_list_a'] as $key2 => $player_info) {
+                                    if($player_info['mvp']==1 || $player_info['beiguo']){?>
+                                    <div class="game_detail_item2_left">
+                                        <div class="game_detail_item2_img">
+                                            <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                        </div>
+                                        <div class="game_detail_item2_word">
+                                            <?php if($player_info['mvp']==1) {?>
+                                            <span class="span1">MVP</span>
+                                            <?php }else{?>
+                                            <span class="span1">背锅侠</span>
+                                            <?php }?>
+                                            <span class="span2"><?php echo $player_info['player_name'];?></span>
+                                        </div>
+                                        <div class="arrow-up"></div>
                                     </div>
-                                    <div class="game_detail_item2_word">
-                                        <span class="span1">MVP</span>
-                                        <span class="span2">jiejie</span>
+                                <?php }}?>
+                                <?php foreach($round_info['record_list_b'] as $key3 => $player_info) {
+                                if($player_info['mvp']==1 || $player_info['beiguo']){?>
+                                    <div class="game_detail_item2_right">
+                                        <div class="arrow-down"></div>
+                                        <div class="game_detail_item2_word">
+                                            <?php if($player_info['mvp']==1) {?>
+                                                <span class="span1">MVP</span>
+                                            <?php }else{?>
+                                                <span class="span1">背锅侠</span>
+                                            <?php }?>
+                                            <span class="span2"><?php echo $player_info['player_name'];?></span>
+                                        </div>
+                                        <div class="game_detail_item2_img">
+                                            <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                        </div>
                                     </div>
-                                    <div class="arrow-up"></div>
-                                </div>
-                                <div class="game_detail_item2_right">
-                                    <div class="arrow-down"></div>
-                                    <div class="game_detail_item2_word">
-                                        <span class="span1">背锅侠</span>
-                                        <span class="span2">Cryin</span>
-                                    </div>
-                                    <div class="game_detail_item2_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                </div>
+                                <?php }}?>
+
                             </div>
                             <div class="game_detail_item3">
                                 <div class="game_detail_item3_top">
@@ -504,6 +521,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 </div>
                             </div>
                         </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>

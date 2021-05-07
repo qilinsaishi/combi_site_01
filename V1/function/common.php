@@ -195,5 +195,17 @@
         $string = strip_tags($string,$tagname); // 保留 <span>标签
         return $string;
     }
+    function checkJson($data = "")
+    {
+        if(substr($data,0,1)=='"' && substr($data,-1) =='"')
+        {
+            echo "888";
+            return json_decode($data,true);
+        }
+        else
+        {
+            return $data;
+        }
+    }
 
 ?>
