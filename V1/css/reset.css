@@ -102,6 +102,7 @@ a {
     _zoom: 1;
     -webkit-text-size-adjust: none;
 }
+a:focus{text-decoration: none}
 /* 去掉 container内边距*/
 /* .container {
     padding-right:0;

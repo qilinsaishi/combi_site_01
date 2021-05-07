@@ -36,10 +36,15 @@
     padding-top: 76px;
     margin-bottom: 9px;
 }
-.game_team1_img img{
-    display: block;
+.game_team1_img1{
+    width: 128px;
+    height: 128px;
     margin: 0 auto;
 }
+/* .game_team1_img img{
+    display: block;
+    margin: 0 auto;
+} */
 .game_team1 span{
     font-size: 24px;
     color: #333;
@@ -444,7 +449,157 @@
     height: 1px;
     background: #eee;
 }
-
+.game_detail_item4{
+    padding: 20px 0 30px 0;
+}
+.game_detail_item4 .left{
+    width: 300px;
+    /* padding-left: 20px; */
+}
+.war_vs{
+    padding:0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.war_situation{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0;
+    margin-bottom: 24px;
+    width: 300px;
+}
+.war_situation span{
+    font-size: 16px;
+    padding: 0 12px;
+    height: 24px;
+    border-radius: 4px;
+    line-height: 24px;
+    margin: 0 6px 0 0;
+    background: #F1F1F1;
+    margin-bottom: 6px;
+    color: #999;
+}
+.war_situation .war_red{
+    background: #FFEAEC;
+    color: #FF5C6A;
+}
+.war_situation .war_blue{
+    background: #E6F3FF;
+    color: #0C8DFC;
+}
+.bans{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bans_img{
+    width: 44px;
+    height: 44px;
+}
+.line3{
+    width: 1px;
+    height: 38px;
+    background: #CBCBCB;
+}
+.bans_bot{
+    margin-bottom: 14px;
+}
+.bans_pincks{
+    padding:0 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+}
+.bans_pincks .center{
+    padding:4px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.vs_data1{
+    width: 740px;
+    height: 38px;
+    margin: 0 auto 50px;
+}
+.vs_data1 li{
+    width: 20%;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #fff;
+    text-align: center;
+    float: left;
+    line-height: 36px;
+}
+/* .vs_data1 li.active1{
+    border-right: 0;
+} */
+.vs_data1 li:nth-child(1){
+    border-left: 1px solid #eee;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.vs_data1 li.active{
+    border-bottom: 1px solid #FA8E69;
+    border-top: 1px solid #FA8E69;
+    border-right: 1px solid #FA8E69;
+    border-left: 1px solid #FA8E69;
+    background: #FFF9F7;
+    color: #FA8E69;
+}
+.vs_data1 li:nth-last-child(1){
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.vs_data1 li a{
+    font-size: 18px;
+    color: #666;
+}
+.vs_player_game,.vs_player_reality{
+    width: 44px;
+    height: 44px;
+    position: absolute;
+}
+.vs_player_game{
+    left: 0;
+    z-index: 2;
+}
+.vs_player_reality{
+    right: 0;
+    z-index: 1;
+}
+.vs_data_combat{
+    width: 372px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.right .vs_data_combat{
+    justify-content: flex-start;
+}
+.vs_player{
+    width: 70px;
+    margin-left: 6px;
+    position: relative;
+    height: 44px;
+}
+.right .vs_player{
+    margin: 0 6px 0 0 ;
+}
+.progress1_parent{
+    width: 248px;
+}
+.vs_data2_item{
+    padding: 0 20px;
+    justify-content: space-between;
+    display: none;
+}
+.vs_data2_item.active{
+    display: flex;
+}
   /* 移动 */
   @media only screen and (max-width: 1024px){
     .game_title{
