@@ -39,8 +39,12 @@
   background: #FF5C6A;
   border-radius: 3px;
 }
-
-
+.progress1.blue > span:before{
+  background: #0C8DFC;
+}
+.progress1.red > span:before{
+  background: #FF5C6A;
+}
 .progress2 {
   height: 6px;
   /* background: #ebebeb; */
@@ -80,4 +84,10 @@
   height: 6px;
   background: #0C8DFC;
   border-radius: 3px;
+}
+.progress2.blue > span:before{
+  background: #0C8DFC;
+}
+.progress2.red > span:before{
+  background: #FF5C6A;
 }
