@@ -449,7 +449,11 @@ foreach($newsTypeList as $newsType)
         </div>
     </div>
     <?php renderFooterJsCss($config);?>
+
     <script type="text/javascript">
+        $(function() {
+            $('img.lazy').lazyload();
+        });
         var banner = $(".banner_img").height()
         $('.banner_img img').load(function () {
             $(".banner").css("height", banner)

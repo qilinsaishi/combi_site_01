@@ -147,12 +147,12 @@
                 echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css" type="text/css" />';
             }
         }
+        echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/lazyload.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/flexible.js" type="text/javascript"></script>';
     }
     function renderFooterJsCss($config)
     {
-        echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/bootstrap.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/index.js" type="text/javascript"></script>';
     }
