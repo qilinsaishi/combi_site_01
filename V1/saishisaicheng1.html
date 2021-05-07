@@ -12,6 +12,7 @@
     <script src="./js/flexible.js"></script>
     <link rel="stylesheet" href="./css/headerfooter.css">
     <link rel="stylesheet" href="./css/game.css">
+    <link rel="stylesheet" href="./css/jquery.lineProgressbar.css">
 </head>
 <body>
     <div class="wrapper">
@@ -79,7 +80,7 @@
                     </div>
                     <div class="game_detail">
                         <ul class="game_detail_ul">
-                            <li>
+                            <li class="active">
                                 <a href="##">
                                     <div class="game_detail_img1">
                                         <img src="./images/game_detail1.png" alt="">
@@ -104,6 +105,117 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="game_detail_div">
+                            <div class="game_detail_div_item">
+                                <div class="game_detail_div_item1">
+                                    <div class="left">
+                                        <div class="imgwidth40 imgheight40">
+                                            <img src="./images/game_detail1.png" alt="" class="imgauto">
+                                        </div>
+                                        <span>WE</span>
+                                        <div class="imgwidth30 imgheight30">
+                                            <img src="./images/victory.png" alt="" class="imgauto">
+                                        </div>
+                                    </div>
+                                    <div class="center">
+                                        <span class="game_detail_line1"></span>
+                                        <span class="game_detail_circle1"></span>
+                                        <span class="fz font_color_r">95</span>
+                                        <div class="img_game_detail_vs">
+                                            <img src="./images/game_detail_vs.png" alt="" class="imgauto">
+                                        </div>
+                                        <span class="fz font_color_b">72</span>
+                                        <span class="game_detail_circle1"></span>
+                                        <span class="game_detail_line1"></span>
+                                    </div>
+                                    <div class="left right">
+                                        <div class="imgwidth40 imgheight40">
+                                            <img src="./images/game_detail1.png" alt="" class="imgauto">
+                                        </div>
+                                        <span>WE</span>
+                                    </div>
+                                </div>
+                                <div class="game_detail_div_item2">
+                                    <div class="game_detail_div_item2_left">
+                                        <div class="game_detail_div_item2_img">
+                                            <img src="./images/player1.png" alt="" class="imgauto">
+                                        </div>
+                                        <div class="game_detail_div_item2_word">
+                                            <span class="span1">MVP</span>
+                                            <span class="span2">jiejie</span>
+                                        </div>
+                                        <div class="arrow-up"></div>
+                                    </div>
+                                    <div class="game_detail_div_item2_right">
+                                        <div class="arrow-down"></div>
+                                        <div class="game_detail_div_item2_word">
+                                            <span class="span1">背锅侠</span>
+                                            <span class="span2">Cryin</span>
+                                        </div>
+                                        <div class="game_detail_div_item2_img">
+                                            <img src="./images/player1.png" alt="" class="imgauto">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="game_detail_div_item3">
+                                    <div class="game_detail_div_item3_top">
+                                        <div class="left">
+                                            <div class="left_img">
+                                                <img src="./images/gold_coin.png" alt="" class="imgauto">
+                                            </div>
+                                            <span>95.71k</span>
+                                        </div>
+                                        <p>28:16</p>
+                                        <div class="left">
+                                            <span>67k</span>
+                                            <div class="left_img">
+                                                <img src="./images/gold_coin.png" alt="" class="imgauto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pk-detail-con">
+                                        <div class="progress" >
+                                          <div class="progress-bar" style="width: 58%;">
+                                            <i class="lightning"></i>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="game_detail_div1_item3">
+                                        <div class="left">
+                                            <div class="img1">
+                                                <img src="./images/kpl_dalong.png" alt="" class="autoimg">
+                                            </div>
+                                            <span>1</span>
+                                            <div class="img1">
+                                                <img src="./images/kpl_xiaolong.png" alt="" class="autoimg">
+                                            </div>
+                                            <span>3</span>
+                                            <div class="img1 img2">
+                                                <img src="./images/kpl_ta.png" alt="" class="autoimg">
+                                            </div>
+                                            <span>1</span>
+                                        </div>
+                                        <div class="left right">
+                                            <div class="img1">
+                                                <img src="./images/kpl_dalong.png" alt="" class="autoimg">
+                                            </div>
+                                            <span>2</span>
+                                            <div class="img1">
+                                                <img src="./images/kpl_xiaolong.png" alt="" class="autoimg">
+                                            </div>
+                                            <span>3</span>
+                                            <div class="img1 img2">
+                                                <img src="./images/kpl_ta.png" alt="" class="autoimg">
+                                            </div>
+                                            <span>0</span>
+                                        </div>
+                                    </div>
+                                    <div class="line2">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="game_right">
@@ -136,5 +248,16 @@
     </div>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/jquery.lineProgressbar.js"></script> 
+    <script>
+        $('#progressbar2').LineProgressbar({
+				percentage: 58,
+				fillBackgroundColor: '#1abc9c'
+			});
+            $('#progressbar1').LineProgressbar({
+				percentage: 30,
+				fillBackgroundColor: '#1abc9c'
+			});
+    </script>
 </body>
 </html>
