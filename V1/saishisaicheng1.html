@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,15 +13,16 @@
     <script src="./js/flexible.js"></script>
     <link rel="stylesheet" href="./css/headerfooter.css">
     <link rel="stylesheet" href="./css/game.css">
-    <link rel="stylesheet" href="./css/jquery.lineProgressbar.css">
+    <link rel="stylesheet" href="./css/progress-bars.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="header">
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="index.html">
-                        <img src="./images/logo.png"></a>
+                            <img src="./images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -51,7 +53,9 @@
                         <div class="game_title_top">
                             <div class="game_team1">
                                 <div class="game_team1_img">
-                                    <img src="./images/game_teaml.png" alt="">
+                                    <div class="game_team1_img1">
+                                        <img src="./images/game_teaml.png" alt="" class="imgauto">
+                                    </div>
                                 </div>
                                 <span>WE</span>
                             </div>
@@ -67,14 +71,17 @@
                             </div>
                             <div class="game_team1">
                                 <div class="game_team1_img">
-                                    <img src="./images/game_teaml.png" alt="">
+                                    <div class="game_team1_img1">
+                                        <img src="./images/game_teaml.png" alt="">
+                                    </div>
                                 </div>
                                 <span>WE</span>
                             </div>
                         </div>
                         <div class="game_team_depiction">
                             <p class="active">TeamWE是一家中国电子竞技俱乐部，成立于2005年4月21日，是TeamWE是一家中国电子竞技俱乐部，成立于2005年4月21日，是</p>
-                            <p class="active">SV电子竞技俱乐部于2016年11月成立。SuperValiant译为超级勇猛...SV电子竞技俱乐部于2016年11月成立。SuperValiant译为超级勇猛...</p>
+                            <p class="active">
+                                SV电子竞技俱乐部于2016年11月成立。SuperValiant译为超级勇猛...SV电子竞技俱乐部于2016年11月成立。SuperValiant译为超级勇猛...</p>
                         </div>
                         <img src="./images/more.png" alt="" class="game_title_more">
                     </div>
@@ -174,10 +181,10 @@
                                         </div>
                                     </div>
                                     <div class="pk-detail-con">
-                                        <div class="progress" >
-                                          <div class="progress-bar" style="width: 58%;">
-                                            <i class="lightning"></i>
-                                          </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 58%;">
+                                                <i class="lightning"></i>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="game_detail_div1_item3">
@@ -213,14 +220,302 @@
                                     <div class="line2"></div>
                                 </div>
                                 <div class="game_detail_item4">
-
+                                    <div class="war_vs">
+                                        <div class="war_situation">
+                                            <span class="war_red">一塔</span>
+                                            <span class="war_blue">一血</span>
+                                            <span>先五杀</span>
+                                            <span>先十杀</span>
+                                            <span>一小龙</span>
+                                            <span>一大龙</span>
+                                            <span>一先锋</span>
+                                        </div>
+                                        <div class="war_situation">
+                                            <span class="war_red">一塔</span>
+                                            <span class="war_blue">一血</span>
+                                            <span>先五杀</span>
+                                            <span>先十杀</span>
+                                            <span>一小龙</span>
+                                            <span>一大龙</span>
+                                            <span>一先锋</span>
+                                        </div>
+                                    </div>
+                                    <div class="bans_pincks">
+                                        <div class="left">
+                                            <div class="bans bans_bot">
+                                                <div class="bans_img">
+                                                    <img src="./images/bans1.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans2.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans3.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="line3"></div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans4.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans5.png" alt="" class="imgauto">
+                                                </div>
+                                            </div>
+                                            <div class="bans picks">
+                                                <div class="bans_img">
+                                                    <img src="./images/bans1.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans2.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans3.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="line3"></div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans4.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans5.png" alt="" class="imgauto">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="center">
+                                            <span>Bans</span>
+                                            <span>Picks</span>
+                                        </div>
+                                        <div class="left">
+                                            <div class="bans bans_bot">
+                                                <div class="bans_img">
+                                                    <img src="./images/bans5.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans4.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="line3"></div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans3.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans2.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans1.png" alt="" class="imgauto">
+                                                </div>
+                                            </div>
+                                            <div class="bans picks">
+                                                <div class="bans_img">
+                                                    <img src="./images/bans5.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans4.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="line3"></div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans3.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans2.png" alt="" class="imgauto">
+                                                </div>
+                                                <div class="bans_img">
+                                                    <img src="./images/bans1.png" alt="" class="imgauto">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="game_detail_item5">
+                                    <ul class="vs_data1">
+                                        <li class="">
+                                            <a href="##">
+                                                输出
+                                            </a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="##">
+                                                承伤
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="##">
+                                                经济
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="##">
+                                                补刀
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="##">
+                                                LFL评分
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="vs_data2">
+                                        <div class="vs_data2_item">
+                                            <div class="left">
+                                                <div class="vs_data_combat">
+                                                    <div class="progress1_parent">
+                                                        <div class="progress1">
+                                                            <span style="width: 40%;"><span>95721</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="progress1_parent">
+                                                        <div class="progress1">
+                                                            <span style="width: 60%;"><span>120529</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="progress1_parent">
+                                                        <div class="progress1">
+                                                            <span style="width: 100%;"><span>120529</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="progress1_parent">
+                                                        <div class="progress1">
+                                                            <span style="width: 40%;"><span>95721</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="progress1_parent">
+                                                        <div class="progress1">
+                                                            <span style="width: 60%;"><span>120529</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="left right">
+                                                <div class="vs_data_combat">
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress1_parent">
+                                                        <div class="progress2">
+                                                            <span style="width: 40%;"><span>95721</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress1_parent">
+                                                        <div class="progress2">
+                                                            <span style="width: 60%;"><span>120529</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress1_parent">
+                                                        <div class="progress2">
+                                                            <span style="width: 100%;"><span>120529</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress1_parent">
+                                                        <div class="progress2">
+                                                            <span style="width: 40%;"><span>95721</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vs_data_combat">
+                                                    <div class="vs_player">
+                                                        <div class="vs_player_game">
+                                                            <img src="./images/bans1.png" alt="" class="imgauto">
+                                                        </div>
+                                                        <div class="vs_player_reality">
+                                                            <img src="./images/bans2.png" alt="" class="imgauto">
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress1_parent">
+                                                        <div class="progress2">
+                                                            <span style="width: 60%;"><span>120529</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="game_right">
-                
+
                 </div>
             </div>
         </div>
@@ -249,13 +544,23 @@
     </div>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/index.js"></script>
-    <script src="./js/jquery.lineProgressbar.js"></script> 
+    <script src="./js/jquery.lineProgressbar.js"></script>
     <script>
         // 溢出隐藏，点击不隐藏
-        $(".game_title").on("click",".game_title_more",function(){
+        $(".game_title").on("click", ".game_title_more", function () {
             $(".game_title").find(".game_team_depiction p").toggleClass("active");
             $(".game_title_more").toggleClass("active")
         })
+
+        // vs_data1切换
+        $(".vs_data1").on("click", 'li', function () {
+            var _this = $(this).index() - 1;
+            $(".vs_data1 li").removeClass("active").eq($(this).index()).addClass("active");
+            $(".vs_data1 li").removeClass("active1").eq(_this).addClass("active1");
+            $(".vs_data2 .vs_data2_item").removeClass("active").eq($(this).index()).addClass("active");
+            // $(".game_team_div").removeClass("active").eq($(this).index()).addClass("active");
+        })
     </script>
 </body>
+
 </html>
