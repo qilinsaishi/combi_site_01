@@ -148,3 +148,12 @@
 .progress4.red > span:before {
   background: #FF5C6A;
 }
+.progress3.grey > span:before {
+  background: #ccc;
+}
+.progress4.grey > span:before {
+  background: #ccc;
+}
+.compare_bar .progress3 > span:before{
+  height: 6px;
+}
