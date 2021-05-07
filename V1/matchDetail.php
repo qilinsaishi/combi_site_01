@@ -367,7 +367,7 @@ print_R(($return['matchDetail']['data']['match_data']['result_list']));
                                             <div class="vs_data_combat">
                                                 <div class="progress1_parent">
                                                     <div class="progress1">
-                                                        <span style="width: 40%;"><span>95721</span></span>
+                                                        <span style="width: 40%;"><span>95722</span></span>
                                                     </div>
                                                 </div>
                                                 <div class="vs_player">
@@ -382,7 +382,7 @@ print_R(($return['matchDetail']['data']['match_data']['result_list']));
                                             <div class="vs_data_combat">
                                                 <div class="progress1_parent">
                                                     <div class="progress1">
-                                                        <span style="width: 60%;"><span>120529</span></span>
+                                                        <span style="width: 60%;"><span>120530</span></span>
                                                     </div>
                                                 </div>
                                                 <div class="vs_player">
