@@ -180,11 +180,11 @@ print_R(($return['matchDetail']['data']['match_data']['result_list']));
                                         <div class="left_img">
                                             <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="" class="imgauto">
                                         </div>
-                                        <span>95.71k</span>
+                                        <span><?php echo $round_info['money_a'];?></span>
                                     </div>
-                                    <p>28:16</p>
+                                    <p><?php echo $round_info['game_time_minute'];?>分钟</p>
                                     <div class="left">
-                                        <span>67k</span>
+                                        <span><?php echo $round_info['money_b'];?></span>
                                         <div class="left_img">
                                             <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="" class="imgauto">
                                         </div>
@@ -192,7 +192,7 @@ print_R(($return['matchDetail']['data']['match_data']['result_list']));
                                 </div>
                                 <div class="pk-detail-con">
                                     <div class="progress">
-                                        <div class="progress-bar" style="width: 58%;">
+                                        <div class="progress-bar" style="width: <?php echo intval(100*$round_info['money_a']/($round_info['money_a']+$round_info['money_b']));?>%;">
                                             <i class="lightning"></i>
                                         </div>
                                     </div>
@@ -202,11 +202,11 @@ print_R(($return['matchDetail']['data']['match_data']['result_list']));
                                         <div class="img1">
                                             <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="" class="autoimg">
                                         </div>
-                                        <span>1</span>
+                                        <span><?php echo $round_info['dragon_a'];?></span>
                                         <div class="img1">
                                             <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="" class="autoimg">
                                         </div>
-                                        <span>3</span>
+                                        <span><?php echo $round_info['baron_a'];?></span>
                                         <div class="img1 img2">
                                             <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                         </div>
@@ -216,11 +216,11 @@ print_R(($return['matchDetail']['data']['match_data']['result_list']));
                                         <div class="img1">
                                             <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="" class="autoimg">
                                         </div>
-                                        <span>2</span>
+                                        <span><?php echo $round_info['dragon_b'];?></span>
                                         <div class="img1">
                                             <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="" class="autoimg">
                                         </div>
-                                        <span>3</span>
+                                        <span><?php echo $round_info['baron_b'];?></span>
                                         <div class="img1 img2">
                                             <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                         </div>
