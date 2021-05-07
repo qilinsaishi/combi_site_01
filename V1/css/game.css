@@ -8,7 +8,7 @@
 }
 .game_title{
     width: 860px;
-    height: 336px;
+    /* height: 336px; */
     background: #fff;
     border: 1px solid #EEEEEE;
     border-radius: 8px;
@@ -24,7 +24,7 @@
     font-family: 'shuzi';
 }
 .game_title{
-    padding: 0 20px;
+    padding: 0 20px 10px;
     margin-bottom: 20px;
 }
 .game_team1_img{
@@ -105,12 +105,14 @@
     line-height: 42px;
     font-size: 36px;
     margin-bottom: 0;
+    color: #fff;
 }
 .game_type .game_vs .span2{
     height: 42px;
     line-height: 42px;
     font-size: 36px;
     margin-bottom: 0;
+    color: #fff;
 }
 .game_vs img{
     width: 48px;
@@ -129,16 +131,19 @@
 }
 .game_team_depiction p{
     width: 300px;
-    height: 48px;
+    height: auto;
     line-height: 24px;
     font-size: 18px;
     color: #666;
+}
+.game_team_depiction p.active{
     display: -webkit-box; 
     word-break: break-all;
     -webkit-box-orient: vertical;
     -webkit-line-clamp:2;
     overflow: hidden;
     text-overflow:ellipsis;
+    height: 48px;
 }
 .game_title_more{
     transform: rotate(90deg);
@@ -146,6 +151,9 @@
     height: 18px;
     display: block;
     margin: 0 auto;
+}
+.game_title_more.active{
+    transform: rotate(270deg);
 }
 .game_detail{
     width: 860px;
@@ -196,13 +204,13 @@
 .game_detail_div{
     border-top: 1px solid #eee;
 }
-.game_detail_div_item1{
+.game_detail_item1{
     padding: 10px 20px 0;
     margin-bottom: 28px;
     display: flex;
     justify-content: space-between;
 }
-.game_detail_div_item1 .left{
+.game_detail_item1 .left{
     display: flex;
     font-size: 0;
     align-items: center;
@@ -229,7 +237,7 @@
     color: #333;
     margin: 0 12px 0 14px;
 }
-.game_detail_div_item1 .center{
+.game_detail_item1 .center{
     display: flex;
     align-items: center;
 }
@@ -245,7 +253,7 @@
     border: 1px solid #EEEEEE;
     border-radius: 50%;
 }
-.game_detail_div_item1 .center span.fz{
+.game_detail_item1 .center span.fz{
     font-size: 30px;
     margin: 0 22px;
     font-family: shuzi;
@@ -261,14 +269,14 @@
     height: 20px;
     font-size: 0;
 }
-.game_detail_div_item2{
+.game_detail_item2{
     display: flex;
     margin: 0 auto;
     width: 600px;
     margin-top: 60px;
     margin-bottom: 56px;
 }
-.game_detail_div_item2_left{
+.game_detail_item2_left{
     width: 300px;
     height: 80px;
     background: #FFD35C;
@@ -276,7 +284,7 @@
     position: relative;
     padding-left: 30px;
 }
-.game_detail_div_item2_right{
+.game_detail_item2_right{
     width: 300px;
     height: 80px;
     background: #B178FF;
@@ -293,14 +301,14 @@
     right: 0;
 
 }
-.game_detail_div_item2_img{
+.game_detail_item2_img{
     width: 100px;
     height: 120px;
     z-index: 2;
     position: absolute;
     bottom: 0;
 }
-.game_detail_div_item2_word{
+.game_detail_item2_word{
     position: absolute;
     right: 28px;
     display: flex;
@@ -332,47 +340,47 @@
     position: absolute;
     left: 0;
 }
-.game_detail_div_item2_left span,.game_detail_div_item2_right span{
+.game_detail_item2_left span,.game_detail_item2_right span{
     width: 100px;
     text-align: right;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
-.game_detail_div_item2_right span{
+.game_detail_item2_right span{
     text-align: left;
 }
-.game_detail_div_item2_right .span1,.game_detail_div_item2_right .span2{
+.game_detail_item2_right .span1,.game_detail_item2_right .span2{
     color: #F5EEFF;
 }
-.game_detail_div_item2_right .game_detail_div_item2_word{
+.game_detail_item2_right .game_detail_item2_word{
     left: 29px;
 }
-.game_detail_div_item2_right .game_detail_div_item2_img{
+.game_detail_item2_right .game_detail_item2_img{
     right: 10px;
 }
-.game_detail_div_item3{
+.game_detail_item3{
     padding: 0 20px;
 }
-.game_detail_div_item3_top{
+.game_detail_item3_top{
     display: flex;
     justify-content: space-between;
 }
-.game_detail_div_item3_top .left{
+.game_detail_item3_top .left{
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
-.game_detail_div_item3_top .left span{
+.game_detail_item3_top .left span{
     font-size: 24px;
     font-family: shuzi;
 }
-.game_detail_div_item3_top .left_img{
+.game_detail_item3_top .left_img{
     width: 28px;
     height: 22px;
     font-size: 0;
 }
-.game_detail_div_item3_top p{
+.game_detail_item3_top p{
     width: 70px;
     height: 28px;
     background: #F1F1F1;
@@ -411,7 +419,7 @@
 .progress-bar{height: 8px;text-align: left;background-color: #FF5C6A;-moz-transition: width .6s ease;-webkit-transition: width .6s ease;transition: width .6s ease;}
 .progress, .progress-bar{background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 50%);background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 50%);background-image: linear-gradient(rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 50%);}
 .lightning, .team-name{position: absolute;}
-.lightning{top: 0;right: -13px;width: 25px;height: 8px;background: url("img/pk-lightning.png") no-repeat center;background-size: cover;}
+.lightning{top: 0;right: -2px;width: 4px;height: 8px;background: url("../images/gold_vs.png") no-repeat center;background-size: cover;}
 
 .game_detail_div1_item3{
     display: flex;
@@ -436,3 +444,16 @@
     height: 1px;
     background: #eee;
 }
+
+  /* 移动 */
+  @media only screen and (max-width: 1024px){
+    .game_title{
+        width: 100%;
+    }
+    .game_left{
+        width: 100%;
+    }
+    .game_detail{
+        width: 100%;
+    }
+  }
