@@ -1,0 +1,212 @@
+/* 右面 */
+.game_right{
+    width: 320px;
+    float: right;
+}
+.game_lately,.game_news,.game_team,.game_player{
+    padding: 18px 18px 0;
+    width: 320px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.game_right .title {
+    font-size: 0;
+}
+.game_right .title span{
+    font-size: 18px;
+    color: #333;
+}
+.game_right .title .more span{
+    color: #999;
+    margin-right: 12px;
+} 
+.game_fire{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+.game_right .title .more .img{
+    width: 10px;
+    height: 18px;
+}
+.game_right .game_match_ul li {
+    padding: 10px 13px 20px 13px;
+    margin-bottom: 0;
+    border-bottom: 6px solid;
+    border-color: rgba(0,0,0,0);
+    transition: all 0.2s linear;
+    transition: all 0.2s linear;
+    border-bottom: 1px solid #eee;
+    height: 149px;
+}
+.game_right .game_match_ul li:nth-child(3){
+    border-bottom: 0;
+}
+.game_right .game_match_ul:hover li{
+    border-bottom: 0;
+}
+.game_right .game_match_ul .left span{
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+}
+.game_right .game_match_bottom .left{
+    width: 33%;
+}
+.game_right  .game_match_img{
+    margin-bottom: 10px;
+}
+.game_news{
+    height: 390px;
+}
+.game_news ul{
+    padding-top: 14px;
+}
+.game_news li{
+    width: 280px;
+    height: 41px;
+    border-bottom: 1px solid #eee;
+    line-height: 38px;
+    padding-right: 50px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.game_news li:hover a{
+    color: #FF6649;
+}
+.game_news li:nth-last-child(1){
+    border-bottom: 0;
+}
+.game_news li a{
+    font-size: 16px;
+    color: #666;
+}
+.game_right .game_team{
+    height: 450px;
+}
+.game_team .game_team_list_detail li{
+    margin-right: 0;
+    width: 33.33%;
+    height: 116px;
+}
+.game_team .game_team_list_detail .a1{
+    width: 60px;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 22px;
+    padding: 0;
+    font-size: 0;
+    margin-top: 14px;
+}
+.game_team .game_team_list_detail li span{
+    font-size: 16px;
+    height: 34px;
+    line-height: 34px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding: 0 6px;
+}
+.game_team .game_team_list_detail{
+    padding-top: 34px;
+}
+.game_player_ul{
+    padding-top: 28px;
+}
+.game_player_img{
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    overflow: hidden;
+    font-size: 0;
+    margin: 0 auto 10px;
+}
+.game_player_ul li{
+    width: 33.33%;
+    height: 120px;
+    float: left;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+.game_player_ul li:hover .game_player_img{
+    border: 1px solid #FF6649;
+}
+.game_player_ul li:hover  span{
+    color: #FF6649;
+}
+.game_player_ul li span{
+    font-size: 16px;
+    color: #333;
+    display: block;
+    text-align: center;
+    padding: 0 4px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap
+}
+
+@media only screen and (max-width: 1024px){
+    /* 右面移动端 */
+    .game_right{
+    float: none;
+    width: 100%;
+}
+    .game_lately, .game_news, .game_team, .game_player{
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    .game_match_top span{
+        font-size: 24px;
+    }
+    .game_right .title span{
+        font-size: 30px;
+    }
+    .game_match_img{
+        width: 90px;
+        height: 90px;
+    }
+    .game_team .game_team_list_detail .a1{
+        width: 108px;
+        height: 70px;
+    }
+    .game_team .game_team_list_detail li{
+        height: auto;
+    }
+    .game_right .game_team{
+        height: auto;
+    }
+    .game_team .game_team_list_detail li span{
+        height: 54px;
+        line-height: 54px;
+        padding: 0 20px;
+        font-size: 24px;
+    }
+    .game_news li{
+        width: 100%;
+        height: 81px;
+        line-height: 80px;
+        border-bottom: 1px solid #eee;
+    }
+    .game_news li a{
+        font-size: 24px;
+    }
+    .game_right .game_match_ul li{
+        height: auto;
+    }
+    .game_right .game_match_ul .left span{
+        font-size: 24px;
+        max-width: 180px;
+    }
+    .game_player_ul li span{
+        font-size: 24px;
+        padding: 0 20px;
+    }
+    .game_team_depiction p{
+        font-size: 24px;
+    }
+}

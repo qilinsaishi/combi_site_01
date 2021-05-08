@@ -2,10 +2,7 @@
     width: 860px;
     float: left;
 }
-.game_right{
-    width: 320px;
-    float: right;
-}
+
 .game_title{
     width: 860px;
     /* height: 336px; */
@@ -502,6 +499,10 @@
     width: 20px;
     height: 20px;
     font-size: 0;
+    margin-right: 20px;
+}
+.game_detail_div1_item3 span{
+    margin-right: 20px;
 }
 .game_detail_div1_item3 .img2{
     width: 14px;
@@ -563,7 +564,7 @@
     margin: 0 8px;
     float: left;
 }
-.bans_bans_3{
+/* .bans_bans_3{
     width: 172px;
 }
 .bans_bans_2{
@@ -580,12 +581,12 @@
 }
 .bans_pincks .right .bans_bans_3 .bans_img:nth-child(1){
     margin-left: 0;
-}
-.line3{
+} */
+/* .line3{
     width: 1px;
     height: 38px;
     background: #CBCBCB;
-}
+} */
 .bans_bot{
     margin-bottom: 14px;
 }
@@ -601,7 +602,7 @@
     padding:4px 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .game_detail_item5{
     margin-bottom: 24px;
@@ -730,6 +731,12 @@
 }
 .game_before_after li.active a{
     color: #FF6649;
+}
+.vs_data3{
+    padding: 0 20px;
+}
+.game2_left .vs_data3{
+    padding: 0;
 }
 .vs_data3 th{
     height: 38px;
@@ -983,7 +990,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     margin-bottom: 30px;
 }
 .vs_data3_pad{
-    padding:0 20px;
+    /* padding:0 20px; */
 }
 .win_rate{
     font-size: 24px;
@@ -1044,9 +1051,65 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .rate_data{
     /* padding-bottom: 12px; */
 }
+/* ban英雄修改 */
+.bans_pincks td .bans_picks_div{
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 14px;
+    margin-bottom: 14px;
+}
+.bans_pincks .left td:nth-child(4n) a{
+    position: relative;
+    z-index: 1;
+}
+.bans_pincks .left td:nth-child(4n) .bans_picks_div{
+    margin-left: 14px;
+}
+.bans_pincks .right td:nth-child(4n) .bans_picks_div{
+    margin-left: 0;
+}
+.bans_pincks .right td:nth-child(3n) a{
+    position: relative;
+}
+.bans_pincks .right td:nth-child(3n) .bans_picks_div{
+    margin-left: 14px;
+}
+.left td:nth-child(4n) a::after{
+    content: '';
+    display: block;
+    width: 1px;
+    height: 38px;
+    background: #CBCBCB;
+    clear: both;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+.right td:nth-child(3n) a::after{
+    content: '';
+    display: block;
+    width: 1px;
+    height: 38px;
+    background: #CBCBCB;
+    clear: both;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+thead{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
 /* 左面结束 */
 /* 右面 */
-
+.game_right{
+    width: 320px;
+    float: right;
+}
 .game_lately,.game_news,.game_team,.game_player{
     padding: 18px 18px 0;
     width: 320px;
@@ -1192,6 +1255,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     text-overflow:ellipsis;
     white-space: nowrap
 }
+
 /* 进度条 */
   /* 移动 */
   @media only screen and (max-width: 1024px){
