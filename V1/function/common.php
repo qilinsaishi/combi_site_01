@@ -147,12 +147,26 @@
                 echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css" type="text/css" />';
             }
         }
+        echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/lazyload.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/flexible.js" type="text/javascript"></script>';
     }
-    function renderFooterJsCss($config)
+    function renderFooterJsCss($config,$customCss = [],$customJs = [])
     {
-        echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
+        foreach($customCss as $file)
+        {
+            if(trim($file)!="")
+            {
+                echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css" type="text/css" />';
+            }
+        }
+        foreach($customJs as $file)
+        {
+            if(trim($file)!="")
+            {
+                echo '<link rel="stylesheet" href="'.$config['site_url'].'/js/'.$file.'.js" type="text/javascript" />';
+            }
+        }
         echo '<script src="'.$config['site_url'].'/js/bootstrap.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/index.js" type="text/javascript"></script>';
     }
@@ -180,6 +194,18 @@
         $string = html_entity_decode($string);
         $string = strip_tags($string,$tagname); // 保留 <span>标签
         return $string;
+    }
+    function checkJson($data = "")
+    {
+        if(substr($data,0,1)=='"' && substr($data,-1) =='"')
+        {
+            echo "888";
+            return json_decode($data,true);
+        }
+        else
+        {
+            return $data;
+        }
     }
 
 ?>

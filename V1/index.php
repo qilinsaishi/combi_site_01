@@ -1,8 +1,8 @@
 <?php
 require_once "function/init.php";
 $params = [
-    "matchList"=>["page"=>1,"page_size"=>8,"source"=>"scoregg","cacheWith"=>"currentPage","cache_time"=>86400],
-    "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>"scoregg","cacheWith"=>"currentPage","cache_time"=>86400],
+    "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
@@ -104,7 +104,7 @@ foreach($newsTypeList as $newsType)
                     <ul class="game_match_ul dn_wap">
                         <?php foreach($return['matchList']['data'] as $matchInfo){?>
                         <li class="col-md-3 col-xs-12">
-                            <a href="<?php echo $config['site_url'];?>/matchDetail/<?php echo $matchInfo['match_id'];?>">
+                            <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
                                 <div class="game_match_top">
                                     <span class="game_match_name"><?php echo $matchInfo['tournament_info']['tournament_name'];?></span>
                                     <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?></span>
@@ -449,7 +449,11 @@ foreach($newsTypeList as $newsType)
         </div>
     </div>
     <?php renderFooterJsCss($config);?>
+
     <script type="text/javascript">
+        $(function() {
+            $('img.lazy').lazyload();
+        });
         var banner = $(".banner_img").height()
         $('.banner_img img').load(function () {
             $(".banner").css("height", banner)
