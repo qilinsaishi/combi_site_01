@@ -236,25 +236,54 @@ unset($return['matchDetail']['data']['match_pre']);
                                     </div>
                                     <div class="line2"></div>
                                 </div>
+                                <!--- 主客队的大龙小龙数据对比-->
                                 <div class="game_detail_item4">
                                     <div class="war_vs">
                                         <div class="war_situation">
+                                            <?php if(isset($round_info['dragon_list']['blue']['firstTowerKill']) && $round_info['dragon_list']['blue']['firstTowerKill']>0) {?>
                                             <span class="war_red">一塔</span>
-                                            <span class="war_blue">一血</span>
-                                            <span>先五杀</span>
-                                            <span>先十杀</span>
-                                            <span>一小龙</span>
-                                            <span>一大龙</span>
-                                            <span>一先锋</span>
+                                            <?php }else{?><span>一塔</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['blue']['firstBloodKill']) && $round_info['dragon_list']['blue']['firstBloodKill']>0) {?>
+                                                <span class="war_blue">一血</span>
+                                            <?php }else{?><span>一血</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['blue']['first5Kill']) && $round_info['dragon_list']['blue']['first5Kill']>0) {?>
+                                                <span class="war_blue">先五杀</span>
+                                            <?php }else{?><span>先五杀</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['blue']['first10Kill']) && $round_info['dragon_list']['blue']['first10Kill']>0) {?>
+                                                <span class="war_blue">先十杀</span>
+                                            <?php }else{?><span>先十杀</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['blue']['firstBaronKill']) && $round_info['dragon_list']['blue']['firstBaronKill']>0) {?>
+                                                <span class="war_blue">一小龙</span>
+                                            <?php }else{?><span>一小龙</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['blue']['firstDragonKill']) && $round_info['dragon_list']['blue']['firstDragonKill']>0) {?>
+                                                <span class="war_blue">一大龙</span>
+                                            <?php }else{?><span>一大龙</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['blue']['firstHerald']) && $round_info['dragon_list']['blue']['firstHerald']>0) {?>
+                                                <span class="war_blue">一先锋</span>
+                                            <?php }else{?><span>一先锋</span><?php }?>
                                         </div>
                                         <div class="war_situation">
+                                            <?php if(isset($round_info['dragon_list']['red']['firstTowerKill']) && $round_info['dragon_list']['red']['firstTowerKill']>0) {?>
                                             <span class="war_red">一塔</span>
-                                            <span class="war_blue">一血</span>
-                                            <span>先五杀</span>
-                                            <span>先十杀</span>
-                                            <span>一小龙</span>
-                                            <span>一大龙</span>
-                                            <span>一先锋</span>
+                                            <?php }else{?><span>一塔</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['red']['firstBloodKill']) && $round_info['dragon_list']['red']['firstBloodKill']>0) {?>
+                                                <span class="war_blue">一血</span>
+                                            <?php }else{?><span>一血</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['red']['first5Kill']) && $round_info['dragon_list']['red']['first5Kill']>0) {?>
+                                                <span class="war_blue">先五杀</span>
+                                            <?php }else{?><span>先五杀</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['red']['first10Kill']) && $round_info['dragon_list']['red']['first10Kill']>0) {?>
+                                                <span class="war_blue">先十杀</span>
+                                            <?php }else{?><span>先十杀</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['red']['firstBaronKill']) && $round_info['dragon_list']['red']['firstBaronKill']>0) {?>
+                                                <span class="war_blue">一小龙</span>
+                                            <?php }else{?><span>一小龙</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['red']['firstDragonKill']) && $round_info['dragon_list']['red']['firstDragonKill']>0) {?>
+                                                <span class="war_blue">一大龙</span>
+                                            <?php }else{?><span>一大龙</span><?php }?>
+                                            <?php if(isset($round_info['dragon_list']['red']['firstHerald']) && $round_info['dragon_list']['red']['firstHerald']>0) {?>
+                                                <span class="war_blue">一先锋</span>
+                                            <?php }else{?><span>一先锋</span><?php }?>
                                         </div>
                                     </div>
                                     <!--- 主客队的Ban/Pick数据对比-->
@@ -324,6 +353,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                     </div>
                                     <!--- 主客队的Ban/Pick数据对比-->
                                 </div>
+                                <!--- 主客队的大龙小龙数据对比-->
                                 <!--- 主客队的进度条数据对比-->
                                 <div class="game_detail_item5">
                                     <ul class="vs_data1">
