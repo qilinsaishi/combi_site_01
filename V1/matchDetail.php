@@ -5,11 +5,17 @@ $match_id = $_GET['match_id']??0;
 $params = [
     "matchDetail"=>["source"=>$config['default_source'],"match_id"=>$match_id,"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+    "recentMatchList"=>["dataType"=>"matchList","page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>$config['game'],"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>$config['game'],"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>$config['game'],"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
+
 $return = curl_post($config['api_get'],json_encode($params),1);
+//echo json_encode($params);die();
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
-unset($return['matchDetail']['data']['match_pre']);
+//unset($return['matchDetail']['data']['match_pre']);
 //$return['matchDetail']['data']['match_data'] = json_decode($return['matchDetail']['data']['match_data'],true);q
 //print_R(($return['matchDetail']['data']['match_data']));
 //die();
@@ -1387,25 +1393,30 @@ unset($return['matchDetail']['data']['match_pre']);
                             <span class="fl">近期赛事</span>
                         </div>
                         <div class="more fr">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>\matchlist\">
                                 <span>更多</span>
                                 <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
                     <ul class="game_match_ul">
+                        <?php foreach($return['recentMatchList']['data'] as $matchInfo){?>
                         <li class="col-md-12 col-xs-12">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
                                 <div class="game_match_top">
-                                    <span class="game_match_name">常规赛常规</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
+                                    <span class="game_match_name"><?php echo $matchInfo['tournament_info']['tournament_name'];?></span>
+                                    <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?></span>
                                 </div>
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
+                                            <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
+                                                <img class="lazy-load" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
+                                            <?php }else{?>
+                                                <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
+                                            <?php }?>
                                         </div>
-                                        <span>常规赛常规常规</span>
+                                        <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                     </div>
                                     <div class="left center">
                                         <span>VS</span>
@@ -1413,65 +1424,17 @@ unset($return['matchDetail']['data']['match_pre']);
                                     </div>
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
+                                            <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
+                                                <img class="lazy-load" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $matchInfo['away_team_info']['logo'];?>" title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
+                                            <?php }else{?>
+                                                <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
+                                            <?php }?>                                        </div>
+                                        <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        <li class="col-md-12 col-xs-12">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛常规</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-12 col-xs-12">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛常规</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        <?php }?>
                     </ul>
                 </div>
                 <div class="game_news">
@@ -1480,40 +1443,21 @@ unset($return['matchDetail']['data']['match_pre']);
                             <div class="game_fire fl">
                                 <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
-                            <span class="fl">近期赛事</span>
+                            <span class="fl">热门资讯</span>
                         </div>
                         <div class="more fr">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/newslist/">
                                 <span>更多</span>
                                 <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
                     <ul>
+                        <?php foreach($return['hotNewsList']['data'] as $info){?>
                         <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>"><?php echo $info['title'];?></a>
                         </li>
-                        <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                        </li>
-                        <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                        </li>
-                        <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                        </li>
-                        <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                        </li>
-                        <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                        </li>
-                        <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                        </li>
-                        <li>
-                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                        </li>
+                        <?php }?>
                     </ul>
                 </div>
                 <div class="game_team">
@@ -1525,85 +1469,23 @@ unset($return['matchDetail']['data']['match_pre']);
                             <span class="fl">热门战队</span>
                         </div>
                         <div class="more fr">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/teamlist/">
                                 <span>更多</span>
                                 <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
                     <ul class="game_team_list_detail">
-                        <li class="active col-xs-6">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="game_team_img">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
+                        <?php foreach($return['hotTeamList']['data'] as $teamInfo){?>
+                            <li class="active col-xs-6">
+                                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
+                                    <div class="a1">
+                                        <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                    </div>
+                                    <span><?php echo $teamInfo['team_name'];?></span>
+                                </a>
+                            </li>
+                        <?php }?>
                     </ul>
                 </div>
                 <div class="game_player">
@@ -1615,85 +1497,24 @@ unset($return['matchDetail']['data']['match_pre']);
                             <span class="fl">热门选手</span>
                         </div>
                         <div class="more fr">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/playerlist/">
                                 <span>更多</span>
                                 <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
                     <ul class="game_player_ul clearfix">
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="game_player_img">
-                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                </div>
-                                <span>童谣童谣</span>
-                            </a>
-                        </li>
+
+                        <?php foreach($return['hotPlayerList']['data'] as $playerInfo){?>
+                            <li>
+                                <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
+                                    <div class="game_player_img">
+                                        <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
+                                    </div>
+                                    <span><?php echo $playerInfo['player_name'];?></span>
+                                </a>
+                            </li>
+                        <?php }?>
                     </ul>
                 </div>
             </div>
