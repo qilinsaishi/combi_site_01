@@ -6,6 +6,7 @@
   border-right: 1px solid transparent;
   border-radius: 10px;
   transform: rotate(180deg);
+  transition: width 0.5s;
 }
 .progress1 > span {
   position: relative;
@@ -18,6 +19,7 @@
   background: #cccccc;
   border-color: #bfbfbf #b3b3b3 #9e9e9e;
   border-radius: 10px;
+  transition: width 0.5s;
 }
 .progress1 > span > span {
   /* padding: 0 8px; */
