@@ -632,6 +632,7 @@
     height: 44px;
     position: absolute;
     border-radius: 50%;
+    overflow: hidden;
 }
 .vs_player_game{
     left: 0;
@@ -862,7 +863,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    box-shadow: 0 4px 8px -3px rgb(0 0 0 / 12%);
+    /* box-shadow: 0 4px 8px -3px rgb(0 0 0 / 12%); */
     background: #fff;
     color: #373a41;
     text-align: center;
