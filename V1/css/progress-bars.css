@@ -29,8 +29,8 @@
   background: #cccccc;
   border-color: #bfbfbf #b3b3b3 #9e9e9e;
   border-radius: 10px;
-  animation: myfirst .5s;
-  -webkit-animation: myfirst .5s; /* Safari 与 Chrome */
+  animation: myfirst 1s;
+  -webkit-animation: myfirst 1s; /* Safari 与 Chrome */
 }
 .progress1 > span > span {
   /* padding: 0 8px; */
