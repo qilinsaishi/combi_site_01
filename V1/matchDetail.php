@@ -9,8 +9,9 @@ $params = [
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
+unset($return['matchDetail']['data']['match_pre']);
 //$return['matchDetail']['data']['match_data'] = json_decode($return['matchDetail']['data']['match_data'],true);q
-//print_R(($return['matchDetail']['data']));
+//print_R(($return['matchDetail']['data']['match_data']));
 //die();
 ?>
 <!DOCTYPE html>
@@ -186,7 +187,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <span><?php echo sprintf("%10.1f",$round_info['money_a']/1000);?>k</span>
                                         </div>
                                         <!--- 轮次时间-->
-                                        <p><?php echo ($round_info['detail']['result_list']['game_time_m']).":".($round_info['detail']['result_list']['game_time_s']);?></p>
+                                        <p><?php echo ($round_info['game_time_m']).":".($round_info['game_time_s']);?></p>
                                         <!--- 轮次时间-->
                                         <div class="left">
                                             <span><?php echo sprintf("%10.1f",$round_info['money_b']/1000);?>k</span>
@@ -216,7 +217,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <div class="img1 img2">
                                                 <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['detail']['result_list']['red_tower'];?></span>
+                                            <span><?php echo $round_info['red_tower'];?></span>
                                         </div>
                                         <div class="left right">
                                             <div class="img1">
@@ -230,7 +231,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <div class="img1 img2">
                                                 <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['detail']['result_list']['blue_tower'];?></span>
+                                            <span><?php echo $round_info['blue_tower'];?></span>
                                         </div>
                                     </div>
                                     <div class="line2"></div>
@@ -368,321 +369,54 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         </li>
                                     </ul>
                                     <div class="vs_data2">
-                                        <div class="vs_data2_item active">
-                                            <div class="left">
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1 blue">
-                                                            <span style="width: 40%;"><span>95721</span></span>
+                                        <?php $keyList = ['_star_atk_o','_star_def_o','_star_money_o','_star_adc_m','_star_score'];?>
+                                        <?php foreach($keyList as $i => $key_name){?>
+                                            <!--- 输出对比-->
+                                            <div class="vs_data2_item<?php if($i==0){echo ' active';}?>">
+                                                <?php
+                                                $max = max(array_merge(array_column($round_info['record_list_a'],$key_name),array_column($round_info['record_list_b'],$key_name)));
+                                                ?>
+                                                <div class="left">
+                                                    <?php foreach($round_info['record_list_a'] as $key2 => $player_info){?>
+                                                        <div class="vs_data_combat">
+                                                            <div class="progress1_parent">
+                                                                <div class="progress1 red">
+                                                                    <span style="width: <?php echo $player_info[$key_name]==0?0:intval($player_info[$key_name]/$max*100);?>%"><span><?php echo $player_info[$key_name];?></span></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="vs_player">
+                                                                <div class="vs_player_game">
+                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['hero_name'];?>" class="imgauto">
+                                                                </div>
+                                                                <div class="vs_player_reality">
+                                                                    <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
+                                                    <?php }?>
                                                 </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 60%;"><span>120529</span></span>
+                                                <div class="left right">
+                                                    <?php foreach($round_info['record_list_b'] as $key2 => $player_info){?>
+                                                        <div class="vs_data_combat">
+                                                            <div class="vs_player">
+                                                                <div class="vs_player_game">
+                                                                    <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                                                </div>
+                                                                <div class="vs_player_reality">
+                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['hero_name'];?>" class="imgauto">
+                                                                </div>
+                                                            </div>
+                                                            <div class="progress1_parent">
+                                                                <div class="progress2 blue">
+                                                                    <span style="width: <?php echo intval($player_info[$key_name]==0?0:$player_info[$key_name]/$max*100);?>%"><span><?php echo $player_info[$key_name];?></span></span>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 100%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 40%;"><span>95721</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 60%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
+                                                    <?php }?>
                                                 </div>
                                             </div>
-                                            <div class="left right">
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 40%;"><span>95721</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 60%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 100%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 40%;"><span>95721</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 60%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="vs_data2_item">
-                                            <div class="left">
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1 blue">
-                                                            <span style="width: 40%;"><span>95721</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 60%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 100%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 40%;"><span>95721</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="progress1_parent">
-                                                        <div class="progress1">
-                                                            <span style="width: 60%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="left right">
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 40%;"><span>95721</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 60%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 100%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 40%;"><span>95721</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vs_data_combat">
-                                                    <div class="vs_player">
-                                                        <div class="vs_player_game">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="vs_player_reality">
-                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress1_parent">
-                                                        <div class="progress2">
-                                                            <span style="width: 60%;"><span>120529</span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="vs_data2_item">3</div>
-                                        <div class="vs_data2_item">4</div>
-                                        <div class="vs_data2_item">5</div>
+                                            <!--- 输出对比-->
+                                        <?php }?>
                                     </div>
                                 </div>
                             </div>
