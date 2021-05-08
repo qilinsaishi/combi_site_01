@@ -165,6 +165,7 @@
     border: 1px solid #EEEEEE;
     background: #fff;
     padding-top: 10px;
+    border-bottom: 1px solid #fff;
 }
 .game_detail_ul{
     display: flex;
@@ -654,6 +655,10 @@
 .vs_data2_item.active{
     display: flex;
 }
+.game_detail_item6{
+    background: #fff;
+    padding-top: 30px;
+}
 .game_before_after{
     width: 490px;
     display: flex;
@@ -1001,14 +1006,14 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     padding: 18px 18px 0;
     margin-bottom: 20px;
 }
-.game_lately .title {
+.game_right .title {
     font-size: 0;
 }
-.game_lately .title span{
+.game_right .title span{
     font-size: 18px;
     color: #333;
 }
-.game_lately .title .more span{
+.game_right .title .more span{
     color: #999;
     margin-right: 12px;
 } 
@@ -1017,7 +1022,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     height: 24px;
     margin-right: 8px;
 }
-.game_lately .title .more .img{
+.game_right .title .more .img{
     width: 10px;
     height: 18px;
 }
@@ -1045,7 +1050,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .game_right .game_match_bottom .left{
     width: 33%;
 }
+.game_news{
 
+}
 
 /* 进度条 */
   /* 移动 */
