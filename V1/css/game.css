@@ -661,6 +661,14 @@
 .right .vs_player{
     margin: 0 6px 0 0 ;
 }
+.right .vs_player .vs_player_reality{
+    left: 0;
+    right: auto
+}
+.right .vs_player .vs_player_game{
+    right: 0;
+    left: auto;
+}
 .progress1_parent{
     width: 248px;
 }

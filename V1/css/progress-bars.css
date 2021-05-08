@@ -31,6 +31,7 @@
   border-radius: 10px;
   animation: myfirst 0.1s;
   -webkit-animation: myfirst 0.1s; /* Safari 与 Chrome */
+  max-width: 100%;
 }
 .progress1 > span > span {
   /* padding: 0 8px; */
@@ -79,6 +80,7 @@
   border-radius: 10px;
   animation: myfirst 0.3s;
   -webkit-animation: myfirst 0.3s;
+  max-width: 100%;
 }
 .progress2 > span > span {
   /* padding: 0 8px; */
