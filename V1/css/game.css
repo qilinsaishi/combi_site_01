@@ -261,7 +261,7 @@
 .imgheight30{
     height: 30px;
 }
-.left span{
+.game_detail_item1 .left span{
     font-size: 20px;
     color: #333;
     margin: 0 12px 0 14px;
@@ -559,6 +559,27 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
+    overflow: hidden;
+    margin: 0 8px;
+    float: left;
+}
+.bans_bans_3{
+    width: 172px;
+}
+.bans_bans_2{
+    width: 112px;
+}
+.bans_pincks .left .bans_bans_2 .bans_img:nth-last-child(1){
+    margin-right: 0;
+}
+.bans_pincks .left .bans_bans_3 .bans_img:nth-child(1){
+    margin-left: 0;
+}
+.bans_pincks .right .bans_bans_2 .bans_img:nth-last-child(1){
+    margin-right: 0;
+}
+.bans_pincks .right .bans_bans_3 .bans_img:nth-child(1){
+    margin-left: 0;
 }
 .line3{
     width: 1px;
