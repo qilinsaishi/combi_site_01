@@ -419,946 +419,947 @@ unset($return['matchDetail']['data']['match_pre']);
                                         <?php }?>
                                     </div>
                                 </div>
+                                <div class="game_detail_item6">
+                                    <ul class="game_before_after">
+                                        <li class="active">
+                                            <a href="##">
+                                                出装天赋
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="##">
+                                                赛后统计
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="vs_data3">
+                                        <div class="vs_data3_left active vs_data3_pad">
+                                            <p class="title">近6场赛事数据</p>
+                                            <div class="top-data clearfix">
+                                                <div class="l-data fl">
+                                                    <span class="win_rate mid">50%</span>
+                                                </div>
+                                                <div class="r-data fr">
+                                                    <span class="win_rate mid">70%</span>
+                                                </div>
+                                                <div class="rate">胜率</div>
+                                            </div>
+                                            <div class="compare-bar clearfix">
+                                                <div class="progress3 fl progress4 red">
+                                                    <span class="green" style="width: 40%;"></span>
+                                                </div>
+                                                <div class="progress3 fr blue">
+                                                    <span class="green" style="width: 60%;"></span>
+                                                </div>
+                                            </div>
+                                            <div class="rate_data">
+                                                <div class="rate_data_item clearfix">
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr blue">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr grey">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr blue">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr grey">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr blue">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr grey">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr blue">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr grey">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr blue">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr grey">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr blue">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time1">31:05</span>
+                                                            <span class="fr time2">27:59</span>
+                                                            <div class="average_time">场均时长</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 red">
+                                                                <span class="green" style="width: 40%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr grey">
+                                                                <span class="green" style="width: 60%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-wrap vs_data3_left">
+                                            <table class="table red">
+                                                <thead>
+                                                <tr>
+                                                    <th>WE 胜利</th>
+                                                    <th>出装</th>
+                                                    <th>KDA</th>
+                                                    <th>输出</th>
+                                                    <th>承伤</th>
+                                                    <th>补兵</th>
+                                                    <th>金钱</th>
+                                                    <th>评分</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="table blue">
+                                                <thead>
+                                                <tr>
+                                                    <th>VS 败北</th>
+                                                    <th>出装</th>
+                                                    <th>KDA</th>
+                                                    <th>输出</th>
+                                                    <th>承伤</th>
+                                                    <th>补兵</th>
+                                                    <th>金钱</th>
+                                                    <th>评分</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="##" target="_blank">
+                                                            <div class="avatar player mid">
+                                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
+                                                            </div>
+                                                        </a>
+                                                        <div class="avatar hero mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
+                                                            <span class="lv">0</span>
+                                                        </div>
+                                                        <div class="jn-icon-wrap mid">
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                            <div class="property-img property-img1">
+                                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
+                                                                     class="jn-icon">
+                                                            </div>
+                                                        </div>
+                                                        <a href="##" target="_blank">
+                                                            <span title="Qing" class="nickname mid">Qing</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
+                                                        </div>
+                                                        <div class="property-img mid">
+                                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
+                                                        </div>
+                                                    </td>
+                                                    <td class="kda">
+                                                        <p class="p1">3.5</p>
+                                                        <p class="p2">2 / 2 / 5</p>
+                                                    </td>
+                                                    <td class="damage atk">
+                                                        <p>26.8%</p>
+                                                    </td>
+                                                    <td class="damage def">
+                                                        <p>30.3%</p>
+                                                    </td>
+                                                    <td class="hits">
+                                                        <p class="p1">182</p>
+                                                        <p class="p2">6.1/分</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>7.2k</p>
+                                                    </td>
+                                                    <td>143.8</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         <?php }?>
                     </div>
                     <!--- 比赛各轮次信息-->
                 </div>
                 <!--- 比赛信息-->
-                <div class="game_detail_item6">
-                    <ul class="game_before_after">
-                        <li class="active">
-                            <a href="##">
-                                赛前数据
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                赛后统计
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="vs_data3">
-                        <div class="vs_data3_left active vs_data3_pad">
-                            <p class="title">近6场赛事数据</p>
-                            <div class="top-data clearfix">
-                                <div class="l-data fl">
-                                    <span class="win_rate mid">50%</span>
-                                </div>
-                                <div class="r-data fr">
-                                    <span class="win_rate mid">70%</span>
-                                </div>
-                                <div class="rate">胜率</div>
-                            </div>
-                            <div class="compare-bar clearfix">
-                                <div class="progress3 fl progress4 red">
-                                    <span class="green" style="width: 40%;"></span>
-                                </div>
-                                <div class="progress3 fr blue">
-                                    <span class="green" style="width: 60%;"></span>
-                                </div>
-                            </div>
-                            <div class="rate_data">
-                                <div class="rate_data_item clearfix">
-                                    <div class="fr rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="fl rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr grey">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rate_data_item clearfix">
-                                    <div class="fr rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="fl rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr grey">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rate_data_item clearfix">
-                                    <div class="fr rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="fl rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr grey">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rate_data_item clearfix">
-                                    <div class="fr rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="fl rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr grey">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rate_data_item clearfix">
-                                    <div class="fr rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="fl rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr grey">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rate_data_item clearfix">
-                                    <div class="fr rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="fl rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">31:05</span>
-                                            <span class="fr time2">27:59</span>
-                                            <div class="average_time">场均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr grey">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-wrap vs_data3_left">
-                            <table class="table red">
-                                <thead>
-                                <tr>
-                                    <th>WE 胜利</th>
-                                    <th>出装</th>
-                                    <th>KDA</th>
-                                    <th>输出</th>
-                                    <th>承伤</th>
-                                    <th>补兵</th>
-                                    <th>金钱</th>
-                                    <th>评分</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <table class="table blue">
-                                <thead>
-                                <tr>
-                                    <th>VS 败北</th>
-                                    <th>出装</th>
-                                    <th>KDA</th>
-                                    <th>输出</th>
-                                    <th>承伤</th>
-                                    <th>补兵</th>
-                                    <th>金钱</th>
-                                    <th>评分</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="##" target="_blank">
-                                            <div class="avatar player mid">
-                                                <img src="<?php echo $config['site_url'];?>/images/bans1.png">
-                                            </div>
-                                        </a>
-                                        <div class="avatar hero mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/bans2.png" class="role-icon mid">
-                                            <span class="lv">0</span>
-                                        </div>
-                                        <div class="jn-icon-wrap mid">
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills1.png"
-                                                     class="jn-icon">
-                                            </div>
-                                            <div class="property-img property-img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/game_skills2.png"
-                                                     class="jn-icon">
-                                            </div>
-                                        </div>
-                                        <a href="##" target="_blank">
-                                            <span title="Qing" class="nickname mid">Qing</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png">
-                                        </div>
-                                        <div class="property-img mid">
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png">
-                                        </div>
-                                    </td>
-                                    <td class="kda">
-                                        <p class="p1">3.5</p>
-                                        <p class="p2">2 / 2 / 5</p>
-                                    </td>
-                                    <td class="damage atk">
-                                        <p>26.8%</p>
-                                    </td>
-                                    <td class="damage def">
-                                        <p>30.3%</p>
-                                    </td>
-                                    <td class="hits">
-                                        <p class="p1">182</p>
-                                        <p class="p2">6.1/分</p>
-                                    </td>
-                                    <td>
-                                        <p>7.2k</p>
-                                    </td>
-                                    <td>143.8</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="game_right">
                 <div class="game_lately">

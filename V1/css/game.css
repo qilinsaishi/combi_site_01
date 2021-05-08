@@ -615,6 +615,7 @@
     height: 44px;
     position: absolute;
     border-radius: 50%;
+    overflow: hidden;
 }
 .vs_player_game{
     left: 0;
