@@ -257,43 +257,34 @@ unset($return['matchDetail']['data']['match_pre']);
                                             <span>一先锋</span>
                                         </div>
                                     </div>
+                                    <!--- 主客队的Ban/Pick数据对比-->
                                     <div class="bans_pincks">
                                         <div class="left">
                                             <div class="bans bans_bot">
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="line3"></div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
-                                                </div>
+                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                    if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){
+                                                        $count++;}}?>
+                                                <?php $i=1;foreach($round_info as $key_ban => $ban){
+                                                    if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){?>
+                                                        <div class="bans_img">
+                                                            <img src="<?php echo $ban;?>" alt="" class="imgauto">
+                                                        </div>
+                                                <?php $i++;if($i==4 && $count>3){?>
+                                                            <div class="line3"></div>
+                                                        <?php }}}?>
                                             </div>
                                             <div class="bans picks">
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="line3"></div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
-                                                </div>
+                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                    if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){
+                                                        $count++;}}?>
+                                                <?php $i=1;foreach($round_info as $key_ban => $ban){
+                                                    if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){?>
+                                                        <div class="bans_img">
+                                                            <img src="<?php echo $ban;?>" alt="" class="imgauto">
+                                                        </div>
+                                                        <?php $i++;if($i==4 && $count>3){?>
+                                                            <div class="line3"></div>
+                                                        <?php }}}?>
                                             </div>
                                         </div>
                                         <div class="center">
@@ -302,43 +293,36 @@ unset($return['matchDetail']['data']['match_pre']);
                                         </div>
                                         <div class="left">
                                             <div class="bans bans_bot">
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="line3"></div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                </div>
+                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                    if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){
+                                                        $count++;}}?>
+                                                <?php $i=1;foreach($round_info as $key_ban => $ban){
+                                                    $c = $count-$i;
+                                                    if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){?>
+                                                        <div class="bans_img">
+                                                            <img type = "<?php echo ($count-$i);?>" src="<?php echo $ban;?>" alt="" class="imgauto">
+                                                        </div>
+                                                        <?php $i++;if($c==3){?>
+                                                            <div class="line3"></div>
+                                                        <?php }}}?>
                                             </div>
-                                            <div class="bans picks">
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans5.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans4.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="line3"></div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans3.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans2.png" alt="" class="imgauto">
-                                                </div>
-                                                <div class="bans_img">
-                                                    <img src="<?php echo $config['site_url'];?>/images/bans1.png" alt="" class="imgauto">
-                                                </div>
+                                            <div class="bans bans_bot">
+                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                    if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){
+                                                        $count++;}}?>
+                                                <?php $i=1;foreach($round_info as $key_ban => $ban){
+                                                    $c = $count-$i;
+                                                    if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){?>
+                                                        <div class="bans_img">
+                                                            <img type = "<?php echo ($count-$i);?>" src="<?php echo $ban;?>" alt="" class="imgauto">
+                                                        </div>
+                                                        <?php $i++;if($c==3){?>
+                                                            <div class="line3"></div>
+                                                        <?php }}}?>
                                             </div>
                                         </div>
                                     </div>
+                                    <!--- 主客队的Ban/Pick数据对比-->
                                 </div>
                                 <!--- 主客队的进度条数据对比-->
                                 <div class="game_detail_item5">
@@ -1368,14 +1352,14 @@ unset($return['matchDetail']['data']['match_pre']);
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="./images/game_fire.png" alt="">
+                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">近期赛事</span>
                         </div>
                         <div class="more fr">
                             <a href="##">
                                 <span>更多</span>
-                                <img src="./images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -1389,7 +1373,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="./images/banner.png" alt="" class="imgauto">
+                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
                                         </div>
                                         <span>常规赛常规常规</span>
                                     </div>
@@ -1399,7 +1383,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                     </div>
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="./images/match.png" alt="" class="imgauto">
+                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
                                         </div>
                                         <span>常规赛常规常规</span>
                                     </div>
@@ -1415,7 +1399,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="./images/banner.png" alt="" class="imgauto">
+                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
                                         </div>
                                         <span>常规赛常规常规</span>
                                     </div>
@@ -1425,7 +1409,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                     </div>
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="./images/match.png" alt="" class="imgauto">
+                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
                                         </div>
                                         <span>常规赛常规常规</span>
                                     </div>
@@ -1441,7 +1425,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="./images/banner.png" alt="" class="imgauto">
+                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
                                         </div>
                                         <span>常规赛常规常规</span>
                                     </div>
@@ -1451,7 +1435,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                     </div>
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="./images/match.png" alt="" class="imgauto">
+                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
                                         </div>
                                         <span>常规赛常规常规</span>
                                     </div>
@@ -1464,14 +1448,14 @@ unset($return['matchDetail']['data']['match_pre']);
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="./images/game_fire.png" alt="">
+                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">近期赛事</span>
                         </div>
                         <div class="more fr">
                             <a href="##">
                                 <span>更多</span>
-                                <img src="./images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -1506,14 +1490,14 @@ unset($return['matchDetail']['data']['match_pre']);
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="./images/game_fire.png" alt="">
+                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">热门战队</span>
                         </div>
                         <div class="more fr">
                             <a href="##">
                                 <span>更多</span>
-                                <img src="./images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -1521,7 +1505,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li class="active col-xs-6">
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/banner.png" alt="" class="game_team_img">
+                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="game_team_img">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1529,7 +1513,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1537,7 +1521,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1545,7 +1529,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1553,7 +1537,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1561,7 +1545,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1569,7 +1553,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1577,7 +1561,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1585,7 +1569,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="a1">
-                                    <img src="./images/WElogo.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
                                 </div>
                                 <span>WE</span>
                             </a>
@@ -1596,14 +1580,14 @@ unset($return['matchDetail']['data']['match_pre']);
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="./images/game_fire.png" alt="">
+                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">热门选手</span>
                         </div>
                         <div class="more fr">
                             <a href="##">
                                 <span>更多</span>
-                                <img src="./images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -1611,7 +1595,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/banner.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣</span>
                             </a>
@@ -1619,7 +1603,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣</span>
                             </a>
@@ -1627,7 +1611,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣</span>
                             </a>
@@ -1635,7 +1619,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/banner.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣</span>
                             </a>
@@ -1643,7 +1627,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣</span>
                             </a>
@@ -1651,7 +1635,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣童谣童谣</span>
                             </a>
@@ -1659,7 +1643,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/banner.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣童谣童谣</span>
                             </a>
@@ -1667,7 +1651,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣</span>
                             </a>
@@ -1675,7 +1659,7 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li>
                             <a href="##">
                                 <div class="game_player_img">
-                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                    <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
                                 </div>
                                 <span>童谣童谣</span>
                             </a>
