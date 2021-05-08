@@ -1044,6 +1044,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .game_right .game_match_bottom .left{
     width: 33%;
 }
+
+
+/* 进度条 */
   /* 移动 */
   @media only screen and (max-width: 1024px){
     .game_title{
