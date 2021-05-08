@@ -51,6 +51,11 @@
     height: 24px;
     line-height: 24px;
     margin-bottom: 10px;
+    max-width: 144px;
+    padding: 0 6px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap
 }
 .game_vs{
     display: flex;
@@ -136,7 +141,7 @@
     width: 300px;
     height: auto;
     line-height: 24px;
-    font-size: 18px;
+    font-size: 16px;
     color: #666;
 }
 .game_team_depiction p.active{
@@ -237,6 +242,7 @@
     display: flex;
     font-size: 0;
     align-items: center;
+    width: 170px;
 }
 .imgauto{
     object-fit: cover;
@@ -259,6 +265,10 @@
     font-size: 20px;
     color: #333;
     margin: 0 12px 0 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
 }
 .game_detail_div_item{
     display: none;
@@ -271,7 +281,7 @@
     align-items: center;
 }
 .game_detail_line1{
-    width: 140px;
+    width: 120px;
     height: 1px;
     background: #eee;
 }
@@ -286,6 +296,12 @@
     font-size: 30px;
     margin: 0 22px;
     font-family: shuzi;
+}
+.game_detail_item1 .imgwidth30 img{
+    display: none;
+}
+.game_detail_item1 .imgwidth30 img.active{
+    display: block;
 }
 .font_color_r{
     color: #FF5C6A;
@@ -977,6 +993,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 .average_time{
     width: 100%;
+    font-size: 20px;
+    line-height: 20px;
+    height: 20px;
 }
 .compare_bar {
     width: 405px;
@@ -997,13 +1016,13 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 /* 左面结束 */
 /* 右面 */
-.game_lately{
+
+.game_lately,.game_news,.game_team,.game_player{
+    padding: 18px 18px 0;
     width: 320px;
-    /* height: 478px; */
     background: #fff;
     border: 1px solid #eee;
     border-radius: 8px;
-    padding: 18px 18px 0;
     margin-bottom: 20px;
 }
 .game_right .title {
@@ -1050,10 +1069,99 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .game_right .game_match_bottom .left{
     width: 33%;
 }
-.game_news{
-
+.game_right  .game_match_img{
+    margin-bottom: 10px;
 }
-
+.game_news{
+    height: 390px;
+}
+.game_news ul{
+    padding-top: 14px;
+}
+.game_news li{
+    width: 280px;
+    height: 41px;
+    border-bottom: 1px solid #eee;
+    line-height: 38px;
+    padding-right: 50px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.game_news li:hover a{
+    color: #FF6649;
+}
+.game_news li:nth-last-child(1){
+    border-bottom: 0;
+}
+.game_news li a{
+    font-size: 16px;
+    color: #666;
+}
+.game_right .game_team{
+    height: 450px;
+}
+.game_team .game_team_list_detail li{
+    margin-right: 0;
+    width: 33.33%;
+    height: 116px;
+}
+.game_team .game_team_list_detail .a1{
+    width: 60px;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 22px;
+    padding: 0;
+    font-size: 0;
+    margin-top: 14px;
+}
+.game_team .game_team_list_detail li span{
+    font-size: 16px;
+    height: 34px;
+    line-height: 34px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding: 0 6px;
+}
+.game_team .game_team_list_detail{
+    padding-top: 34px;
+}
+.game_player_ul{
+    padding-top: 28px;
+}
+.game_player_img{
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    overflow: hidden;
+    font-size: 0;
+    margin: 0 auto 10px;
+}
+.game_player_ul li{
+    width: 33.33%;
+    height: 120px;
+    float: left;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+.game_player_ul li:hover .game_player_img{
+    border: 1px solid #FF6649;
+}
+.game_player_ul li:hover  span{
+    color: #FF6649;
+}
+.game_player_ul li span{
+    font-size: 16px;
+    color: #333;
+    display: block;
+    text-align: center;
+    padding: 0 4px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap
+}
 /* 进度条 */
   /* 移动 */
   @media only screen and (max-width: 1024px){
@@ -1065,5 +1173,90 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     }
     .game_detail{
         width: 100%;
+    }
+    .left .progress1 span{
+        max-width: 340px;
+    }
+    .compare-bar{
+        width: 100%;
+    }
+    .vs_data_combat{
+        width: 340px;
+    }
+    .progress1_parent{
+        width: 50%;
+    }
+    .compare-bar .progress3{
+        width: 49.7%;
+    }
+    .rate_data_left {
+        width: 49%;
+    }
+    .game_detail_item6{
+        margin-bottom: 30px;
+    }
+    .game_right{
+        float: none;
+        width: 100%;
+    }
+    .game_lately, .game_news, .game_team, .game_player{
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    .game_match_top span{
+        font-size: 24px;
+    }
+    .game_right .title span{
+        font-size: 30px;
+    }
+    .game_match_img{
+        width: 90px;
+        height: 90px;
+    }
+    .game_team .game_team_list_detail .a1{
+        width: 108px;
+        height: 70px;
+    }
+    .game_team .game_team_list_detail li{
+        height: auto;
+    }
+    .game_right .game_team{
+        height: auto;
+    }
+    .game_team .game_team_list_detail li span{
+        height: 54px;
+        line-height: 54px;
+        padding: 0 20px;
+        font-size: 24px;
+    }
+    .game_news li{
+        width: 100%;
+        height: 81px;
+        line-height: 80px;
+        border-bottom: 1px solid #eee;
+    }
+    .game_news li a{
+        font-size: 24px;
+    }
+    .game_right .game_match_ul li{
+        height: auto;
+    }
+    .game_right .game_match_ul .left span{
+        font-size: 24px;
+        max-width: 180px;
+    }
+    .game_player_ul li span{
+        font-size: 24px;
+        padding: 0 20px;
+    }
+    .game_team_depiction p{
+        font-size: 24px;
+    }
+    .vs_data3_left .title{
+        height: 60px;
+        border-radius: 30px;
+        line-height: 60px;
+        font-size: 24px;
     }
   }
