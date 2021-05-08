@@ -386,7 +386,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                                             </div>
                                                             <div class="vs_player">
                                                                 <div class="vs_player_game">
-                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['hero_name'];?>" class="imgauto">
+                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['_hero_name'];?>" class="imgauto">
                                                                 </div>
                                                                 <div class="vs_player_reality">
                                                                     <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
@@ -403,7 +403,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                                                     <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
                                                                 </div>
                                                                 <div class="vs_player_reality">
-                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['hero_name'];?>" class="imgauto">
+                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['_hero_name'];?>" class="imgauto">
                                                                 </div>
                                                             </div>
                                                             <div class="progress1_parent">
