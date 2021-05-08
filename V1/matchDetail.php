@@ -340,6 +340,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                         </div>
                                     </div>
                                 </div>
+                                <!--- 主客队的进度条数据对比-->
                                 <div class="game_detail_item5">
                                     <ul class="vs_data1">
                                         <li class="active">
@@ -399,10 +400,10 @@ unset($return['matchDetail']['data']['match_pre']);
                                                     <?php foreach($round_info['record_list_b'] as $key2 => $player_info){?>
                                                         <div class="vs_data_combat">
                                                             <div class="vs_player">
-                                                                <div class="vs_player_game">
+                                                                <div class="vs_player_reality">
                                                                     <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
                                                                 </div>
-                                                                <div class="vs_player_reality">
+                                                                <div class="vs_player_game">
                                                                     <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['_hero_name'];?>" class="imgauto">
                                                                 </div>
                                                             </div>
@@ -419,6 +420,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                         <?php }?>
                                     </div>
                                 </div>
+                                <!--- 主客队的进度条数据对比-->
                                 <div class="game_detail_item6">
                                     <ul class="game_before_after">
                                         <li class="active">
@@ -1366,14 +1368,14 @@ unset($return['matchDetail']['data']['match_pre']);
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto" src="./images/game_fire.png" alt="">
                             </div>
                             <span class="fl">近期赛事</span>
                         </div>
                         <div class="more fr">
                             <a href="##">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="./images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -1387,7 +1389,7 @@ unset($return['matchDetail']['data']['match_pre']);
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
+                                            <img src="./images/banner.png" alt="" class="imgauto">
                                         </div>
                                         <span>常规赛常规常规</span>
                                     </div>
@@ -1396,7 +1398,9 @@ unset($return['matchDetail']['data']['match_pre']);
                                         <span>英雄联盟</span>
                                     </div>
                                     <div class="left ov_1">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
+                                        <div class="game_match_img">
+                                            <img src="./images/match.png" alt="" class="imgauto">
+                                        </div>
                                         <span>常规赛常规常规</span>
                                     </div>
                                 </div>
@@ -1405,43 +1409,51 @@ unset($return['matchDetail']['data']['match_pre']);
                         <li class="col-md-12 col-xs-12">
                             <a href="##">
                                 <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
+                                    <span class="game_match_name">常规赛常规</span>
                                     <span class="game_match_time">4月23日 14:00</span>
                                 </div>
                                 <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img2">
-                                        <span>SNS</span>
+                                    <div class="left ov_1">
+                                        <div class="game_match_img">
+                                            <img src="./images/banner.png" alt="" class="imgauto">
+                                        </div>
+                                        <span>常规赛常规常规</span>
                                     </div>
                                     <div class="left center">
                                         <span>VS</span>
                                         <span>英雄联盟</span>
                                     </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
+                                    <div class="left ov_1">
+                                        <div class="game_match_img">
+                                            <img src="./images/match.png" alt="" class="imgauto">
+                                        </div>
+                                        <span>常规赛常规常规</span>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        <li class="col-md-12 col-xs-6">
+                        <li class="col-md-12 col-xs-12">
                             <a href="##">
                                 <div class="game_match_top">
-                                    <span class="game_match_name">常规赛</span>
+                                    <span class="game_match_name">常规赛常规</span>
                                     <span class="game_match_time">4月23日 14:00</span>
                                 </div>
                                 <div class="game_match_bottom clearfix">
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="t_p_img1">
-                                        <span>SNS</span>
+                                    <div class="left ov_1">
+                                        <div class="game_match_img">
+                                            <img src="./images/banner.png" alt="" class="imgauto">
+                                        </div>
+                                        <span>常规赛常规常规</span>
                                     </div>
                                     <div class="left center">
                                         <span>VS</span>
                                         <span>英雄联盟</span>
                                     </div>
-                                    <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/match.png" alt="">
-                                        <span>ES.Y</span>
+                                    <div class="left ov_1">
+                                        <div class="game_match_img">
+                                            <img src="./images/match.png" alt="" class="imgauto">
+                                        </div>
+                                        <span>常规赛常规常规</span>
                                     </div>
                                 </div>
                             </a>
@@ -1452,17 +1464,223 @@ unset($return['matchDetail']['data']['match_pre']);
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto" src="./images/game_fire.png" alt="">
                             </div>
                             <span class="fl">近期赛事</span>
                         </div>
                         <div class="more fr">
                             <a href="##">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="./images/more.png" alt="">
                             </a>
                         </div>
                     </div>
+                    <ul>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                        <li>
+                            <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="game_team">
+                    <div class="title clearfix">
+                        <div class="fl clearfix">
+                            <div class="game_fire fl">
+                                <img class="imgauto" src="./images/game_fire.png" alt="">
+                            </div>
+                            <span class="fl">热门战队</span>
+                        </div>
+                        <div class="more fr">
+                            <a href="##">
+                                <span>更多</span>
+                                <img src="./images/more.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="game_team_list_detail">
+                        <li class="active col-xs-6">
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/banner.png" alt="" class="game_team_img">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="a1">
+                                    <img src="./images/WElogo.png" alt="">
+                                </div>
+                                <span>WE</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="game_player">
+                    <div class="title clearfix">
+                        <div class="fl clearfix">
+                            <div class="game_fire fl">
+                                <img class="imgauto" src="./images/game_fire.png" alt="">
+                            </div>
+                            <span class="fl">热门选手</span>
+                        </div>
+                        <div class="more fr">
+                            <a href="##">
+                                <span>更多</span>
+                                <img src="./images/more.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="game_player_ul clearfix">
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/banner.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/banner.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/banner.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="##">
+                                <div class="game_player_img">
+                                    <img src="./images/player1.png" alt="" class="imgauto">
+                                </div>
+                                <span>童谣童谣</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
