@@ -240,7 +240,7 @@
     color: #fff;
 }
 .game3_days{
-    background: #fff;
+    /* background: #fff; */
 }
 .one_day{
     width: 100%;
@@ -248,6 +248,7 @@
     border: 1px solid #eee;
     border-bottom: 0;
     border-radius: 8px;
+    margin-bottom: 20px;
 }
 .one_day_top{
     height: 73px;
@@ -282,6 +283,22 @@
     /* height: 187px; */
     padding-top: 33px;
 }
+.li_bg{
+    width: 850px;
+    height: 31px;
+    position: absolute;
+    bottom: -27px;
+    display: none;
+}
+.one_day_botitem.active,.one_day_botitem:hover{
+    position: relative;
+}
+.one_day_botitem.active .li_bg,.one_day_botitem:hover .li_bg{
+    display: block;
+}
+.one_day_botitem:hover .game3_game_item{
+    border-bottom: 1px solid rgba(0,0,0,0);
+}
 .game3_classify{
     padding-right: 20px;
 }
@@ -290,6 +307,7 @@
     color: #333;
     position: relative;
     padding-left: 30px;
+    line-height: 36px;
 }
 .game3_classify1::after{
     content: "";
@@ -302,7 +320,7 @@
     position: absolute;
     left: 0;
     background: #FF6649;
-    top:8px;
+    top:11px;
 }
 .game3_classify2{
     padding: 0 16px 0 10px;
@@ -329,6 +347,7 @@
     height: 187px;
     border-bottom: 1px solid #eee;
     padding:32px 18px 0 18px;
+    position: relative;
 }
 .game3_team1_top{
     height: 60px;
@@ -346,7 +365,7 @@
     font-size: 24px;
     line-height: 60px;
     color: #333;
-    width: 200px;
+    width: 150px;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space: nowrap
@@ -422,20 +441,141 @@
 }
 .game3_team2_vs{
     width: 204px;
+    position: absolute;
+    left: 50%;
+    margin-left: -102px;
 }
 .game3_team2_vs_top{
-    width: 108px;
+    /* width: 108px; */
     height: 50px;
+    position: relative;
+    margin-bottom: 30px;
+    /* background: url("../images/game3_vs.png");
+    background-position:18px 0;
+    background-repeat: no-repeat;
+    background-size: 100%; */
+    
+}
+.bg_wr{
+    width: 204px;
+    position: relative;
+}
+.game3_team2_vs_bg{
+    width: 70px;
+    height: 40px;
     background: url("../images/game3_vs.png");
-    background-position: 0 18px;
+    background-position:center top;
     background-repeat: no-repeat;
     background-size: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -40px;
+}
+.time_over{
+    width: 204px;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
 }
 .game3_team2_vs_time{
-    width: 108px;
+    max-width: 180px;
     height: 34px;
     background: #FFF;
     border: 1px solid #DDD;
     border-radius: 17px;
     margin-top: 16px;
+    z-index: 2;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    line-height: 32px;
+    margin: 0 auto;
+}
+.game3_team2_vs_time.stop{
+    font-size: 20px;
+    color: #999;
+}
+.game3_team2_vs_bot .compare-bar {
+    width: 100%;
+    height: 8px;
+    margin-top: 12px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+.game3_team2_vs_bot .compare-bar .l-bar {
+    height: 100%;
+    border-radius: 2px 0 0 2px;
+    position: relative;
+}
+.game3_team2_vs_bot .compare-bar .l-bar.blue {
+    background: #0C8DFC;
+}
+.game3_team2_vs_bot .compare-bar .r-bar.blue {
+    background: #0C8DFC;
+}
+.game3_team2_vs_bot .compare-bar .l-bar:before {
+    display: block;
+    content: '';
+    width: 2px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    transform: rotate(10deg);
+}
+.game3_team2_vs_bot .compare-bar .r-bar {
+    height: 100%;
+    border-radius: 0 2px 2px 0;
+}
+.game3_team2_vs_bot .compare-bar .r-bar.red {
+    background: #FF5C6A
+}
+.game3_team2_vs_bot .compare-bar .l-bar.red {
+    background: #FF5C6A
+}
+.frequency {
+    position: relative;
+}
+.frequency span{
+    font-size: 20px;
+    color: #333;
+}
+.frequency_center{
+    width: 130px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    margin-left: -65px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap
+}
+.frequency_center.grey{
+    font-size: 18px;
+    color: #666;
+}
+.game3_team2_vs_time.dark{
+    width: 108px;
+    font-size: 24px;
+    color: #333;
+}
+.game3_days_item{
+    display: none;
+}
+.game3_days_item.active{
+    display: block;
+}
+.game3_days_item:nth-child(2) .game3_classify2,.game3_days_item:nth-child(3) .game3_classify2,.game3_days_item:nth-child(4) .game3_classify2{
+margin-top: 20px;
+margin-right: 20px;
+}
+.game3_days_item:nth-child(2) .game3_classify,.game3_days_item:nth-child(3) .game3_classify,.game3_days_item:nth-child(4) .game3_classify{
+    display: none;
+}
+@media only screen and (max-width: 1024px){
+    .game_left{
+        width:100%;
+    }
 }
