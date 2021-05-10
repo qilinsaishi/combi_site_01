@@ -55,7 +55,7 @@
                 <div class="game_left game3_left">
                     <div class="calendar">
                         <div class="min_calendar">
-                            <div class="min_calendar_top clearfix">
+                            <div class="calendar_top clearfix">
                                 <div class="war_calendar fl">
                                     <div class="war_calendar_img">
                                         <img src="./images/rili.png" alt="">
@@ -69,7 +69,9 @@
                             </div>
                             <div class="min_calendar_bottom">
                                 <div class="left fl">
-                                   <i class="iconfont icon-shangyige"></i>
+                                    <a href="##" class="prev_week">
+                                        <i class="iconfont icon-shangyige"></i>
+                                    </a>
                                 </div>
                                 <div class="calendar1">
                                     <ul>
@@ -118,141 +120,242 @@
                                     </ul>
                                 </div>
                                 <div class="right fr">
-                                    <i class="iconfont icon-xiayige"></i>
+                                    <a href="##" class="next_week">
+                                        <i class="iconfont icon-xiayige"></i>
+                                    </a>
                                  </div>
+                            </div>
+                        </div>
+                        <div class="max_calendar">
+                            <div class="calendar_top clearfix">
+                                <div class="war_calendar fl">
+                                    <div class="war_calendar_img">
+                                        <img src="./images/rili.png" alt="">
+                                    </div>
+                                    <span>对战日历</span>
+                                </div>
+                                <div class="time3">
+                                    <div class="year">
+                                        <a href="##" class="prev_year">
+                                            <i class="iconfont icon-shangyige"></i>
+                                        </a>
+                                        <span>2021年</span>
+                                        <a href="##" class="prev_year">
+                                            <i class="iconfont icon-xiayige"></i>
+                                        </a>
+                                    </div>
+                                    <div class="month">
+                                        <a href="##" class="prev_month">
+                                            <i class="iconfont icon-shangyige"></i>
+                                        </a>
+                                        <span>4月</span>
+                                        <a href="##" class="prev_month">
+                                            <i class="iconfont icon-xiayige"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="stop_calendar fr">
+                                    收起日期
+                                </div>
+                            </div>
+                            <div class="max_calendar_bottom">
+                                <div class="left fl">
+                                    <i class="iconfont icon-shangyige"></i>
+                                </div>
+                                <div class="max_calendar_table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <a href="##">星期一</a>
+                                                </th>
+                                                <th>
+                                                    <a href="##">星期二</a>
+                                                </th>
+                                                <th>
+                                                    <a href="##">星期三</a>
+                                                </th>
+                                                <th>
+                                                    <a href="##">星期四</a>
+                                                </th>
+                                                <th>
+                                                    <a href="##">星期五</a>
+                                                </th>
+                                                <th>
+                                                    <a href="##">星期六</a>
+                                                </th>
+                                                <th>
+                                                    <a href="##">星期日</a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="grey"><a href="##">03.29</a></td>
+                                                <td class="grey"><a href="##">03.30</a></td>
+                                                <td class="grey"><a href="##">03.31</a></td>
+                                                <td><a href="##">04.01</a></td>
+                                                <td class="active"><a href="##">04.02</a></td>
+                                                <td><a href="##">04.03</a></td>
+                                                <td><a href="##">04.04</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="##">04.05</a></td>
+                                                <td><a href="##">04.06</a></td>
+                                                <td><a href="##">04.07</a></td>
+                                                <td><a href="##">04.08</a></td>
+                                                <td><a href="##">04.09</a></td>
+                                                <td><a href="##">04.10</a></td>
+                                                <td><a href="##">04.11</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="##">04.12</a></td>
+                                                <td><a href="##">04.13</a></td>
+                                                <td><a href="##">04.14</a></td>
+                                                <td><a href="##">04.15</a></td>
+                                                <td><a href="##">04.16</a></td>
+                                                <td><a href="##">04.17</a></td>
+                                                <td><a href="##">04.18</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="##">04.19</a></td>
+                                                <td><a href="##">04.20</a></td>
+                                                <td><a href="##">04.21</a></td>
+                                                <td><a href="##">04.22</a></td>
+                                                <td><a href="##">04.23</a></td>
+                                                <td><a href="##">04.24</a></td>
+                                                <td><a href="##">04.25</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="##">04.26</a></td>
+                                                <td><a href="##">04.27</a></td>
+                                                <td><a href="##">04.28</a></td>
+                                                <td><a href="##">04.29</a></td>
+                                                <td><a href="##">04.30</a></td>
+                                                <td class="grey"><a href="##">05.01</a></td>
+                                                <td class="grey"><a href="##">05.02</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="right fr active">
+                                    <i class="iconfont icon-xiayige"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game3_detail">
+                        <ul class="game3_detail_ul clearfix">
+                            <li class="active">
+                                <a href="##">
+                                    综合
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##">
+                                    英雄联盟
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##">
+                                    王者荣耀
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##">
+                                    DOTA2
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="game3_days">
+                            <div class="game3_days_item">
+                                <div class="one_day">
+                                    <div class="one_day_top clearfix">
+                                        <span class="game3_detail_calendar1 fl">04.26</span>
+                                        <span class="game3_detail_calendar2 active fl">今天</span>
+                                    </div>
+                                    <ul class="one_day_bottom">
+                                        <li class="one_day_botitem">
+                                            <div class="game3_classify clearfix">
+                                                <span class="game3_classify1 fl">英雄联盟</span>
+                                                <div class="game3_classify2 fr clearfix">
+                                                    <div class="game3_team_img fl">
+                                                        <img class="imgauto" src="./images/banner.png" alt="">
+                                                    </div>
+                                                    <span class="fr">2021 LCS春季赛-常规赛</span>
+                                                </div>
+                                            </div>
+                                            <div class="game3_game_item">
+                                                <div class="game3_team1 fl">
+                                                    <div class="game3_team1_top clearfix">
+                                                        <div class="game3_team1_top_img fl">
+                                                            <img src="./images/WElogo.png" class="imgauto" alt="">
+                                                        </div>
+                                                        <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
+                                                    </div>
+                                                    <div class="game3_team1_bottom red">
+                                                        <div class="game3_team1_allplayer">
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/player1.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/banner.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/player2.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/player1.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/banner.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="game3_team_players">14</div>
+                                                    </div>
+                                                </div>
+                                                <div class="game3_team2_vs fl">
+                                                    <div class="game3_team2_vs_top">
+                                                        <p class="game3_team2_vs_time"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="game3_team2 fr">
+                                                    <div class="game3_team1_top clearfix">
+                                                        <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
+                                                        <div class="game3_team1_top_img fl">
+                                                            <img src="./images/WElogo.png" class="imgauto" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="game3_team1_bottom red">
+                                                        <div class="game3_team1_allplayer">
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/player1.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/banner.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/player2.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/player1.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                            <div class="game3_team1_player">
+                                                                <a href="##"><img src="./images/banner.png" class="imgauto" alt=""></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="game3_team_players">14</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="game_right">
-                    <div class="game_lately">
-                        <div class="title clearfix">
-                            <div class="fl clearfix">
-                                <div class="game_fire fl">
-                                    <img class="imgauto" src="./images/game_fire.png" alt="">
-                                </div>
-                                <span class="fl">近期赛事</span>
-                            </div>
-                            <div class="more fr">
-                                <a href="##">
-                                    <span>更多</span>
-                                    <img src="./images/more.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <ul class="game_match_ul">
-                            <li class="col-md-12 col-xs-12">
-                                <a href="##">
-                                    <div class="game_match_top">
-                                        <span class="game_match_name">常规赛常规</span>
-                                        <span class="game_match_time">4月23日 14:00</span>
-                                    </div>
-                                    <div class="game_match_bottom clearfix">
-                                        <div class="left ov_1">
-                                            <div class="game_match_img">
-                                                <img src="./images/banner.png" alt="">
-                                            </div>
-                                            <span>常规赛常规常规</span>
-                                        </div>
-                                        <div class="left center">
-                                            <span>VS</span>
-                                            <span>英雄联盟</span>
-                                        </div>
-                                        <div class="left ov_1">
-                                            <img src="./images/match.png" alt="">
-                                            <span>常规赛常规常规</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="col-md-12 col-xs-12">
-                                <a href="##">
-                                    <div class="game_match_top">
-                                        <span class="game_match_name">常规赛</span>
-                                        <span class="game_match_time">4月23日 14:00</span>
-                                    </div>
-                                    <div class="game_match_bottom clearfix">
-                                        <div class="left">
-                                            <img src="./images/match.png" alt="" class="t_p_img2">
-                                            <span>SNS</span>
-                                        </div>
-                                        <div class="left center">
-                                            <span>VS</span>
-                                            <span>英雄联盟</span>
-                                        </div>
-                                        <div class="left">
-                                            <img src="./images/match.png" alt="">
-                                            <span>ES.Y</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="col-md-12 col-xs-12">
-                                <a href="##">
-                                    <div class="game_match_top">
-                                        <span class="game_match_name">常规赛</span>
-                                        <span class="game_match_time">4月23日 14:00</span>
-                                    </div>
-                                    <div class="game_match_bottom clearfix">
-                                        <div class="left">
-                                            <img src="./images/match.png" alt="" class="t_p_img1">
-                                            <span>SNS</span>
-                                        </div>
-                                        <div class="left center">
-                                            <span>VS</span>
-                                            <span>英雄联盟</span>
-                                        </div>
-                                        <div class="left">
-                                            <img src="./images/match.png" alt="">
-                                            <span>ES.Y</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="game_news">
-                        <div class="title clearfix">
-                            <div class="fl clearfix">
-                                <div class="game_fire fl">
-                                    <img class="imgauto" src="./images/game_fire.png" alt="">
-                                </div>
-                                <span class="fl">热门资讯</span>
-                            </div>
-                            <div class="more fr">
-                                <a href="##">
-                                    <span>更多</span>
-                                    <img src="./images/more.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="game_team">
                         <div class="title clearfix">
                             <div class="fl clearfix">
@@ -433,6 +536,48 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="game_news">
+                        <div class="title clearfix">
+                            <div class="fl clearfix">
+                                <div class="game_fire fl">
+                                    <img class="imgauto" src="./images/game_fire.png" alt="">
+                                </div>
+                                <span class="fl">热门资讯</span>
+                            </div>
+                            <div class="more fr">
+                                <a href="##">
+                                    <span>更多</span>
+                                    <img src="./images/more.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                            <li>
+                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -462,6 +607,14 @@
     <script src="./js/jquery.min.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/jquery.lineProgressbar.js"></script>
+    <script>
+        $(".calendar").on("click",".open_calendar",function(){
+            $(".max_calendar").addClass("active")
+        })
+        $(".calendar").on("click",".stop_calendar",function(){
+            $(".max_calendar").removeClass("active")
+        })
+    </script>
 </body>
 
 </html>

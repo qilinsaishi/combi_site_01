@@ -732,9 +732,9 @@
 .game_before_after li.active a{
     color: #FF6649;
 }
-.vs_data3{
+/* .vs_data3{
     padding: 0 20px;
-}
+} */
 .game2_left .vs_data3{
     padding: 0;
 }
@@ -990,7 +990,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     margin-bottom: 30px;
 }
 .vs_data3_pad{
-    /* padding:0 20px; */
+    padding:0 20px;
 }
 .win_rate{
     font-size: 24px;
@@ -1099,11 +1099,11 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     left: 0;
     top: 2px;
 }
-thead{
+/* thead{
     opacity: 0;
     visibility: hidden;
     position: absolute;
-}
+} */
 /* 左面结束 */
 /* 右面 */
 .game_right{
@@ -1255,7 +1255,19 @@ thead{
     text-overflow:ellipsis;
     white-space: nowrap
 }
-
+/* 2021.2.10新增 */
+.game_detail_item6{
+    padding-top: 6px;
+}
+.match_pre{
+    background: #F5F6F7;
+    padding-top: 20px;
+}
+.vs_data3_pad{
+    background: #fff;
+    padding-top: 40px;
+}
+/* 2021.2.10新增 */
 /* 进度条 */
   /* 移动 */
   @media only screen and (max-width: 1024px){
