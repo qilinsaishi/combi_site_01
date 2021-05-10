@@ -16,10 +16,11 @@ $(document).ready(function () {
 // vs_data1切换
 $(".vs_data1").on("click", 'li', function () {
     var _this = $(this).index() - 1;
-    $(".vs_data1 li").removeClass("active").eq($(this).index()).addClass("active");
-    $(".vs_data1 li").removeClass("active1").eq(_this).addClass("active1");
+    $(".vs_data1 li").removeClass("active");
+    $(this).addClass("active");
+    $(this).parents(".vs_data1").find("li").removeClass("active1").eq(_this).addClass("active1");
     $(".vs_data2 .vs_data2_item").removeClass("active").eq($(this).index()).addClass("active");
-    // $(".game_team_div").removeClass("active").eq($(this).index()).addClass("active");
+    $(this).parents(".game_detail_item5").find(".vs_data2").find(".vs_data2_item").removeClass("active").eq($(this).index()).addClass("active")
 })
 
 // if ($(".game_detail_ul li").length > 5) {
@@ -28,8 +29,11 @@ $(".vs_data1").on("click", 'li', function () {
 // }
 
 $(".game_before_after").on("click", 'li', function () {
-    $(".game_before_after li").removeClass("active").eq($(this).index()).addClass("active");
-    $(".vs_data3 .vs_data3_left").removeClass("active").eq($(this).index()).addClass("active");
+    $(".game_before_after li").removeClass("active");
+    $(this).addClass("active");
+    $(this).parents(".game_detail_item6").find(".vs_data3").find(".vs_data3_left").removeClass("active").eq($(this).index()).addClass("active");
+    // $(".vs_data3 .vs_data3_left").removeClass("active").eq($(this).index()).addClass("active");
+    console.log($(this).parents(".game_detail_item6").find(".vs_data3").find(".vs_data3_left"))
 })
 
 $(".game_detail_ul").on("click", 'li', function () {

@@ -10,7 +10,7 @@
     background: #F5F6F7;
     padding-bottom: 80px;
 }
-.min_calendar_top{
+.calendar_top{
     position: relative;
     margin-bottom: 28px;
 }
@@ -21,6 +21,7 @@
     border-radius: 8px;
     font-size: 0;
     padding: 20px;
+    margin-bottom: 20px;
 }
 .war_calendar_img{
     width: 24px;
@@ -36,7 +37,7 @@
     font-size: 20px;
     color: #333;
 }
-.open_calendar{
+.open_calendar,.stop_calendar{
     font-size: 18px;
     color: #999;
 }
@@ -46,16 +47,18 @@
     text-align: center;
     line-height: 20px;
     height: 20px;
-    width: 100%;
+    width: 60%;
     margin: 0 auto;
     position: absolute;
+    left: 50%;
+    margin-left: -30%;
 }
 .icon-shangyige{
     font-size: 22px;
     color: #999;
 }
 .icon-xiayige{
-    font-size: 22px;
+    font-size: 20px;
     color: #999;
 }
 .min_calendar_bottom{
@@ -119,4 +122,320 @@
     position: absolute;
     right: 0;
     bottom:22px;
+}
+.next_week,.next_year{
+    transform: rotate(180deg);
+}
+.max_calendar{
+    width: 100%;
+    height: 410px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding:20px 10px;
+    position: relative;
+    display: none;
+}
+.max_calendar.active{
+    display: block;
+}
+.time3{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 60%;
+    text-align: center;
+    left: 50%;
+    margin-left: -30%;
+}
+.time3 .year{
+    margin-right: 30px;
+}
+.time3 .icon-shangyige{
+    margin-right: 10px;
+}
+.time3 .icon-xiayige{
+    margin-left: 10px;
+}
+.max_calendar_bottom .left,.max_calendar_bottom .right{
+    width: 32px;
+    height: 280px;
+    background: #F5F6F7;
+    border-radius: 8px;
+    line-height: 280px;
+    text-align: center;
+    border:1px solid rgba(0,0,0,0);
+    margin-top: 36px;
+}
+.max_calendar_bottom .left.active,.max_calendar_bottom .right.active{
+    background: #FFF9F7;
+    border: 1px solid #FF5E49;
+    border-radius: 8px;
+}
+.max_calendar_bottom .left.active i,.max_calendar_bottom .right.active i{
+    color: #FF6649;
+}
+.max_calendar .calendar_top{
+    margin-bottom: 30px;
+}
+.max_calendar_bottom{
+    position: relative;
+}
+.max_calendar_table{
+    position: absolute;
+    padding: 0 52px;
+    width: 100%;
+}
+.calendar th,.calendar td{
+    font-weight: 400;
+    font-size: 18px;
+    color: #333;
+    width: 14.2%;
+    text-align: center;
+}
+.calendar table{
+    width: 100%;
+}
+.calendar th a{
+    display: block;
+    margin-bottom: 18px;
+}
+.calendar td a{
+    display: block;
+    width: 90px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 20px;
+    text-align: center;
+    line-height: 38px;
+    margin-bottom: 18px;
+}
+.calendar td.grey a{
+    color: #999;
+}
+.calendar td.active a{
+    display: block;
+    border: 1px solid #FF6649;
+    color: #FF6649;
+}
+
+/* 日历结束 */
+.game3_detail .game3_detail_ul li{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+.game3_detail .game3_detail_ul a{
+    font-size: 20px;
+    color: #FF6649;
+    padding: 0 20px;
+}
+.game3_detail .game3_detail_ul li.active a{
+    display: block;
+    background: #FF6649;
+    border-radius: 20px;
+    color: #fff;
+}
+.game3_days{
+    background: #fff;
+}
+.one_day{
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    border-bottom: 0;
+    border-radius: 8px;
+}
+.one_day_top{
+    height: 73px;
+    border-bottom: 1px solid #eee;
+    line-height: 72px;
+    padding-left: 20px;
+}
+.game3_detail_calendar1{
+    font-size: 26px;
+    color: #333;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.game3_detail_calendar2{
+    font-size: 18px;
+    color: #999;
+    vertical-align: middle;
+
+}
+.game3_detail_calendar2.active{
+    width: 55px;
+    height: 32px;
+    background: linear-gradient(135deg, #FFA94C, #FF874C, #FF3B3B);
+    border-radius: 8px;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    line-height: 32px;
+    text-align: center;
+}
+.one_day_botitem{
+    /* height: 187px; */
+    padding-top: 33px;
+}
+.game3_classify{
+    padding-right: 20px;
+}
+.game3_classify1{
+    font-size: 20px;
+    color: #333;
+    position: relative;
+    padding-left: 30px;
+}
+.game3_classify1::after{
+    content: "";
+    display: block;
+    clear: both;
+    width: 20px;
+    height: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    position: absolute;
+    left: 0;
+    background: #FF6649;
+    top:8px;
+}
+.game3_classify2{
+    padding: 0 16px 0 10px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 19px;
+    line-height: 36px;
+}
+.game3_team_img{
+    width: 28px;
+    height: 30px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+.game3_team_img img{
+    display: block;
+}
+.game3_classify2 span{
+    font-size: 18px;
+    color: #666;
+}
+.game3_game_item{
+    height: 187px;
+    border-bottom: 1px solid #eee;
+    padding:32px 18px 0 18px;
+}
+.game3_team1_top{
+    height: 60px;
+    margin-bottom: 22px;
+}
+.game3_team1_top_img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    border: 2px solid #FF5C6A;
+}
+.game3_team1_top .game3_team1_top_name{
+    font-size: 24px;
+    line-height: 60px;
+    color: #333;
+    width: 200px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap
+}
+.game3_team1_bottom{
+    width: 174px;
+    height: 40px;
+}
+.game3_team1_player{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    position:absolute;
+}
+.game3_team1_bottom.red .game3_team1_player{
+    border: 1px solid #EDBBBF;
+}
+.game3_team1_bottom.blue .game3_team1_player{
+    border: 1px solid #0C8DFC;
+}
+.game3_team1_bottom{
+    position: relative;
+}
+.game3_team1_allplayer{
+    position: relative;
+}
+.game3_team1_player:nth-child(1){
+    left: 0;
+    z-index: 1;
+}
+.game3_team1_player:nth-child(2){
+    left: 34px;
+    z-index: 2;
+}
+.game3_team1_player:nth-child(3){
+    left: 67px;
+    z-index: 3;
+}
+.game3_team1_player:nth-last-child(2){
+    right: 33px;
+    z-index: 4;
+}
+.game3_team1_player:nth-last-child(1){
+    right: 0;
+    z-index: 5;
+}
+.game3_team_players{
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,.6);
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    z-index: 6;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+}
+.game3_team2 .game3_team1_top_img{
+    margin-right: 0;
+}
+.game3_team2 .game3_team1_top_name{
+    margin-right: 20px;
+}
+.game3_team2  .game3_team1_bottom{
+    float: right;
+}
+.game3_team2 .game3_team_players{
+    left: 0;
+    right: auto;
+}
+.game3_team2_vs{
+    width: 204px;
+}
+.game3_team2_vs_top{
+    width: 108px;
+    height: 50;
+    background: url("../images/game3_vs.png");
+    background-position: 0 18px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.game3_team2_vs_time{
+    width: 108px;
+    height: 34px;
+    background: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 17px;
+    margin-top: 16px;
 }
