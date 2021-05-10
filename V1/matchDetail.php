@@ -14,6 +14,8 @@ $params = [
 $return = curl_post($config['api_get'],json_encode($params),1);
 //echo json_encode($params);die();
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
+//print_r($return['matchDetail']['data']['match_pre']);
+//die();
 //unset($return['matchDetail']['data']['match_pre']);
 //$return['matchDetail']['data']['match_data'] = json_decode($return['matchDetail']['data']['match_data'],true);q
 //print_R(array_keys($return['matchDetail']['data']['match_data']['result_list']['0']));
@@ -457,218 +459,353 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     </ul>
                                     <div class="vs_data3">
                                         <!--- 赛前统计-->
-                                        <div class="vs_data3_left active vs_data3_pad">
+                                        <div id="666" class="vs_data3_left  active vs_data3_pad">
                                             <p class="title">近6场赛事数据</p>
+                                            <!--- 胜率-->
                                             <div class="top-data clearfix">
                                                 <div class="l-data fl">
-                                                    <span class="win_rate mid">50%</span>
+                                                    <span class="win_rate mid"><?php echo $return['matchDetail']['data']['match_pre']['tournament_biaoxian']['team_a']['VICTORY_RATE'];?>%</span>
                                                 </div>
                                                 <div class="r-data fr">
-                                                    <span class="win_rate mid">70%</span>
+                                                    <span class="win_rate mid"><?php echo $return['matchDetail']['data']['match_pre']['tournament_biaoxian']['team_b']['VICTORY_RATE'];?>%</span>
                                                 </div>
                                                 <div class="rate">胜率</div>
                                             </div>
                                             <div class="compare-bar clearfix">
                                                 <div class="progress3 fl progress4 red">
-                                                    <span class="green" style="width: 40%;"></span>
+                                                    <span class="green" style="width: <?php echo $return['matchDetail']['data']['match_pre']['tournament_biaoxian']['team_a']['VICTORY_RATE'];?>%;"></span>
                                                 </div>
                                                 <div class="progress3 fr blue">
-                                                    <span class="green" style="width: 60%;"></span>
+                                                    <span class="green" style="width: <?php echo $return['matchDetail']['data']['match_pre']['tournament_biaoxian']['team_b']['VICTORY_RATE'];?>%;"></span>
                                                 </div>
                                             </div>
+                                            <!--- 胜率-->
                                             <div class="rate_data">
                                                 <div class="rate_data_item clearfix">
+                                                    <!--- KDA-->
                                                     <div class="fr rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_b']){ echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_a'];?>[<?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_a'];?>/<?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a'];?>/<?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_assists_team_a'];?>]</span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_b']){ echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_b'];?>[<?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_b'];?>/<?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b'];?>/<?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_assists_team_b'];?>]</span>
+                                                            <div class="average_time">KDA</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_a']/(8.5))?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['average_kda_team_b']/(8.5))?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- KDA-->
+                                                    <!--- 时长-->
                                                     <div class="fl rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_time_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_time_b']){ echo "1";}else{echo "2";}?>"><?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_time_a']/60).":".sprintf("%02d",($return['matchDetail']['data']['match_pre']['strength_index']['average_time_a']%60));?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_time_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_time_b']){ echo "2";}else{echo "1";}?>"><?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_time_b']/60).":".sprintf("%02d",($return['matchDetail']['data']['match_pre']['strength_index']['average_time_b']%60));?></span>
                                                             <div class="average_time">场均时长</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_time_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_time_b']){ echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['average_time_a']/(55*60))?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr grey">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
+                                                            <div class="progress3 fl  <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_time_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_time_b']){ echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['average_time_b']/(55*60))?>%;"></span>
+                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 时长-->
                                                 </div>
                                                 <div class="rate_data_item clearfix">
+                                                    <!--- 分均经济-->
                                                     <div class="fr rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_b'];?></span>
+                                                            <div class="average_time">分均经济</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_a']/6200*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_money_team_b']/6200*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 分均经济-->
+                                                    <!--- 击杀-->
                                                     <div class="fl rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_b'];?></span>
+                                                            <div class="average_time">场均击杀</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_a']/27*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr grey">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_b']){echo " grey";}else{echo " red";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_kills_team_b']/27*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 击杀-->
                                                 </div>
                                                 <div class="rate_data_item clearfix">
+                                                    <!--- 分均补刀-->
                                                     <div class="fr rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){ echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){ echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b'];?></span>
+                                                            <div class="average_time">分均补刀</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']/(10))?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']/(10))?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 分均补刀-->
+                                                    <!--- 死亡-->
                                                     <div class="fl rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b'];?></span>
+                                                            <div class="average_time">场均死亡</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']/22*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr grey">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']/22*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 死亡-->
                                                 </div>
                                                 <div class="rate_data_item clearfix">
+                                                    <!--- 分均插眼-->
                                                     <div class="fr rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_b'];?></span>
+                                                            <div class="average_time">分均插眼</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_a']/10*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsPlaced_team_b']/10*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 分均插眼-->
+                                                    <!--- 经济-->
                                                     <div class="fl rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_b'];?></span>
+                                                            <div class="average_time">场均经济</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_a']/120000*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr grey">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_money_team_b']/120000*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 经济-->
                                                 </div>
                                                 <div class="rate_data_item clearfix">
+                                                    <!--- 分均排眼-->
                                                     <div class="fr rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_b'];?></span>
+                                                            <div class="average_time">分均排眼</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_a']/10*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_wardsKilled_team_b']/10*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 分均排眼-->
+                                                    <!--- 经济差-->
                                                     <div class="fl rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_b'];?></span>
+                                                            <div class="average_time">场均经济差</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_a']/10000*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr grey">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_money_diff_team_b']/10000*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 经济差-->
                                                 </div>
                                                 <div class="rate_data_item clearfix">
+                                                    <!--- 一血率-->
                                                     <div class="fr rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_a'];?>%</span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_b'];?>%</span>
+                                                            <div class="average_time">一血率</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_a']/100*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['firstBloodKill_team_b']/100*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 一血率-->
+                                                    <!--- 小龙-->
                                                     <div class="fl rate_data_left">
                                                         <div class="rate_data_top">
-                                                            <span class="fl time1">31:05</span>
-                                                            <span class="fr time2">27:59</span>
-                                                            <div class="average_time">场均时长</div>
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_b'];?></span>
+                                                            <div class="average_time">场均小龙</div>
                                                         </div>
                                                         <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_a']/10*100);?>%;"></span>
                                                             </div>
-                                                            <div class="progress3 fr grey">
-                                                                <span class="green" style="width: 60%;"></span>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_baron_team_b']/10*100);?>%;"></span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--- 小龙-->
                                                 </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <!--- 大龙控制率-->
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_a'];?>%</span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_b'];?>%</span>
+                                                            <div class="average_time">大龙控制率</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_a']/100*100);?>%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['rate_dragon_team_b']/100*100);?>%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--- 大龙控制率-->
+                                                    <!--- 场均推塔-->
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_b'];?></span>
+                                                            <div class="average_time">场均推塔</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_a']/10*100);?>%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_tower_team_b']/10*100);?>%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--- 场均推塔-->
+                                                </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <!--- 小龙控制率-->
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_a'];?>%</span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_b'];?>%</span>
+                                                            <div class="average_time">小龙控制率</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_a']/100*100);?>%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['rate_baron_team_b']/100*100);?>%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--- 小龙控制率-->
+                                                    <!--- 场均被推塔-->
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_b'];?></span>
+                                                            <div class="average_time">场均被推塔</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_a']/10*100);?>%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_be_turretKills_team_b']/10*100);?>%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--- 场均被推塔-->
+                                                </div>
+                                                <div class="rate_data_item clearfix">
+                                                    <!--- 满局率-->
+                                                    <div class="fr rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_a'];?>%</span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_b'];?>%</span>
+                                                            <div class="average_time">满局率</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_a']/100*100);?>%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['rate_full_bureau_team_b']/100*100);?>%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--- 满局率-->
+                                                    <!--- 分均伤害-->
+                                                    <div class="fl rate_data_left">
+                                                        <div class="rate_data_top">
+                                                            <span class="fl time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_b']){echo "1";}else{echo "2";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_a'];?></span>
+                                                            <span class="fr time<?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_b']){echo "2";}else{echo "1";}?>"><?php echo $return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_b'];?></span>
+                                                            <div class="average_time">分均伤害</div>
+                                                        </div>
+                                                        <div class="compare-bar compare_bar clearfix">
+                                                            <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_b']){echo " red";}else{echo " grey";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_a']/40000*100);?>%;"></span>
+                                                            </div>
+                                                            <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_b']){echo " grey";}else{echo " blue";}?>">
+                                                                <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['minute_damage_team_b']/40000*100);?>%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--- 分均伤害-->
+                                                </div>
+
                                             </div>
                                         </div>
                                         <!--- 赛前统计-->
@@ -985,37 +1122,6 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
         <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
     </div>
 </div>
-<script>
-    // 溢出隐藏，点击不隐藏
-    $(".game_title").on("click", ".game_title_more", function () {
-        $(".game_title").find(".game_team_depiction p").toggleClass("active");
-        $(".game_title_more").toggleClass("active")
-    })
-
-    // vs_data1切换
-    $(".vs_data1").on("click", 'li', function () {
-        var _this = $(this).index() - 1;
-        $(".vs_data1 li").removeClass("active").eq($(this).index()).addClass("active");
-        $(".vs_data1 li").removeClass("active1").eq(_this).addClass("active1");
-        $(".vs_data2 .vs_data2_item").removeClass("active").eq($(this).index()).addClass("active");
-        // $(".game_team_div").removeClass("active").eq($(this).index()).addClass("active");
-    })
-
-    // if ($(".game_detail_ul li").length > 5) {
-    //     console.log($(".game_detail_ul li").length)
-    //     $(".game_detail_ul li").addClass("active1")
-    // }
-
-    $(".game_before_after").on("click", 'li', function () {
-        $(".game_before_after li").removeClass("active").eq($(this).index()).addClass("active");
-        $(".vs_data3 .vs_data3_left").removeClass("active").eq($(this).index()).addClass("active");
-    })
-
-    $(".game_detail_ul").on("click", 'li', function () {
-        $(".game_detail_ul li").removeClass("active").eq($(this).index()).addClass("active");
-        $(".game_detail_div .game_detail_div_item").removeClass("active").eq($(this).index()).addClass("active");
-    })
-</script>
 <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
 </body>
 
