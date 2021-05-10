@@ -1,0 +1,23 @@
+{
+  "id": "2536818",
+  "name": "海浪1",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2815734",
+      "name": "下一个",
+      "font_class": "xiayige",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "11391532",
+      "name": "上一个",
+      "font_class": "shangyige",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    }
+  ]
+}
