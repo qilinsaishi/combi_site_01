@@ -138,6 +138,7 @@
 }
 .max_calendar.active{
     display: block;
+    margin-bottom: 20px;
 }
 .time3{
     display: flex;
@@ -574,8 +575,15 @@ margin-right: 20px;
 .game3_days_item:nth-child(2) .game3_classify,.game3_days_item:nth-child(3) .game3_classify,.game3_days_item:nth-child(4) .game3_classify{
     display: none;
 }
+.game3_days_item:nth-child(2) .one_day_top,.game3_days_item:nth-child(3) .one_day_top,.game3_days_item:nth-child(4) .one_day_top{
+    border-bottom: 0;
+}
 @media only screen and (max-width: 1024px){
     .game_left{
+        background: #F5F6F7;
         width:100%;
+    }
+     .game_right{
+        float: right;
     }
 }
