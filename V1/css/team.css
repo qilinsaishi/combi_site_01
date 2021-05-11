@@ -89,6 +89,10 @@
     line-height: 32px;
     margin-right: 4px;
 }
+.paging .paging_num.active{
+    background: #FF6649;
+    color: #fff;
+}
 .esport_more{
     margin-right: 10px;
     margin-left: 6px;

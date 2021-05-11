@@ -152,7 +152,7 @@
                 </div>
                 <!-- 队员介绍 -->
                 <!-- 战队数据 -->
-                <div class="team_data">
+                <div class="team_data mb20">
                     <div class="team_data_top clearfix">
                         <div class="team_data_img fl">
                             <img class="imgauto" src="./images/team_data.png" alt="">
@@ -165,13 +165,111 @@
                     </div>
                     <div class="team_data_items clearfix">
                         <div class="data_left fl">
-                            <div class="won_all third circle" data-num="0.75">
-                                <strong></strong>
+                            <div class="circle_left clearfix">
+                                <div class="won_all third circle fl" data-num="0.75">
+                                    <strong></strong>
+                                </div>
+                                <div class="circle_right fl">
+                                    <div class="red">
+                                        <div class="won_red circle" data-num="0.6">
+                                        </div>
+                                        <div class="red_explain">
+                                            <span class="rate_number">69.2%</span>
+                                            <span class="rate_explain">13场9胜4败</span>
+                                            <span class="rate">红方胜率</span>
+                                        </div>
+                                    </div>
+                                    <div class="blue">
+                                        <div class="won_blue circle" data-num="0.9">
+                                        </div>
+                                        <div class="blue_explain">
+                                            <span class="rate_number">66.7%</span>
+                                            <span class="rate_explain">15场10胜5败</span>
+                                            <span class="rate">蓝方胜率</span>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="data_right fr clearfix">
+                            <div class="data_btn_all fl mb20">
+                                <span>5.2</span>
+                                <span>KDA·联赛第 1</span>
+                            </div>
+                            <div class="data_kill data_btn fl mb20">
+                                <p>395[14.1]</p>
+                                <p>击杀（场均）</p>
+                                <p>联赛第<span>1</span></p>
+                            </div>
+                            <div class="data_death data_btn fl">
+                                <p>269[9.6]</p>
+                                <p>死亡（场均）</p>
+                                <p>联赛第<span>15</span></p>
+                            </div>
+                            <div class="data_assists data_btn fl">
+                                <p>1004[35.9]</p>
+                                <p>助攻（场均）</p>
+                                <p>联赛第<span>1</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- 战队数据 -->
+                <!-- 战队荣誉 -->
+                <div class="team_honor mb20">
+                    <div class="team_honor_top clearfix">
+                        <div class="team_honor_img fl">
+                            <img class="imgauto" src="./images/team_honor.png" alt="">
+                        </div>
+                        <span class="fl team_honor_name">WE战队历史荣誉</span>
+                    </div>
+                    <div class="team_honor_detail">
+                        <div class="honor_top clearfix">
+                            <span>时间</span>
+                            <span>荣誉/名次</span>
+                            <span>赛事</span>
+                            <span>赛况</span>
+                        </div>
+                        <ul class="honor_bottom">
+                            <li>
+                                <a href="##" class="clearfix">
+                                    <div class="w25">
+                                        2017.11.11
+                                    </div>
+                                    <div class="w25">
+                                        <div class="honor_bottom_img1">
+                                            <img class="imgauto" src="./images/champion.png" alt="">
+                                        </div>
+                                        <span>冠军</span>
+                                    </div>
+                                    <div class="w25">
+                                        <div class="honor_bottom_img2">
+                                            <img class="imgauto" src="./images/kpl_teamdetail.png" alt="">
+                                        </div>
+                                        <span>2017 KPL秋季赛</span>
+                                    </div>
+                                    <div class="w25">
+                                        <div class="honor_bottom_img2">
+                                            <img class="imgauto" src="./images/teamdetail1.png" alt="">
+                                        </div>
+                                        <div class="honor_bottom_vs">
+                                            <span class="red span_left">2</span>
+                                            <div class="honor_bottom_img1">
+                                                <img class="imgauto" src="./images/game_detail_vs.png" alt="">
+                                            </div>
+                                            <span class="blue span_right">1</span>
+                                        </div>
+                                        <div class="honor_bottom_img2">
+                                            <img class="imgauto" src="./images/teamdetail2.png" alt="">
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 战队荣誉 -->
             </div>
         </div>
     </div>
@@ -213,6 +311,24 @@
         startAngle: -Math.PI / 4 * 2,
     }).on('circle-animation-progress', function(event, progress, stepValue) {
         $(this).find('strong').html(parseInt(100 * stepValue) + '<i>%</i><span>胜率</span>');
+    });
+
+    var value_red = $('.won_red').data('num');
+    $('.won_red.circle').circleProgress({
+        startAngle: -Math.PI / 4 * 2,
+        size:94,
+        value: value_red,
+        lineCap: 'round',
+        fill: { color: '#FF5C6A' }
+    });
+
+    var value_blue = $('.won_red').data('num');
+    $('.won_blue.circle').circleProgress({
+        startAngle: -Math.PI / 4 * 2,
+        size:94,
+        value: value_blue,
+        lineCap: 'round',
+        fill: { color: '#0C8DFC' }
     });
     </script>
 </body>
