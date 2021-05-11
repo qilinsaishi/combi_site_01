@@ -375,6 +375,8 @@ li a .w25:nth-child(3n) .honor_bottom_img2{
 .honor_bottom_vs span{
     font-size: 30px;
     font-family: shuzi;
+    height: 30px;
+    line-height: 30px;
 }
 .span_left{
     margin-left: 30px;
@@ -393,9 +395,12 @@ li a .w25:nth-child(3n) .honor_bottom_img2{
 .honor_bottom_vs .honor_bottom_img1{
     margin-right: 0;
 }
-li a .w25:nth-child(2n) span,li a .w25:nth-child(3n) span{
+li a .max_span span{
     width: 150px;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space: nowrap
+}
+.honor_bottom li{
+    margin-bottom: 14px;
 }

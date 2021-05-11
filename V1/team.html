@@ -15,7 +15,7 @@
     <!-- 本页新增的css right.css -->
     <link rel="stylesheet" href="./css/right.css">
     <!-- 本页新增的css esports.css -->
-    <link rel="stylesheet" href="./css/team.css">
+    <link rel="stylesheet" href="./css/esports.css">
 </head>
 
 <body>
@@ -53,28 +53,28 @@
                 <div class="game_left esports fl">
                     <ul class="esports_ul clearfix">
                         <li class="active">
-                            <a href="#all">
+                            <a href="##">
                                 全部
                             </a>
                         </li>
                         <li>
-                            <a href="#lol">
+                            <a href="##">
                                 英雄联盟
                             </a>
                         </li>
                         <li>
-                            <a href="#kpl">
+                            <a href="##">
                                 王者荣耀
                             </a>
                         </li>
                         <li>
-                            <a href="#dota2">
+                            <a href="##">
                                 DOTA2
                             </a>
                         </li>
                     </ul>
                     <div class="esports_detail">
-                        <div class="esports_item all" id="all">
+                        <div class="esports_item all active">
                             <ul class="game_team_list_detail">
                                 <li class="active col-xs-6">
                                     <a href="##">
@@ -323,7 +323,7 @@
                                         <img src="./images/esport_left.png" alt="" class="active">
                                         <img src="./images/esport_right.png" alt="" class="img_transform">
                                     </a>
-                                    <a href="##" class="paging_num active">1</a>
+                                    <a href="##" class="paging_num">1</a>
                                     <a href="##" class="esport_more">
                                         <img src="./images/esport_more.png" alt="">
                                     </a>
@@ -340,7 +340,7 @@
                                     </a>
                             </div>
                         </div>
-                        <div class="esports_item lol" id="lol">
+                        <div class="esports_item lol">
                             <ul class="game_team_list_detail">
                                 <li class="active col-xs-6">
                                     <a href="##">
@@ -606,7 +606,7 @@
                                     </a>
                             </div>
                         </div>
-                        <div class="esports_item kpl" id="kpl">
+                        <div class="esports_item kpl">
                             <ul class="game_team_list_detail">
                                 <li class="active col-xs-6">
                                     <a href="##">
@@ -872,7 +872,7 @@
                                     </a>
                             </div>
                         </div>
-                        <div class="esports_item dota2" id="dota2">
+                        <div class="esports_item dota2">
                             <ul class="game_team_list_detail">
                                 <li class="active col-xs-6">
                                     <a href="##">
@@ -1393,12 +1393,12 @@
     <script src="./js/index.js"></script>
     <script src="./js/jquery.lineProgressbar.js"></script>
     <script>
-        // $(".esports_ul").on("click","li",function(){
-        //     $(".esports_ul li").removeClass("active");
-        //     $(this).addClass("active");
-        //     $(this).parents(".esports").find(".esports_detail").find(".esports_item").removeClass("active").eq($(this).index()).addClass("active")
-        //     // $(this).parents(".game_detail_item5").find(".vs_data2").find(".vs_data2_item").removeClass("active").eq($(this).index()).addClass("active")
-        // })
+        $(".esports_ul").on("click","li",function(){
+            $(".esports_ul li").removeClass("active");
+            $(this).addClass("active");
+            $(this).parents(".esports").find(".esports_detail").find(".esports_item").removeClass("active").eq($(this).index()).addClass("active")
+            // $(this).parents(".game_detail_item5").find(".vs_data2").find(".vs_data2_item").removeClass("active").eq($(this).index()).addClass("active")
+        })
     </script>
 </body>
 
