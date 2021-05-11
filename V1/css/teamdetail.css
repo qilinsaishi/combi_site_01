@@ -1,0 +1,206 @@
+.header{
+    background: #FFFFFF;
+    box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
+    margin-bottom: 30px;
+}
+.wrapper{
+    background: #F5F6F7;
+}
+.team_title{
+    width: 1200px;
+    min-height: 300px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding-left: 100px;
+    padding-right: 30px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.mauto{
+    margin: 0 auto;
+}
+.imgauto{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.team_logo{
+    width: 144px;
+    height: 248px;
+    background:url("../images/teamdetailbg.png") center no-repeat ;
+    margin-right: 60px;
+    padding-top: 76px;
+}
+.team_logo_img{
+    width: 128px;
+    height: 128px;
+}
+.team_explain{
+    width: 864px;
+    padding-top: 50px;
+}
+.team_explain_top{
+    margin-bottom: 32px;
+}
+.team_explain_top .name{
+    max-width: 150px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-right: 24px;
+}
+.team_explain_top .classify{
+    width: 124px;
+    height: 34px;
+    background: #fff;
+    border: 1px solid #FF6649;
+    border-radius: 17px;
+    font-size: 20px;
+    color: #FF6649;
+    text-align: center;
+    line-height: 32px;
+}
+.team_explain_name{
+    margin-bottom: 26px;
+}
+.team_explain_name p{
+    font-size: 24px;
+    color: #999;
+}
+.team_explain_name p:nth-child(1){
+    margin-right: 60px;
+}
+.team_explain_name span{
+    color: #333;
+}
+.English_name,.chinese_name{
+    max-width: 150px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.team_explain_bottom p{
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+}
+.team_member{
+    width: 1200px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding-left: 18px;
+    padding-top: 20px;
+    background-image: url("../images/team_nmmbers.png");
+    background-repeat: no-repeat;
+    background-size: 342px 200px;
+    background-position: 99% bottom;
+}
+/* 头部开始 */
+.team_member_top,team_data_top{
+    margin-bottom: 22px;
+}
+.team_member_img,.team_data_img{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    font-size: 0;
+}
+.team_member_top .team_number_name,.team_data_top .team_data_name{
+    font-size: 24px;
+    color: #333;
+    height: 24px;
+    line-height: 24px;
+}
+/* 头部结束 */
+.team_number_photo{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #EEEEEE;
+    margin-bottom: 14px;
+}
+.team_member_detail .team_number_name{
+    width: 100px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    line-height: 18px;
+    height: 18px;
+}
+.team_member_detail{
+    width: 772px;
+}
+.team_member_detail li{
+    width: 100px;
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 18px;
+}
+.team_member_detail li:hover .team_number_photo{
+    border: 1px solid #FF6649;
+    
+}
+.team_member_detail li:hover .team_number_name{
+    color: #FF6649;
+}
+.team_member_detail li:nth-child(6n){
+    margin-right: 0;
+}
+/* 数据开始 */
+.team_data{
+    width: 1200px;
+    height: 312px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding-top: 20px;
+    padding-left: 18px;
+}
+.team_data_frequency {
+    margin-right: 22px;
+}
+.team_data_frequency p{
+    width: 200px;
+    height: 40px;
+    background: #F5F6F7;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    line-height: 40px;
+}
+.matches_number{
+    margin-right: 8px;
+}
+.team_data_frequency span{
+    color: #FF6649;
+}
+/* 圆形进度条 */
+.circle {
+    width: 208px;
+    height: 208px;
+    background: #FFF9F7;
+    /* margin: 6px 6px 20px; */
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    line-height: 1.2;
+    border-radius: 50%;;
+}
+.circle strong {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;
+}
