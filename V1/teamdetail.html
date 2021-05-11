@@ -212,7 +212,7 @@
         fill: { gradient:['#FF6649'] },
         startAngle: -Math.PI / 4 * 2,
     }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html(parseInt(100 * stepValue) + '<i>%</i>');
+        $(this).find('strong').html(parseInt(100 * stepValue) + '<i>%</i><span>胜率</span>');
     });
     </script>
 </body>
