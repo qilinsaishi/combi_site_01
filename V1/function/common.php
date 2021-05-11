@@ -199,7 +199,6 @@
     {
         if(substr($data,0,1)=='"' && substr($data,-1) =='"')
         {
-            echo "888";
             return json_decode($data,true);
         }
         else
