@@ -506,7 +506,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         </td>
                                                         <td class="hits">
                                                             <p class="p1"><?php echo $player_info['_star_hits'];?></p>
-                                                            <p class="p2"><?php echo sprintf("%10.1f",$player_info['_star_hits']/$round_minute)?>/分</p>
+                                                            <p class="p2"><?php echo $round_minute==0?:sprintf("%10.1f",$player_info['_star_hits']/$round_minute)?>/分</p>
                                                         </td>
                                                         <td>
                                                             <p><?php echo $player_info['_star_money'];?></p>
@@ -575,7 +575,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     </td>
                                                     <td class="hits">
                                                         <p class="p1"><?php echo $player_info['_star_hits'];?></p>
-                                                        <p class="p2"><?php echo sprintf("%10.1f",$player_info['_star_hits']/$round_minute)?>/分</p>
+                                                        <p class="p2"><?php echo $round_minute==0?0:sprintf("%10.1f",$player_info['_star_hits']/$round_minute)?>/分</p>
                                                     </td>
                                                     <td>
                                                         <p><?php echo $player_info['_star_money'];?></p>
