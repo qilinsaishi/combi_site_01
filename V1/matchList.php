@@ -6,6 +6,18 @@ if(strtotime($currentDate)==0)
     $currentDate = date("Y-m-d");
 }
 $currentDay = date("w",strtotime($currentDate));
+$params = [];
+$params["allmatchList"] =
+    ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>array_keys($config['game']),"start_date"=>$currentDate,"cache_time"=>3600];
+//依次加入所有游戏
+foreach ($config['game'] as $game => $gameName)
+{
+    $params[$game."matchList"] =
+        ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>$game,"start_date"=>$currentDate,"cache_time"=>3600];
+}
+$return = curl_post($config['api_get'],json_encode($params),1);
+$allGameList = array_keys($config['game']);
+array_unshift($allGameList,"all");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,2100 +187,538 @@ $currentDay = date("w",strtotime($currentDate));
                                     综合
                                 </a>
                             </li>
-                            <li>
-                                <a href="##">
-                                    英雄联盟
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    王者荣耀
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    DOTA2
-                                </a>
-                            </li>
+                            <?php foreach($config['game'] as $game => $game_name){?>
+                                <li>
+                                    <a href="##">
+                                        <?php echo $game_name;?>
+                                    </a>
+                                </li>
+                            <?php }?>
                         </ul>
                         <div class="game3_days">
-                            <!-- 全部 -->
-                            <div class="game3_days_item active all">
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl"><?php echo date("m.d",strtotime($currentDate));?></span>
-                                        <span class="game3_detail_calendar2 active fl">今天</span>
-                                    </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                    <div class="game3_classify2 fr clearfix">
-                                                        <a href="##">
-                                                            <div class="game3_team_img fl">
-                                                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                            </div>
-                                                            <span class="fr">2021 LCS春季赛-常规赛</span>
-                                                        </a>
+                            <?php foreach($allGameList as $key => $game){?>
+                                <!-- 全部 -->
+                                <div class="game3_days_item <?php if($key==0){echo 'active';}?> <?php echo $game;?>">
+                                    <div class="one_day">
+                                        <div class="one_day_top clearfix">
+                                            <span class="game3_detail_calendar1 fl"><?php echo date("m.d",strtotime($currentDate));?></span>
+                                            <span class="game3_detail_calendar2 active fl">今天</span>
+                                        </div>
+                                        <div class="one_day_item">
+                                            <ul class="one_day_bottom">
+                                                <li class="one_day_botitem">
+                                                    <div class="game3_classify clearfix">
+                                                        <span class="game3_classify1 fl">英雄联盟</span>
+                                                        <div class="game3_classify2 fr clearfix">
+                                                            <a href="##">
+                                                                <div class="game3_team_img fl">
+                                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
+                                                                </div>
+                                                                <span class="fr">2021 LCS春季赛-常规赛</span>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                    <div class="game3_game_item">
+                                                        <div class="game3_team1 fl">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                    <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
                                                                 </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2_vs fl">
+                                                            <a href="##">
+                                                                <div class="game3_team2_vs_top">
+                                                                    <div class="bg_wr">
+                                                                        <div class="game3_team2_vs_bg">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="time_over">
+                                                                        <p class="game3_team2_vs_time stop">16:00·已结束</p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="game3_team2_vs_bot">
+                                                                    <div class="frequency clearfix">
+                                                                        <span class="fl frequency_left">3</span>
+                                                                        <p class="fl frequency_center grey">对战详情</p>
+                                                                        <span class="fr frequency_right">3</span>
+                                                                    </div>
+                                                                    <div class="compare-bar">
+                                                                        <div class="l-bar fl red" style="width: 48.4871%;">
+                                                                        </div> <div class="r-bar fr blue" style="width: 51.5129%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2 fr">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
+                                                    <div class="li_bg">
+                                                        <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                     </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                </li>
+                                                <li class="one_day_botitem">
+                                                    <div class="game3_game_item">
+                                                        <div class="game3_team1 fl">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                    <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
                                                                 </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2_vs fl">
+                                                            <a href="##">
+                                                                <div class="game3_team2_vs_top">
+                                                                    <div class="bg_wr">
+                                                                        <div class="game3_team2_vs_bg">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="time_over">
+                                                                        <p class="game3_team2_vs_time stop">16:00·已结束</p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="game3_team2_vs_bot">
+                                                                    <div class="frequency clearfix">
+                                                                        <span class="fl frequency_left">3</span>
+                                                                        <p class="fl frequency_center grey">对战详情</p>
+                                                                        <span class="fr frequency_right">3</span>
+                                                                    </div>
+                                                                    <div class="compare-bar">
+                                                                        <div class="l-bar fl red" style="width: 48.4871%;">
+                                                                        </div> <div class="r-bar fr blue" style="width: 51.5129%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2 fr">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
+                                                    <div class="li_bg">
+                                                        <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                     </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul class="one_day_bottom">
+                                                <li class="one_day_botitem">
+                                                    <div class="game3_classify clearfix">
+                                                        <span class="game3_classify1 fl">王者荣耀</span>
+                                                        <div class="game3_classify2 fr clearfix">
+                                                            <a href="##">
+                                                                <div class="game3_team_img fl">
+                                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
                                                                 </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
+                                                                <span class="fr">2021 LCS春季赛-常规赛</span>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                    <div class="game3_game_item">
+                                                        <div class="game3_team1 fl">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                    <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
                                                                 </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2_vs fl">
+                                                            <a href="##">
+                                                                <div class="game3_team2_vs_top">
+                                                                    <div class="bg_wr">
+                                                                        <div class="game3_team2_vs_bg">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="time_over">
+                                                                        <p class="game3_team2_vs_time stop">16:00·已结束</p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="game3_team2_vs_bot">
+                                                                    <div class="frequency clearfix">
+                                                                        <span class="fl frequency_left">3</span>
+                                                                        <p class="fl frequency_center grey">对战详情</p>
+                                                                        <span class="fr frequency_right">3</span>
+                                                                    </div>
+                                                                    <div class="compare-bar">
+                                                                        <div class="l-bar fl red" style="width: 48.4871%;">
+                                                                        </div> <div class="r-bar fr blue" style="width: 51.5129%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2 fr">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">王者荣耀</span>
-                                                    <div class="game3_classify2 fr clearfix">
-                                                        <a href="##">
-                                                            <div class="game3_team_img fl">
-                                                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                            </div>
-                                                            <span class="fr">2021 LCS春季赛-常规赛</span>
-                                                        </a>
+                                                    <div class="li_bg">
+                                                        <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                     </div>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl">04.27</span>
-                                        <span class="game3_detail_calendar2 fl">周二</span>
-                                        
-                                    </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                    <div class="game3_classify2 fr clearfix">
-                                                        <a href="##">
-                                                            <div class="game3_team_img fl">
-                                                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                            </div>
-                                                            <span class="fr">2021 LCS春季赛-常规赛</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 全部 -->
-                            <!-- 英雄联盟 -->
-                            <div class="game3_days_item lol">
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl">04.26</span>
-                                        <span class="game3_detail_calendar2 active fl">今天</span>
-                                        <div class="game3_classify2 fr clearfix">
-                                            <a href="##">
-                                                <div class="game3_team_img fl">
-                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                </div>
-                                                <span class="fr">2021 LCS春季赛-常规赛</span>
-                                            </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                    <div class="one_day">
+                                        <div class="one_day_top clearfix">
+                                            <span class="game3_detail_calendar1 fl">04.27</span>
+                                            <span class="game3_detail_calendar2 fl">周二</span>
+
+                                        </div>
+                                        <div class="one_day_item">
+                                            <ul class="one_day_bottom">
+                                                <li class="one_day_botitem">
+                                                    <div class="game3_classify clearfix">
+                                                        <span class="game3_classify1 fl">英雄联盟</span>
+                                                        <div class="game3_classify2 fr clearfix">
+                                                            <a href="##">
+                                                                <div class="game3_team_img fl">
+                                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
                                                                 </div>
-                                                                <span class="game3_team1_top_name fl">lolWEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
+                                                                <span class="fr">2021 LCS春季赛-常规赛</span>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
+                                                    <div class="game3_game_item">
+                                                        <div class="game3_team1 fl">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                    <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
+                                                                </div>
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2_vs fl">
+                                                            <a href="##">
+                                                                <div class="game3_team2_vs_top">
+                                                                    <div class="bg_wr">
+                                                                        <div class="game3_team2_vs_bg">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="time_over">
+                                                                        <p class="game3_team2_vs_time dark">16:00</p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
+                                                                <div class="game3_team2_vs_bot">
+                                                                    <div class="frequency clearfix">
+                                                                        <span class="fl frequency_left">3</span>
+                                                                        <p class="fl frequency_center grey">近6场交战胜场</p>
+                                                                        <span class="fr frequency_right">3</span>
+                                                                    </div>
+                                                                    <div class="compare-bar">
+                                                                        <div class="l-bar fl red" style="width: 48.4871%;">
+                                                                        </div> <div class="r-bar fr blue" style="width: 51.5129%;">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2 fr">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
+                                                    <div class="li_bg">
+                                                        <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                     </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                </li>
+                                                <li class="one_day_botitem">
+                                                    <div class="game3_game_item">
+                                                        <div class="game3_team1 fl">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                    <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
                                                                 </div>
-                                                                <span class="game3_team1_top_name fl">lolWEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2_vs fl">
+                                                            <a href="##">
+                                                                <div class="game3_team2_vs_top">
+                                                                    <div class="bg_wr">
+                                                                        <div class="game3_team2_vs_bg">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                    <div class="time_over">
+                                                                        <p class="game3_team2_vs_time dark">16:00</p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="game3_team2_vs_bot">
+                                                                    <div class="frequency clearfix">
+                                                                        <span class="fl frequency_left">3</span>
+                                                                        <p class="fl frequency_center grey">近6场交战胜场</p>
+                                                                        <span class="fr frequency_right">3</span>
+                                                                    </div>
+                                                                    <div class="compare-bar">
+                                                                        <div class="l-bar fl red" style="width: 48.4871%;">
+                                                                        </div> <div class="r-bar fr blue" style="width: 51.5129%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="game3_team2 fr">
+                                                            <a href="##">
+                                                                <div class="game3_team1_top clearfix">
+                                                                    <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
+                                                                    <div class="game3_team1_top_img fl">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="game3_team1_bottom red">
+                                                                    <div class="game3_team1_allplayer">
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                        <div class="game3_team1_player">
+                                                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="game3_team_players">14</div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
+                                                    <div class="li_bg">
+                                                        <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                     </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">王者荣耀</span>
-                                                    <div class="game3_classify2 fr clearfix">
-                                                        <a href="##">
-                                                            <div class="game3_team_img fl">
-                                                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                            </div>
-                                                            <span class="fr">2021 LCS春季赛-常规赛</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl">04.27</span>
-                                        <span class="game3_detail_calendar2 fl">周二</span>
-                                        <div class="game3_classify2 fr clearfix">
-                                            <a href="##">
-                                                <div class="game3_team_img fl">
-                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                </div>
-                                                <span class="fr">2021 LCS春季赛-常规赛</span>
-                                            </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
-                            </div>
-                            <!-- 英雄联盟 -->
-                            <!-- 王者荣耀 -->
-                             <div class="game3_days_item kpl">
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl">04.26</span>
-                                        <span class="game3_detail_calendar2 active fl">今天</span>
-                                        <div class="game3_classify2 fr clearfix">
-                                            <a href="##">
-                                                <div class="game3_team_img fl">
-                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                </div>
-                                                <span class="fr">2021 LCS春季赛-常规赛</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">kplWEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">lolWEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">王者荣耀</span>
-                                                    <div class="game3_classify2 fr clearfix">
-                                                        <a href="##">
-                                                            <div class="game3_team_img fl">
-                                                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                            </div>
-                                                            <span class="fr">2021 LCS春季赛-常规赛</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl">04.27</span>
-                                        <span class="game3_detail_calendar2 fl">周二</span>
-                                        <div class="game3_classify2 fr clearfix">
-                                            <a href="##">
-                                                <div class="game3_team_img fl">
-                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                </div>
-                                                <span class="fr">2021 LCS春季赛-常规赛</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 王者荣耀 -->
-                            <!-- dota2 -->
-                            <div class="game3_days_item dota2">
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl">04.26</span>
-                                        <span class="game3_detail_calendar2 active fl">今天</span>
-                                        <div class="game3_classify2 fr clearfix">
-                                            <a href="##">
-                                                <div class="game3_team_img fl">
-                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                </div>
-                                                <span class="fr">2021 LCS春季赛-常规赛</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">dota2WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">lolWEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">王者荣耀</span>
-                                                    <div class="game3_classify2 fr clearfix">
-                                                        <a href="##">
-                                                            <div class="game3_team_img fl">
-                                                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                            </div>
-                                                            <span class="fr">2021 LCS春季赛-常规赛</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time stop">16:00·已结束</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">对战详情</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="one_day">
-                                    <div class="one_day_top clearfix">
-                                        <span class="game3_detail_calendar1 fl">04.27</span>
-                                        <span class="game3_detail_calendar2 fl">周二</span>
-                                        <div class="game3_classify2 fr clearfix">
-                                            <a href="##">
-                                                <div class="game3_team_img fl">
-                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                                </div>
-                                                <span class="fr">2021 LCS春季赛-常规赛</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="one_day_item">
-                                        <ul class="one_day_bottom">
-                                            <li class="one_day_botitem">
-                                                <div class="game3_classify clearfix">
-                                                    <span class="game3_classify1 fl">英雄联盟</span>
-                                                </div>
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                            <li class="one_day_botitem">
-                                                <div class="game3_game_item">
-                                                    <div class="game3_team1 fl">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                                <span class="game3_team1_top_name fl">WEWEWEWEWEWEWE</span>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2_vs fl">
-                                                        <a href="##">
-                                                            <div class="game3_team2_vs_top">
-                                                                <div class="bg_wr">
-                                                                    <div class="game3_team2_vs_bg">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="time_over">
-                                                                    <p class="game3_team2_vs_time dark">16:00</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team2_vs_bot">
-                                                                <div class="frequency clearfix">
-                                                                    <span class="fl frequency_left">3</span>
-                                                                    <p class="fl frequency_center grey">近6场交战胜场</p>
-                                                                    <span class="fr frequency_right">3</span>
-                                                                </div>
-                                                                <div class="compare-bar">
-                                                                    <div class="l-bar fl red" style="width: 48.4871%;">
-                                                                    </div> <div class="r-bar fr blue" style="width: 51.5129%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="game3_team2 fr">
-                                                        <a href="##">
-                                                            <div class="game3_team1_top clearfix">
-                                                                <span class="game3_team1_top_name fl">PNGPNGPNGPNG</span>
-                                                                <div class="game3_team1_top_img fl">
-                                                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" class="imgauto" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="game3_team1_bottom red">
-                                                                <div class="game3_team1_allplayer">
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player2.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                    <div class="game3_team1_player">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" class="imgauto" alt="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="game3_team_players">14</div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="li_bg">
-                                                    <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dota2 -->
+                                <!-- 全部 -->
+                            <?php }?>
+
                         </div>
                     </div>
                 </div>
