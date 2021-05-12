@@ -18,6 +18,30 @@ foreach ($config['game'] as $game => $gameName)
 $return = curl_post($config['api_get'],json_encode($params),1);
 $allGameList = array_keys($config['game']);
 array_unshift($allGameList,"all");
+foreach($allGameList as $key => $game)
+{
+    $gameList = [];
+    $List = $return[$game."matchList"]['data'];
+    foreach($List as $matchInfo)
+    {
+        $gameList[$matchInfo['game']][] = $matchInfo;
+    }
+    if(count($gameList)>1)
+    {
+        foreach($config['game'] as $game_key => $game_name)
+        {
+            if(!isset($gameList[$game_key]))
+            {
+                $gameList[$game_key] = [];
+            }
+        }
+        //array_multisort(array_keys($gameList),array_keys($config['game']),$gameList);
+    }
+    $return[$game."matchList"]['data'] = $gameList;
+}
+//print_R($return);
+die();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
