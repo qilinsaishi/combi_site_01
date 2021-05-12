@@ -22,8 +22,10 @@ $params = [
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>$config['game'],"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "currentPage"=>["name"=>"matchList","date"=>$currentDate,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
+/*
 $params["allmatchList"] =
     ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>array_keys($config['game']),"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
+*/
 //依次加入所有游戏
 foreach ($config['game'] as $game => $gameName)
 {
@@ -31,9 +33,15 @@ foreach ($config['game'] as $game => $gameName)
         ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>$game,"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return["allmatchList"]['data'] = [];
 $allGameList = array_keys($config['game']);
 array_unshift($allGameList,"all");
 $matchCountList = [];
+foreach($config['game'] as $game => $game_name)
+{
+    $return["allmatchList"]['data'] = array_merge($return["allmatchList"]['data'],$return[$game."matchList"]['data']);
+}
+array_multisort(array_column($return["allmatchList"]['data'],"start_time"),SORT_DESC,$return["allmatchList"]['data']);
 foreach($allGameList as $key => $game)
 {
     $gameList = [];
