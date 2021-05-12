@@ -309,6 +309,7 @@
     position: relative;
     padding-left: 30px;
     line-height: 36px;
+    margin-bottom: 20px;
 }
 .game3_classify1::after{
     content: "";
@@ -323,7 +324,7 @@
     background: #FF6649;
     top:11px;
 }
-.game3_classify2{
+.game3_classify2_detail{
     padding: 0 16px 0 10px;
     height: 38px;
     background: #FFFFFF;
