@@ -6,7 +6,12 @@ if(strtotime($currentDate)==0)
     $currentDate = date("Y-m-d");
 }
 $currentDay = date("w",strtotime($currentDate));
-$params = [];
+$params = [
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>$config['game'],"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>$config['game'],"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>$config['game'],"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+    "currentPage"=>["name"=>"matchList","date"=>$currentDate,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
+];
 $params["allmatchList"] =
     ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>array_keys($config['game']),"start_date"=>$currentDate,"cache_time"=>3600];
 //依次加入所有游戏
@@ -218,7 +223,7 @@ foreach($allGameList as $key => $game)
                         </ul>
                         <div class="game3_days">
                             <?php foreach($allGameList as $key => $game){?>
-                                <!-- 全部 -->
+                                <!-- 游戏 -->
                                 <div class="game3_days_item <?php if($key==0){echo 'active';}?> <?php echo $game;?>">
                                     <div class="one_day">
                                         <div class="one_day_top clearfix">
@@ -228,12 +233,15 @@ foreach($allGameList as $key => $game)
                                         <div class="one_day_item">
                                             <ul class="one_day_bottom">
                                                 <li class="one_day_botitem">
+                                                    <!-- 循环游戏 -->
                                                     <?php foreach($return[$game."matchList"]['data'] as $currentGame => $currentGameList){?>
                                                         <div class="game3_classify clearfix">
                                                             <span class="game3_classify1 fl"><?php echo $config['game'][$currentGame];?></span>
                                                         </div>
-                                                            <?php foreach($currentGameList as $currentTournament => $currentTournamentList){
-                                                                foreach($currentTournamentList as $key => $matchInfo){
+                                                        <!-- 循环赛事 -->
+                                                        <?php foreach($currentGameList as $currentTournament => $currentTournamentList){?>
+                                                            <!-- 循环比赛 -->
+                                                            <?php foreach($currentTournamentList as $key => $matchInfo){
                                                                 if($key==0){?>
                                                                     <div class="game3_classify2 clearfix">
                                                                         <div class="fl clearfix game3_classify2_detail">
@@ -319,7 +327,10 @@ foreach($allGameList as $key => $game)
                                                                         <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                                     </div>
                                                                     <?php }}?>
+                                                            <!-- 循环比赛 -->
+                                                        <!-- 循环赛事 -->
                                                     <?php }?>
+                                                    <!-- 循环游戏 -->
                                                 </li>
                                             </ul>
                                         </div>
@@ -341,85 +352,23 @@ foreach($allGameList as $key => $game)
                                 <span class="fl">热门战队</span>
                             </div>
                             <div class="more fr">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/teamlist/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <ul class="game_team_list_detail">
-                            <li class="active col-xs-6">
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="game_team_img">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
+                            <?php foreach($return['hotTeamList']['data'] as $teamInfo){?>
+                                <li class="active col-xs-6">
+                                    <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
+                                        <div class="a1">
+                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                        </div>
+                                        <span><?php echo $teamInfo['team_name'];?></span>
+                                    </a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                     <div class="game_player">
@@ -431,85 +380,24 @@ foreach($allGameList as $key => $game)
                                 <span class="fl">热门选手</span>
                             </div>
                             <div class="more fr">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/playerlist/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <ul class="game_player_ul clearfix">
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
+
+                            <?php foreach($return['hotPlayerList']['data'] as $playerInfo){?>
+                                <li>
+                                    <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
+                                        <div class="game_player_img">
+                                            <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
+                                        </div>
+                                        <span><?php echo $playerInfo['player_name'];?></span>
+                                    </a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                     <div class="game_news">
@@ -521,37 +409,18 @@ foreach($allGameList as $key => $game)
                                 <span class="fl">热门资讯</span>
                             </div>
                             <div class="more fr">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/newslist/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <ul>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
+                            <?php foreach($return['hotNewsList']['data'] as $info){?>
+                                <li>
+                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>"><?php echo $info['title'];?></a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>
