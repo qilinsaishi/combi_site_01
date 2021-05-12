@@ -83,3 +83,5 @@ $(".game_detail_ul").on("click", 'li', function () {
  }
 
 
+// 右边悬浮窗
+// $(".suspension_img").on("")

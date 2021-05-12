@@ -136,7 +136,7 @@
     height: 18px;
 }
 .team_member_detail{
-    width: 772px;
+    width: 100%;
 }
 .team_member_detail li{
     width: 100px;
@@ -151,7 +151,7 @@
 .team_member_detail li:hover .team_number_name{
     color: #FF6649;
 }
-.team_member_detail li:nth-child(6n){
+.team_member_detail li:nth-child(9n){
     margin-right: 0;
 }
 /* 数据开始 */
@@ -222,7 +222,7 @@
     line-height: 42px;
     position: absolute;
     left: 0;
-    top: 0;
+    top: -6px;
     bottom: 0;
     right: 0;
     margin: auto;
