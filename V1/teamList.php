@@ -102,7 +102,7 @@ $keyList = array_keys($return);
 
                                 </ul>
                                 <div class="paging">
-                                    <?php render_page_pagination($return[$game.'TeamList']['count'],$info['page']['page_size'],$page,$config['site_url']."/teamlist/".$game); ?>
+                                    <?php render_page_pagination($return[$game.'TeamList']['count'],$info['page']['page_size'],$params[$game."TeamList"]['page'],$config['site_url']."/teamlist/".$game); ?>
 
                                 </div>
                             </div>

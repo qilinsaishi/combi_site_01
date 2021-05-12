@@ -99,16 +99,18 @@ foreach($allGameList as $key => $game)
                                     展开日历
                                 </div>
                             </div>
+                            <?php
+                                $dateRange = generateCalendarDateRange($currentDate,"week");
+                            ?>
                             <div class="min_calendar_bottom">
                                 <div class="left fl">
-                                    <a href="##" class="prev_week">
+                                    <a href="<?php echo $config['site_url'];?>\match\<?php echo date('Y-m-d',strtotime($currentDate)-7*86400);?>" class="prev_week">
                                         <i class="iconfont icon-shangyige"></i>
                                     </a>
                                 </div>
                                 <div class="calendar1">
                                     <ul>
                                         <?php $weekdayList = ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"];
-                                        $dateRange = generateCalendarDateRange($currentDate,"week");
                                             foreach($weekdayList as $key => $day)
                                             {
                                                 $date = date("Y-m-d",(strtotime($dateRange['startDate'])+$key*86400));
@@ -123,7 +125,7 @@ foreach($allGameList as $key => $game)
                                     </ul>
                                 </div>
                                 <div class="right fr">
-                                    <a href="##" class="next_week">
+                                    <a href="<?php echo $config['site_url'];?>\match\<?php echo date('Y-m-d',strtotime($currentDate)+7*86400);?>" class="next_week">
                                         <i class="iconfont icon-xiayige"></i>
                                     </a>
                                  </div>
@@ -284,7 +286,7 @@ foreach($allGameList as $key => $game)
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="time_over">
-                                                                                        <p class="game3_team2_vs_time stop"><?php echo date("h:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?>·已结束</p>
+                                                                                        <p class="game3_team2_vs_time stop"><?php echo date("h:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="game3_team2_vs_bot">
