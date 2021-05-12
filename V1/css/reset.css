@@ -277,7 +277,59 @@ a:focus{text-decoration: none}
     justify-content: space-between;
 }
 /* 热门战队 */
-
+/* null */
+.null{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+/* 分页 */
+.paging{
+    display: flex;
+    justify-content: center;
+}
+.paging_pre img{
+    width: 34px;
+    height: 34px;
+    display: none;
+}
+.paging_pre{
+    margin-right: 4px;
+    width: 34px;
+    height: 34px;
+}
+.paging_next img{
+    width: 34px;
+    height: 34px;
+    display: none;
+}
+.paging_pre img.active,.paging_next img.active{
+    display: block;
+}
+.img_transform{
+    transform: rotate(180deg);
+}
+.paging a{
+    float: left;
+}
+.paging .paging_num{
+    width: 34px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    line-height: 32px;
+    margin-right: 4px;
+}
+.paging .paging_num.active{
+background: #FF6649;
+color: #fff;
+}
+/* 分页 */
 
 @media only screen and (max-width: 1024px){
     /* 右面移动端 */
