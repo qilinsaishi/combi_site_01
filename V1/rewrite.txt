@@ -1,0 +1,7 @@
+rewrite  ^/teamlist/(.*)/(.*)$  /teamList.php?game=$1&page=$2?  last;
+rewrite  ^/teamdetail/(.*)$  /teamDetail.php?tid=$1?  last;
+rewrite  ^/playerlist/(.*)/(.*)$  /playerList.php?game=$1&page=$2?  last;
+rewrite  ^/playerdetail/(.*)$  /playerDetail.php?tid=$1?  last;
+rewrite  ^/schedule/(.*)$    /matchDetail.php?page=$1?  last;
+rewrite  ^/gameint  /gameInt.php  last;
+rewrite  ^/404  /404.php  last;

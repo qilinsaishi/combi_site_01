@@ -15,18 +15,19 @@
     }
     function render_page_pagination($total_count,$page_size,$current_page,$url)
     {
+        $domain='http://'.$_SERVER['SERVER_NAME'];
         $p = 5;
         $p2 = 2;
         $totalPage = ceil($total_count/$page_size);
         if($current_page>1)
         {
-            echo '<a href="'.$url."/".($current_page-1).'" class="prev"><<</a>';
+            echo '<a href="'.$url."/".($current_page-1).'" class="paging_pre"> <img src="'.$domain.'/images/esport_left.png" alt="" class="active"></a>';
         }
         if($totalPage<=$p+$p2)
         {
             for($i=1;$i<=$totalPage;$i++)
             {
-                echo '<a '.(($i-$current_page)==0?'class="on"  ':'').'href="'.$url."/".$i.'">'.$i.'</a>';
+                echo '<a '.(($i-$current_page)==0?'class="paging_num active"  ':'class="paging_num " ').'href="'.$url."/".$i.'">'.$i.'</a>';
             }
         }
         else
@@ -35,62 +36,62 @@
             {
                 for($i=1;$i<=$p;$i++)
                 {
-                    echo '<a '.(($i-$current_page)==0?'class="on"  ':'').' href="'.$url."/".$i.'">'.$i.'</a>';
+                    echo '<a '.(($i-$current_page)==0?'class="paging_num active"   ':'class="paging_num " ').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a href="'.$url."/".($current_page+$p).'">...</a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$p2;$i>0;$i--)
                 {
-                    echo '<a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
+                    echo '<a class="paging_num" href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
             elseif($current_page<=($p))
             {
                 for($i=1;$i<=($p+$p2);$i++)
                 {
-                    echo '<a '.(($i-$current_page)==0?'class="on"  ':'').' href="'.$url."/".$i.'">'.$i.'</a>';
+                    echo '<a '.(($i-$current_page)==0?'class="paging_num active"  ':'class="paging_num " ').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a  href="'.$url."/".($current_page+$p).'">...</a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$p2;$i>0;$i--)
                 {
-                    echo '<a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
+                    echo '<a class="paging_num" href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
             elseif($current_page>$p && $current_page<($totalPage-$p))
             {
                 for($i=1;$i<=1;$i++)
                 {
-                    echo '<a href="'.$url."/".$i.'">'.$i.'</a>';
+                    echo '<a class="paging_num" href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a href="'.$url."/".($current_page-$p).'">...</a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page-$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$current_page-2;$i<=$current_page+2;$i++)
                 {
-                    echo '<a '.(($i-$current_page)==0?'class="on"  ':'').' href="'.$url."/".$i.'">'.$i.'</a>';
+                    echo '<a '.(($i-$current_page)==0?'class="paging_num active"  ':'class="paging_num "').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a href="'.$url."/".($current_page+$p).'">...</a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$p2;$i>0;$i--)
                 {
-                    echo '<a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
+                    echo '<a class="paging_num" href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
             elseif($current_page>=($totalPage-$p))
             {
                 for($i=1;$i<=1;$i++)
                 {
-                    echo '<a href="'.$url."/".$i.'">'.$i.'</a>';
+                    echo '<a class="paging_num" href="'.$url."/".$i.'">'.$i.'</a>';
                 }
                 if($totalPage-$p != 1)
                 {
-                    echo '<a href="'.$url."/".($current_page-$p).'">...</a>';
+                    echo '<a class="paging_num" href="'.$url."/".($current_page-$p).'">...</a>';
                 }
                 for($i=$p;$i>0;$i--)
                 {
-                    echo '<a '.(($totalPage-$i-$current_page)==0?'class="on"  ':'').' href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
+                    echo '<a '.(($totalPage-$i-$current_page)==0?'class="paging_num active"  ':'class="paging_num "').' href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
         }
         if($current_page<$totalPage)
         {
-            echo '<a href="'.$url."/".($current_page+1).'" class="next">>></a>';
+            echo '<a href="'.$url."/".($current_page+1).'" class="paging_next"><img src="'.$domain.'/images/esport_right.png" alt="" class="active "></a>';
         }
     }
     function processCache($cacheConfig,$dataType,$params=[])
@@ -137,6 +138,7 @@
     }
     function renderHeaderJsCss($config,$customCss = [])
     {
+        $version=time();
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/bootstrap.css" type="text/css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css" type="text/css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/headerfooter.css" type="text/css" />';
@@ -144,7 +146,7 @@
         {
             if(trim($file)!="")
             {
-                echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css" type="text/css" />';
+                echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css?v='.$version.'" type="text/css" />';
             }
         }
         echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
