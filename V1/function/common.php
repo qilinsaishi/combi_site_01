@@ -21,7 +21,7 @@
         $totalPage = ceil($total_count/$page_size);
         if($current_page>1)
         {
-            echo '<a href="'.$url."/".($current_page-1).'" class="paging_pre"> <img src="'.$domain.'/images/esport_left.png" alt="" class="active"></a>';
+            echo '<a href="'.$url."/".($current_page-1).'" class="paging_pre"> <img src="'.$domain.'/images/esport_right.png" alt="" class="active img_transform"></a>';
         }
         if($totalPage<=$p+$p2)
         {

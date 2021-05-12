@@ -24,8 +24,6 @@ foreach ($config['game'] as $game => $gameName)
         ["dataType"=>"intergratedTeamList","page"=>($currentGame==$game)?$page:1,"page_size"=>$info['page']['page_size'],"game"=>$game,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>0];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
-$info['page']['total_count'] = $return['totalTeamList']['count'];//全部游戏的总数
-$info['page']['total_page'] = ceil($return['totalTeamList']['count']/$info['page']['page_size']);
 $allGameList = array_keys($config['game']);
 array_unshift($allGameList,"all");
 $keyList = array_keys($return);
@@ -104,7 +102,7 @@ $keyList = array_keys($return);
 
                                 </ul>
                                 <div class="paging">
-                                    <?php render_page_pagination($return[$game.'TeamList']['count'],$info['page']['page_size'],$page,$config['site_url']."/teamlist/".$game); ?>
+                                    <?php render_page_pagination($return[$game.'TeamList']['count'],$info['page']['page_size'],$params[$game."TeamList"]['page'],$config['site_url']."/teamlist/".$game); ?>
 
                                 </div>
                             </div>
