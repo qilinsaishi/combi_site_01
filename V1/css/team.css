@@ -49,46 +49,7 @@
 .esports  .game_team_list_detail li:nth-child(5n){
     margin-right: 0;
 }
-.paging{
-    width: 500px;
-    margin: 0 auto;
-}
-.paging_pre img{
-    width: 34px;
-    height: 34px;
-    display: none;
-}
-.paging_pre{
-    margin-right: 4px;
-    width: 34px;
-    height: 34px;
-}
-.paging_next img{
-    width: 34px;
-    height: 34px;
-    display: none;
-}
-.paging_pre img.active,.paging_next img.active{
-    display: block;
-}
-.img_transform{
-    transform: rotate(180deg);
-}
-.paging a{
-    float: left;
-}
-.paging .paging_num{
-    width: 34px;
-    height: 34px;
-    background: #FFFFFF;
-    border: 1px solid #EEEEEE;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-    line-height: 32px;
-    margin-right: 4px;
-}
+
 .esport_more{
     margin-right: 10px;
     margin-left: 6px;

@@ -140,7 +140,7 @@
     {
         $version=time();
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/bootstrap.css" type="text/css" />';
-        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css" type="text/css" />';
+        echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css?v='.$version.'" type="text/css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/headerfooter.css" type="text/css" />';
         foreach($customCss as $file)
         {
@@ -207,6 +207,25 @@
         {
             return $data;
         }
+    }
+    //生成日历所用的日期范围
+    function generateCalendarDateRange($currentDate,$type="month")
+    {
+        $return = ["startDate"=>$currentDate,"endDate"=>$currentDate];
+        if($type=="month")
+        {
+            $monthStart = date("Y-m-01",strtotime($currentDate));$monthStartDay = date("w",strtotime($monthStart));
+            $monthEnd = date("Y-m-t",strtotime($currentDate));$monthEndDay = date("w",strtotime($monthEnd));
+            $return['startDate'] = date("Y-m-d",strtotime($monthStart)-(($monthStartDay==0)?6:($monthStartDay-1))*86400);
+            $return['endDate'] = date("Y-m-d",strtotime($monthEnd)+(($monthEndDay==0)?0:(7-$monthEndDay))*86400);
+        }
+        elseif($type=="week")
+        {
+            $currentDay = date("w",strtotime($currentDate));
+            $return['startDate'] = $currentDay==0?date("Y-m-d",(strtotime($currentDate)-6*86400)):date("Y-m-d",strtotime($currentDate)-($currentDay-1)*86400);
+            $return['endDate'] = date("Y-m-d",strtotime($return['startDate'])+6*86400);
+        }
+        return $return;
     }
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 require_once "function/init.php";
 $match_id = $_GET['match_id']??0;
-//echo $match_id."\n";die();
 $params = [
     "matchDetail"=>["source"=>$config['default_source'],"match_id"=>$match_id,"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
@@ -12,14 +11,7 @@ $params = [
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-//echo json_encode($params);die();
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
-//print_r($return['matchDetail']['data']['match_pre']);
-//die();
-//unset($return['matchDetail']['data']['match_pre']);
-//$return['matchDetail']['data']['match_data'] = json_decode($return['matchDetail']['data']['match_data'],true);q
-//print_R(array_keys($return['matchDetail']['data']['match_data']['result_list']['0']));
-//die();
 ?>
 <!DOCTYPE html>
 <html lang="en">
