@@ -568,14 +568,14 @@
 .game3_days_item.active{
     display: block;
 }
-.game3_days_item:nth-child(2) .game3_classify2,.game3_days_item:nth-child(3) .game3_classify2,.game3_days_item:nth-child(4) .game3_classify2{
+.lol .game3_classify2,.kpl .game3_classify2,.dota2 .game3_classify2{
 margin-top: 20px;
 margin-right: 20px;
 }
-.game3_days_item:nth-child(2) .game3_classify,.game3_days_item:nth-child(3) .game3_classify,.game3_days_item:nth-child(4) .game3_classify{
+.lol .game3_classify,.kpl .game3_classify,.dota2 .game3_classify{
     display: none;
 }
-.game3_days_item:nth-child(2) .one_day_top,.game3_days_item:nth-child(3) .one_day_top,.game3_days_item:nth-child(4) .one_day_top{
+.lol .one_day_top,.kpl .one_day_top,.dota2 .one_day_top{
     border-bottom: 0;
 }
 @media only screen and (max-width: 1024px){
