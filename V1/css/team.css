@@ -93,3 +93,8 @@
     margin-right: 10px;
     margin-left: 6px;
 }
+@media only screen and (max-width: 1024px){
+    .esports_item{
+        width: 100%;
+    }
+}
