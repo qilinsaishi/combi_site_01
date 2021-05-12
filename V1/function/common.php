@@ -227,5 +227,24 @@
         }
         return $return;
     }
+    function generateMatchStatus($start_time)
+    {
+        $currentTime = time();
+        $start_time = strtotime($currentTime);
+        if($currentTime<$start_time)
+        {
+            $match_status = "未开始";
+        }
+        elseif(($currentTime-$start_time)<=3*3600)
+        {
+            $match_status = "进行中";
+        }
+        else
+        {
+            $match_status = "已结束";
+        }
+        return $match_status;
+    }
+
 
 ?>

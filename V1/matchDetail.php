@@ -69,7 +69,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                 <img class="imgauto" src="<?php echo $config['site_url'];?>/images/vs.png" alt="<?php echo $return['matchDetail']['data']['home_score'].":".$return['matchDetail']['data']['away_score'];?>">
                                 <span class="span2"><?php echo $return['matchDetail']['data']['away_score'];?></span>
                             </div>
-                            <p><?php echo date("Y.m.d H:i:s",strtotime($return['matchDetail']['data']['start_time'])+$config['hour_lag']*3600)?>·已结束</p>
+                            <p><?php echo date("Y.m.d H:i:s",strtotime($return['matchDetail']['data']['start_time'])+$config['hour_lag']*3600)?>·<?php echo generateMatchStatus($return['matchDetail']['data']['start_time']);?></p>
                         </div>
                         <div class="game_team1">
                             <div class="game_team1_img">
