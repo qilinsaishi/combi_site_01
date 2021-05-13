@@ -12,9 +12,14 @@ $params = [
     "currentPage"=>["name"=>"newsDetail","id"=>$id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
+$return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
+$ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
+$ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
 $params2 = [
-    "recentInformationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>$config['game'],"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7]
+    "ConnectInformationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
+    "recentInformationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7]
 ];
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
 ?>
@@ -78,102 +83,39 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                             <div class="team_pub_img fl">
                                 <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                             </div>
-                            <span class="fl team_pbu_name">相关资讯</span>
+                            <span class="fl team_pbu_name">相关<?php echo $currentType=="info"?"资讯":"攻略";?></span>
                         </div>
                         <div class="news_detail_item active">
                             <ul class="news_item">
-                                <li>
-                                    <a href="##">
-                                    <div class="news_content">
-                                        <div class="news_explain have_img">
-                                            <p class="news_title">
-                                                玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门
-                                            </p>
-                                            <div class="news_explain_content">
-                                                玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
+                                <?php if(count($return2["ConnectInformationList"]['data'])>0){foreach($return2["ConnectInformationList"]['data'] as $connectInfo){?>
+                                    <li>
+                                        <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $connectInfo['content']['id'];?>">
+                                            <div class="news_content">
+                                                <div class="news_explain have_img">
+                                                    <p class="news_title">
+                                                        <?php echo $connectInfo['content']['title'];?>
+                                                    </p>
+                                                    <div class="news_explain_content">
+                                                        <?php echo $connectInfo['content']['content'];?>
+                                                    </div>
+                                                </div>
+                                                <div class="news_img">
+                                                    <img class="imgauto" src="<?php echo $connectInfo['content']['logo'];?>" alt="<?php echo $connectInfo['content']['title'];?>">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="news_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
+                                        </a>
+                                    </li>
+                                <?php }}else{?>
+                                    <!-- 暂无内容 -->
+                                    <div class="null">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                        <span>暂无内容</span>
                                     </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                    <div class="news_content">
-                                        <div class="news_explain have_img">
-                                            <p class="news_title">
-                                                玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门
-                                            </p>
-                                            <div class="news_explain_content">
-                                                玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            </div>
-                                        </div>
-                                        <div class="news_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                    <div class="news_content">
-                                        <div class="news_explain have_img">
-                                            <p class="news_title">
-                                                玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门玄策怎么玩，三分钟带你入门
-                                            </p>
-                                            <div class="news_explain_content">
-                                                玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            </div>
-                                        </div>
-                                        <div class="news_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                    <div class="news_content">
-                                        <div class="news_explain">
-                                            <p class="news_title">
-                                                玄策怎么玩，三分钟带你入门
-                                            </p>
-                                            <div class="news_explain_content">
-                                                玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                    <div class="news_content">
-                                        <div class="news_explain">
-                                            <p class="news_title">
-                                                玄策怎么玩，三分钟带你入门
-                                            </p>
-                                            <div class="news_explain_content">
-                                                玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            玄策是一个收割型刺客，一级可以刷buff二级边路蹲一波，位置合适可以利用勾吻推小连招配合队友或者防御塔拿下一血，之后快速刷中路河道蟹，清小野和其余野区，四
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                </li>
+                                    <!-- 暂无内容 -->
+                                <?php }?>
                             </ul>
                         </div>
-                        <!-- 暂无内容 -->
-                        <div class="null">
-                            <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
-                            <span>暂无内容</span>
-                        </div>
-                        <!-- 暂无内容 -->
+
                     </div>
                 </div>
                 <div class="game_right">
@@ -183,10 +125,10 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                                 <div class="game_fire fl">
                                     <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
-                                <span class="fl">热门资讯</span>
+                                <span class="fl">热门<?php echo $currentType=="info"?"资讯":"攻略";?></span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/newslist/">
+                                <a href="<?php echo $config['site_url'];?>/<?php echo $currentType;?>list/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
