@@ -91,52 +91,85 @@ box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
 .news_item{
     margin-bottom: 30px;
 }
-/* 最新赛事 */
-.game_match{
-    width: 320px;
-    height: 569px;
+/* 新闻详情页 */
+.news_top{
+    margin-bottom: 30px;
+}
+.news_top{
     background: #FFFFFF;
     border: 1px solid #EEEEEE;
     border-radius: 8px;
-    padding: 18px 20px 10px 20px;
+    padding: 20px;
+}
+.news_top .title{
+    font-size: 30px;
+    color: #333;
+    font-weight: 500;
+    height: 30px;
+    line-height: 30px;
+    width: 600px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-bottom: 16px;
+}
+.news_time{
+    font-size: 18px;
+    color: #999;
+    height: 18px;
+    line-height: 18px;
     margin-bottom: 18px;
 }
-.game_match_detail li{
-    width: 280px;
-    height: 158px;
+.news_label{
+    width: 700px;
     margin-bottom: 10px;
 }
-.game_match .title{
-    margin-bottom: 18px;
+.news_label span{
+    float: left;
+    font-size: 18px;
+    color: #FF6649;
+    font-weight: 400;
+    line-height: 26px;
+    height: 28px;
+    background: #FFFFFF;
+    border: 1px solid #FF6649;
+    border-radius: 14px;
+    padding: 0 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
-.game_match_detail li a {
-    display: block;
-    width: 275px;
-    height: 158px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
-.game_match_detail li a span {
-    display: block;
-    font-size: 20px;
-    color: #eee;
-    font-weight: 500;
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
+.news_top_content{
     width: 100%;
-    padding: 0 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    background-color: rgba(0,0,0,.5);
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    border-top: 1px solid #eee;
+    padding-top: 28px;
 }
-/* 最新赛事 */
+.news_top_img{
+    width: 820px;
+    height: 460px;
+    margin-bottom: 20px;
+}
+.news_top_content p{
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    text-indent: 2em;
+}
+.team_pub_top{
+    margin-bottom: 10px;
+}
+.team_pub_img{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    font-size: 0;
+}
+.team_pbu_name{
+    font-size: 24px;
+    color: #333;
+    height: 24px;
+    line-height: 24px;
+}
+/* 新闻详情页 */
 @media only screen and (max-width: 1024px){
     .game_left{
         width: 100%;
@@ -144,20 +177,11 @@ box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
     .have_img{
         width: 5.4rem;
     }
-    .game_match{
+    .news_top_img{
         width: 100%;
-        height: auto;
-        padding: .3rem;
     }
-    .game_match_detail{
-        display: flex;
-        justify-content: space-between;
-    }
-    .game_match_detail li{
-        width: 32%;
-    }
-    .game_match_detail li a{
-        width: 100%;
-        height: 1.58rem;
+    .news_top_content p{
+        font-size: .24rem;
+        line-height: .36rem;
     }
 }
