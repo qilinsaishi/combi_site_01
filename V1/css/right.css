@@ -21,6 +21,7 @@
 .game_right .title .more span{
     color: #999;
     margin-right: 12px;
+    vertical-align: middle;
 } 
 .game_fire{
     width: 24px;
@@ -152,7 +153,7 @@
 @media only screen and (max-width: 1024px){
     /* 右面移动端 */
     .game_right{
-    float: none;
+    /* float: none; */
     width: 100%;
 }
     .game_lately, .game_news, .game_team, .game_player{

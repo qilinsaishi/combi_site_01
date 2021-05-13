@@ -5,6 +5,16 @@ if(strtotime($currentDate)==0)
 {
     $currentDate = date("Y-m-d");
 }
+$dateList = [];
+$startDate = $currentDate;
+$date = $startDate;
+$endDate = date("Y-m-d",strtotime($currentDate)+2*86400);
+do
+{
+    $dateList[] = $date;
+    $date = date("Y-m-d",strtotime($date)+86400);
+}
+while($date<=$endDate);
 $currentDay = date("w",strtotime($currentDate));
 $params = [
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>$config['game'],"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -12,35 +22,53 @@ $params = [
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>$config['game'],"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "currentPage"=>["name"=>"matchList","date"=>$currentDate,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
+/*
 $params["allmatchList"] =
-    ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>array_keys($config['game']),"start_date"=>$currentDate,"cache_time"=>3600];
+    ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>array_keys($config['game']),"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
+*/
 //依次加入所有游戏
 foreach ($config['game'] as $game => $gameName)
 {
     $params[$game."matchList"] =
-        ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>$game,"start_date"=>$currentDate,"cache_time"=>3600];
+        ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>$game,"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return["allmatchList"]['data'] = [];
 $allGameList = array_keys($config['game']);
 array_unshift($allGameList,"all");
+$matchCountList = [];
+foreach($config['game'] as $game => $game_name)
+{
+    $return["allmatchList"]['data'] = array_merge($return["allmatchList"]['data'],$return[$game."matchList"]['data']);
+}
+array_multisort(array_column($return["allmatchList"]['data'],"start_time"),SORT_DESC,$return["allmatchList"]['data']);
 foreach($allGameList as $key => $game)
 {
     $gameList = [];
+    foreach($config['game'] as $game_key => $game_name)
+    {
+        foreach($dateList as $date)
+        {
+            if($game=="all")
+            {
+                $gameList[$date][$game_key] = [];
+                $matchCountList[$game][$date][$game_key] = 0;
+            }
+            elseif($game == $game_key)
+            {
+                $gameList[$date][$game_key] = [];
+                $matchCountList[$game][$date][$game_key] = 0;
+            }
+        }
+    }
     $List = $return[$game."matchList"]['data'];
     foreach($List as $matchInfo)
     {
-        $gameList[$matchInfo['game']][$matchInfo['tournament_id']][] = $matchInfo;
-    }
-    if(count($gameList)>1)
-    {
-        foreach($config['game'] as $game_key => $game_name)
+        if(isset($gameList[date("Y-m-d",strtotime($matchInfo['start_time']))][$matchInfo['game']]))
         {
-            if(!isset($gameList[$game_key]))
-            {
-                $gameList[$game_key] = [];
-            }
+            $gameList[date("Y-m-d",strtotime($matchInfo['start_time']))][$matchInfo['game']][$matchInfo['tournament_id']][] = $matchInfo;
+            $matchCountList[$game][$date][$matchInfo['game']]= ($matchCountList[$game][$date][$matchInfo['game']]??0)+1;
         }
-        //array_multisort(array_keys($gameList),array_keys($config['game']),$gameList);
     }
     $return[$game."matchList"]['data'] = $gameList;
 }
@@ -227,35 +255,39 @@ foreach($allGameList as $key => $game)
                             <?php foreach($allGameList as $key => $game){?>
                                 <!-- 游戏 -->
                                 <div class="game3_days_item <?php if($key==0){echo 'active';}?> <?php echo $game;?>">
-                                    <div class="one_day">
-                                        <div class="one_day_top clearfix">
-                                            <span class="game3_detail_calendar1 fl"><?php echo date("m.d",strtotime($currentDate));?></span>
-                                            <?php if(date("Y-m-d")==$currentDate){?><span class="game3_detail_calendar2 active fl">今天</span><?php } ?>
-                                        </div>
+                                    <!-- 日期 -->
+                                    <?php foreach($return[$game."matchList"]['data'] as $date => $dateGameList){?>
+                                        <div class="one_day <?php if($date==$currentDate){echo " active";}?>" >
+                                            <div class="one_day_top clearfix">
+                                                <span class="game3_detail_calendar1 fl"><?php echo date("m.d",strtotime($date));?></span>
+                                                <?php if(date("Y-m-d")==$date){?><span class="game3_detail_calendar2 active fl">今天</span><?php } ?>
+                                            </div>
                                         <div class="one_day_item">
                                             <ul class="one_day_bottom">
                                                 <li class="one_day_botitem">
                                                     <!-- 循环游戏 -->
-                                                    <?php foreach($return[$game."matchList"]['data'] as $currentGame => $currentGameList){?>
+                                                    <?php foreach($dateGameList as $currentGame => $currentGameList){?>
                                                         <div class="game3_classify clearfix">
                                                             <span class="game3_classify1 fl"><?php echo $config['game'][$currentGame];?></span>
                                                         </div>
-                                                        <!-- 循环赛事 -->
-                                                        <?php foreach($currentGameList as $currentTournament => $currentTournamentList){?>
+                                                        <?php if(count($currentGameList)>0) {?>
+                                                            <!-- 循环赛事 -->
                                                             <!-- 循环比赛 -->
-                                                            <?php foreach($currentTournamentList as $key => $matchInfo){
-                                                                if($key==0){?>
-                                                                    <div class="game3_classify2 clearfix">
-                                                                        <div class="fl clearfix game3_classify2_detail">
-                                                                            <a href="##">
-                                                                                <div class="game3_team_img fl">
-                                                                                    <img class="imgauto" src="<?php echo $matchInfo['tournament_info']['logo']?>" alt="<?php echo $matchInfo['tournament_info']['tournament_name']?>">
-                                                                                </div>
-                                                                                <span class="fr"><?php echo $matchInfo['tournament_info']['tournament_name']?></span>
-                                                                            </a>
+                                                            <?php foreach($currentGameList as $currentTournament => $currentTournamentList){?>
+                                                                <!-- 循环比赛 -->
+                                                                <?php foreach($currentTournamentList as $key => $matchInfo){
+                                                                    if($key==0){?>
+                                                                        <div class="game3_classify2 clearfix">
+                                                                            <div class="fl clearfix game3_classify2_detail">
+                                                                                <a href="##">
+                                                                                    <div class="game3_team_img fl">
+                                                                                        <img class="imgauto" src="<?php echo $matchInfo['tournament_info']['logo']?>" alt="<?php echo $matchInfo['tournament_info']['tournament_name']?>">
+                                                                                    </div>
+                                                                                    <span class="fr"><?php echo $matchInfo['tournament_info']['tournament_name']?></span>
+                                                                                </a>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                <?php }?>
+                                                                    <?php }?>
 
                                                                     <div class="game3_game_item">
                                                                         <div class="game3_team1 fl">
@@ -269,10 +301,10 @@ foreach($allGameList as $key => $game)
                                                                                 <div class="game3_team1_bottom red">
                                                                                     <div class="game3_team1_allplayer">
                                                                                         <?php $i=0;foreach($matchInfo['home_player_list']??[] as $playerInfo){$i++;?>
-                                                                                        <div class="game3_team1_player">
-                                                                                            <img src="<?php echo $playerInfo['logo'];?>" class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
-                                                                                        </div>
-                                                                                        <?php if($i>=5){break;}}?>
+                                                                                            <div class="game3_team1_player">
+                                                                                                <img src="<?php echo $playerInfo['logo'];?>" class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
+                                                                                            </div>
+                                                                                            <?php if($i>=5){break;}}?>
                                                                                     </div>
                                                                                     <div class="game3_team_players"><?php echo count($matchInfo['home_player_id_list']??[]);?></div>
                                                                                 </div>
@@ -328,15 +360,28 @@ foreach($allGameList as $key => $game)
                                                                     <div class="li_bg">
                                                                         <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                                     </div>
-                                                                    <?php }}?>
+                                                                <?php }}?>
                                                             <!-- 循环比赛 -->
-                                                        <!-- 循环赛事 -->
+                                                            <!-- 循环赛事 -->
+                                                            <?php }else{?>
+                                                    <div class="one_day">
+
+                                                    <div class="null">
+                                                                <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                                            </div>
+                                                    </div>
+                                                            <?php }?>
                                                     <?php }?>
+                                                    <!-- 循环赛事 -->
                                                     <!-- 循环游戏 -->
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                        </div>
+
+                                    <?php }?>
+
+                                    <!-- 日期 -->
                                 </div>
                                 <!-- 全部 -->
                             <?php }?>
