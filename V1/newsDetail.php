@@ -1,28 +1,27 @@
 <?php
 require_once "function/init.php";
-$pageSize = 20;
-$page = $_GET['page']??1;
-$currentGame = $_GET['game']??'all';
-$type = $_GET['type']??"news";
-if($page==''){
-    $page=1;
-}
+$id = $_GET['id']??1;
 $params = [
+    "information"=>[$id],
     "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
-    "allNewsList" =>
-        ["dataType"=>"informationList","page"=>("all"==$currentGame)?$page:1,"page_size"=>$pageSize,"game"=>array_keys($config['game']),"fields"=>'id,title,logo,site_time,content',"type"=>$config['informationType'][$type],"cache_time"=>86400*7],
+//   "allNewsList" =>
+//        ["dataType"=>"informationList","page"=>("all"==$currentGame)?$page:1,"page_size"=>$pageSize,"game"=>array_keys($config['game']),"fields"=>'id,title,logo,site_time,content',"type"=>$config['informationType'][$type],"cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "currentPage"=>["name"=>"newsList","game"=>$currentGame,"page"=>$page,"site_id"=>$config['site_id']]
+    "currentPage"=>["name"=>"newsDetail","id"=>$id,"site_id"=>$config['site_id']]
 ];
-//依次加入所有游戏
-foreach ($config['game'] as $game => $gameName)
-{
-    $params[$game."NewsList"] =
-        ["dataType"=>"informationList","page"=>($currentGame==$game)?$page:1,"page_size"=>$pageSize,"game"=>$game,"fields"=>'id,title,logo,site_time,content',"type"=>$config['informationType'][$type],"cache_time"=>86400*7];
-}
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
+$return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
+$ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
+$ids = count($ids)>0?implode(",",$ids):"0";
+$currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
+$params2 = [
+    "ConnectInformationList"=>["dataType"=>"scwsInformaitonList","ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
+    "recentInformationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7]
+];
+$return2 = curl_post($config['api_get'],json_encode($params2),1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +51,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                     </div>
                     <div class="nav">
                         <ul class="clearfix">
-                            <?php generateNav($config,$type);?>
+                            <?php generateNav($config,$currentType);?>
                         </ul>
                     </div>
                 </div>
@@ -61,65 +60,88 @@ $return = curl_post($config['api_get'],json_encode($params),1);
         <div class="container">
             <div class="row clearfix">
                 <div class="game_left news fl">
-                    <ul class="esports_ul clearfix">
-                        <li class="<?php if($currentGame=='all') {echo 'active';}?>">
-                            <a href="##">
-                                全部
-                            </a>
-                        </li>
-                        <?php foreach($config['game'] as $game => $game_name){?>
-                            <li class="<?php if($currentGame==$game) {echo 'active';}?>">
-                                <a href="##">
-                                    <?php echo $game_name;?>
-                                </a>
-                            </li>
-                        <?php }?>
-                    </ul>
+                    <div class="news_top">
+                        <p class="title"><?php echo $return['information']['data']['title']?></p>
+                        <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time'])+$config['hour_lag']*3600);?></p>
+                        <div class="news_label clearfix">
+                            <span>教学</span>
+                            <span>标签</span>
+                            <span>好几个字的标签</span>
+                            <span>教学</span>
+                            <span>标签</span>
+                            <span>好几个字的标签</span>
+                            <span>教学</span>
+                            <span>标签</span>
+                            <span>好几个字的标签</span>
+                        </div>
+                        <div class="news_top_content">
+                            <?php echo $return['information']['data']['content'];?>
+                        </div>
+                    </div>
                     <div class="news_detail">
-                        <?php
-                        $allGameList = array_keys($config['game']);
-                                array_unshift($allGameList,"all");
-                                foreach($allGameList as $game){?>
-                                    <div class="news_detail_item <?php if($game == $currentGame){?>active<?php } ?> ">
-                                        <ul class="news_item">
-                                            <?php if(count($return[$game."NewsList"]['data'])>0){foreach($return[$game."NewsList"]['data']??[] as $info){?>
-                                                <li>
-                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
-                                                        <div class="news_content">
-                                                            <div class="news_explain have_img">
-                                                                <p class="news_title">
-                                                                    <?php echo $info['title'];?>
-                                                                </p>
-                                                                <div class="news_explain_content">
-                                                                    <?php echo $info['content'];?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="news_img">
-                                                                <img class="imgauto" src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            <?php }?>
-                                                <div class="paging">
-                                                    <?php render_page_pagination($return[$game.'NewsList']['count'],$pageSize,$params[$game."NewsList"]['page'],$config['site_url']."/newslist/".$game); ?>
+                        <div class="team_pub_top clearfix">
+                            <div class="team_pub_img fl">
+                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                            </div>
+                            <span class="fl team_pbu_name">相关<?php echo $currentType=="info"?"资讯":"攻略";?></span>
+                        </div>
+                        <div class="news_detail_item active">
+                            <ul class="news_item">
+                                <?php if(count($return2["ConnectInformationList"]['data'])>0){foreach($return2["ConnectInformationList"]['data'] as $connectInfo){?>
+                                    <li>
+                                        <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $connectInfo['content']['id'];?>">
+                                            <div class="news_content">
+                                                <div class="news_explain have_img">
+                                                    <p class="news_title">
+                                                        <?php echo $connectInfo['content']['title'];?>
+                                                    </p>
+                                                    <div class="news_explain_content">
+                                                        <?php echo $connectInfo['content']['content'];?>
+                                                    </div>
                                                 </div>
-                                            <?php }else{?>
-                                                <!-- 暂无内容 -->
-                                                <div class="null">
-                                                    <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
-                                                    <span>暂无内容</span>
+                                                <div class="news_img">
+                                                    <img class="imgauto" src="<?php echo $connectInfo['content']['logo'];?>" alt="<?php echo $connectInfo['content']['title'];?>">
                                                 </div>
-                                                <!-- 暂无内容 -->
-                                            <?php }?>
-                                        </ul>
-
+                                            </div>
+                                        </a>
+                                    </li>
+                                <?php }}else{?>
+                                    <!-- 暂无内容 -->
+                                    <div class="null">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                        <span>暂无内容</span>
                                     </div>
+                                    <!-- 暂无内容 -->
                                 <?php }?>
+                            </ul>
+                        </div>
 
                     </div>
                 </div>
                 <div class="game_right">
+                    <div class="game_news">
+                        <div class="title clearfix">
+                            <div class="fl clearfix">
+                                <div class="game_fire fl">
+                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                </div>
+                                <span class="fl">热门<?php echo $currentType=="info"?"资讯":"攻略";?></span>
+                            </div>
+                            <div class="more fr">
+                                <a href="<?php echo $config['site_url'];?>/<?php echo $currentType;?>list/">
+                                    <span>更多</span>
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <ul>
+                            <?php foreach($return2['recentInformationList']['data'] as $recentInfo){?>
+                                <li>
+                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $recentInfo['id'];?>"><?php echo $recentInfo['title'];?></a>
+                                </li>
+                            <?php }?>
+                        </ul>
+                    </div>
                     <div class="game_match">
                         <div class="title clearfix">
                             <div class="fl clearfix">
@@ -229,14 +251,6 @@ $return = curl_post($config['api_get'],json_encode($params),1);
         </div>
     </div>
     <?php renderFooterJsCss($config,[],[]);?>
-    <script>
-        $(".esports_ul").on("click","li",function(){
-            $(".esports_ul li").removeClass("active");
-            $(this).addClass("active");
-            $(this).parents(".news").find(".news_detail").find(".news_detail_item").removeClass("active").eq($(this).index()).addClass("active")
-            // $(this).parents(".game_detail_item5").find(".vs_data2").find(".vs_data2_item").removeClass("active").eq($(this).index()).addClass("active")
-        })
-    </script>
 </body>
 
 </html>

@@ -120,7 +120,7 @@ $keyList = array_keys($return);
                                 <span class="fl">近期赛事</span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/match/">
+                                <a href="<?php echo $config['site_url'];?>/matchlist/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -140,7 +140,7 @@ $keyList = array_keys($return);
                                                 <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
                                                 <img class="lazy-load" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
                                             <?php }else{?>
-                                                <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" class="imgauto" />
+                                                <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
                                             <?php }?>
                                             </div>
                                             <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
