@@ -1,0 +1,163 @@
+.wrapper{
+    background: #F5F6F7;
+}
+.header{
+background: #FFFFFF;
+margin-bottom: 30px;
+box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
+}
+.game_left{
+    width: 860px;
+    margin-bottom: 80px;
+}
+.esports_ul li {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 32px;
+    margin-right: 10px;
+}
+.esports_ul a {
+    font-size: 20px;
+    color: #FF6649;
+    padding: 0 20px;
+}
+.esports_ul li.active a {
+    display: block;
+    background: #FF6649;
+    border-radius: 20px;
+    color: #fff;
+}
+.news_detail{
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 20px;
+}
+.news_img{
+    width: 120px;
+    height: 74px;
+    display: inline-block;
+}
+.imgauto{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.news_title{
+    font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 12px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 500px;
+}
+.news_detail_item{
+    display: none;
+}
+.news_detail_item.active{
+    display: block;
+}
+.news_explain{
+    font-size: 16px;
+    color: #666;
+    line-height: 22px;
+}
+.have_img{
+    width: 670px;
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+.news_explain_content{
+    width: 100%;
+    height: 46px;
+    display: -webkit-box; 
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:2;/*5代表, 在第5行结尾出现省略号,后面的内容都不显示*/
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.news_item li{
+    height: 114px;
+    border-bottom: 1px solid #eee;
+    padding-top: 20px;
+}
+.news_item{
+    margin-bottom: 30px;
+}
+/* 最新赛事 */
+.game_match{
+    width: 320px;
+    height: 569px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 18px 20px 10px 20px;
+    margin-bottom: 18px;
+}
+.game_match_detail li{
+    width: 280px;
+    height: 158px;
+    margin-bottom: 10px;
+}
+.game_match .title{
+    margin-bottom: 18px;
+}
+.game_match_detail li a {
+    display: block;
+    width: 275px;
+    height: 158px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.game_match_detail li a span {
+    display: block;
+    font-size: 20px;
+    color: #eee;
+    font-weight: 500;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+/* 最新赛事 */
+@media only screen and (max-width: 1024px){
+    .game_left{
+        width: 100%;
+    }
+    .have_img{
+        width: 5.4rem;
+    }
+    .game_match{
+        width: 100%;
+        height: auto;
+        padding: .3rem;
+    }
+    .game_match_detail{
+        display: flex;
+        justify-content: space-between;
+    }
+    .game_match_detail li{
+        width: 32%;
+    }
+    .game_match_detail li a{
+        width: 100%;
+        height: 1.58rem;
+    }
+}
