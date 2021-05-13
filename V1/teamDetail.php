@@ -38,7 +38,7 @@ $game=$return['intergratedTeam']['data']['game'] ?? $config['default_game'];
 //当前游戏下面的资讯
 $params2=[
     "informationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time,game',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
-	"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>7,"fields"=>'tid,team_name,logo',"game"=>$game,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>7,"fields"=>'tid,team_name,logo',"game"=>$game,"except_team"=>$tid,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$game,"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
 ];
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
@@ -94,7 +94,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                     <div class="team_explain fr">
                         <div class="team_explain_top clearfix">
                             <p class="name fl"><?php echo $return['intergratedTeam']['data']['team_name'];?></p>
-                            <p class="classify fl"><?php if($return['intergratedTeam']['data']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedTeam']['data']['game']=='kpl'){ ?>王者荣耀<?php } ?></p>
+                            <p class="classify fl"><?php if($return['intergratedTeam']['data']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedTeam']['data']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedTeam']['data']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                         </div>
                         <div class="team_explain_name clearfix">
                             <p class="clearfix fl">英文名：<span class="English_name fr"><span class="English_name fr"><?php echo $return['intergratedTeam']['data']['team_name'];?></span></p>
@@ -512,12 +512,12 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                 <div class="hot_match mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="./images/hots.png" alt="">
+                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournament/" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="./images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
