@@ -1,3 +1,15 @@
+<?php
+require_once "function/init.php";
+$params = [
+    "tournamentList"=>["page"=>1,"page_size"=>100,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+    "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "currentPage"=>["name"=>"tournamentList","site_id"=>$config['site_id']]
+];
+$return = curl_post($config['api_get'],json_encode($params),1);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,14 +20,7 @@
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <title>赛事专题</title>
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./css/reset.css">
-    <script src="./js/flexible.js"></script>
-    <link rel="stylesheet" href="./css/headerfooter.css">
-    <!-- 本页新增的css right.css -->
-    <link rel="stylesheet" href="./css/right.css">
-     <!-- 本页新增的css events.css -->
-    <link rel="stylesheet" href="./css/events.css">
+    <?php renderHeaderJsCss($config,["right","events"]);?>
 </head>
 
 <body>
@@ -24,7 +29,7 @@
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="index.html">
-                            <img src="./images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -33,16 +38,7 @@
                     </div>
                     <div class="nav">
                         <ul class="clearfix">
-                            <li><a href="index.html">首页</a></li>
-                            <li class="active"><a href="##">赛事赛程</a></li>
-                            <li><a href="##">电竞战队</a></li>
-                            <li><a href="##">电竞选手</a></li>
-                            <li class="on"><a href="##">电竞资讯</a></li>
-                            <li><a href="">游戏攻略</a></li>
-                            <li><a href="##">赛事专题</a></li>
-                            <li class="on"><a href="##">电竞资讯</a></li>
-                            <li><a href="">游戏攻略</a></li>
-                            <li><a href="##">赛事专题</a></li>
+                            <?php generateNav($config,"tournament");?>
                         </ul>
                     </div>
                 </div>
@@ -52,110 +48,16 @@
             <div class="row clearfix">
                 <div class="game_left events fl">
                     <ul class="events_ul clearfix">
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="events_img">
-                                    <img class="imgauto" src="./images/event_1.png" alt="" >
-                                </div>
-                                <span>2021 LPL春季赛</span>
-                            </a>
-                        </li>
+                        <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
+                            <li>
+                                <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
+                                    <div class="events_img">
+                                        <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
+                                    </div>
+                                    <span><?php echo $tournamentInfo['tournament_name'];?></span>
+                                </a>
+                            </li>
+                        <?php }?>
                     </ul>
                 </div>
                 <div class="game_right">
@@ -163,222 +65,80 @@
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="./images/game_fire.png" alt="">
+                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门资讯</span>
                             </div>
                             <div class="more fr">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/newslist/">
                                     <span>更多</span>
-                                    <img src="./images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <ul>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
-                            <li>
-                                <a href="##">英雄联盟｜11.7版本更新了什英雄联盟｜11.7版本更新了什</a>
-                            </li>
+                            <?php foreach($return['hotNewsList']['data'] as $info){?>
+                                <li>
+                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>"><?php echo $info['title'];?></a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                     <div class="game_team">
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="./images/game_fire.png" alt="">
+                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门战队</span>
                             </div>
                             <div class="more fr">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/teamlist/">
                                     <span>更多</span>
-                                    <img src="./images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <ul class="game_team_list_detail">
-                            <li class="active col-xs-6">
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/banner.png" alt="" class="game_team_img">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="a1">
-                                        <img src="./images/WElogo.png" alt="">
-                                    </div>
-                                    <span>WE</span>
-                                </a>
-                            </li>
+                            <?php foreach($return['hotTeamList']['data'] as $teamInfo){?>
+                                <li class="active col-xs-6">
+                                    <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
+                                        <div class="a1">
+                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                        </div>
+                                        <span><?php echo $teamInfo['team_name'];?></span>
+                                    </a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                     <div class="game_player">
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="./images/game_fire.png" alt="">
+                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门选手</span>
                             </div>
                             <div class="more fr">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/playerlist/">
                                     <span>更多</span>
-                                    <img src="./images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <ul class="game_player_ul clearfix">
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/banner.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/banner.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/banner.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="game_player_img">
-                                        <img src="./images/player1.png" alt="" class="imgauto">
-                                    </div>
-                                    <span>童谣童谣</span>
-                                </a>
-                            </li>
+
+                            <?php foreach($return['hotPlayerList']['data'] as $playerInfo){?>
+                                <li>
+                                    <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
+                                        <div class="game_player_img">
+                                            <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
+                                        </div>
+                                        <span><?php echo $playerInfo['player_name'];?></span>
+                                    </a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>
@@ -409,17 +169,15 @@
     </div>
     <div class="suspension">
         <div class="suspension_img">
-            <img src="./images/suspension.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="./images/qrcode.png" alt="">
+                <img src="<?php echo $config['site_url'];?>/images/qrcode.png" alt="">
             </div>
         </div>
     </div>
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/jquery.lineProgressbar.js"></script>
+    <?php renderFooterJsCss($config,[],[]);?>
 </body>
 
 </html>

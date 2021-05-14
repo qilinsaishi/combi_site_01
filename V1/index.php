@@ -414,7 +414,7 @@ foreach($newsTypeList as $newsType)
                 <ul class="game_special_list">
                     <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                     <li class="col-md-3 col-xs-6">
-                        <a href="<?php echo $config['site_url'];?>\tournament\<?php echo $tournamentInfo['tournament_id'];?>">
+                        <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
                             <div class="div_img">
                                 <img src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>">
                                 <span><?php echo $tournamentInfo['tournament_name'];?></span>
