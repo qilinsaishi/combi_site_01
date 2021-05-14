@@ -40,3 +40,12 @@ newsdetail.html
 events.html
 
 eventsdetail.html
+
+playerdetail.html     本页面是队员详情页
+		雷达图数据
+		data-kill   击杀
+    		data-assists 助攻
+   		data-existence  生存  
+    		data-rate  参团率
+    		data-economy   经济 
+    		data-view   视野

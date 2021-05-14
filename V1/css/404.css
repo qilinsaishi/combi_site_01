@@ -45,7 +45,7 @@
 }
 .team_member_detail{
     background: #fff;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 .team_member_detail li a{
     width: 128px;
@@ -64,12 +64,14 @@
 .team_number_name{
     display: block;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     color: #333;
     font-weight: 400;
+    line-height: 20px;
 }
 .team_news_bot_ul li{
     margin-right: 20px;
+    padding-left: 30px;
 }
 .team_news_bot_ul li:nth-child(2n){
     margin-right: 0;
@@ -105,11 +107,27 @@
     border-radius: 16px;
     margin-left: 10px;
 }
+.return a{
+    color: #fff;
+}
 .div404{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+}
+.team_pub_top{
+    margin-bottom: 0;
+}
+.team_news{
+    padding: 0 10px 0 0px;
+}
+.team_member_img{
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
 }
 @media only screen and (max-width: 1024px){
     .team_member{
