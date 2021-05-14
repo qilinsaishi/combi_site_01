@@ -1,7 +1,7 @@
 <?php
 require_once "function/init.php";
 $params = [
-    //"hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+    "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>6,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>4,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>4,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "currentPage"=>["name"=>"404","site_id"=>$config['site_id']]
@@ -108,43 +108,18 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">WE战队资讯</span>
-                        <a href="##" class="team_pub_more fr">
+                        <span class="fl team_pbu_name">热门资讯</span>
+                        <a href="<?php echo $config['site_url'];?>/newslist/" class="team_pub_more fr">
                             <span>更多</span>
                         </a>
                     </div>
                     <div class="team_news_bot">
                         <ul class="team_news_bot_ul clearfix">
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
+                            <?php foreach($return['hotNewsList']['data'] as $key => $info){?>
+                                <li class="fl">
+                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>"><?php echo $info['title'];?></a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>
