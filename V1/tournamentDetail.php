@@ -545,94 +545,19 @@ unset($return['matchList']);
                         <span class="fl team_pbu_name">参赛队伍</span>
                     </div>
                     <ul class="game_team_list_detail">
-                        <li class="active col-xs-6">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="game_team_img">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li class="active col-xs-6">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="game_team_img">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                </div>
-                                <span>WE</span>
-                            </a>
-                        </li>
+                        <?php if(count($return['tournament']['data']['teamList'])>0){?>
+                        <?php foreach($return['tournament']['data']['teamList'] as $key => $teamInfo){?>
+                                <li <?php if($key==0){?> class="active col-xs-6" <?php }?>>
+                                    <a href="<?php echo $config['site_url']?>\teamdetail\<?php echo $teamInfo['tid'];?>">
+                                        <div class="a1">
+                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                        </div>
+                                        <span><?php echo $teamInfo['team_name'];?></span>
+                                    </a>
+                                </li>
+                        <?php }?>
+                        <?php }else{?>
+                        <?php }?>
                     </ul>
                 </div>
                 <div class="mb20 team_news">
