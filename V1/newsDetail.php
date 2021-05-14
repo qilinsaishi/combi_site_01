@@ -158,7 +158,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                         <ul class="game_match_detail">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>\tournament\<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>

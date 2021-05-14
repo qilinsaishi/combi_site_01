@@ -50,7 +50,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                     <ul class="events_ul clearfix">
                         <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                             <li>
-                                <a href="<?php echo $config['site_url'];?>\tournament\<?php echo $tournamentInfo['tournament_id'];?>">
+                                <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
                                     <div class="events_img">
                                         <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
                                     </div>
