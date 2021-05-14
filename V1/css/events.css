@@ -2,7 +2,6 @@
     background: #F5F6F7;
 }
 .header{
-    width: 1920px;
     height: 88px;
     background: #FFFFFF;
     box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
@@ -58,4 +57,418 @@
     bottom: 0;
     font-size: 20px;
     color: #eee;
+}
+/* 赛事详情页 */
+.team_title{
+    width:100%;
+    min-height: 300px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding-left: 100px;
+    padding-right: 30px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.mauto{
+    margin: 0 auto;
+}
+.imgauto{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.team_logo{
+    width: 144px;
+    height: 248px;
+    background:url("../images/teamdetailbg.png") center no-repeat ;
+    margin-right: 60px;
+    padding-top: 76px;
+}
+.team_logo_img{
+    width: 128px;
+    height: 128px;
+}
+.team_explain{
+    width: 864px;
+    padding-top: 50px;
+}
+.team_explain_top{
+    margin-bottom: 32px;
+}
+.team_explain_top .name{
+    max-width: 150px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-right: 24px;
+}
+.team_explain_top .classify{
+    width: 124px;
+    height: 34px;
+    background: #fff;
+    border: 1px solid #FF6649;
+    border-radius: 17px;
+    font-size: 20px;
+    color: #FF6649;
+    text-align: center;
+    line-height: 32px;
+}
+.team_explain_name{
+    margin-bottom: 26px;
+}
+.team_explain_name p{
+    font-size: 24px;
+    color: #999;
+}
+.team_explain_name p:nth-child(1){
+    margin-right: 60px;
+}
+.team_explain_name span{
+    color: #333;
+}
+.English_name,.chinese_name{
+    max-width: 150px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.team_explain_bottom p{
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+}
+/* tab切换头部 */
+.event_detail{
+    /* background: #fff; */
+    /* border: 1px solid #eee; */
+    border-radius: 8px;
+    /* padding: 12px 20px 20px; */
+}
+.event_detail_ul{
+    padding-left: 166px;
+    position: relative;
+    height: 50px;
+    background: #fff;
+    padding-top: 12px;
+}
+.event_detail_ul::after{
+    content: " ";
+    display: block;
+    clear: both;
+    background-image: url("../images/events.png");
+    position: absolute;
+    left: 20px;
+    width: 24px;
+    height: 24px;
+    top: 20px;
+}
+.event_detail_ul::before{
+    content: "赛事赛程";
+    display: block;
+    clear: both;
+    font-size: 20px;
+    color: #333;
+    position: absolute;
+    left: 55px;
+    height: 20px;
+    line-height: 20px;
+    top: 22px;
+}
+.event_detail_ul li{
+    float: left;
+    /* margin-right: 20px; */
+}
+.event_detail_ul li a{
+    display: block;
+    font-size: 20px;
+    color: #FF6649;
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    border-radius: 20px;
+}
+.event_detail_ul li.active a{
+    background: #FF6649;
+    color: #fff;
+}
+.scroll{
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 0 20px;
+    width: 100%;
+}
+.event_detail_div{
+    display: none;
+}
+.event_detail_div.active{
+    display: block;
+}
+.event_detail_item{
+    width: 100%;
+    height: 930px;
+    overflow: scroll;
+}
+ /*滚动条整体样式*/
+ .event_detail_item::-webkit-scrollbar {
+    width: 4px;
+    height: 1px;
+}
+/*滚动条滑块*/
+.event_detail_item::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    -webkit-event_detail_content-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #ccc;
+    height: 168px;
+}
+/*滚动条轨道*/
+.event_detail_item::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
+    border-radius: 4px;
+    background: rgba(0,0,0,0);
+}
+
+/* tab切换底部 */
+/* 热门战队 */
+.hot_team{
+    height: auto;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 20px 20px 20px 18px;
+}
+.team_pub_top{
+    margin-bottom: 30px;
+}
+.team_pub_img{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    font-size: 0;
+}
+.team_pbu_name{
+    font-size: 24px;
+    color: #333;
+    height: 24px;
+    line-height: 24px;
+}
+.team_news{
+    width:100%;
+    height: 478px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 20px 20px 0 18px;
+}
+.team_pub_more span{
+    font-size: 20px;
+    color: #999;
+    line-height: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 14px;
+}
+.team_pub_more{
+    font-size: 0;
+}
+.team_pub_more img{
+    width: 10px;
+    height: 18px;
+    vertical-align: middle;
+}
+.best_team{
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    padding: 20px 20px 0 18px;
+}
+.match1{
+    display: flex;
+    min-width:224px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 16px;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.match1 p{
+    font-size: 16px;
+    color: #333;
+}
+.match1 img{
+    transform: rotate(90deg);
+    width: 10px;
+    height: 18px;
+}
+.match2{
+    width: 224px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-shadow: 0px 4px 12px 0px rgba(51, 51, 51, 0.1);
+    border-radius: 4px;
+    text-align: center;
+    padding-top: 10px;
+    display: none;
+    position: absolute;
+}
+/* .best_team_match:hover .match2{
+    display: block;
+} */
+.match2.active{
+    display: block;
+}
+.match2 li{
+    width: 216px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 auto;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+.match2 li:hover{
+    background: #FF6649;
+}
+.match2 li:hover a{
+    color: #fff;
+}
+.match2 li a{
+    font-size: 16px;
+    color: #333;
+}
+.best_team_tab1{
+    display: none;
+}
+.best_team_tab1.active{
+    display: flex;
+}
+.best_team_tab1 li{
+    width: 224px;
+    height: 272px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+.best_team_tab1 li:nth-child(5n){
+    margin-right: 0;
+}
+.location{
+    background-image: url("../images/location.png");
+    width: 210px;
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.location span{
+    font-size: 18px;
+    vertical-align: middle;
+}
+.sd{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+.sd img{
+    display: none;
+}
+.sd img.active{
+    display: block;
+}
+.imgauto{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.white{
+    color: #333;
+}
+.orange{
+    color: #FF6649;
+}
+.team_img{
+    width: 184px;
+    height: 184px;
+    margin: 0 auto;
+}
+.team_name{
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    border-radius: 0px 0px 8px 8px;
+}
+.best_team_tab1 li:hover .location{
+    background-image: url("../images/location_active.png");
+}
+.best_team_tab1 li:hover span{
+    color: #fff;
+}
+.best_team_tab1 li:hover .img1{
+    display: none;
+}
+.best_team_tab1 li:hover .img2{
+    display: block;
+}
+.best_team_tab1 li:hover .team_name{
+    background: #FF6649;
+    color: #fff;
+}
+/* 移动 */
+@media only screen and (max-width: 1024px){
+    .team_explain{
+        width:70%;
+    }
+    .team_title{
+        padding-left: .3rem;
+    }
+    .team_explain_bottom{
+        padding-bottom: .2rem;
+    }
+    .team_logo{
+        margin-right: 0;
+    }
+    .best_team_tab1 li{
+        width: 30%;
+        margin-right: .3rem;
+        margin-bottom: .3rem;
+        border-top:0;
+    }
+    .best_team_tab1{
+        flex-wrap: wrap;
+        /* justify-content: space-between; */
+    }
+    .best_team_tab1 li:nth-child(3n){
+        margin-right: 0;
+    }
+    .location{
+        width: 96%;
+        height: .4rem;
+    }
+    .game_team_list_detail li:nth-child(7n){
+        margin-right: 36px;
+    }
+    .team_news{
+        height: auto;
+    }
+    .hot_match_bot ul {
+        width: 100%;
+    }
+    .hot_match_bot li {
+        width: 50%;
+        margin-right: 0;
+        margin-bottom: .3rem;
+    }
+    .hot_match_bot li a {
+        width: 90%;
+        margin: 0 auto;
+    }
 }

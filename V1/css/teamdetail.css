@@ -555,14 +555,6 @@ li a .max_span span{
     height: 24px;
     line-height: 24px;
 }
-.team_news{
-    width:100%;
-    height: 478px;
-    background: #FFFFFF;
-    border: 1px solid #EEEEEE;
-    border-radius: 8px;
-    padding: 20px 20px 0 18px;
-}
 .team_pub_more span{
     font-size: 20px;
     color: #999;
@@ -579,99 +571,7 @@ li a .max_span span{
     height: 18px;
     vertical-align: middle;
 }
-.team_news_mid{
-    margin-bottom: 10px;
-}
-.team_news_img .img{
-    width: 275px;
-    height: 158px;
-    margin-bottom: 18px;
-}
-.team_news_img p{
-    font-size: 24px;
-    color: #333;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-    font-weight: 500;
-}
-.team_news_mid_ul li{
-    width: 275px;
-    float: left;
-    margin-right: 20px;
-}
-.team_news_mid_ul li:nth-last-child(1){
-    margin-right: 0;
-}
-.team_news_bot_ul li{
-    width: 570px;
-    height: 61px;
-    border-bottom:1px solid #eee;
-    line-height: 60px;
-    padding-right: 100px;
-}
-.team_news_bot_ul li a{
-    display: block;
-    width: 100%;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-    font-size: 20px;
-    color: #666;
-}
-.team_news_bot_ul li:hover a{
-    color: #FF6649;
-}
-.hot_team{
-    height: 280px;
-    background: #FFFFFF;
-    border: 1px solid #EEEEEE;
-    border-radius: 8px;
-    padding: 20px 20px 20px 18px;
-}
-.game_team_list_detail{
-    padding-left: 20px;
-}
-.hot_match{
-    padding: 20px;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 8px;
-}
-.hot_match_bot li{
-    float: left;
-    margin-right: 19px;
-}
-.hot_match_bot li:nth-last-child(1){
-    margin-right: 0;
-}
-.hot_match_bot li a{
-    display: block;
-    width: 275px;
-    height: 158px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
-.hot_match_bot li a span{
-    display: block;
-    font-size: 20px;
-    color: #eee;
-    font-weight: 500;
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
-    width: 100%;
-    padding: 0 10px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-    background-color: rgba(0,0,0,.5);
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
+
 /* 移动 */
 @media only screen and (max-width: 1024px){
     .team_explain{
@@ -806,5 +706,15 @@ li a .max_span span{
     .hot_match_bot li a{
         width: 90%;
         margin: 0 auto;
+    }
+    .game_team_list_detail li{
+        width: 33%;
+        margin-right: 0;
+    }
+    .game_team_list_detail li a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
     }
 }
