@@ -22,10 +22,6 @@ $params = [
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "currentPage"=>["name"=>"matchList","date"=>$currentDate,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
-/*
-$params["allmatchList"] =
-    ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>array_keys($config['game']),"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
-*/
 //依次加入所有游戏
 foreach ($config['game'] as $game => $gameName)
 {
@@ -306,7 +302,7 @@ foreach($allGameList as $key => $game)
                                                                                             </div>
                                                                                             <?php if($i>=5){break;}}?>
                                                                                     </div>
-                                                                                    <div class="game3_team_players"><?php echo count($matchInfo['home_player_id_list']??[]);?></div>
+                                                                                    <div class="game3_team_players"><?php echo count($matchInfo['home_player_list']??[]);?></div>
                                                                                 </div>
                                                                             </a>
                                                                         </div>
@@ -352,7 +348,7 @@ foreach($allGameList as $key => $game)
                                                                                             </div>
                                                                                             <?php if($i>=5){break;}}?>
                                                                                     </div>
-                                                                                    <div class="game3_team_players"><?php echo count($matchInfo['home_player_id_list']??[]);?></div>
+                                                                                    <div class="game3_team_players"><?php echo count($matchInfo['away_player_list']??[]);?></div>
                                                                                 </div>
                                                                             </a>
                                                                         </div>
