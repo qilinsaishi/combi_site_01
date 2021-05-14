@@ -595,7 +595,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
         fill: { color: '#FF5C6A' }
     });
 
-    var value_blue = $('.won_red').data('num');
+    var value_blue = $('.won_blue').data('num');
     $('.won_blue.circle').circleProgress({
         startAngle: -Math.PI / 4 * 2,
         size:94,
