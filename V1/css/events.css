@@ -315,9 +315,9 @@
     display: none;
     position: absolute;
 }
-.best_team_match:hover .match2{
+/* .best_team_match:hover .match2{
     display: block;
-}
+} */
 .match2.active{
     display: block;
 }
