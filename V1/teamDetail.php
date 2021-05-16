@@ -29,7 +29,7 @@ else
     $description = "暂无";
 }
 if(count($return['intergratedTeam']['data']['aka'])>0){
-	$return['intergratedTeam']['data']['aka']=implode(',',$return['intergratedTeam']['data']['aka']);
+	$return['intergratedTeam']['data']['aka']=implode(',',array_filter($return['intergratedTeam']['data']['aka']));
 }
 
 //获取当前战队的游戏
@@ -133,7 +133,7 @@ else
 						  { if(strlen($playerInfo['logo']) >=10){
 							  ?>
 							<li>
-								<a href="<?php echo $config['site_url']; ?>/playerlist/<?php echo $playerInfo['pid'];?>">
+								<a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>">
 									<div class="team_number_photo">
 										<?php if(isset($return['defaultConfig']['data']['default_player_img'])){?>
 										  <img lazyload="true" data-original="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>?x-oss-process=image/resize,m_lfit,h_100,w_100" src="<?php echo $playerInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_100,w_100" title="<?php echo $playerInfo['player_name'];?>" />
@@ -500,7 +500,7 @@ else
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门战队</span>
-                        <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $game; ?>" class="team_pub_more fr">
+                        <a href="<?php echo $config['site_url'];?>/teamlist/" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
@@ -538,7 +538,7 @@ else
 						<?php foreach($return2['hotTournamentList']['data'] as $key => $tournamentInfo){
 							?>
                             <li>
-                                <a href="##" style="background-image: url('<?php echo $tournamentInfo['logo'] ?>')">
+                                <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image: url('<?php echo $tournamentInfo['logo'] ?>')">
                                    <span><?php echo $tournamentInfo['tournament_name'] ?></span> 
                                 </a>
                             </li>
