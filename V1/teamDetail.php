@@ -6,12 +6,11 @@ if($tid<=0)
     render404($config);
 }
 $params = [
-    "intergratedTeam"=>[$tid,"reset"=>1],
+    "intergratedTeam"=>[$tid],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"team","site_id"=>$config['site_id']]
 ];
-
 $return = curl_post($config['api_get'],json_encode($params),1);
 if($return['intergratedTeam']['data']['description']!="")
 {
@@ -37,11 +36,25 @@ if(count($return['intergratedTeam']['data']['aka'])>0){
 $game=$return['intergratedTeam']['data']['game'] ?? $config['default_game'];
 //当前游戏下面的资讯
 $params2=[
-    "informationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time,game',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+	 "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$return["intergratedTeam"]['data']['intergrated_id_list'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
 	"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>7,"fields"=>'tid,team_name,logo',"game"=>$game,"except_team"=>$tid,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$game,"source"=>"scoregg","rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
 ];
+
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
+//如果战队资讯不存在
+if(count($return2["keywordMapList"]["data"]??[])==0)
+{
+    $params3 = [
+        "informationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,create_time,game',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+    ];
+    $return3 = curl_post($config['api_get'],json_encode($params3),1);
+    $connectedInformationList = $return3["informationList"]["data"];
+}
+else
+{
+    $connectedInformationList = $return2["keywordMapList"]["data"];
+}
 
 ?>
 <!DOCTYPE html>
@@ -447,7 +460,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                     </div>
                     <div class="team_news_mid">
                         <ul class="team_news_mid_ul clearfix">
-							<?php foreach($return2['informationList']['data'] as $key => $information){
+							<?php foreach($connectedInformationList as $key => $information){
 								if($key <=3){
 									
 								?>
@@ -467,7 +480,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                     </div>
                     <div class="team_news_bot">
                         <ul class="team_news_bot_ul clearfix">
-						<?php foreach($return2['informationList']['data'] as $key => $information){
+						<?php foreach($connectedInformationList as $key => $information){
 								if($key >3){
 								?>
                             <li class="fl">

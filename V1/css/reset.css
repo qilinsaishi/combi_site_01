@@ -721,6 +721,38 @@ color: #fff;
     bottom: 0;
 }
 /* 电竞战队详情页热门赛事 */
+.team_pub_top{
+    margin-bottom: 30px;
+}
+.team_pub_img{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    font-size: 0;
+}
+.team_pbu_name{
+    font-size: 20px;
+    color: #333;
+    height: 20px;
+    line-height: 20px;
+}
+.team_pub_more span{
+    font-size: 20px;
+    color: #999;
+    line-height: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 14px;
+}
+.team_pub_more{
+    font-size: 0;
+}
+.team_pub_more img{
+    width: 10px;
+    height: 18px;
+    vertical-align: middle;
+}
+
 /* 移动 */
 
 @media only screen and (max-width: 1024px){
