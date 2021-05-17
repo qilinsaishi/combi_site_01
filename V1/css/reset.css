@@ -344,6 +344,7 @@ color: #fff;
     position: fixed;
     top: 200px;
     right: 30px;
+    z-index: 999;
 }
 .suspension_img{
     /* box-shadow: 0px 4px 12px 0px rgba(51, 51, 51, 0.1); */
@@ -832,4 +833,22 @@ color: #fff;
         text-overflow:ellipsis;
         white-space: nowrap
     }
+    /* 分页移动 */
+    .paging .paging_num{
+        width: .6rem;
+        height: .6rem;
+        font-size: .24rem;
+        line-height: .6rem;
+    }
+    .paging_pre img ,.paging_next img,.paging_pre{
+        width: .6rem;
+        height: .6rem;
+    }
+    .esport_more img{
+        width: .3rem;
+    }
+    .paging{
+        align-items: center;
+    }
+    /* 分页移动 */
 }
