@@ -12,6 +12,7 @@ $params = [
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 $return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
+$return["information"]['data']['5118_word_list'] = json_decode($return["information"]['data']['5118_word_list'],true);
 $ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
 $ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
