@@ -235,6 +235,7 @@ else
                         <span class="fl team_honor_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队历史荣誉</span>
                     </div>
                     <div class="team_honor_detail">
+						<?php if(isset($return['intergratedTeam']['data']['honor_list']) && count($return['intergratedTeam']['data']['honor_list'])>0 ){?>
                         <div class="honor_top clearfix">
                             <span>时间</span>
                             <span>荣誉/名次</span>
@@ -285,6 +286,11 @@ else
 							<?php $i++;} }?>
                             
                         </ul>
+						<?php }else{?>
+							 <div class="null">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							</div>
+						<?php } ?>
                     </div>
                 </div>
                 <!-- 战队荣誉 -->
@@ -295,10 +301,7 @@ else
                             <img class="imgauto" src="./images/teamdetail_vs_active.png" alt="">
                         </div>
                         <span class="fl team_results_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队近期战绩</span>
-                        <a href="##" class="team_results_more fr">
-                            <span>更多</span>
-                            <img src="./images/more.png" alt="">
-                        </a>
+                       
                     </div>
                     <div class="team_results_bottom">
                         <ul class="team_results_detail">

@@ -160,10 +160,7 @@ else
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_data.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">基础数据</span>
-                        <a href="##" class="team_pub_more fr">
-                            <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                        </a>
+                        
                     </div>
                     <div class="player_data_detail clearfix">
                         <div class="radar fl">
@@ -219,10 +216,7 @@ else
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_match.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">kaixuan比赛战绩</span>
-                        <a href="##" class="team_pub_more fr">
-                            <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                        </a>
+                        
                     </div>
                     <div class="scroll">
                         <div class="player_matchs_name">
@@ -634,19 +628,19 @@ else
                         </div>
                         <div class="player_team_bot clearfix">
                             <div class="left fl">
-                                <img class="imgauto" src="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>" alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
+                                <img class="imgauto"  src="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>?x-oss-process=image/resize,m_lfit,h_100,w_100" alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
                             </div>
                             <div class="right fl">
                                 <div class="team_explain_top clearfix">
-                                    <p class="name fl"><?php $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?></p>
+                                    <p class="name fl"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?></p>
                                     <p class="classify fl"><?php if($return['intergratedPlayer']['data']['teamInfo']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                                 </div>
-                                <p class="name">英文名：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name']?></span></p>
+                                <p class="name">英文名：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
                                 <p class="name">别&nbsp;&nbsp;&nbsp;称：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
                             </div>
                         </div>
                         <div class="player_team_word">
-                            <?php if(strlen($team_description)>200){echo mb_substr(trim($team_description),0,100);}else{echo $team_description;} ?>
+                           <?php echo $team_description; ?>
                         </div>
                     </div>
                     <div class="player_xs_explain fr">
@@ -659,16 +653,16 @@ else
                         <ul class="player_xs clearfix">
 							 <?php
 								foreach($return['intergratedPlayer']['data']['playerList'] as $playerInfo)
-								{  if($i<=7){  ?>
+								{  ?>
                             <li>
-                                <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name'];?>">
+                                <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                     <div class="player_xs_img">
                                         <img class="imgauto" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" alt="<?php echo $playerInfo['player_name'];?>">
                                     </div>
                                     <span><?php echo $playerInfo['player_name'];?></span>
                                 </a>
                             </li>
-								<?php $i++; }}?>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>
