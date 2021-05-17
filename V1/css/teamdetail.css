@@ -586,6 +586,7 @@ li a .max_span span{
     }
     .data_right{
         width: 100%;
+        padding-left: .4rem;
     }
     .team_data{
         height: auto;
@@ -686,4 +687,9 @@ li a .max_span span{
         align-items: center;
         justify-content: space-between;
     }
+    /* 5.17新增 */
+    .circle_left{
+        padding-left: 1.2rem;
+    }
+    /* 5.17新增 */
 }

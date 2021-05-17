@@ -440,6 +440,7 @@
     }
     .kpi_all{
         float: left;
+        margin-left: 1.2rem;
     }
     .radar {
         margin: 0 auto;
@@ -450,6 +451,7 @@
     }
     .circle_right{
         margin-bottom: .2rem;
+        padding-left: 1rem;
     }
     .player_data_bot{
         display: flex;
@@ -526,5 +528,18 @@
     .hot_match_bot li a{
         width: 90%;
         margin: 0 auto;
+    }
+    /* 5.17新增 */
+    .team_title{
+        padding: .2rem;
+    }
+    .team_logo{
+        margin-right: .6rem;
+    }
+    .team_explain{
+        width: 70%;
+    }
+    .team_explain_name p:nth-child(1){
+        margin-right: .3rem;
     }
 }

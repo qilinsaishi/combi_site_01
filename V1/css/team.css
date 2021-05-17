@@ -57,5 +57,20 @@
 @media only screen and (max-width: 1024px){
     .esports_item{
         width: 100%;
+        height: auto;
+        margin-bottom: .2rem;
+        padding-bottom: .3rem;
+    }
+    .esports_ul a{
+        font-size: .24rem;
+    }
+    .esports_ul{
+        padding-left: .2rem;
+    }
+    .esports .game_team_list_detail li{
+        margin-right: .4rem;
+    }
+    .esports .game_team_list_detail li:nth-child(5n){
+        margin-right: .4rem;
     }
 }

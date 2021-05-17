@@ -424,6 +424,37 @@
 }
 /* 移动 */
 @media only screen and (max-width: 1024px){
+    .events{
+        width: 100%;
+    }
+    /* 5.17新增 */
+    .events_ul{
+        /* display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; */
+    }
+    .events_ul li{
+        width:47%;
+        height: 1.8rem;
+        margin-right: 0;
+    }
+    .events_ul li a{
+        width: 100%;
+        height: 1.8rem;
+    }
+    .events_img{
+        width: 100%;
+        height: 1.8rem;
+    }
+    .events_ul li:nth-child(2n){
+        float: right;
+    }
+    .events_ul li a span{
+        width: 100%;
+        height: .6rem;
+        line-height: .6rem;
+    }
+    /* 5.17新增 */
     .team_explain{
         width:70%;
     }
