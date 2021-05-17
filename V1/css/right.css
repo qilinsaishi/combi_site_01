@@ -5,7 +5,7 @@
 }
 .game_lately,.game_news,.game_team,.game_player{
     padding: 18px 18px 0;
-    width: 320px;
+    /* width: 320px; */
     background: #fff;
     border: 1px solid #eee;
     border-radius: 8px;
@@ -60,7 +60,7 @@
     margin-bottom: 10px;
 }
 .game_news{
-    height: 390px;
+    /* height: 390px; */
 }
 .game_news ul{
     padding-top: 14px;
@@ -86,7 +86,7 @@
     color: #666;
 }
 .game_right .game_team{
-    height: 450px;
+    /* height: 450px; */
 }
 .game_team .game_team_list_detail li{
     margin-right: 0;
