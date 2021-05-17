@@ -37,7 +37,7 @@
 }
 .game_player_detail{
     width: 860px;
-    height: 1050px;
+    /* height: 1050px; */
     background: #fff;
     border: 1px solid #eee;
     border-radius: 8px;
@@ -81,4 +81,41 @@
     bottom: 0;
     right: 0;
     margin: auto;
+}
+/* 移动 */
+@media only screen and (max-width: 1024px){
+    .player,.game_player_detail{
+        width: 100%;
+    }
+    .game_player_ul li:nth-child(5n){
+        margin-right: 0rem;
+    }
+    .game_player_ul li{
+        margin-right: .2rem;
+        width: 33%;
+        margin-right: 0;
+        height: auto;
+    }
+    .game_player_img_wrapper{
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+    .game_player_img{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .esports_ul a{
+        font-size: .3rem;
+        height: .6rem;
+        line-height: .6rem;
+        border-radius: .3rem;
+    }
+    .esports_ul li.active a{
+        height: .6rem;
+        line-height: .6rem;
+        border-radius: .3rem;
+    }
+    .game_left .esports_ul li{
+        height: auto;
+    }
 }
