@@ -224,8 +224,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                 <li><a href="##">凤凰电竞</a></li>
                 <li><a href="##">凤凰电竞</a></li>
             </ul>
-            <p>Copyright © 2021 www.qilindianjing.com</p>
-            <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
+<?php renderCertification();?>
         </div>
     </div>
     <?php renderFooterJsCss($config,[],[]);?>

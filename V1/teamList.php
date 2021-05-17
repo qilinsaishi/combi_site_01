@@ -242,8 +242,7 @@ $keyList = array_keys($return);
                 <li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
             <?php }?>
             </ul>
-            <p>Copyright © 2021 www.qilindianjing.com</p>
-            <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
+<?php renderCertification();?>
         </div>
     </div>
     <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
