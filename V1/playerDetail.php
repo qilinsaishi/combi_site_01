@@ -167,8 +167,7 @@ else
                     </div>
                     <div class="player_data_detail clearfix">
                         <div class="radar fl">
-                            <div id="chart" style="height: 280px;width: 240px" data-kill='30' data-assists="20"
-                                data-existence="50" data-rate='40' data-economy='80' data-view='10'></div>
+                            <div id="chart" style="height: 280px;width: 240px" ></div>
                         </div>
                         <div class="player_data_content fr">
                             <div class="player_data_top clearfix">
@@ -812,13 +811,29 @@ else
     <script src="<?php echo $config['site_url'];?>/js/circle-progress.js"></script>
     <script>
         var radar_chart = echarts.init(document.getElementById("chart"));
-        var kill = $('#chart').data('kill');
-        var assists = $('#chart').data('assists');
-        var existence = $('#chart').data('existence');
-        var rate = $('#chart').data('rate');
-        var economy = $('#chart').data('economy');
-        var view = $('#chart').data('view');
-        var value = [kill, assists, existence, rate, economy, view];
+        // var kill = $('#chart').data('kill');
+        // var assists = $('#chart').data('assists');
+        // var existence = $('#chart').data('existence');
+        // var rate = $('#chart').data('rate');
+        // var economy = $('#chart').data('economy');
+        // var view = $('#chart').data('view');
+         // var value = [kill, assists, existence, rate, economy, view];
+            var array=[
+            　　{"name":"击杀","empno":20},
+            　　{"name":"助攻","empno":50},
+            　　{"name":"参团率","empno":80},
+                {"name":"视野","empno":100},
+            　　{"name":"生存","empno":10},
+            　　{"name":"经济","empno":60},
+            ];
+ 
+            //先给数组中的每一个元素添加索引(index)
+            var i;
+            for(i=0;i<array.length;i++){
+                array[i].index=i;
+            }
+
+        var value = [array[0].empno, array[1].empno, array[2].empno, array[3].empno ,array[4].empno ,array[5].empno, ];
         var option = {
             // tooltip: {},
             radar: {
@@ -836,12 +851,14 @@ else
 
                 },
                 indicator: [
-                    { name: '击杀', max: 100 },
-                    { name: '助攻', max: 100 },
-                    { name: '生存', max: 100 },
-                    { name: '参团率', max: 100 },
-                    { name: '经济', max: 100 },
-                    { name: '视野', max: 100 }
+                    { name: array[0].name, max: 100 },
+                    { name: array[1].name, max: 100 },
+                    { name: array[2].name, max: 100 },
+                    { name: array[3].name, max: 100 },
+                    { name: array[4].name, max: 100 },
+                    { name: array[5].name, max: 100 },
+                    
+                   
                 ],
                 splitArea: {
                     show: true,
