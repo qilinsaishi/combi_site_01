@@ -298,40 +298,63 @@ else
                 <div class="mb20 team_results">
                     <div class="team_results_top clearfix">
                         <div class="team_results_img fl">
-                            <img class="imgauto" src="./images/teamdetail_vs_active.png" alt="">
+                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/teamdetail_vs_active.png" alt="">
                         </div>
                         <span class="fl team_results_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队近期战绩</span>
                        
                     </div>
                     <div class="team_results_bottom">
+						<?php if(isset($return['intergratedTeam']['data']['recentMatchList']) && count($return['intergratedTeam']['data']['recentMatchList'])>0 ){?>
                         <ul class="team_results_detail">
+							  <?php
+						  foreach($return['intergratedTeam']['data']['recentMatchList'] as $recentMatchInfo)
+						  { 
+							?>
                             <li>
-                               <a href="##" class="clearfix">
+                               <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['match_id'];?>" class="clearfix">
+							   
                                    <div class="team_results_explain fl clearfix">
-                                        <div class="team_result red fl">
-                                            胜
-                                        </div>
+                                         <?php if(in_array($recentMatchInfo['home_id'],$return['intergratedTeam']['data']['intergrated_site_id_list'])){$side = "home";}else{$side="away";}
+									   if(($recentMatchInfo['home_score'] >= $recentMatchInfo['away_score'])){$win_side = "home";}else{$win_side="away";}
+									  
+									   if($side == $win_side)
+									   {
+										   ?>
+												 <div class="team_result red fl">
+													 胜
+												 </div>
+												 <?php 
+									   }
+									   else
+									   {?>
+												 <div class="team_result blue fl">
+													 败
+												 </div>
+									   <?php
+										}
+									   ?>
                                         <div class="team_results_content clearfix fl">
                                             <div class="team_results_time fl">
                                                 <div class="team_results_timg">
-                                                    <img class="imgauto" src="./images/kpl_teamdetail.png" alt="">
+                                                    <img class="imgauto" src="<?php echo $recentMatchInfo['tournament_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['tournament_info']['tournament_name'] ;?>">
                                                 </div>
                                                 <div class="team_results_timei">
-                                                    2021.04.11 15:00 Bo3
+													<?php echo date("Y.m.d H:i",strtotime($recentMatchInfo['start_time'])+$config['hour_lag']*3600);?> Bo<?php echo $recentMatchInfo['game_count'] ;?>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="team_results_vs">
-                                                <span class="team1_name">Team WE</span>
+                                                <span class="team1_name"><?php echo $recentMatchInfo['home_team_info']['team_name'] ;?></span>
                                                 <div class="team1_img">
-                                                    <img class="imgauto" src="./images/teamdetail1.png" alt="">
+                                                    <img class="imgauto" src="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
                                                 </div>
                                                 <div class="vs_img honor_bottom_img1">
-                                                    <img class="imgauto" src="./images/game_detail_vs.png" alt="">
+                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
                                                 </div>
                                                 <div class="team2_img">
-                                                    <img class="imgauto" src="./images/teamdetail1.png" alt="">
+                                                    <img class="imgauto" src="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
                                                 </div>
-                                                <span class="team2_name">Team WE</span>
+                                                <span class="team2_name"><?php echo $recentMatchInfo['away_team_info']['team_name'] ;?></span>
                                             </div>
                                         </div>
                                    </div>
@@ -340,112 +363,13 @@ else
                                    </div>
                                </a> 
                             </li>
-                            <li>
-                                <a href="##" class="clearfix">
-                                    <div class="team_results_explain fl clearfix">
-                                         <div class="team_result blue fl">
-                                             败
-                                         </div>
-                                         <div class="team_results_content clearfix fl">
-                                             <div class="team_results_time fl">
-                                                 <div class="team_results_timg">
-                                                     <img class="imgauto" src="./images/kpl_teamdetail.png" alt="">
-                                                 </div>
-                                                 <div class="team_results_timei">
-                                                     2021.04.11 15:00 Bo3
-                                                 </div>
-                                             </div>
-                                             <div class="team_results_vs">
-                                                 <span class="team1_name">Team WE</span>
-                                                 <div class="team1_img">
-                                                     <img class="imgauto" src="./images/teamdetail1.png" alt="">
-                                                 </div>
-                                                 <div class="vs_img honor_bottom_img1">
-                                                     <img class="imgauto" src="./images/game_detail_vs.png" alt="">
-                                                 </div>
-                                                 <div class="team2_img">
-                                                     <img class="imgauto" src="./images/teamdetail1.png" alt="">
-                                                 </div>
-                                                 <span class="team2_name">Team WE</span>
-                                             </div>
-                                         </div>
-                                    </div>
-                                    <div class="team_results_see fr">
-                                     查看数据
-                                    </div>
-                                </a> 
-                             </li>
-                             <li>
-                                <a href="##" class="clearfix">
-                                    <div class="team_results_explain fl clearfix">
-                                         <div class="team_result red fl">
-                                             胜
-                                         </div>
-                                         <div class="team_results_content clearfix fl">
-                                             <div class="team_results_time fl">
-                                                 <div class="team_results_timg">
-                                                     <img class="imgauto" src="./images/kpl_teamdetail.png" alt="">
-                                                 </div>
-                                                 <div class="team_results_timei">
-                                                     2021.04.11 15:00 Bo3
-                                                 </div>
-                                             </div>
-                                             <div class="team_results_vs">
-                                                 <span class="team1_name">Team WE</span>
-                                                 <div class="team1_img">
-                                                     <img class="imgauto" src="./images/teamdetail1.png" alt="">
-                                                 </div>
-                                                 <div class="vs_img honor_bottom_img1">
-                                                     <img class="imgauto" src="./images/game_detail_vs.png" alt="">
-                                                 </div>
-                                                 <div class="team2_img">
-                                                     <img class="imgauto" src="./images/teamdetail1.png" alt="">
-                                                 </div>
-                                                 <span class="team2_name">Team WE</span>
-                                             </div>
-                                         </div>
-                                    </div>
-                                    <div class="team_results_see fr">
-                                     查看数据
-                                    </div>
-                                </a> 
-                             </li>
-                             <li>
-                                 <a href="##" class="clearfix">
-                                     <div class="team_results_explain fl clearfix">
-                                          <div class="team_result blue fl">
-                                              败
-                                          </div>
-                                          <div class="team_results_content clearfix fl">
-                                              <div class="team_results_time fl">
-                                                  <div class="team_results_timg">
-                                                      <img class="imgauto" src="./images/kpl_teamdetail.png" alt="">
-                                                  </div>
-                                                  <div class="team_results_timei">
-                                                      2021.04.11 15:00 Bo3
-                                                  </div>
-                                              </div>
-                                              <div class="team_results_vs">
-                                                  <span class="team1_name">Team WE</span>
-                                                  <div class="team1_img">
-                                                      <img class="imgauto" src="./images/teamdetail1.png" alt="">
-                                                  </div>
-                                                  <div class="vs_img honor_bottom_img1">
-                                                      <img class="imgauto" src="./images/game_detail_vs.png" alt="">
-                                                  </div>
-                                                  <div class="team2_img">
-                                                      <img class="imgauto" src="./images/teamdetail1.png" alt="">
-                                                  </div>
-                                                  <span class="team2_name">Team WE</span>
-                                              </div>
-                                          </div>
-                                     </div>
-                                     <div class="team_results_see fr">
-                                      查看数据
-                                     </div>
-                                 </a> 
-                              </li>
+						  <?php } ?>
                         </ul>
+						<?php }else{?>
+							 <div class="null">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							</div>
+						<?php } ?>
                     </div>
                 </div>
                 <!-- 战队成绩 -->

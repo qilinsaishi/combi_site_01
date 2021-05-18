@@ -12,6 +12,14 @@ $params = [
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+//雷达图数据
+$radarData=[];
+if($return['intergratedPlayer']['data']['radarData']!="")
+{
+	$radarData=json_encode(array_values($return['intergratedPlayer']['data']['radarData']),JSON_UNESCAPED_UNICODE);
+}
+
+
 if($return['intergratedPlayer']['data']['description']!="")
 {
     if(substr($return['intergratedPlayer']['data']['description'],0,1)=='"' && substr($return['intergratedPlayer']['data']['description'],-1)=='"')
@@ -812,14 +820,7 @@ else
         // var economy = $('#chart').data('economy');
         // var view = $('#chart').data('view');
          // var value = [kill, assists, existence, rate, economy, view];
-            var array=[
-            　　{"name":"击杀","empno":20},
-            　　{"name":"助攻","empno":50},
-            　　{"name":"参团率","empno":80},
-                {"name":"视野","empno":100},
-            　　{"name":"生存","empno":10},
-            　　{"name":"经济","empno":60},
-            ];
+            var array=<?php echo $radarData;?>;
  
             //先给数组中的每一个元素添加索引(index)
             var i;
