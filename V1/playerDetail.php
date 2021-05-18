@@ -96,8 +96,6 @@ else
 ?>
 <!DOCTYPE html>
 <html lang="en">
-{sitenam}提供{gamename}{teamname}战队{位置}选手{player_name}个人信息资料，{player_name_description}
-<?php echo $config['site_name'];?>提供<?php echo $config['game'][$game]?><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资料,<?php echo strip_tags($return['intergratedTeam']['data']['description']);?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
