@@ -1,6 +1,7 @@
 <?php
 require_once "function/init.php";
 $currentDate = $_GET['date']??date("Y-m-d");
+$currentGame = $_GET['game']??"all";
 if(strtotime($currentDate)==0)
 {
     $currentDate = date("Y-m-d");
@@ -79,7 +80,9 @@ foreach($allGameList as $key => $game)
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事赛程</title>
+    <title><?php if($currentGame=="all"){?>最新电竞赛事赛程-<?php }else{?><?php echo $config['game'][$currentGame];?>最新比赛_<?php echo $config['game'][$currentGame];?>近期赛事大全-<?php } ?><?php echo $config['site_name'];?></title>
+    <meta name="Keywords" content="<?php if($currentGame=="all"){?>电竞赛事赛程,电竞比赛<?php }else{?><?php echo $config['game'][$currentGame];?>赛事,<?php echo $config['game'][$currentGame];?>近期有哪些比赛,<?php echo $config['game'][$currentGame];?>比赛<?php } ?>">
+    <meta name="description" content="<?php echo $config['site_name'];?><?php if($currentGame=="all"){?>提供最新电子竞技赛事,为广大电竞玩家提供最新电竞赛事赛程信息,了解最新最全电竞赛事赛程信息,请关注<?php }else{?>提供<?php echo $config['game'][$currentGame];?>近期赛事信息,想要了解<?php echo $config['game'][$currentGame];?>最新比赛,掌握一手<?php echo $config['game'][$currentGame];?>赛事赛程,<?php echo $config['game'][$currentGame];?>有哪些比赛,请关注<?php } ?><?php echo $config['site_name'];?>">
     <?php renderHeaderJsCss($config,["right","game3"]);?>
     <!-- 本页新增的css iconfont.css -->
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/fonts/iconfont.css">
@@ -129,7 +132,7 @@ foreach($allGameList as $key => $game)
                             ?>
                             <div class="min_calendar_bottom">
                                 <div class="left fl">
-                                    <a href="<?php echo $config['site_url'];?>\match\<?php echo date('Y-m-d',strtotime($currentDate)-7*86400);?>" class="prev_week">
+                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date('Y-m-d',strtotime($currentDate)-7*86400);?>" class="prev_week">
                                         <i class="iconfont icon-shangyige"></i>
                                     </a>
                                 </div>
@@ -141,7 +144,7 @@ foreach($allGameList as $key => $game)
                                                 $date = date("Y-m-d",(strtotime($dateRange['startDate'])+$key*86400));
                                             ?>
                                                 <li <?php if($date==$currentDate){echo 'class="active"';}?>>
-                                                    <a href="<?php echo $config['site_url'];?>\match\<?php echo $date;?>">
+                                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo $date;?>">
                                                         <span class="week"><?php echo $day;?></span>
                                                         <span class="time2"><?php echo date("m.d",strtotime($date));?></span>
                                                     </a>
@@ -150,7 +153,7 @@ foreach($allGameList as $key => $game)
                                     </ul>
                                 </div>
                                 <div class="right fr">
-                                    <a href="<?php echo $config['site_url'];?>\match\<?php echo date('Y-m-d',strtotime($currentDate)+7*86400);?>" class="next_week">
+                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date('Y-m-d',strtotime($currentDate)+7*86400);?>" class="next_week">
                                         <i class="iconfont icon-xiayige"></i>
                                     </a>
                                  </div>
@@ -166,20 +169,20 @@ foreach($allGameList as $key => $game)
                                 </div>
                                 <div class="time3">
                                     <div class="year">
-                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo date("Y",strtotime($currentDate)-365*86400).date("-m-d",strtotime($currentDate))?>" class="prev_year">
+                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y",strtotime($currentDate)-365*86400).date("-m-d",strtotime($currentDate))?>" class="prev_year">
                                             <i class="iconfont icon-shangyige"></i>
                                         </a>
                                         <span><?php echo date("Y",strtotime($currentDate));?>年</span>
-                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo date("Y",strtotime($currentDate)+365*86400).date("-m-d",strtotime($currentDate))?>" class="prev_year">
+                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y",strtotime($currentDate)+365*86400).date("-m-d",strtotime($currentDate))?>" class="prev_year">
                                             <i class="iconfont icon-xiayige"></i>
                                         </a>
                                     </div>
                                     <div class="month">
-                                        <a href="##" class="prev_month">
+                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y-m-d",strtotime($currentDate)-30*86400)?>" class="prev_month">
                                             <i class="iconfont icon-shangyige"></i>
                                         </a>
                                         <span><?php echo date("m",strtotime($currentDate));?>月</span>
-                                        <a href="##" class="prev_month">
+                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y-m-d",strtotime($currentDate)+30*86400)?>" class="prev_month">
                                             <i class="iconfont icon-xiayige"></i>
                                         </a>
                                     </div>
@@ -215,7 +218,7 @@ foreach($allGameList as $key => $game)
                                                 {
                                                     echo '<tr>';
                                                 }?>
-                                                <td <?php if(date("m",strtotime($date))!=date("m",strtotime($currentDate))){?>class="grey"<?php }if($date==$currentDate){?> class="active"<?php }?>><a href="<?php echo $config['site_url'];?>/match/<?php echo $date;?>"><?php echo date("m.d",strtotime($date));?></a></td>
+                                                <td <?php if(date("m",strtotime($date))!=date("m",strtotime($currentDate))){?>class="grey"<?php }if($date==$currentDate){?> class="active"<?php }?>><a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo $date;?>"><?php echo date("m.d",strtotime($date));?></a></td>
                                                 <?php
                                                 if($i%7==0)
                                                 {
@@ -235,14 +238,14 @@ foreach($allGameList as $key => $game)
                     </div>
                     <div class="game3_detail">
                         <ul class="game3_detail_ul clearfix">
-                            <li class="active">
-                                <a href="##">
+                            <li <?php if($currentGame=="all"){?>class="active"<?php }?>>
+                                <a href="<?php echo $config['site_url'];?>/match/all/<?php echo $currentDate;?>">
                                     综合
                                 </a>
                             </li>
                             <?php foreach($config['game'] as $game => $game_name){?>
-                                <li>
-                                    <a href="##">
+                                <li <?php if($currentGame==$game){?>class="active"<?php }?>>
+                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $game;?>/<?php echo $currentDate;?>">
                                         <?php echo $game_name;?>
                                     </a>
                                 </li>
