@@ -96,16 +96,17 @@ else
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+{sitenam}提供{gamename}{teamname}战队{位置}选手{player_name}个人信息资料，{player_name_description}
+<?php echo $config['site_name'];?>提供<?php echo $config['game'][$game]?><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资料,<?php echo strip_tags($return['intergratedTeam']['data']['description']);?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-      <title><?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料_<?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?><?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介-<?php echo $config['site_name']?></title>
-  <meta name="description" content="<?php echo strip_tags($return['intergratedPlayer']['data']['teamInfo']['team_name']);?><?php echo $return['intergratedPlayer']['data']['player_name'];?>，真名为<?php echo $return['intergratedPlayer']['data']['player_name'];?>，<?php echo $return['intergratedPlayer']['data']['country'];?>人，<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo "在".$return['totalTeamInfo']['data']['team_name']."中长期打".$return['intergratedPlayer']['data']['position'].".位置，";}?><?php if(count($return['intergratedPlayer']['data']['playerList'])>0){echo "与".implode(",",array_column($return['intergratedPlayer']['data']['playerList'],"player_name"))."为队友";}?>。">
-    <meta name=”Keywords” Content=”<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料,<?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?><?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介">
-
+      <title><?php echo $return['intergratedPlayer']['data']['player_name'];?>_<?php echo $config['game'][$game]?><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?><?php echo $return['intergratedPlayer']['data']['cn_name'] ??'' ;?>个人简介资料信息-<?php echo $config['site_name']?>
+	  </title>
+  <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game'][$game]?><?php echo strip_tags($return['intergratedPlayer']['data']['teamInfo']['team_name']);?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人信息资料，<?php echo $description ;?>">
+	<meta name=”Keywords” Content=”<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人信息,<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料,<?php echo $config['game'][$game]?><?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介">
 	<?php renderHeaderJsCss($config,["playerdetail"]);?> 
     <!-- 这是本页面新增的css  playerdetail.css -->
    
