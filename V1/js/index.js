@@ -85,3 +85,11 @@ $(".game_detail_ul").on("click", 'li', function () {
 
 // 右边悬浮窗
 // $(".suspension_img").on("")
+
+
+
+// 懒加载
+
+ // onload是等所有的资源文件加载完毕以后再绑定事件
+
+
