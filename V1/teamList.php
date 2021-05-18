@@ -123,7 +123,7 @@ $keyList = array_keys($return);
                                 <span class="fl">近期赛事</span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/matchlist/">
+                                <a href="<?php echo $config['site_url'];?>/match/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
