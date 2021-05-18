@@ -11,6 +11,10 @@ $params = [
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["tournament"]['data']['tournament_id']))
+{
+    render404($config);
+}
 $matchList = [];
 foreach($return['tournament']['data']['roundList'] as $roundInfo)
 {

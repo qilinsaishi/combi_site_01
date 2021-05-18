@@ -12,6 +12,10 @@ $params = [
     "currentPage"=>["name"=>"team","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["intergratedTeam"]['data']['tid']))
+{
+    render404($config);
+}
 if($return['intergratedTeam']['data']['description']!="")
 {
     if(substr($return['intergratedTeam']['data']['description'],0,1)=='"' && substr($return['intergratedTeam']['data']['description'],-1)=='"')

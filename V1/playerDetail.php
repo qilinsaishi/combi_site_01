@@ -12,6 +12,10 @@ $params = [
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["intergratedPlayer"]['data']['pid']))
+{
+    render404($config);
+}
 //雷达图数据
 $radarData=[];
 if($return['intergratedPlayer']['data']['radarData']!="")

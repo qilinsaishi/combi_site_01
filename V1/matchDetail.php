@@ -12,6 +12,10 @@ $params = [
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["matchDetail"]['data']['match_id']))
+{
+    render404($config);
+}
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
 ?>
 <!DOCTYPE html>
