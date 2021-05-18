@@ -79,7 +79,7 @@ $tournamentList["all"] = $return['tournamentList']['data'];
                                 <ul class="events_ul clearfix">
                                     <?php foreach($List as $tournamentInfo){?>
                                         <li>
-                                            <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
+                                            <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
                                                 <div class="events_img">
                                                     <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
                                                 </div>
