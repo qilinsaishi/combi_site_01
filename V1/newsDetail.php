@@ -13,7 +13,7 @@ $params = [
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 $return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
-$return["information"]['data']['5118_word_list'] = json_decode($return["information"]['data']['5118_word_list'],true);
+$return["information"]['data']['5118_word_list'] = json_decode($return["information"]['data']['5118_word_list'],true)??[];
 $ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
 $ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
@@ -64,12 +64,12 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time'])+$config['hour_lag']*3600);?></p>
                         <div class="news_label clearfix">
-                            <?php foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
+                            <?php if(count($return["information"]['data']['5118_word_list'])>0){foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
                                 <span><?php echo $word;?></span>
-                            <?php }?>
+                            <?php }}?>
                         </div>
                         <div class="news_top_content">
-                            <?php echo html_entity_decode($return['information']['data']['content'];?>
+                            <?php echo html_entity_decode($return['information']['data']['content']);?>
                         </div>
                     </div>
                     <div class="news_detail">
@@ -145,7 +145,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                                 <span class="fl">最新赛事</span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>\tournamentList">
+                                <a href="<?php echo $config['site_url'];?>/tournamentList">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -154,7 +154,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                         <ul class="game_match_detail">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>

@@ -1,7 +1,7 @@
 <?php
 require_once "function/init.php";
 $params = [
-    "tournamentList"=>["page"=>1,"page_size"=>100,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>1000,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -10,6 +10,17 @@ $params = [
     "currentPage"=>["name"=>"tournamentList","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+$tournamentList = [];
+$tournamentList["all"] = [];
+foreach($config['game'] as $game => $game_name)
+{
+    $tournamentList[$game] = [];
+}
+foreach($return['tournamentList']['data'] as $tournamentInfo)
+{
+    $tournamentList[$tournamentInfo['game']][] = $tournamentInfo;
+}
+$tournamentList["all"] = $return['tournamentList']['data'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,18 +59,51 @@ $return = curl_post($config['api_get'],json_encode($params),1);
         <div class="container">
             <div class="row clearfix">
                 <div class="game_left events fl">
-                    <ul class="events_ul clearfix">
-                        <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
+                    <ul class="esports_ul clearfix">
+                        <li class="active">
+                            <a href="##">
+                                全部
+                            </a>
+                        </li>
+                        <?php foreach($config['game'] as $game => $game_name){?>
                             <li>
-                                <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
-                                    <div class="events_img">
-                                        <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
-                                    </div>
-                                    <span><?php echo $tournamentInfo['tournament_name'];?></span>
+                                <a href="##">
+                                    <?php echo $game_name;?>
                                 </a>
                             </li>
                         <?php }?>
                     </ul>
+                    <div class="events_d">
+                        <?php foreach($tournamentList as $game => $List){?>
+                            <div class="events_ditem <?php if($game =="all"){echo 'active';}?>">
+                                <?php if(count($List)>0){?>
+                                <ul class="events_ul clearfix">
+                                    <?php foreach($List as $tournamentInfo){?>
+                                        <li>
+                                            <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
+                                                <div class="events_img">
+                                                    <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
+                                                </div>
+                                                <span><?php echo $tournamentInfo['tournament_name'];?></span>
+                                            </a>
+                                        </li>
+                                    <?php }?>
+                                </ul>
+                                <?php }else{?>
+                                <!-- 暂无内容 -->
+                                <div class="null">
+                                    <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                    <span>暂无内容</span>
+                                </div>
+                                <!-- 暂无内容 -->
+                                <?php }?>
+
+
+                            </div>
+                        <?php }?>
+
+                        </div>
+
                 </div>
                 <div class="game_right">
                     <div class="game_news">
@@ -175,5 +219,11 @@ $return = curl_post($config['api_get'],json_encode($params),1);
     </div>
     <?php renderFooterJsCss($config,[],[]);?>
 </body>
-
+<script>
+    $(".esports_ul").on("click","li",function(){
+        $(".esports_ul li").removeClass("active");
+        $(this).addClass("active");
+        $(this).parents(".events").find(".events_d").find(".events_ditem").removeClass("active").eq($(this).index()).addClass("active")
+    })
+</script>
 </html>

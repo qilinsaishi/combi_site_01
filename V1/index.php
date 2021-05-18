@@ -49,7 +49,9 @@ foreach($newsTypeList as $newsType)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>Document</title>
+    <title><?php echo $config['site_name'];?>-热门电竞战队赛事资讯网</title>
+    <meta name=”Keywords” Content=”电竞赛事,电竞战队,电竞资讯″>
+    <meta name="description" content="<?php echo $config['site_name'];?>提供专业电子竞技赛事、电竞战队、电竞资讯内容，专注于服务电竞玩家，致力于为电竞玩家提供电竞数据分析及解读">
     <?php renderHeaderJsCss($config,["index"]);?>
 </head>
 
@@ -406,7 +408,7 @@ foreach($newsTypeList as $newsType)
                 <div class="game_title clearfix game_team_special">
                     <span class="title">赛事专题</span>
                     <div class="more">
-                        <a href="<?php echo $config['site_url'];?>\tournamentList">
+                        <a href="<?php echo $config['site_url'];?>/tournamentList">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
@@ -415,7 +417,7 @@ foreach($newsTypeList as $newsType)
                 <ul class="game_special_list">
                     <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                     <li class="col-md-3 col-xs-6">
-                        <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
+                        <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
                             <div class="div_img">
                                 <img src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>">
                                 <span><?php echo $tournamentInfo['tournament_name'];?></span>

@@ -276,7 +276,7 @@ foreach($allGameList as $key => $game)
                                                                     if($key==0){?>
                                                                         <div class="game3_classify2 clearfix">
                                                                             <div class="fl clearfix game3_classify2_detail">
-                                                                                <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $matchInfo['tournament_id'];?>">
+                                                                                <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $matchInfo['tournament_id'];?>">
                                                                                     <div class="game3_team_img fl">
                                                                                         <img class="imgauto" src="<?php echo $matchInfo['tournament_info']['logo']?>" alt="<?php echo $matchInfo['tournament_info']['tournament_name']?>">
                                                                                     </div>
