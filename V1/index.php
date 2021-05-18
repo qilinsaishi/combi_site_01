@@ -4,6 +4,7 @@ $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
 //依次加入所有游戏
@@ -299,7 +300,7 @@ foreach($newsTypeList as $newsType)
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                         <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_top_div">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -310,7 +311,7 @@ foreach($newsTypeList as $newsType)
                                         <div class="news_dianjing_mid">
                                             <?php foreach($infoList['data'] as $key => $info){?>
                                                 <?php if($key>=1 && $key<=2){?>
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_mid_img">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -322,7 +323,7 @@ foreach($newsTypeList as $newsType)
                                             <ul>
                                                 <?php foreach($infoList['data'] as $key => $info){?>
                                                 <?php if($key>=3){?>
-                                                <li><a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                <li><a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <?php echo $info['title'];?>
                                                     </a></li>
                                                 <?php }?><?php }?>
@@ -361,7 +362,7 @@ foreach($newsTypeList as $newsType)
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                             <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_top_div">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -372,7 +373,7 @@ foreach($newsTypeList as $newsType)
                                         <div class="news_dianjing_mid">
                                             <?php foreach($infoList['data'] as $key => $info){?>
                                                 <?php if($key>=1 && $key<=2){?>
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_mid_img">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -384,7 +385,7 @@ foreach($newsTypeList as $newsType)
                                             <ul>
                                                 <?php foreach($infoList['data'] as $key => $info){?>
                                                     <?php if($key>=3){?>
-                                                        <li><a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                        <li><a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                                 <?php echo $info['title'];?>
                                                             </a></li>
                                                     <?php }?><?php }?>
@@ -434,15 +435,11 @@ foreach($newsTypeList as $newsType)
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
             </ul>
 <?php renderCertification();?>
         </div>

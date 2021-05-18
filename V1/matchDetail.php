@@ -8,6 +8,7 @@ $params = [
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
@@ -1090,15 +1091,11 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
             </div>
         </div>
         <ul class="row links_list clearfix">
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
+              <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
         </ul>
         <p>Copyright © 2021 www.qilindianjing.com</p>
         <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
