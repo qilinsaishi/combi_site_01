@@ -304,7 +304,7 @@ else
 															if((strpos($round_son_key,'skill_')!==false) ){
 														?>
 													<div>
-														<img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
+														<img src="<?php echo $round_son_detail; ?>" class="imgauto" alt="">
 													</div>
 													<?php }}?>
 												</div>
