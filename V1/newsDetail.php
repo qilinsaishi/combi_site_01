@@ -63,18 +63,12 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time'])+$config['hour_lag']*3600);?></p>
                         <div class="news_label clearfix">
-                            <span>教学</span>
-                            <span>标签</span>
-                            <span>好几个字的标签</span>
-                            <span>教学</span>
-                            <span>标签</span>
-                            <span>好几个字的标签</span>
-                            <span>教学</span>
-                            <span>标签</span>
-                            <span>好几个字的标签</span>
+                            <?php foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
+                                <span><?php echo $word;?></span>
+                            <?php }?>
                         </div>
                         <div class="news_top_content">
-                            <?php echo $return['information']['data']['content'];?>
+                            <?php echo html_entity_decode($return['information']['data']['content'];?>
                         </div>
                     </div>
                     <div class="news_detail">
