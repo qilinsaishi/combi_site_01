@@ -12,6 +12,18 @@ $params = [
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["intergratedPlayer"]['data']['pid']))
+{
+    render404($config);
+}
+//雷达图数据
+$radarData=[];
+if($return['intergratedPlayer']['data']['radarData']!="")
+{
+	$radarData=json_encode(array_values($return['intergratedPlayer']['data']['radarData']),JSON_UNESCAPED_UNICODE);
+}
+
+
 if($return['intergratedPlayer']['data']['description']!="")
 {
     if(substr($return['intergratedPlayer']['data']['description'],0,1)=='"' && substr($return['intergratedPlayer']['data']['description'],-1)=='"')
@@ -84,16 +96,15 @@ else
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-      <title><?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料_<?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?><?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介-<?php echo $config['site_name']?></title>
-  <meta name="description" content="<?php echo strip_tags($return['intergratedPlayer']['data']['teamInfo']['team_name']);?><?php echo $return['intergratedPlayer']['data']['player_name'];?>，真名为<?php echo $return['intergratedPlayer']['data']['player_name'];?>，<?php echo $return['intergratedPlayer']['data']['country'];?>人，<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo "在".$return['totalTeamInfo']['data']['team_name']."中长期打".$return['intergratedPlayer']['data']['position'].".位置，";}?><?php if(count($return['intergratedPlayer']['data']['playerList'])>0){echo "与".implode(",",array_column($return['intergratedPlayer']['data']['playerList'],"player_name"))."为队友";}?>。">
-    <meta name=”Keywords” Content=”<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料,<?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?><?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?><?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介">
-
+      <title><?php echo $return['intergratedPlayer']['data']['player_name'];?>_<?php echo $config['game'][$game]?><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?><?php echo $return['intergratedPlayer']['data']['cn_name'] ??'' ;?>个人简介资料信息-<?php echo $config['site_name']?>
+	  </title>
+  <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game'][$game]?><?php echo strip_tags($return['intergratedPlayer']['data']['teamInfo']['team_name']);?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人信息资料，<?php echo $description ;?>">
+	<meta name=”Keywords” Content=”<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人信息,<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料,<?php echo $config['game'][$game]?><?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介">
 	<?php renderHeaderJsCss($config,["playerdetail"]);?> 
     <!-- 这是本页面新增的css  playerdetail.css -->
    
@@ -160,15 +171,11 @@ else
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_data.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">基础数据</span>
-                        <a href="##" class="team_pub_more fr">
-                            <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                        </a>
+                        
                     </div>
                     <div class="player_data_detail clearfix">
                         <div class="radar fl">
-                            <div id="chart" style="height: 280px;width: 240px" data-kill='30' data-assists="20"
-                                data-existence="50" data-rate='40' data-economy='80' data-view='10'></div>
+                            <div id="chart" style="height: 280px;width: 240px" ></div>
                         </div>
                         <div class="player_data_content fr">
                             <div class="player_data_top clearfix">
@@ -220,12 +227,10 @@ else
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_match.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">kaixuan比赛战绩</span>
-                        <a href="##" class="team_pub_more fr">
-                            <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                        </a>
+                        
                     </div>
                     <div class="scroll">
+						<?php if(isset($return['intergratedPlayer']['data']['recentMatchList']) && count($return['intergratedPlayer']['data']['recentMatchList'])>0 ){?>
                         <div class="player_matchs_name">
                             <span class="span1">时间</span>
                             <span class="span2">对阵</span>
@@ -236,391 +241,96 @@ else
                             <span class="span7">符文</span>
                         </div>
                         <ul class="player_matchs_content">
-                            <li class="red">
-                                <a href="##">
-                                    <div class="player_matchs_div1">
-                                        <span class="result">胜</span>
-                                        <span class="time">2021.04.11</span>
-                                    </div>
-                                    <div class="player_matchs_div2">
-                                        <div class="team1">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <div class="player_vs">GAME 2</div>
-                                        <div class="team2">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_detail1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div3">
-                                        <div class="player_matchs_div3_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div4">
-                                        17/10/12
-                                    </div>
-                                    <div class="player_matchs_div5 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div6 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div7 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="blue">
-                                <a href="##">
-                                    <div class="player_matchs_div1">
-                                        <span class="result">败</span>
-                                        <span class="time">2021.04.11</span>
-                                    </div>
-                                    <div class="player_matchs_div2">
-                                        <div class="team1">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <div class="player_vs">GAME 2</div>
-                                        <div class="team2">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_detail1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div3">
-                                        <div class="player_matchs_div3_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div4">
-                                        17/10/12
-                                    </div>
-                                    <div class="player_matchs_div5 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div6 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div7 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="red">
-                                <a href="##">
-                                    <div class="player_matchs_div1">
-                                        <span class="result">胜</span>
-                                        <span class="time">2021.04.11</span>
-                                    </div>
-                                    <div class="player_matchs_div2">
-                                        <div class="team1">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <div class="player_vs">GAME 2</div>
-                                        <div class="team2">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_detail1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div3">
-                                        <div class="player_matchs_div3_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div4">
-                                        17/10/12
-                                    </div>
-                                    <div class="player_matchs_div5 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div6 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div7 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="blue">
-                                <a href="##">
-                                    <div class="player_matchs_div1">
-                                        <span class="result">败</span>
-                                        <span class="time">2021.04.11</span>
-                                    </div>
-                                    <div class="player_matchs_div2">
-                                        <div class="team1">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <div class="player_vs">GAME 2</div>
-                                        <div class="team2">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_detail1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div3">
-                                        <div class="player_matchs_div3_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div4">
-                                        17/10/12
-                                    </div>
-                                    <div class="player_matchs_div5 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div6 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div7 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="red">
-                                <a href="##">
-                                    <div class="player_matchs_div1">
-                                        <span class="result">胜</span>
-                                        <span class="time">2021.04.11</span>
-                                    </div>
-                                    <div class="player_matchs_div2">
-                                        <div class="team1">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <div class="player_vs">GAME 2</div>
-                                        <div class="team2">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_detail1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div3">
-                                        <div class="player_matchs_div3_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div4">
-                                        17/10/12
-                                    </div>
-                                    <div class="player_matchs_div5 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div6 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div7 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="blue">
-                                <a href="##">
-                                    <div class="player_matchs_div1">
-                                        <span class="result">败</span>
-                                        <span class="time">2021.04.11</span>
-                                    </div>
-                                    <div class="player_matchs_div2">
-                                        <div class="team1">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/WElogo.png" alt="">
-                                        </div>
-                                        <div class="player_vs">GAME 2</div>
-                                        <div class="team2">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_detail1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div3">
-                                        <div class="player_matchs_div3_img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div4">
-                                        17/10/12
-                                    </div>
-                                    <div class="player_matchs_div5 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading2.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading3.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading4.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading5.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading6.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/out_loading7.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div6 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="player_matchs_div7 clearfix">
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
-                                        </div>
-                                        <div>
-                                            <img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+							<?php
+						  foreach($return['intergratedPlayer']['data']['recentMatchList'] as $recentMatchInfo)
+						  { 
+								if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list'])){$side = "home";}else{$side="away";}
+							   if(($recentMatchInfo['home_score'] >= $recentMatchInfo['away_score'])){$win_side = "home";}else{$win_side="away";}
+								if(count($recentMatchInfo['player_detail'])>0)
+								{
+									foreach($recentMatchInfo['player_detail'] as $round_key => $round_detail)
+									{
+										
+										
+										?>
+										<li class="<?php if($side == $win_side){  ?>red<?php }else{ ?>blue<?php } ?>">
+											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['match_id'];?>">
+												<div class="player_matchs_div1">
+													<span class="result"><?php if($side == $win_side){  ?>胜<?php }else{ ?>败<?php } ?></span>
+													<span class="time"><?php echo date("Y.m.d",strtotime($recentMatchInfo['start_time'])+$config['hour_lag']*3600);?></span>
+												</div>
+												<div class="player_matchs_div2">
+													<div class="team1">
+														<img class="imgauto" src="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
+													</div>
+													<div class="player_vs">GAME <?php echo $round_key+1;?></div>
+													<div class="team2">
+														<img class="imgauto" src="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
+													</div>
+												</div>
+												<div class="player_matchs_div3">
+													<div class="player_matchs_div3_img">
+														<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
+															if((strpos($round_son_key,'hero_')!==false) && (strpos($round_son_key,'pic')!==false) ){
+														?>
+													
+														<img class="imgauto" src="<?php echo $round_son_detail; ?>" alt="">
+															<?php }}?>
+													</div>
+												</div>
+												<div class="player_matchs_div4">
+													<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
+													if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'_kills')!==false) ){
+														echo $round_son_detail;
+													}}?>/<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
+													if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'_deaths')!==false) ){
+														echo $round_son_detail;
+													}}?>/<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
+													if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'_assists')!==false) ){
+														echo $round_son_detail;
+													}}?>
+												
+												</div>
+												<div class="player_matchs_div5 clearfix">
+													<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
+															if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'equip_')!==false) ){
+														?>
+													<div>
+														<img src="<?php echo $round_son_detail; ?>" class="imgauto" alt="">
+													</div>
+													<?php }}?>
+													
+													
+												</div>
+												<div class="player_matchs_div6 clearfix">
+													<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
+															if((strpos($round_son_key,'skill_')!==false) ){
+														?>
+													<div>
+														<img src="<?php echo $round_son_detail; ?>" class="imgauto" alt="">
+													</div>
+													<?php }}?>
+												</div>
+												<div class="player_matchs_div7 clearfix">
+													<div>
+														<img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
+													</div>
+													<div>
+														<img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
+													</div>
+												</div>
+											</a>
+										</li>
+
+									<?php }}?>
+                            
+						  <?php }?>
                         </ul>
+						<?php }else{?>
+							 <div class="null">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							</div>
+						<?php } ?>
                     </div>
                 </div>
                 <!-- 比赛战绩 -->
@@ -635,19 +345,19 @@ else
                         </div>
                         <div class="player_team_bot clearfix">
                             <div class="left fl">
-                                <img class="imgauto" src="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>" alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
+                                <img class="imgauto"  src="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>?x-oss-process=image/resize,m_lfit,h_100,w_100" alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
                             </div>
                             <div class="right fl">
                                 <div class="team_explain_top clearfix">
-                                    <p class="name fl"><?php $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?></p>
+                                    <p class="name fl"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?></p>
                                     <p class="classify fl"><?php if($return['intergratedPlayer']['data']['teamInfo']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                                 </div>
-                                <p class="name">英文名：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name']?></span></p>
+                                <p class="name">英文名：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
                                 <p class="name">别&nbsp;&nbsp;&nbsp;称：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
                             </div>
                         </div>
                         <div class="player_team_word">
-                            <?php if(strlen($team_description)>200){echo mb_substr(trim($team_description),0,100);}else{echo $team_description;} ?>
+                           <?php echo $team_description; ?>
                         </div>
                     </div>
                     <div class="player_xs_explain fr">
@@ -660,16 +370,16 @@ else
                         <ul class="player_xs clearfix">
 							 <?php
 								foreach($return['intergratedPlayer']['data']['playerList'] as $playerInfo)
-								{  if($i<=7){  ?>
+								{  ?>
                             <li>
-                                <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>" title="<?php echo $playerInfo['player_name'];?>">
+                                <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                     <div class="player_xs_img">
                                         <img class="imgauto" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" alt="<?php echo $playerInfo['player_name'];?>">
                                     </div>
                                     <span><?php echo $playerInfo['player_name'];?></span>
                                 </a>
                             </li>
-								<?php $i++; }}?>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>
@@ -812,13 +522,22 @@ else
     <script src="<?php echo $config['site_url'];?>/js/circle-progress.js"></script>
     <script>
         var radar_chart = echarts.init(document.getElementById("chart"));
-        var kill = $('#chart').data('kill');
-        var assists = $('#chart').data('assists');
-        var existence = $('#chart').data('existence');
-        var rate = $('#chart').data('rate');
-        var economy = $('#chart').data('economy');
-        var view = $('#chart').data('view');
-        var value = [kill, assists, existence, rate, economy, view];
+        // var kill = $('#chart').data('kill');
+        // var assists = $('#chart').data('assists');
+        // var existence = $('#chart').data('existence');
+        // var rate = $('#chart').data('rate');
+        // var economy = $('#chart').data('economy');
+        // var view = $('#chart').data('view');
+         // var value = [kill, assists, existence, rate, economy, view];
+            var array=<?php echo $radarData;?>;
+ 
+            //先给数组中的每一个元素添加索引(index)
+            var i;
+            for(i=0;i<array.length;i++){
+                array[i].index=i;
+            }
+
+        var value = [array[0].empno, array[1].empno, array[2].empno, array[3].empno ,array[4].empno ,array[5].empno, ];
         var option = {
             // tooltip: {},
             radar: {
@@ -836,12 +555,14 @@ else
 
                 },
                 indicator: [
-                    { name: '击杀', max: 100 },
-                    { name: '助攻', max: 100 },
-                    { name: '生存', max: 100 },
-                    { name: '参团率', max: 100 },
-                    { name: '经济', max: 100 },
-                    { name: '视野', max: 100 }
+                    { name: array[0].name, max: 100 },
+                    { name: array[1].name, max: 100 },
+                    { name: array[2].name, max: 100 },
+                    { name: array[3].name, max: 100 },
+                    { name: array[4].name, max: 100 },
+                    { name: array[5].name, max: 100 },
+                    
+                   
                 ],
                 splitArea: {
                     show: true,

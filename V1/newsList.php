@@ -14,6 +14,7 @@ $params = [
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"newsList","game"=>$currentGame,"page"=>$page,"site_id"=>$config['site_id']]
 ];
 //依次加入所有游戏
@@ -33,7 +34,10 @@ $return = curl_post($config['api_get'],json_encode($params),1);
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事赛程</title>
+    <title><?php if($currentGame=="all"){?><?php echo $type=="news"?"电竞资讯":"游戏攻略";?>_电子竞技<?php echo $type=="news"?"赛事新闻":"游戏攻略";?>-<?php echo $config['site_name'];?><?php }else{?><?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电竞资讯":"攻略";?>_<?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电子竞技赛事新闻":"游戏攻略";?>-<?php echo $config['site_name'];?><?php } ?></title>
+    <meta name=”Keywords” Content=”<?php if($currentGame=="all"){?><?php echo $type=="news"?"电竞资讯,电子竞技新闻,电竞赛事新闻":"电竞游戏攻略,游戏攻略";?><?php }else{?><?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电竞资讯":"攻略";?>,<?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电子竞技新闻":"游戏攻略";?>,<?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电竞赛事新闻":"上分技巧";?><?php } ?>″>
+    <meta name="description" content="<?php if($currentGame=="all"){?><?php echo $config['site_name'];?><?php echo $type=="news"?"提供电竞热门资讯,了解最新电竞新闻,掌握电子竞技赛事资讯,请关注":"提供游戏攻略,了解最新游戏攻略,掌握电子竞技游戏攻略,请关注";?><?php echo $config['site_name'];?><?php }else{?><?php echo $config['site_name'];?><?php echo $type=="news"?"提供".$config['game'][$currentGame]."电竞热门资讯,了解最新".$config['game'][$currentGame]."电竞新闻,掌握".$config['game'][$currentGame]."电子竞技赛事资讯,请关注":"提供".$config['game'][$currentGame]."游戏攻略,了解最新,".$config['game'][$currentGame]."上分技巧,掌握".$config['game'][$currentGame]."游戏攻略,请关";?><?php echo $config['site_name'];?><?php } ?>">
+
     <?php renderHeaderJsCss($config,["right","news"]);?>
 </head>
 
@@ -63,13 +67,13 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                 <div class="game_left news fl">
                     <ul class="esports_ul clearfix">
                         <li class="<?php if($currentGame=='all') {echo 'active';}?>">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url']?>/<?php echo $type;?>list/all/<?php echo $params["allNewsList"]['page'];?>">
                                 全部
                             </a>
                         </li>
                         <?php foreach($config['game'] as $game => $game_name){?>
                             <li class="<?php if($currentGame==$game) {echo 'active';}?>">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url']?>/<?php echo $type;?>list/<?php echo $game;?>/<?php echo $params[$game."NewsList"]['page'];?>">
                                     <?php echo $game_name;?>
                                 </a>
                             </li>
@@ -102,7 +106,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                                 </li>
                                             <?php }?>
                                                 <div class="paging">
-                                                    <?php render_page_pagination($return[$game.'NewsList']['count'],$pageSize,$params[$game."NewsList"]['page'],$config['site_url']."/newslist/".$game); ?>
+                                                    <?php render_page_pagination($return[$game.'NewsList']['count'],$pageSize,$params[$game."NewsList"]['page'],$config['site_url']."/".$type."list/".$game); ?>
                                                 </div>
                                             <?php }else{?>
                                                 <!-- 暂无内容 -->
@@ -129,7 +133,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 <span class="fl">最新赛事</span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>\tournamentList">
+                                <a href="<?php echo $config['site_url'];?>/tournamentList">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -138,7 +142,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <ul class="game_match_detail">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>
@@ -214,15 +218,11 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
             </ul>
 <?php renderCertification();?>
         </div>

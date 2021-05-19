@@ -4,6 +4,7 @@ $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
 //依次加入所有游戏
@@ -48,7 +49,9 @@ foreach($newsTypeList as $newsType)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>Document</title>
+    <title><?php echo $config['site_name'];?>-热门电竞战队赛事资讯网</title>
+    <meta name=”Keywords” Content=”电竞赛事,电竞战队,电竞资讯″>
+    <meta name="description" content="<?php echo $config['site_name'];?>提供专业电子竞技赛事、电竞战队、电竞资讯内容，专注于服务电竞玩家，致力于为电竞玩家提供电竞数据分析及解读">
     <?php renderHeaderJsCss($config,["index"]);?>
 </head>
 
@@ -94,7 +97,7 @@ foreach($newsTypeList as $newsType)
                 <div class="game_title row clearfix game_title_e">
                     <span class="title">热门赛事</span>
                     <div class="more">
-                        <a href="<?php echo $config['site_url'];?>/matchList">
+                        <a href="<?php echo $config['site_url'];?>/match/">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
@@ -184,7 +187,7 @@ foreach($newsTypeList as $newsType)
                             <div class="game_title clearfix game_team_e">
                                 <span class="title"><?php echo $game_name;?>热门战队</span>
                                 <div class="more">
-                                    <a href="<?php echo $config['site_url'];?>/teamList">
+                                    <a href="<?php echo $config['site_url'];?>/teamlist/">
                                         <span>更多</span>
                                         <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                     </a>
@@ -193,7 +196,7 @@ foreach($newsTypeList as $newsType)
                             <ul class="game_team_list_detail">
                                 <?php foreach ($return[$game."TeamList"]['data'] as $key => $teamInfo) {?>
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
-                                    <a href="<?php echo $config['site_url'];?>/teamDetail/<?php echo $teamInfo['tid'];?>">
+                                    <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                         <div class="a1">
                                             <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                         </div>
@@ -230,7 +233,7 @@ foreach($newsTypeList as $newsType)
                     <div class="game_title clearfix game_team_hot">
                         <span class="title">热门选手</span>
                         <div class="more">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/playerlist/">
                                 <span>更多</span>
                                 <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
@@ -251,7 +254,7 @@ foreach($newsTypeList as $newsType)
                             <ul class="clearfix">
                                 <?php foreach ($return[$game."PlayerList"]['data'] as $key => $playerInfo) {?>
                                 <li <?php if($key == 0 && $game == $config['default_game']){echo ' class="active"';}?>>
-                                    <a href="<?php echo $config['site_url'];?>/playerDetail/<?php echo $playerInfo['pid'];?>">
+                                    <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                         <div class="hot_player_img">
                                             <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>">
                                         </div>
@@ -273,7 +276,7 @@ foreach($newsTypeList as $newsType)
                         <div class="game_title clearfix game_team_new">
                             <span class="title">电竞资讯</span>
                             <div class="more">
-                                <a href="<?php echo $config['site_url'];?>/newsList">
+                                <a href="<?php echo $config['site_url'];?>/newslist/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -299,7 +302,7 @@ foreach($newsTypeList as $newsType)
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                         <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_top_div">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -310,7 +313,7 @@ foreach($newsTypeList as $newsType)
                                         <div class="news_dianjing_mid">
                                             <?php foreach($infoList['data'] as $key => $info){?>
                                                 <?php if($key>=1 && $key<=2){?>
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_mid_img">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -322,7 +325,7 @@ foreach($newsTypeList as $newsType)
                                             <ul>
                                                 <?php foreach($infoList['data'] as $key => $info){?>
                                                 <?php if($key>=3){?>
-                                                <li><a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                <li><a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <?php echo $info['title'];?>
                                                     </a></li>
                                                 <?php }?><?php }?>
@@ -337,7 +340,7 @@ foreach($newsTypeList as $newsType)
                         <div class="game_title clearfix game_team_new">
                             <span class="title">游戏攻略</span>
                             <div class="more">
-                                <a href="<?php echo $config['site_url'];?>/straList">
+                                <a href="<?php echo $config['site_url'];?>/stralist/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -361,7 +364,7 @@ foreach($newsTypeList as $newsType)
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                             <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_top_div">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -372,7 +375,7 @@ foreach($newsTypeList as $newsType)
                                         <div class="news_dianjing_mid">
                                             <?php foreach($infoList['data'] as $key => $info){?>
                                                 <?php if($key>=1 && $key<=2){?>
-                                                    <a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_mid_img">
                                                             <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                                         </div>
@@ -384,7 +387,7 @@ foreach($newsTypeList as $newsType)
                                             <ul>
                                                 <?php foreach($infoList['data'] as $key => $info){?>
                                                     <?php if($key>=3){?>
-                                                        <li><a href="<?php echo $config['site_url'];?>\newsDetail\<?php echo $info['id'];?>">
+                                                        <li><a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                                 <?php echo $info['title'];?>
                                                             </a></li>
                                                     <?php }?><?php }?>
@@ -405,7 +408,7 @@ foreach($newsTypeList as $newsType)
                 <div class="game_title clearfix game_team_special">
                     <span class="title">赛事专题</span>
                     <div class="more">
-                        <a href="<?php echo $config['site_url'];?>\tournamentList">
+                        <a href="<?php echo $config['site_url'];?>/tournamentList">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
@@ -414,7 +417,7 @@ foreach($newsTypeList as $newsType)
                 <ul class="game_special_list">
                     <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                     <li class="col-md-3 col-xs-6">
-                        <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
+                        <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
                             <div class="div_img">
                                 <img src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>">
                                 <span><?php echo $tournamentInfo['tournament_name'];?></span>
@@ -434,15 +437,11 @@ foreach($newsTypeList as $newsType)
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
             </ul>
 <?php renderCertification();?>
         </div>

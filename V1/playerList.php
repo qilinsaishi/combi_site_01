@@ -37,9 +37,9 @@ $keyList = array_keys($return);
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>电竞选手</title>
-    <!-- 本页新增的css right.css -->
-    <!-- 本页新增的css team.css -->
+    <title><?php if($currentGame=="all"){?>电竞职业选手大全_电竞选手-<?php echo $config['site_name'];?><?php }else{?><?php echo $config['game'][$currentGame];?>电竞选手大全_<?php echo $config['game'][$currentGame];?>电子竞技俱乐部职业选手-<?php echo $config['site_name'];?> <?php } ?></title>
+    <meta name=”Keywords” Content=”<?php if($currentGame=="all"){?>电竞选手,电竞职业选手,电竞职业玩家<?php }else{?><?php echo $config['game'][$currentGame];?>电竞选手,<?php echo $config['game'][$currentGame];?>电竞职业选手,<?php echo $config['game'][$currentGame];?>电竞职业玩家<?php } ?>″>
+    <meta name="description" content="<?php if($currentGame=="all"){?><?php echo $config['site_name'];?>提供电竞职业选手信息，想了解全球有哪些电子竞技俱乐部选手，掌握最新最全电竞玩家信息，请关注<?php echo $config['site_name'];?>｝<?php }else{?><?php echo $config['site_name'];?>提供<?php echo $config['game'][$currentGame];?>电竞职业选手信息，想了解全球有哪些<?php echo $config['game'][$currentGame];?>电子竞技俱乐部选手，掌握最新最全<?php echo $config['game'][$currentGame];?>电竞玩家信息，请关注<?php echo $config['site_name'];?><?php } ?>">
     <?php renderHeaderJsCss($config,["right","player"]);?>
 </head>
 
@@ -69,14 +69,16 @@ $keyList = array_keys($return);
                 <div class="game_left player fl">
                     <ul class="esports_ul clearfix">
                         <li <?php if($currentGame== 'all'){echo 'class="active "';}?> >
-                            <a href="javascript:;">
+                            <!--<a href="javascript:;">-->
+                                <a href="<?php echo $config['site_url']?>/playerlist/all/<?php echo $params["allPlayerList"]['page'];?>">
                                 全部
                             </a>
                         </li>
                         <?php foreach($config['game'] as $game => $game_name){?>
                         <li <?php if($currentGame == $game){echo 'class="active "';}?>>
-                            <a href="javascript:;">
-                                <?php echo $game_name;?>
+                            <!--<a href="javascript:;">-->
+                            <a href="<?php echo $config['site_url']?>/playerlist/<?php echo $game;?>/<?php echo $params[$game."PlayerList"]['page'];?>">
+                            <?php echo $game_name;?>
                             </a>
                         </li>
                         

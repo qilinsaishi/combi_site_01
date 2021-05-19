@@ -36,7 +36,9 @@ $keyList = array_keys($return);
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事赛程</title>
+    <title><?php if($currentGame=="all"){?>电竞战队大全_电子竞技俱乐部-<?php echo $config['site_name'];?><?php }else{?><?php echo $config['game'][$currentGame];?>电竞战队大全_<?php echo $config['game'][$currentGame];?>电子竞技俱乐部-<?php echo $config['site_name'];?> <?php } ?></title>
+    <meta name=”Keywords” Content=”<?php if($currentGame=="all"){?>电竞战队,电子竞技俱乐部<?php }else{?><?php echo $config['game'][$currentGame];?>电竞战队大全,<?php echo $config['game'][$currentGame];?>电子竞技俱乐部<?php } ?>″>
+    <meta name="description" content="<?php if($currentGame=="all"){?><?php echo $config['site_name'];?>提供电竞战队信息，想了解全球有哪些电子竞技俱乐部，掌握最新最全电竞战队信息，请关注<?php echo $config['site_name'];?><?php }else{?> <?php echo $config['site_name'];?>提供<?php echo $config['game'][$currentGame];?>电竞战队信息，想了解全球有哪些<?php echo $config['game'][$currentGame];?>电子竞技俱乐部，掌握最新最全<?php echo $config['game'][$currentGame];?>电竞战队信息，请关注<?php echo $config['site_name'];?> <?php } ?>">
     <?php renderHeaderJsCss($config,["progress-bars","game","right","team"]);?>
 
 </head>
@@ -68,13 +70,14 @@ $keyList = array_keys($return);
                 <div class="game_left esports fl">
                     <ul class="esports_ul clearfix">
                         <li <?php if($currentGame== 'all'){echo 'class="active "';}?> >
-                            <a href="javascript:;">
-                                全部
+                            <!--<a href="javascript:;">-->
+                            <a href="<?php echo $config['site_url']?>/teamlist/all/<?php echo $params["allTeamList"]['page'];?>">
+                            全部
                             </a>
                         </li>
 						 <?php foreach($config['game'] as $game => $game_name){?>
                         <li <?php if($currentGame == $game){echo 'class="active "';}?>>
-                            <a href="javascript:;">
+                            <a href="<?php echo $config['site_url']?>/teamlist/<?php echo $game;?>/<?php echo $params[$game."TeamList"]['page'];?>">
                                 <?php echo $game_name;?>
                             </a>
                         </li>
@@ -120,7 +123,7 @@ $keyList = array_keys($return);
                                 <span class="fl">近期赛事</span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/matchlist/">
+                                <a href="<?php echo $config['site_url'];?>/match/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>

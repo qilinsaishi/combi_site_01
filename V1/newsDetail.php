@@ -7,12 +7,17 @@ $params = [
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"newsDetail","id"=>$id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["information"]['data']['id']))
+{
+    render404($config);
+}
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 $return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
-$return["information"]['data']['5118_word_list'] = json_decode($return["information"]['data']['5118_word_list'],true);
+$return["information"]['data']['5118_word_list'] = json_decode($return["information"]['data']['5118_word_list'],true)??[];
 $ids = array_column($return["information"]['data']['scws_list'],"keyword_id");
 $ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
@@ -31,7 +36,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事赛程</title>
+    <title><?php echo $return['information']['data']['title']?>_<?php echo $config['game'][$return['information']['data']['game']];?><?php echo $currentType=="news"?"电竞资讯":"游戏攻略"; ?><?php echo $config['site_name'];?></title>
     <?php renderHeaderJsCss($config,["right","news"]);?>
 </head>
 
@@ -63,18 +68,12 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time'])+$config['hour_lag']*3600);?></p>
                         <div class="news_label clearfix">
-                            <span>教学</span>
-                            <span>标签</span>
-                            <span>好几个字的标签</span>
-                            <span>教学</span>
-                            <span>标签</span>
-                            <span>好几个字的标签</span>
-                            <span>教学</span>
-                            <span>标签</span>
-                            <span>好几个字的标签</span>
+                            <?php if(count($return["information"]['data']['5118_word_list'])>0){foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
+                                <span><?php echo $word;?></span>
+                            <?php }}?>
                         </div>
                         <div class="news_top_content">
-                            <?php echo $return['information']['data']['content'];?>
+                            <?php echo html_entity_decode($return['information']['data']['content']);?>
                         </div>
                     </div>
                     <div class="news_detail">
@@ -150,7 +149,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                                 <span class="fl">最新赛事</span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>\tournamentList">
+                                <a href="<?php echo $config['site_url'];?>/tournamentList">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
@@ -159,7 +158,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                         <ul class="game_match_detail">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>
@@ -235,15 +234,11 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                 <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
             </ul>
             <?php renderCertification();?>
         </div>

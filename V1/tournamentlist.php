@@ -1,14 +1,27 @@
 <?php
 require_once "function/init.php";
+$currentGame = $_GET['game']??'all';
 $params = [
-    "tournamentList"=>["page"=>1,"page_size"=>100,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>1000,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentList","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+$tournamentList = [];
+$tournamentList["all"] = [];
+foreach($config['game'] as $game => $game_name)
+{
+    $tournamentList[$game] = [];
+}
+foreach($return['tournamentList']['data'] as $tournamentInfo)
+{
+    $tournamentList[$tournamentInfo['game']][] = $tournamentInfo;
+}
+$tournamentList["all"] = $return['tournamentList']['data'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +32,9 @@ $return = curl_post($config['api_get'],json_encode($params),1);
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事专题</title>
+    <title><?php if($currentGame=="all"){?>电竞热门赛事_电子竞技比赛-<?php }else{?><?php echo $config['game'][$currentGame];?>热门赛事_<?php echo $config['game'][$currentGame];?>电子竞技比赛-<?php }?><?php echo $config['site_name'];?></title>
+    <meta name="Keywords" content="<?php if($currentGame=="all"){?>电竞热门比赛,电竞热门赛事,电竞赛事大全<?php }else{?><?php echo $config['game'][$currentGame];?>热门比赛,<?php echo $config['game'][$currentGame];?>热门赛事,<?php echo $config['game'][$currentGame];?>电竞赛事大全<?php } ?>">
+    <meta name="description" content="<?php if($currentGame=="all"){?>提供电竞热门比赛，了解最新电竞赛事，掌握大型电子竞技比赛，请关注<?php }else{?>提供<?php echo $config['game'][$currentGame];?>热门比赛，了解最新<?php echo $config['game'][$currentGame];?>电竞赛事，掌握大型<?php echo $config['game'][$currentGame];?>电子竞技比赛，请关注<?php } ?><?php echo $config['site_name'];?>">
     <?php renderHeaderJsCss($config,["right","events"]);?>
 </head>
 
@@ -47,18 +62,51 @@ $return = curl_post($config['api_get'],json_encode($params),1);
         <div class="container">
             <div class="row clearfix">
                 <div class="game_left events fl">
-                    <ul class="events_ul clearfix">
-                        <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
-                            <li>
-                                <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>">
-                                    <div class="events_img">
-                                        <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
-                                    </div>
-                                    <span><?php echo $tournamentInfo['tournament_name'];?></span>
+                    <ul class="esports_ul clearfix">
+                        <li<?php if($currentGame=="all"){?> class="active"<?php }?>>
+                            <a href="<?php echo $config['site_url'];?>/tournamentlist/all">
+                                全部
+                            </a>
+                        </li>
+                        <?php foreach($config['game'] as $game => $game_name){?>
+                            <li <?php if($currentGame==$game){?> class="active"<?php }?>>
+                                <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $game;?>">
+                                    <?php echo $game_name;?>
                                 </a>
                             </li>
                         <?php }?>
                     </ul>
+                    <div class="events_d">
+                        <?php foreach($tournamentList as $game => $List){?>
+                            <div class="events_ditem <?php if($game ==$currentGame){echo 'active';}?>">
+                                <?php if(count($List)>0){?>
+                                <ul class="events_ul clearfix">
+                                    <?php foreach($List as $tournamentInfo){?>
+                                        <li>
+                                            <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
+                                                <div class="events_img">
+                                                    <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
+                                                </div>
+                                                <span><?php echo $tournamentInfo['tournament_name'];?></span>
+                                            </a>
+                                        </li>
+                                    <?php }?>
+                                </ul>
+                                <?php }else{?>
+                                <!-- 暂无内容 -->
+                                <div class="null">
+                                    <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                    <span>暂无内容</span>
+                                </div>
+                                <!-- 暂无内容 -->
+                                <?php }?>
+
+
+                            </div>
+                        <?php }?>
+
+                        </div>
+
                 </div>
                 <div class="game_right">
                     <div class="game_news">
@@ -153,15 +201,11 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                 <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
             </ul>
 <?php renderCertification();?>
         </div>
@@ -178,5 +222,11 @@ $return = curl_post($config['api_get'],json_encode($params),1);
     </div>
     <?php renderFooterJsCss($config,[],[]);?>
 </body>
-
+<script>
+    $(".esports_ul").on("click","li",function(){
+        $(".esports_ul li").removeClass("active");
+        $(this).addClass("active");
+        $(this).parents(".events").find(".events_d").find(".events_ditem").removeClass("active").eq($(this).index()).addClass("active")
+    })
+</script>
 </html>

@@ -8,9 +8,14 @@ $params = [
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["matchDetail"]['data']['match_id']))
+{
+    render404($config);
+}
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
 ?>
 <!DOCTYPE html>
@@ -22,7 +27,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事赛程</title>
+    <title><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据比分直播视频_<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>-<?php echo $config['site_name'];?></title>
+    <meta name="Keywords" content="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>,<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛">
+    <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据,了解<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>在<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>的表现,请关注<?php echo $config['site_name'];?>">
     <?php renderHeaderJsCss($config,["progress-bars","game"]);?>
 </head>
 
@@ -1090,15 +1097,11 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
             </div>
         </div>
         <ul class="row links_list clearfix">
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
-            <li><a href="##">凤凰电竞</a></li>
+              <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
         </ul>
         <p>Copyright © 2021 www.qilindianjing.com</p>
         <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>

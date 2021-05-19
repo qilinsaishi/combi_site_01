@@ -7,12 +7,14 @@ $params = [
     "matchList" =>
         ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$config['default_source'],"page"=>1,"page_size"=>100,"cache_time"=>3600],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
-    //"hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
-    //"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    //"hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+if(!isset($return["tournament"]['data']['tournament_id']))
+{
+    render404($config);
+}
 $matchList = [];
 foreach($return['tournament']['data']['roundList'] as $roundInfo)
 {
@@ -656,7 +658,7 @@ unset($return['matchList']);
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
-                        <a href="<?php echo $config['site_url'];?>\tournamentList" class="team_pub_more fr">
+                        <a href="<?php echo $config['site_url'];?>/tournamentList" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
@@ -665,7 +667,7 @@ unset($return['matchList']);
                         <ul class="clearfix">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>\tournamentdetail\<?php echo $tournamentInfo['tournament_id'];?>" style="background-image: url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image: url('<?php echo $tournamentInfo['logo'];?>')">
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>
@@ -684,15 +686,11 @@ unset($return['matchList']);
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                 <?php
+				foreach($return['links']['data'] as $linksInfo)
+				{   ?>
+					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+				<?php }?>
             </ul>
 <?php renderCertification();?>
         </div>
