@@ -3,7 +3,7 @@ require_once "function/init.php";
 $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];

@@ -6,7 +6,7 @@ $params = [
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "matchList" =>
         ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$config['default_source'],"page"=>1,"page_size"=>100,"cache_time"=>3600],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
 ];

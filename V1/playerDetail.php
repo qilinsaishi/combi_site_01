@@ -7,7 +7,7 @@ if($pid<=0)
 }
 $params = [
     "intergratedPlayer"=>[$pid],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
@@ -500,8 +500,7 @@ else
 					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
 				<?php }?>
             </ul>
-            <p>Copyright © 2021 www.qilindianjing.com</p>
-            <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
+            <?php renderCertification();?>
         </div>
     </div>
     <div class="suspension">
