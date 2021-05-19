@@ -231,7 +231,7 @@
     function generateMatchStatus($start_time)
     {
         $currentTime = time();
-        $start_time = strtotime($currentTime);
+        $start_time = strtotime($start_time);
         if($currentTime<$start_time)
         {
             $match_status = "未开始";
