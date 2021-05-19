@@ -2,8 +2,8 @@
 
 $base_config = [
     'site_name'=>"70电竞",
-    'api_url'=>'http://preapi.querylist.cn',//api站点URL
-    'site_url'=>'http://pre.combi_01_info.com',//本站URl
+	'api_url'=>'http://api02.qilindianjing.com',//api站点URL
+    'site_url'=>'https://www.qilindianjing.com',//本站URl
     'game'=>["kpl"=>"王者荣耀","lol"=>"英雄联盟","dota2"=>"DOTA2"],
     'default_game' => "lol",
     'site_id'=>5,
