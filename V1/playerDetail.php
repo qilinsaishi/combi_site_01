@@ -7,7 +7,7 @@ if($pid<=0)
 }
 $params = [
     "intergratedPlayer"=>[$pid],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
@@ -374,7 +374,7 @@ else
                             <li>
                                 <a href="<?php echo $config['site_url']; ?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                     <div class="player_xs_img">
-                                        <img class="imgauto" src="<?php echo $playerInfo['logo'];?>" title="<?php echo $playerInfo['player_name'];?>" alt="<?php echo $playerInfo['player_name'];?>">
+                                        <img class="imgauto" data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>" title="<?php echo $playerInfo['player_name'];?>" alt="<?php echo $playerInfo['player_name'];?>">
                                     </div>
                                     <span><?php echo $playerInfo['player_name'];?></span>
                                 </a>
@@ -448,7 +448,7 @@ else
                         <li class="<?php if($key==1){ ?>active <?php }?> col-xs-6">
                             <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                 <div class="a1">
-                                    <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                    <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                 </div>
                                 <span><?php echo $teamInfo['team_name'];?></span>
                             </a>
@@ -520,6 +520,7 @@ else
     <script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
     <!-- 这是本页新增的js -->
     <script src="<?php echo $config['site_url'];?>/js/circle-progress.js"></script>
+	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
     <script>
         var radar_chart = echarts.init(document.getElementById("chart"));
         // var kill = $('#chart').data('kill');

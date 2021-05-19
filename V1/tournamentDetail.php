@@ -11,6 +11,36 @@ $params = [
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+//获取当前战队的游戏
+$game=$return['intergratedTeam']['data']['game'] ?? $config['default_game'];
+ $intergrated_id_list=array_column($return['tournament']['data']['teamList'], 'intergrated_id_list');
+ $intergrated_id=array();
+foreach($intergrated_id_list as $val){
+	$intergrated_id=array_merge($intergrated_id,$val);
+}
+$intergrated_id=array_unique($intergrated_id);
+
+//当前游戏下面的资讯
+$params2=[
+	 "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$intergrated_id,"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]]
+];
+
+$return2 = curl_post($config['api_get'],json_encode($params2),1);
+//如果战队资讯不存在
+if(count($return2["keywordMapList"]["data"]??[])==0)
+{
+    $params3 = [
+        "informationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,create_time,game',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+    ];
+    $return3 = curl_post($config['api_get'],json_encode($params3),1);
+    $connectedInformationList = $return3["informationList"]["data"];
+}
+else
+{
+    $connectedInformationList = $return2["keywordMapList"]["data"];
+}
+
+
 if(!isset($return["tournament"]['data']['tournament_id']))
 {
     render404($config);
@@ -177,368 +207,7 @@ unset($return['matchList']);
                         <?php }?>
                     </div>
                 </div>
-                <div class="best_team mb20">
-                    <div class="team_pub_top clearfix">
-                        <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/best_team.png" alt="">
-                        </div>
-                        <span class="fl team_pbu_name">最佳阵容</span>
-                        <div class="fr best_team_match">
-                            <div class="match1">
-                                <p>常规赛第一周</p>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                            </div>
-                            <ul class="match2">
-                                <li>
-                                    <a href="##">常规赛第一周</a>
-                                </li>
-                                <li>
-                                    <a href="##">常规赛第二周</a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        常规赛第三周
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="##">
-                                        常规赛第四周
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="best_team_tab">
-                        <ul class="best_team_tab1 clearfix active">
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/sd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/sd_active.png" alt="">
-                                        </div>
-                                        <span class="white">上单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">444星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/daye.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/daye_active.png" alt="">
-                                        </div>
-                                        <span class="white">打野·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team2.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/zd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/zd_active.png" alt="">
-                                        </div>
-                                        <span class="white">中单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/adc.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/adc_active.png" alt="">
-                                        </div>
-                                        <span class="white">ADC·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team3.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu_active.png" alt="">
-                                        </div>
-                                        <span class="white">辅助·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="best_team_tab1 clearfix">
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/sd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/sd_active.png" alt="">
-                                        </div>
-                                        <span class="white">上单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇22</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/daye.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/daye_active.png" alt="">
-                                        </div>
-                                        <span class="white">打野·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team2.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/zd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/zd_active.png" alt="">
-                                        </div>
-                                        <span class="white">中单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/adc.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/adc_active.png" alt="">
-                                        </div>
-                                        <span class="white">ADC·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team3.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu_active.png" alt="">
-                                        </div>
-                                        <span class="white">辅助·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="best_team_tab1 clearfix">
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/sd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/sd_active.png" alt="">
-                                        </div>
-                                        <span class="white">上单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇33</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/daye.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/daye_active.png" alt="">
-                                        </div>
-                                        <span class="white">打野·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team2.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/zd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/zd_active.png" alt="">
-                                        </div>
-                                        <span class="white">中单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/adc.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/adc_active.png" alt="">
-                                        </div>
-                                        <span class="white">ADC·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team3.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu_active.png" alt="">
-                                        </div>
-                                        <span class="white">辅助·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="best_team_tab1 clearfix">
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/sd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/sd_active.png" alt="">
-                                        </div>
-                                        <span class="white">上单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇44</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/daye.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/daye_active.png" alt="">
-                                        </div>
-                                        <span class="white">打野·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team2.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/zd.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/zd_active.png" alt="">
-                                        </div>
-                                        <span class="white">中单·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/adc.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/adc_active.png" alt="">
-                                        </div>
-                                        <span class="white">ADC·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team3.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    <div class="location">
-                                        <div class="sd">
-                                            <img class="img1 active imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu.png" alt="">
-                                            <img class="img2 imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu_active.png" alt="">
-                                        </div>
-                                        <span class="white">辅助·评分</span>
-                                        <span class="orange">200.2</span>
-                                    </div>
-                                    <div class="team_img">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team1.png" alt="">
-                                    </div>
-                                    <p class="team_name">星宇</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
                 <div class="hot_team mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
@@ -575,80 +244,34 @@ unset($return['matchList']);
                     </div>
                     <div class="team_news_mid">
                         <ul class="team_news_mid_ul clearfix">
+							<?php foreach($connectedInformationList as $key => $information){
+								if($key <=3){
+									
+								?>
                             <li>
-                                <a href="##">
+                                <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $information['id'];?>">
                                     <div class="team_news_img">
                                         <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
+                                            <img class="imgauto" src="<?php echo $information['logo'];?>" alt="<?php echo $information['title'];?>">
                                         </div>
-                                        <p>竞燃杯｜企业电竞联赛竞燃杯｜企业电竞联赛</p>
+                                        <p><?php echo $information['title'];?></p>
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>CSGO精英对抗赛CSGO精英对抗赛</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>竞燃杯｜企业电竞联赛竞燃杯｜企业电竞联赛</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>CSGO精英对抗赛CSGO精英对抗赛</p>
-                                    </div>
-                                </a>
-                            </li>
+                            <?php }} ?>
                         </ul>
                     </div>
                     <div class="team_news_bot">
                         <ul class="team_news_bot_ul clearfix">
+							<?php foreach($connectedInformationList as $key => $information){
+								if($key >3){
+								?>
                             <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
+                                <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $information['id'];?>">
+                                   <?php echo $information['title'];?>
                                 </a>
                             </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
+                           <?php }} ?>
                         </ul>
                     </div>
                 </div>
@@ -708,6 +331,7 @@ unset($return['matchList']);
     <script src="<?php echo $config['site_url'];?>/js/jquery.min.js"></script>
     <script src="<?php echo $config['site_url'];?>/js/index.js"></script>
     <script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
+	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
     <script>
          $(".event_detail").on("click",".event_detail_ul li",function(){
             $(".event_detail_ul li").removeClass("active");

@@ -169,7 +169,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 <li class="active col-xs-6">
                                     <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                         <div class="a1">
-                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                            <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                         </div>
                                         <span><?php echo $teamInfo['team_name'];?></span>
                                     </a>
@@ -198,7 +198,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 <li>
                                     <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                         <div class="game_player_img">
-                                            <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
+                                            <img data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"   alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
                                         </div>
                                         <span><?php echo $playerInfo['player_name'];?></span>
                                     </a>

@@ -493,7 +493,7 @@ foreach($allGameList as $key => $game)
         </div>
     </div>
     <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
-	 <script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
+	
     <script>
         $(".calendar").on("click",".open_calendar",function(){
             $(".max_calendar").addClass("active")

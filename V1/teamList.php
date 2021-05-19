@@ -244,7 +244,7 @@ $keyList = array_keys($return);
         </div>
     </div>
     <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
-	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
+	
     <script>
         $(".esports_ul").on("click","li",function(){
             $(".esports_ul li").removeClass("active");

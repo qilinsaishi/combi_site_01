@@ -441,7 +441,7 @@ foreach($newsTypeList as $newsType)
         </div>
     </div>
 	
-	  <?php renderFooterJsCss($config,[],["jquery.lazyload"]);?>
+	  <?php renderFooterJsCss($config,[],[]);?>
 
     <script type="text/javascript">
 		

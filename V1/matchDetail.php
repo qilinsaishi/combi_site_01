@@ -12,6 +12,7 @@ $params = [
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+
 if(!isset($return["matchDetail"]['data']['match_id']))
 {
     render404($config);
@@ -978,11 +979,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
-                                                <img class="lazy-load" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
-                                            <?php }else{?>
-                                                <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
-                                            <?php }?>
+                                                <img data-original="<?php echo $matchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
                                         </div>
                                         <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                     </div>
@@ -992,11 +989,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     </div>
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
-                                                <img class="lazy-load" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $matchInfo['away_team_info']['logo'];?>" title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
-                                            <?php }else{?>
-                                                <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
-                                            <?php }?>                                        </div>
+                                           
+                                                <img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
+                                                                               </div>
                                         <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                     </div>
                                 </div>
@@ -1048,7 +1043,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <li class="active col-xs-6">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="a1">
-                                        <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                        <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                     </div>
                                     <span><?php echo $teamInfo['team_name'];?></span>
                                 </a>
@@ -1077,7 +1072,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <li>
                                 <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                     <div class="game_player_img">
-                                        <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
+                                        <img data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>" alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
                                     </div>
                                     <span><?php echo $playerInfo['player_name'];?></span>
                                 </a>
