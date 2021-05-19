@@ -3,7 +3,7 @@ require_once "function/init.php";
 $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
@@ -84,11 +84,11 @@ foreach($newsTypeList as $newsType)
                 </div>
                 <div class="button">
                     <div class="download_ios download">
-                        <img src="<?php echo $config['site_url'];?>/images/ios.png" alt="">
+                        <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank"><img src="<?php echo $config['site_url'];?>/images/ios.png" alt=""></a>
                         <span>IOS下载</span>
                     </div>
                     <div class="download_android download">
-                        <img src="<?php echo $config['site_url'];?>/images/android.png" alt="">
+                        <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank"><img src="<?php echo $config['site_url'];?>/images/android.png" alt=""></a>
                         <span>Android下载</span>
                     </div>
                 </div>
