@@ -3,7 +3,7 @@ require_once "function/init.php";
 $match_id = $_GET['match_id']??0;
 $params = [
     "matchDetail"=>["source"=>$config['default_source'],"match_id"=>$match_id,"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>1],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config["site_id"]],
     "recentMatchList"=>["dataType"=>"matchList","page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "hotNewsList"=>["dataType"=>"informationList","page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -699,10 +699,10 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             </div>
                                             <div class="compare-bar compare_bar clearfix">
                                                 <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){echo " red";}else{echo " grey";}?>">
-                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']/(10))?>%;"></span>
+                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']/(30))?>%;"></span>
                                                 </div>
                                                 <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){echo " grey";}else{echo " blue";}?>">
-                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']/(10))?>%;"></span>
+                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']/(30))?>%;"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -716,10 +716,10 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             </div>
                                             <div class="compare-bar compare_bar clearfix">
                                                 <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']){echo " red";}else{echo " grey";}?>">
-                                                    <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']/22*100);?>%;"></span>
+                                                    <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']/30*100);?>%;"></span>
                                                 </div>
                                                 <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']){echo " grey";}else{echo " blue";}?>">
-                                                    <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']/22*100);?>%;"></span>
+                                                    <span class="green" style="width: <?php echo intval($return['matchDetail']['data']['match_pre']['strength_index']['average_deaths_team_b']/30*100);?>%;"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1098,8 +1098,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
 					<li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
 				<?php }?>
         </ul>
-        <p>Copyright © 2021 www.qilindianjing.com</p>
-        <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
+        <?php renderCertification();?>
     </div>
 </div>
 <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
