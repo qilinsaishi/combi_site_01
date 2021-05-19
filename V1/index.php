@@ -115,11 +115,8 @@ foreach($newsTypeList as $newsType)
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
-                                                <img class="lazy-load" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
-                                            <?php }else{?>
-                                                <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
-                                            <?php }?>
+                                           <img data-original="<?php echo $matchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" />
+                                            
                                         </div>
                                         <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                     </div>
@@ -129,11 +126,8 @@ foreach($newsTypeList as $newsType)
                                     </div>
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <?php if(isset($return['defaultConfig']['data']['default_team_img'])){?>
-                                                <img class="lazy-load" data-original="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>" src="<?php echo $matchInfo['away_team_info']['logo'];?>" title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
-                                            <?php }else{?>
-                                                <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
-                                            <?php }?>
+                                                <img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  title="<?php echo $matchInfo['away_team_info']['team_name'];?>" />
+                                         
                                         </div>
                                         <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                     </div>
@@ -153,7 +147,7 @@ foreach($newsTypeList as $newsType)
                                     <div class="game_match_bottom clearfix">
                                         <div class="left">
                                             <div class="game_match_img">
-                                                <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
+                                                <img data-original="<?php echo $matchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
                                             </div>
                                             <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                         </div>
@@ -162,7 +156,7 @@ foreach($newsTypeList as $newsType)
                                             <span><?php echo $config['game'][$matchInfo['game']];?></span>
                                         </div>
                                         <div class="left">
-                                            <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
+                                            <img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
                                             <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                         </div>
                                     </div>
@@ -198,7 +192,7 @@ foreach($newsTypeList as $newsType)
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
                                     <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                         <div class="a1">
-                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                            <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                         </div>
                                         <span><?php echo $teamInfo['team_name'];?></span>
                                     </a>
@@ -253,10 +247,10 @@ foreach($newsTypeList as $newsType)
                         <div class="hot_player_detail_div<?php if($game == $config['default_game']){echo ' active ';}?>">
                             <ul class="clearfix">
                                 <?php foreach ($return[$game."PlayerList"]['data'] as $key => $playerInfo) {?>
-                                <li <?php if($key == 0 && $game == $config['default_game']){echo ' class="active"';}?>>
+                                <li <?php if($key == 0 && $game == $config['default_game']){echo ' originalclass="active"';}?>>
                                     <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                         <div class="hot_player_img">
-                                            <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>">
+                                            <img  data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>" alt="<?php echo $playerInfo['player_name'];?>">
                                         </div>
                                         <span><?php echo $playerInfo['player_name'];?></span>
                                     </a>
@@ -446,12 +440,15 @@ foreach($newsTypeList as $newsType)
 <?php renderCertification();?>
         </div>
     </div>
-    <?php renderFooterJsCss($config);?>
+	
+	  <?php renderFooterJsCss($config,[],["jquery.lazyload"]);?>
 
     <script type="text/javascript">
-        $(function() {
+		
+	
+       /* $(function() {
             $('img.lazy').lazyload();
-        });
+        });*/
         var banner = $(".banner_img").height()
         $('.banner_img img').load(function () {
             $(".banner").css("height", banner)

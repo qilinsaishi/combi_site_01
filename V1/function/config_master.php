@@ -2,12 +2,19 @@
 
 $base_config = [
     'site_name'=>"70电竞",
-    'api_url'=>'http://lol_api.querylist.cn',//api站点URL
-    'site_url'=>'http://info.combi_01_info.com',//本站URl
-    'game'=>["kpl"=>"王者荣耀","lol"=>"英雄联盟","dota2"=>"dota2"],
+    'api_url'=>'http://preapi.querylist.cn',//api站点URL
+    'site_url'=>'http://pre.combi_01_info.com',//本站URl
+    'game'=>["kpl"=>"王者荣耀","lol"=>"英雄联盟","dota2"=>"DOTA2"],
+    'default_game' => "lol",
     'site_id'=>5,
-    'source'=>"scoregg",
-    'baidu_token'=>'WGi6okVpl9ij8Gc3'
+    'default_source'=>"scoregg",
+    'informationType'=>["news"=>[1,2,3,5,6,7],"stra"=>[4]],
+    'baidu_token'=>'WGi6okVpl9ij8Gc3',
+    'hour_lag'=>8,
+	'default_oss_img_size'=>[
+		"teamList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
+		"playerList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
+	]
 ];
 
 $additional_config = [
@@ -15,12 +22,12 @@ $additional_config = [
     'api_get' => $base_config['api_url']."/get",
     'api_sitemap' => $base_config['api_url']."/sitemap",
     'navList' => ['index'=>['url'=>"","name"=>"首页"],
-        'game'=>['url'=>"schedule/","name"=>"赛事赛程"],
+        'game'=>['url'=>"match/","name"=>"赛事赛程"],
         'team'=>['url'=>"teamlist/","name"=>"电竞战队"],
         'player'=>['url'=>"playerlist/","name"=>"电竞选手"],
-        'info'=>['url'=>"newslist/","name"=>"电竞资讯"],
-        'stra'=>['url'=>"strategylist/","name"=>"游戏攻略"],
-        'tournament'=>['url'=>"tournament/","name"=>"赛事专题"],
+        'news'=>['url'=>"newslist/","name"=>"电竞资讯"],
+        'stra'=>['url'=>"stralist/","name"=>"游戏攻略"],
+        'tournament'=>['url'=>"tournamentlist/","name"=>"赛事专题"],
     ]
 ];
 return array_merge($base_config,$additional_config);
