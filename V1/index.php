@@ -141,7 +141,7 @@ foreach($newsTypeList as $newsType)
                     <ul class="game_match_ul dn_pc">
                         <?php $i=0;foreach($return['matchList']['data'] as $matchInfo){if($i<2){?>
                             <li class="col-md-3 col-xs-12 col-sm-6">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
                                     <div class="game_match_top">
                                         <span class="game_match_name"><?php echo $matchInfo['tournament_info']['tournament_name'];?></span>
                                         <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?></span>
@@ -158,7 +158,9 @@ foreach($newsTypeList as $newsType)
                                             <span><?php echo $config['game'][$matchInfo['game']];?></span>
                                         </div>
                                         <div class="left">
-                                            <img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
+											<div class="game_match_img">
+												<img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
+											</div>
                                             <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                         </div>
                                     </div>

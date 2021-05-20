@@ -831,7 +831,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     text-align: left;
 }
 .table-wrap .table tr th:nth-of-type(2), .table-wrap .table tr td:nth-of-type(2) {
-    width: 24%;
+    width: 25%;
 }
 .table-wrap .table tr th:nth-of-type(3), .table-wrap .table tr td:nth-of-type(3) {
     width: 10%;
