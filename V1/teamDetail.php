@@ -50,7 +50,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
 if(count($return2["keywordMapList"]["data"]??[])==0)
 {
     $params3 = [
-        "informationList"=>["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,create_time,game',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
+        "informationList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,create_time,game',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     ];
     $return3 = curl_post($config['api_get'],json_encode($params3),1);
     $connectedInformationList = $return3["informationList"]["data"];

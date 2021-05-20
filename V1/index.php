@@ -15,9 +15,9 @@ foreach ($config['game'] as $game => $gameName)
     $params[$game."PlayerList"] =
         ["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>16,"game"=>$game,"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7];
     $params[$game."NewsList"] =
-        ["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7];
+        ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7];
     $params[$game."StraList"] =
-        ["dataType"=>"informationList","page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
+        ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
 //文章类型
