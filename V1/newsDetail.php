@@ -81,7 +81,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                             <div class="team_pub_img fl">
                                 <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                             </div>
-                            <span class="fl team_pbu_name">相关<?php echo $currentType=="info"?"资讯":"攻略";?></span>
+                            <span class="fl team_pbu_name">相关<?php echo $currentType=="news"?"资讯":"攻略";?></span>
                         </div>
                         <div class="news_detail_item active">
                             <ul class="news_item">
@@ -123,7 +123,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                                 <div class="game_fire fl">
                                     <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
-                                <span class="fl">热门<?php echo $currentType=="info"?"资讯":"攻略";?></span>
+                                <span class="fl">热门<?php echo $currentType=="news"?"资讯":"攻略";?></span>
                             </div>
                             <div class="more fr">
                                 <a href="<?php echo $config['site_url'];?>/<?php echo $currentType;?>list/">
