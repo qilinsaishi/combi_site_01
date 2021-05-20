@@ -345,7 +345,7 @@ else
                         </div>
                         <div class="player_team_bot clearfix">
                             <div class="left fl">
-                                <img class="imgauto"  src="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>?x-oss-process=image/resize,m_lfit,h_100,w_100" alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
+                                <img class="imgauto"  data-original="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
                             </div>
                             <div class="right fl">
                                 <div class="team_explain_top clearfix">
@@ -402,6 +402,7 @@ else
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
+					<?php if(isset($connectedInformationList) && count($connectedInformationList)>0){?>
                     <div class="team_news_mid">
                         <ul class="team_news_mid_ul clearfix">
 							<?php foreach($connectedInformationList as $key => $information){
@@ -434,6 +435,11 @@ else
                             <?php }} ?>
                         </ul>
                     </div>
+					<?php }else{?>
+							 <div class="null">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							</div>
+					<?php } ?>
                 </div>
                 <!-- 战队资讯 -->
                 <!-- 热门战队 -->
