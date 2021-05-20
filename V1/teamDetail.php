@@ -104,7 +104,7 @@ else
                 <div class="team_title mb20 clearfix">
                     <div class="team_logo fl">
                         <div class="team_logo_img mauto">
-                            <img class="imgauto" data-original="<?php echo $return['intergratedTeam']['data']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>">
+                            <img class="imgauto" src="<?php echo $return['intergratedTeam']['data']['logo'];?>" alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>">
                         </div>
                     </div>
                     <div class="team_explain fr">
@@ -162,8 +162,8 @@ else
                         </div>
                         <span class="fl team_data_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队基础数据</span>
                         <div class="team_data_frequency fr clearfix">
-                            <p class="matches_number fl">比赛场次：<span><?php echo $return['intergratedTeam']['data']['team_stat']['total_count'];?>场</span></p>
-                            <p class="matches_rank fl">联赛排名：<span>第 <?php echo $return['intergratedTeam']['data']['team_stat']['victory_rate_rank'];?></span></p>
+                            <p class="matches_number fl">比赛场次：<span><?php echo $return['intergratedTeam']['data']['team_stat']['total_count']??0;?>场</span></p>
+                            <p class="matches_rank fl">联赛排名：<span>第 <?php echo $return['intergratedTeam']['data']['team_stat']['victory_rate_rank']??9999;?></span></p>
                         </div>
                     </div>
                     <div class="team_data_items clearfix">
@@ -178,7 +178,7 @@ else
                                         </div>
                                         <div class="red_explain">
                                             <span class="rate_number"><?php echo $return['intergratedTeam']['data']['team_stat']['red_victory_rate']?? 0;?>%</span>
-                                            <span class="rate_explain"><?php echo $return['intergratedTeam']['data']['team_stat']['red_count']?? 0;?>场<?php echo $return['intergratedTeam']['data']['team_stat']['red_win'] ?? 0;?>胜<?php echo $return['intergratedTeam']['data']['team_stat']['red_lose'];?>败</span>
+                                            <span class="rate_explain"><?php echo $return['intergratedTeam']['data']['team_stat']['red_count']?? 0;?>场<?php echo $return['intergratedTeam']['data']['team_stat']['red_win'] ?? 0;?>胜<?php echo $return['intergratedTeam']['data']['team_stat']['red_lose']??0;?>败</span>
                                             <span class="rate">红方胜率</span>
                                         </div>
                                     </div>
@@ -478,8 +478,9 @@ else
 						<?php foreach($return2['hotTournamentList']['data'] as $key => $tournamentInfo){
 							?>
                             <li>
-                                <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image: url('<?php echo $tournamentInfo['logo'] ?>')">
-                                   <span><?php echo $tournamentInfo['tournament_name'] ?></span> 
+                                <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
+                                    <img src="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" class="hot_match_bot_imgs">
+                                   <span><?php echo $tournamentInfo['tournament_name'] ?></span>
                                 </a>
                             </li>
 							<?php }?>

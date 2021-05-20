@@ -14,7 +14,8 @@ $base_config = [
 	'default_oss_img_size'=>[
 		"teamList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
 		"playerList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
-	]
+        "tournamentList"=>'?x-oss-process=image/resize,m_lfit,h_130,w_130',
+    ]
 ];
 
 $additional_config = [

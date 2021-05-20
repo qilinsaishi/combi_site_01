@@ -487,7 +487,8 @@ else
 							<?php foreach($return2['hotTournamentList']['data'] as $key => $tournamentInfo){
 							?>
                             <li>
-                                <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image: url('<?php echo $tournamentInfo['logo'] ?>')">
+                                <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
+                                    <img src="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" class="hot_match_bot_imgs">
                                     <span><?php echo $tournamentInfo['tournament_name'] ?></span>
                                 </a>
                             </li>

@@ -701,10 +701,15 @@ color: #fff;
     display: block;
     width: 275px;
     height: 158px;
-    background-size: 78%;
-    background-position: center;
-    background-repeat: no-repeat;
     position: relative;
+}
+.hot_match_bot li a .hot_match_bot_imgs{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
 .hot_match_bot li a span{
     display: block;
