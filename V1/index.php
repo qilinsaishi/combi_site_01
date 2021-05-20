@@ -123,7 +123,7 @@ foreach($newsTypeList as $newsType)
                                         <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                     </div>
                                     <div class="left center">
-                                        <span>VS</span>
+                                        <span> vs </span>
                                         <span><?php echo $config['game'][$matchInfo['game']];?></span>
                                     </div>
                                     <div class="left ov_1">
@@ -154,7 +154,7 @@ foreach($newsTypeList as $newsType)
                                             <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                         </div>
                                         <div class="left center">
-                                            <span>VS</span>
+                                            <span> vs </span>
                                             <span><?php echo $config['game'][$matchInfo['game']];?></span>
                                         </div>
                                         <div class="left">

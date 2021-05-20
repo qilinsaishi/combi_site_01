@@ -28,9 +28,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据比分直播视频_<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>-<?php echo $config['site_name'];?></title>
-    <meta name="Keywords" content="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>,<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛">
-    <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据,了解<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>VS<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>在<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>的表现,请关注<?php echo $config['site_name'];?>">
+    <title><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据比分直播视频_<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>-<?php echo $config['site_name'];?></title>
+    <meta name="Keywords" content="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>,<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛">
+    <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据,了解<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>在<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>的表现,请关注<?php echo $config['site_name'];?>">
     <?php renderHeaderJsCss($config,["progress-bars","game"]);?>
 </head>
 
@@ -423,7 +423,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <div class="vs_data_combat">
                                                             <div class="vs_player">
                                                                 <div class="vs_player_reality">
-                                                                    <img data-origianl="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
+                                                                    <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
                                                                 </div>
                                                                 <div class="vs_player_game">
                                                                     <img data-original="<?php echo $player_info['hero_image']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['_hero_name']??'';?>" class="imgauto">
@@ -984,7 +984,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                     </div>
                                     <div class="left center">
-                                        <span>VS</span>
+                                        <span> vs </span>
                                         <span>英雄联盟</span>
                                     </div>
                                     <div class="left ov_1">
