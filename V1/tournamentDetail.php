@@ -64,7 +64,9 @@ unset($return['matchList']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事专题</title>
+    <title><?php echo $config['game'][$return['tournament']['data']['game']];?><?php echo $return['tournament']['data']['tournament_name'];?>_<?php echo $return['tournament']['data']['tournament_name'];?>数据赛程信息-<?php echo $config['site_name'];?></title>
+    <meta name="Keywords" content="<?php echo $return['tournament']['data']['tournament_name'];?>,<?php echo $config['game'][$return['tournament']['data']['game']];?><?php echo $return['tournament']['data']['tournament_name'];?>">
+    <meta name="description" content="">
     <?php renderHeaderJsCss($config,["right","events"]);?>
 </head>
 
