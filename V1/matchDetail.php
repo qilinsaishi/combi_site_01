@@ -137,11 +137,11 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <div class="center">
                                         <span class="game_detail_line1"></span>
                                         <span class="game_detail_circle1"></span>
-                                        <span class="fz font_color_r"><?php echo $round_info['kills_a'];?></span>
+                                        <span class="fz font_color_r"><?php echo $round_info['kills_a']??0;?></span>
                                         <div class="img_game_detail_vs">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="<?php echo $round_info['kills_a'].":".$round_info['kills_b'];?>" class="imgauto">
+                                            <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="<?php echo ($round_info['kills_a']??0).":".($round_info['kills_b']??0);?>" class="imgauto">
                                         </div>
-                                        <span class="fz font_color_b"><?php echo $round_info['kills_b'];?></span>
+                                        <span class="fz font_color_b"><?php echo $round_info['kills_b']??0;?></span>
                                         <span class="game_detail_circle1"></span>
                                         <span class="game_detail_line1"></span>
                                     </div>
@@ -163,7 +163,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                 <div class="game_detail_item2 win_<?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){echo "left";}else{echo "right";}?>">
                                     <div class="game_detail_item2_left">
                                         <?php foreach($round_info['record_list_a'] as $key2 => $player_info) {
-                                        if($player_info['mvp']==1 || $player_info['beiguo']){?>
+                                        if(($player_info['mvp']??0==1) || ($player_info['beiguo']??0==1)){?>
                                             <div class="game_detail_item2_img">
                                                 <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
                                             </div>
@@ -174,7 +174,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     </div>
                                     <div class="game_detail_item2_right">
                                         <?php foreach($round_info['record_list_b'] as $key2 => $player_info) {
-                                            if($player_info['mvp']==1 || $player_info['beiguo']){?>
+                                            if(($player_info['mvp']??0==1) || ($player_info['beiguo']??0==1)){?>
                                                 <div class="game_detail_item2_img">
                                                     <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
                                                 </div>
@@ -229,9 +229,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         </div>
                                         <div class="left right">
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_b'];?>" class="autoimg">
+                                                <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_b']??0;?>" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['dragon_b'];?></span>
+                                            <span><?php echo $round_info['dragon_b']??0;?></span>
                                             <div class="img1">
                                                 <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_b'];?>" class="autoimg">
                                             </div>
