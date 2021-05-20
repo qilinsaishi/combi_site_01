@@ -165,7 +165,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <?php foreach($round_info['record_list_a'] as $key2 => $player_info) {
                                         if(($player_info['mvp']??0==1) || ($player_info['beiguo']??0==1)){?>
                                             <div class="game_detail_item2_img">
-                                                <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                                <img data-original="<?php echo $player_info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
                                             </div>
                                             <div class="game_detail_item2_word">
                                                 <span class="span2"><?php echo $player_info['player_name'];?></span>
@@ -176,7 +176,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <?php foreach($round_info['record_list_b'] as $key2 => $player_info) {
                                             if(($player_info['mvp']??0==1) || ($player_info['beiguo']??0==1)){?>
                                                 <div class="game_detail_item2_img">
-                                                    <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                                    <img data-original="<?php echo $player_info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
                                                 </div>
                                                 <div class="game_detail_item2_word">
                                                     <span class="span2"><?php echo $player_info['player_name'];?></span>
@@ -190,24 +190,24 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <div class="game_detail_item3_top">
                                         <div class="left">
                                             <div class="left_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_a']/1000);?>k" class="imgauto">
+                                                <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k" class="imgauto">
                                             </div>
-                                            <span><?php echo sprintf("%10.1f",$round_info['money_a']/1000);?>k</span>
+                                            <span><?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k</span>
                                         </div>
                                         <!--- 轮次时间-->
                                         <p><?php echo ($round_info['game_time_m']).":".($round_info['game_time_s']);?></p>
                                         <!--- 轮次时间-->
                                         <div class="left">
-                                            <span><?php echo sprintf("%10.1f",$round_info['money_b']/1000);?>k</span>
+                                            <span><?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k</span>
                                             <div class="left_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_b']/1000);?>k" class="imgauto">
+                                                <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k" class="imgauto">
                                             </div>
                                         </div>
                                     </div>
                                     <!--- 主客队的金钱收益-->
                                     <div class="pk-detail-con">
                                         <div class="progress blue">
-                                            <div class="progress-bar" style="width: <?php echo intval(100*$round_info['money_a']/($round_info['money_a']+$round_info['money_b']));?>%;">
+                                            <div class="progress-bar" style="width: <?php echo !isset($round_info['money_a'])?0:(intval(100*$round_info['money_a']??0/($round_info['money_a']??0+$round_info['money_b']??0)));?>%;">
                                                 <i class="lightning"></i>
                                             </div>
                                         </div>
@@ -215,17 +215,17 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <div class="game_detail_div1_item3">
                                         <div class="left">
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_a'];?>" class="autoimg">
+                                                <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_a']??0;?>" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['dragon_a'];?></span>
+                                            <span><?php echo $round_info['dragon_a']??0;?></span>
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_a'];?>" class="autoimg">
+                                                <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_a']??0;?>" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['baron_a'];?></span>
+                                            <span><?php echo $round_info['baron_a']??0;?></span>
                                             <div class="img1 img2">
                                                 <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['red_tower'];?></span>
+                                            <span><?php echo $round_info['red_tower']??0;?></span>
                                         </div>
                                         <div class="left right">
                                             <div class="img1">
@@ -233,13 +233,13 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             </div>
                                             <span><?php echo $round_info['dragon_b']??0;?></span>
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_b'];?>" class="autoimg">
+                                                <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_b']??0;?>" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['baron_b'];?></span>
+                                            <span><?php echo $round_info['baron_b']??0;?></span>
                                             <div class="img1 img2">
                                                 <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                             </div>
-                                            <span><?php echo $round_info['blue_tower'];?></span>
+                                            <span><?php echo $round_info['blue_tower']??0;?></span>
                                         </div>
                                     </div>
                                     <div class="line2"></div>
@@ -409,10 +409,10 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             </div>
                                                             <div class="vs_player">
                                                                 <div class="vs_player_game">
-                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['_hero_name'];?>" class="imgauto">
+                                                                    <img data-original="<?php echo $player_info['hero_image']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['_hero_name']??'';?>" class="imgauto">
                                                                 </div>
                                                                 <div class="vs_player_reality">
-                                                                    <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                                                    <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -423,10 +423,10 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <div class="vs_data_combat">
                                                             <div class="vs_player">
                                                                 <div class="vs_player_reality">
-                                                                    <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>" class="imgauto">
+                                                                    <img data-origianl="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
                                                                 </div>
                                                                 <div class="vs_player_game">
-                                                                    <img src="<?php echo $player_info['hero_image'];?>" alt="<?php echo $player_info['_hero_name'];?>" class="imgauto">
+                                                                    <img data-original="<?php echo $player_info['hero_image']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['_hero_name']??'';?>" class="imgauto">
                                                                 </div>
                                                             </div>
                                                             <div class="progress1_parent">
@@ -468,11 +468,11 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <td>
                                                             <a href="##" target="_blank">
                                                                 <div class="avatar player mid">
-                                                                    <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>">
+                                                                    <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>">
                                                                 </div>
                                                             </a>
                                                             <div class="avatar hero mid">
-                                                                <img src="<?php echo $player_info['_hero_pic'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name'];?>">
+                                                                <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name']??'';?>">
                                                                 <span class="lv"><?php echo $player_info['_hero_lv'];?></span>
                                                             </div>
                                                             <div class="jn-icon-wrap mid">
@@ -484,7 +484,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                                 <?php }}?>
                                                             </div>
                                                             <a href="##" target="_blank">
-                                                                <span title="<?php echo $player_info['player_name'];?>" class="nickname mid"><?php echo $player_info['player_name'];?></span>
+                                                                <span title="<?php echo $player_info['player_name']??'';?>" class="nickname mid"><?php echo $player_info['player_name']??'';?></span>
                                                             </a>
                                                         </td>
                                                         <td>
@@ -537,11 +537,11 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     <td>
                                                         <a href="##" target="_blank">
                                                             <div class="avatar player mid">
-                                                                <img src="<?php echo $player_info['logo'];?>" alt="<?php echo $player_info['player_name'];?>">
+                                                                <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>">
                                                             </div>
                                                         </a>
                                                         <div class="avatar hero mid">
-                                                            <img src="<?php echo $player_info['_hero_pic'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name'];?>">
+                                                            <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name'];?>">
                                                             <span class="lv"><?php echo $player_info['_hero_lv'];?></span>
                                                         </div>
                                                         <div class="jn-icon-wrap mid">
@@ -553,7 +553,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             <?php }}?>
                                                         </div>
                                                         <a href="##" target="_blank">
-                                                            <span title="<?php echo $player_info['player_name'];?>" class="nickname mid"><?php echo $player_info['player_name'];?></span>
+                                                            <span title="<?php echo $player_info['player_name']??'';?>" class="nickname mid"><?php echo $player_info['player_name']??'';?></span>
                                                         </a>
                                                     </td>
                                                     <td>
