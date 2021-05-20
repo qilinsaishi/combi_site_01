@@ -214,6 +214,7 @@ a:focus{text-decoration: none}
 .game_team_list_detail{
     display: flex;
     flex-wrap: wrap;
+	/* justify-content: space-around; */
 }
 .game_team_list_detail .a1{
     width: 124px;

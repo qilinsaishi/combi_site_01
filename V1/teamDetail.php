@@ -352,13 +352,13 @@ else
                                             <div class="team_results_vs">
                                                 <span class="team1_name"><?php echo $recentMatchInfo['home_team_info']['team_name'] ;?></span>
                                                 <div class="team1_img">
-                                                    <img class="imgauto" src="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
+                                                    <img class="imgauto" data-original="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
                                                 </div>
                                                 <div class="vs_img honor_bottom_img1">
                                                     <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
                                                 </div>
                                                 <div class="team2_img">
-                                                    <img class="imgauto" src="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
+                                                    <img class="imgauto" data-original="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
                                                 </div>
                                                 <span class="team2_name"><?php echo $recentMatchInfo['away_team_info']['team_name'] ;?></span>
                                             </div>
@@ -391,6 +391,7 @@ else
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
+					<?php if(isset($connectedInformationList) && count($connectedInformationList)>0){?>
                     <div class="team_news_mid">
                         <ul class="team_news_mid_ul clearfix">
 							<?php foreach($connectedInformationList as $key => $information){
@@ -424,6 +425,11 @@ else
                             <?php }} ?>
                         </ul>
                     </div>
+					<?php }else{?>
+							 <div class="null">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							</div>
+					<?php } ?>
                 </div>
                 <!-- 战队资讯 -->
                 <!-- 热门战队 -->
