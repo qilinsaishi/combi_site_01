@@ -104,7 +104,7 @@ else
                 <div class="team_title mb20 clearfix">
                     <div class="team_logo fl">
                         <div class="team_logo_img mauto">
-                            <img class="imgauto" src="<?php echo $return['intergratedTeam']['data']['logo'];?>" alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>">
+                            <img class="imgauto" data-original="<?php echo $return['intergratedTeam']['data']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>">
                         </div>
                     </div>
                     <div class="team_explain fr">
