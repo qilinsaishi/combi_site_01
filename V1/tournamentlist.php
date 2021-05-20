@@ -1,6 +1,10 @@
 <?php
 require_once "function/init.php";
 $currentGame = $_GET['game']??'all';
+if($currentGame=="")
+{
+    $currentGame = "all";
+}
 $params = [
     "tournamentList"=>["page"=>1,"page_size"=>1000,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
