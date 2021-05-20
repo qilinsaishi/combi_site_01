@@ -1,16 +1,20 @@
 <?php
 
 $base_config = [
-    'site_name'=>"70电竞",
-    'api_url'=>'http://lol_api.querylist.cn',//api站点URL
-    'site_url'=>'http://info.combi_01_info.com',//本站URl
-    'game'=>["kpl"=>"王者荣耀","lol"=>"英雄联盟","dota2"=>"DOTA2"],
+    'site_name'=>"电竞人",
+    'api_url'=>'http://preapi.querylist.cn',//api站点URL
+    'site_url'=>'http://pre.combi_01_info.com',//本站URl
+    'game'=>["lol"=>"英雄联盟","kpl"=>"王者荣耀","dota2"=>"DOTA2"],
     'default_game' => "lol",
     'site_id'=>5,
     'default_source'=>"scoregg",
     'informationType'=>["news"=>[1,2,3,5,6,7],"stra"=>[4]],
     'baidu_token'=>'WGi6okVpl9ij8Gc3',
-    'hour_lag'=>0
+    'hour_lag'=>0,
+	'default_oss_img_size'=>[
+		"teamList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
+		"playerList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
+	]
 ];
 
 $additional_config = [

@@ -1,10 +1,10 @@
 <?php
 
 $base_config = [
-    'site_name'=>"70电竞",
+    'site_name'=>"电竞人",
     'api_url'=>'http://lol_api.querylist.cn',//api站点URL
     'site_url'=>'http://info.combi_01_info.com',//本站URl
-    'game'=>["kpl"=>"王者荣耀","lol"=>"英雄联盟","dota2"=>"DOTA2"],
+    'game'=>["lol"=>"英雄联盟","kpl"=>"王者荣耀","dota2"=>"DOTA2"],
     'default_game' => "lol",
     'site_id'=>5,
     'default_source'=>"scoregg",
