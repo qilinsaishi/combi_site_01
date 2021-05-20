@@ -609,8 +609,8 @@ li a .max_span span{
         display: flex;
     }
     .team_results_content{
-        width: 5rem;
-        padding-left: .3rem;
+        width: 4.5rem;
+        padding-left: .1rem;
     }
     .team_results_time{
         margin-right: .3rem;
@@ -635,6 +635,7 @@ li a .max_span span{
     .team_news_mid_ul li{
         width: 50%;
         margin: 0;
+		margin-bottom:.2rem;
     }
     .team_news_mid_ul {
         display: flex;
