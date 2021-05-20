@@ -319,7 +319,7 @@ foreach($allGameList as $key => $game)
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="time_over">
-                                                                                        <p class="game3_team2_vs_time stop"><?php echo date("h:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
+                                                                                        <p class="game3_team2_vs_time stop"><?php echo date("H:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="game3_team2_vs_bot">
