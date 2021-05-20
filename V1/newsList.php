@@ -133,7 +133,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 <span class="fl">最新赛事</span>
                             </div>
                             <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/tournamentList">
+                                <a href="<?php echo $config['site_url'];?>/tournamentlist/">
                                     <span>更多</span>
                                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>

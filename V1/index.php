@@ -404,7 +404,7 @@ foreach($newsTypeList as $newsType)
                 <div class="game_title clearfix game_team_special">
                     <span class="title">赛事专题</span>
                     <div class="more">
-                        <a href="<?php echo $config['site_url'];?>/tournamentList">
+                        <a href="<?php echo $config['site_url'];?>/tournamentlist/">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>

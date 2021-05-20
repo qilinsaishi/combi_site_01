@@ -88,7 +88,8 @@ $keyList = array_keys($return);
 						
                         <?php foreach($allGameList as $key => $game){?>
                             <div class="esports_item <?php echo $game;?> <?php if($game==$currentGame){echo 'active';}?>" >
-                                <ul class="game_team_list_detail">
+                                <?php if(isset($return[$game.'TeamList']['data']) && count($return[$game.'TeamList']['data'])>0){ ?>
+								<ul class="game_team_list_detail">
                                     <?php
                                     foreach($return[$game.'TeamList']['data'] as $teamInfo)
                                     {   ?>
@@ -106,6 +107,11 @@ $keyList = array_keys($return);
                                 <div class="paging">
                                     <?php render_page_pagination($return[$game.'TeamList']['count'],$info['page']['page_size'],$params[$game."TeamList"]['page'],$config['site_url']."/teamlist/".$game); ?>
                                 </div>
+								<?php }else{?>
+									<div class="null">
+										<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+									</div>
+								<?php } ?>
                             </div>
                         <?php }?>
 						
