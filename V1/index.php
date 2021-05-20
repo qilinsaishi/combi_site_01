@@ -429,7 +429,7 @@ foreach($newsTypeList as $newsType)
                     <li class="col-md-3 col-xs-6">
                         <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
                             <div class="div_img">
-                                <img src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>">
+                                <img src="<?php echo $tournamentInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_130,w_130" alt="<?php echo $tournamentInfo['tournament_name'];?>">
                                 <span><?php echo $tournamentInfo['tournament_name'];?></span>
                             </div>
                         </a>
