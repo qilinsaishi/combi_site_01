@@ -87,6 +87,7 @@ $keyList = array_keys($return);
                     <div class="game_player_detail">
 						 <?php foreach($allGameList as $key => $game){?>
                         <div class="game_player_item <?php echo $game;?> <?php if($game==$currentGame){echo 'active';}?>">
+							<?php if(isset($return[$game.'PlayerList']['data']) && count($return[$game.'PlayerList']['data'])>0){ ?>
                             <ul class="game_player_ul clearfix">
 								<?php
                                     foreach($return[$game.'PlayerList']['data'] as $playerInfo)
@@ -106,6 +107,11 @@ $keyList = array_keys($return);
                             <div class="paging">
                                  <?php render_page_pagination($return[$game.'PlayerList']['count'],$info['page']['page_size'],$params[$game."PlayerList"]['page'],$config['site_url']."/playerlist/".$game); ?>
                             </div>
+							<?php }else{?>
+								<div class="null">
+									<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								</div>
+							<?php } ?>
                         </div>
 						<?php }?>
                     </div>

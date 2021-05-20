@@ -367,6 +367,7 @@ else
                             </div>
                             <span class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>队友</span>
                         </div>
+						<?php if(isset($return['intergratedPlayer']['data']['playerList']) && count($return['intergratedPlayer']['data']['playerList'])>0 ){?>
                         <ul class="player_xs clearfix">
 							 <?php
 								foreach($return['intergratedPlayer']['data']['playerList'] as $playerInfo)
@@ -381,6 +382,11 @@ else
                             </li>
                             <?php }?>
                         </ul>
+						<?php }else{?>
+						<div class="null">
+							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+						</div>
+						<?php } ?>
                     </div>
                 </div>
                 <!-- 战队介绍和队员介绍 -->
@@ -442,6 +448,7 @@ else
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
+					<?php if(isset($return2['hotTeamList']['data'] ) && count($return2['hotTeamList']['data'] )>0){ ?>
                     <ul class="game_team_list_detail">
 						<?php foreach($return2['hotTeamList']['data'] as $key => $teamInfo){
 							?>
@@ -455,6 +462,11 @@ else
                         </li>
                         <?php }?>
                     </ul>
+					<?php }else{?>
+						<div class="null">
+							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+						</div>
+					<?php } ?>
                 </div>
                 <!-- 热门战队 -->
                 <!-- 热门赛事 -->
@@ -464,12 +476,13 @@ else
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
-                        <a href="<?php echo $config['site_url'];?>/tournament/" class="team_pub_more fr">
+                        <a href="<?php echo $config['site_url'];?>/tournamentlist/" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
+						<?php if(isset($return2['hotTournamentList']['data']) && count($return2['hotTournamentList']['data'])>0){?>
                         <ul class="clearfix">
 							<?php foreach($return2['hotTournamentList']['data'] as $key => $tournamentInfo){
 							?>
@@ -480,6 +493,11 @@ else
                             </li>
                             <?php }?>
                         </ul>
+						<?php }else{?>
+							<div class="null">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							</div>
+						<?php } ?>
                     </div>
                 </div>
                 <!-- 热门赛事 -->

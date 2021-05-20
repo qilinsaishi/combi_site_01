@@ -189,6 +189,7 @@ foreach($newsTypeList as $newsType)
                                     </a>
                                 </div>
                             </div>
+							<?php if(isset($return[$game.'TeamList']['data']) && count($return[$game.'TeamList']['data'])>0){ ?>
                             <ul class="game_team_list_detail">
                                 <?php foreach ($return[$game."TeamList"]['data'] as $key => $teamInfo) {?>
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
@@ -201,6 +202,11 @@ foreach($newsTypeList as $newsType)
                                 </li>
                                 <?php }?>
                             </ul>
+							<?php }else{?>
+								<div class="null">
+									<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								</div>
+							<?php } ?>
                         </div>
                         <?php }?>
                     </div>
@@ -247,6 +253,7 @@ foreach($newsTypeList as $newsType)
                     <div class="hot_player_detail">
                         <?php foreach ($config['game'] as $game => $game_name){?>
                         <div class="hot_player_detail_div<?php if($game == $config['default_game']){echo ' active ';}?>">
+							<?php if(isset($return[$game.'PlayerList']['data']) && count($return[$game.'PlayerList']['data'])>0){ ?>
                             <ul class="clearfix">
                                 <?php foreach ($return[$game."PlayerList"]['data'] as $key => $playerInfo) {?>
                                 <li <?php if($key == 0 && $game == $config['default_game']){echo ' originalclass="active"';}?>>
@@ -259,6 +266,11 @@ foreach($newsTypeList as $newsType)
                                 </li>
                                 <?php }?>
                             </ul>
+							<?php }else{?>
+								<div class="null">
+									<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								</div>
+							<?php } ?>
                         </div>
                         <?php }?>
                     </div>
@@ -404,7 +416,7 @@ foreach($newsTypeList as $newsType)
                 <div class="game_title clearfix game_team_special">
                     <span class="title">赛事专题</span>
                     <div class="more">
-                        <a href="<?php echo $config['site_url'];?>/tournamentList">
+                        <a href="<?php echo $config['site_url'];?>/tournamentlist/">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
