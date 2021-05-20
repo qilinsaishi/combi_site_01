@@ -175,7 +175,11 @@
     }
     function renderCertification()
     {
-        echo '<div class="container"><p>网络文化经营许可证：琼网文〔2015〕2197-011号<a style="color:#454545;padding:1em;" href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-4</a></p><p>网站内容来源于网络，如果侵犯您的权益请联系删除</p></div>';
+        $str='<div class="container">';
+
+        $str.='<p><span>网络文化经营许可证：琼网文〔2015〕2197-011号</span><a style="color:#454545;padding:0 0 1em 0;" href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-4</a></p>
+<p>网站内容来源于网络，如果侵犯您的权益请联系删除</p></div>';
+        echo $str;
     }
     function str_replace_limit($search, $replace, $subject, $limit=-1){
         if(is_array($search)){

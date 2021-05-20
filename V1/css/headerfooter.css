@@ -219,7 +219,13 @@ width: 12.5%;
     }
     .foot p{
         font-size: .22rem;
+		line-height:.3rem;
+		/* margin-bottom:.2rem; */
+		height:auto;
     }
+	 .foot p a{
+		 display:block;
+	 }
     .links_list li{
         width: 20%;
     }
@@ -232,5 +238,7 @@ width: 12.5%;
    
     .foot{
         padding:.4rem .3rem 0;
+		padding-bottom:.4rem;
+		height:auto;
     }
   }

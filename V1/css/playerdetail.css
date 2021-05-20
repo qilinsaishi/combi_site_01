@@ -380,6 +380,7 @@
     border: 1px solid #EEEEEE;
     border-radius: 8px;
     padding: 20px;
+	padding-bottom:0;
 }
 .player_team_bot{
     margin-bottom: 28px;
@@ -409,7 +410,7 @@
     float: left;
     width: 128px;
     height: 172px;
-    margin-right: 12px;
+    margin-right: 10px;
 }
 .player_xs li:nth-child(4n){
     margin-right: 0;
@@ -425,10 +426,34 @@
     height: 100px;
     overflow: hidden;
     border-radius: 50%;
-    margin-bottom: 14px;
     border: 2px solid #FA8E69;
     margin: 0 auto;
+	margin-bottom: 16px;
 }
+.player_xs{
+	overflow-y: scroll;
+    height: 341px;
+    width: 100%;
+}
+ /*滚动条整体样式*/
+ .player_xs::-webkit-scrollbar {
+    width: 4px;
+    height: 1px;
+}
+/*滚动条滑块*/
+.player_xs::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    -webkit-event_detail_content-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #ccc;
+    height: 168px;
+}
+/*滚动条轨道*/
+.player_xs::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
+    border-radius: 4px;
+    background: rgba(0,0,0,0);
+}
+
 @media only screen and (max-width: 1024px){
     .team_explain{
         width: 100%;
