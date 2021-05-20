@@ -47,6 +47,7 @@
     width: 128px;
     height: 172px;
     margin-right: 42px;
+	border-bottom: 4px solid rgba(0,0,0,0);
 }
 .game_player_img_wrapper{
     width: 124px;

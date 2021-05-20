@@ -291,6 +291,7 @@
 }
 .hot_player_detail{
     padding-top: 30px;
+	margin-bottom:30px;
 }
 .hot_player_detail_div{
     display: none;
@@ -463,6 +464,11 @@ margin-bottom: 14px;
     font-size: 24px;
     color: #333;
     font-weight: 500;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	display:block;
+	width:280px;
 }
 .news_dianjing_news li{
     width: 100%;

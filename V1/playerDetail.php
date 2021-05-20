@@ -226,7 +226,7 @@ else
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_match.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">kaixuan比赛战绩</span>
+                        <span class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>比赛战绩</span>
                         
                     </div>
                     <div class="scroll">

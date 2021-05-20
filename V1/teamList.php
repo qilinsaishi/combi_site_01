@@ -249,6 +249,16 @@ $keyList = array_keys($return);
 	<?php renderCertification();?>
         </div>
     </div>
+	<div class="suspension">
+        <div class="suspension_img">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+        </div>
+        <div class="qrcode">
+            <div class="qrcode_img">
+                <img src="<?php echo $config['site_url'];?>/images/qrcode.png" alt="">
+            </div>
+        </div>
+    </div>
     <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
 	
     <script>

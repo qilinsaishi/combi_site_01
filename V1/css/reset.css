@@ -251,6 +251,9 @@ a:focus{text-decoration: none}
     font-weight: 500;
     display: block;
     color:#333;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap
 } 
 .game_team_list_detail li:hover span{
     background: linear-gradient(90deg, #FAC569, #FF6551);
