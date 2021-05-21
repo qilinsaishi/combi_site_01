@@ -87,6 +87,7 @@
 @media only screen and (max-width: 1024px){
     .player,.game_player_detail{
         width: 100%;
+		margin-bottom:.1rem
     }
     .game_player_ul li:nth-child(5n){
         margin-right: 0rem;
@@ -100,6 +101,7 @@
     .game_player_img_wrapper{
         width: 1.8rem;
         height: 1.8rem;
+		margin: 0 auto;
     }
     .game_player_img{
         width: 1.5rem;
@@ -119,4 +121,7 @@
     .game_left .esports_ul li{
         height: auto;
     }
+	.game_player_item{
+		padding-bottom:.2rem;
+	}
 }

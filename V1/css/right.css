@@ -60,7 +60,7 @@
     margin-bottom: 10px;
 }
 .game_news{
-    /* height: 390px; */
+    height: auto;
 }
 .game_news ul{
     padding-top: 14px;
@@ -94,7 +94,7 @@
     height: 116px;
 }
 .game_team .game_team_list_detail .a1{
-    width: 60px;
+    width: 40px;
     height: 40px;
     margin: 0 auto;
     margin-bottom: 22px;
@@ -218,8 +218,8 @@
         height: 90px;
     }
     .game_team .game_team_list_detail .a1{
-        width: 108px;
-        height: 70px;
+        width: .7rem;
+        height: .7rem;
     }
     .game_team .game_team_list_detail li{
         height: auto;

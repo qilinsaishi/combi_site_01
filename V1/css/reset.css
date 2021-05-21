@@ -69,7 +69,7 @@ html { overflow-y: scroll; }
 a:visited {
     text-decoration: none;
 }
-
+a:focus{text-decoration: none}
 a {
     color: #333;
     text-decoration: none;
@@ -269,7 +269,7 @@ a:focus{text-decoration: none}
 
 }
 .game_team_list_detail li:hover a{
-    border-radius: 8px;
+    border-radius: 6px;
     background: #FFFFFF;
     margin: 0 auto; 
     text-align: center;
@@ -860,4 +860,25 @@ color: #fff;
         align-items: center;
     }
     /* 分页移动 */
+	
+	.team_news_bot_ul li{
+		width:100%;
+		padding:0 .3rem;
+	}
+	.team_news_bot_ul li a{
+		font-size:.24rem;
+	}
+	.hot_match_bot li a span{
+		font-size:.24rem;
+	}
+	.team_pub_more span{
+		font-size:.28rem;
+	}
+	.team_pbu_name{
+		font-size:.3rem;
+	}
+	.team_pub_img{
+		width:.3rem;
+		height:.3rem;
+	}
 }
