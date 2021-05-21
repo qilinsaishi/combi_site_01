@@ -66,7 +66,7 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                 <div class="game_left news fl">
                     <div class="news_top">
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
-                        <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time'])+$config['hour_lag']*3600);?></p>
+                        <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
                         <div class="news_label clearfix">
                             <?php if(count($return["information"]['data']['5118_word_list'])>0){foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
                                 <span><?php echo $word;?></span>
