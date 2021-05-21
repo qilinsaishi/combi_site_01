@@ -463,12 +463,13 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php foreach($round_info['record_list_a'] as $key2 => $player_info){?>
+                                                <?php foreach($round_info['record_list_a'] as $key2 => $player_info){
+                                                    ?>
                                                     <tr>
                                                         <td>
                                                             <a href="##" target="_blank">
                                                                 <div class="avatar player mid">
-                                                                    <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>">
+                                                                    <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>"><img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>"></a>
                                                                 </div>
                                                             </a>
                                                             <div class="avatar hero mid">
@@ -537,7 +538,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     <td>
                                                         <a href="##" target="_blank">
                                                             <div class="avatar player mid">
-                                                                <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>">
+                                                                <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>"><img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>"></a>
                                                             </div>
                                                         </a>
                                                         <div class="avatar hero mid">
