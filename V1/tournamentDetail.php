@@ -292,7 +292,8 @@ unset($return['matchList']);
                         <ul class="clearfix">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image: url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" >
+									<img src="<?php echo $tournamentInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_130,w_130" alt="" class='imgauto1'>
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>

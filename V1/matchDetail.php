@@ -3,7 +3,7 @@ require_once "function/init.php";
 $match_id = $_GET['match_id']??0;
 $params = [
     "matchDetail"=>["source"=>$config['default_source'],"match_id"=>$match_id,"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config["site_id"]],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_hero_img"],"fields"=>["name","key","value"],"site_id"=>$config["site_id"]],
     "recentMatchList"=>["dataType"=>"matchList","page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -409,10 +409,15 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             </div>
                                                             <div class="vs_player">
                                                                 <div class="vs_player_game">
-                                                                    <img data-original="<?php echo $player_info['hero_image']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['_hero_name']??'';?>" class="imgauto">
+                                                                    <img data-original="<?php echo $player_info['hero_image']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $player_info['_hero_name']??'';?>" class="imgauto">
                                                                 </div>
                                                                 <div class="vs_player_reality">
-                                                                    <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
+																	<?php if(isset($player_info['pid']) && $player_info['pid']>0){?>
+																	<a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>">
+                                                                    <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto"></a>
+																	<?php }else{?>
+																	 <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
+																	<?php }?>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -423,10 +428,14 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <div class="vs_data_combat">
                                                             <div class="vs_player">
                                                                 <div class="vs_player_reality">
-                                                                    <img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
+																	<?php if(isset($player_info['pid']) && $player_info['pid']>0){?>
+                                                                    <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>"><img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto"></a>
+																	<?php }else{?>
+																	<img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>" class="imgauto">
+																	<?php }?>
                                                                 </div>
                                                                 <div class="vs_player_game">
-                                                                    <img data-original="<?php echo $player_info['hero_image']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['_hero_name']??'';?>" class="imgauto">
+                                                                    <img data-original="<?php echo $player_info['hero_image']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $player_info['_hero_name']??'';?>" class="imgauto">
                                                                 </div>
                                                             </div>
                                                             <div class="progress1_parent">
@@ -467,13 +476,17 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     ?>
                                                     <tr>
                                                         <td>
-                                                            <a href="##" target="_blank">
-                                                                <div class="avatar player mid">
-                                                                    <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>"><img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>"></a>
-                                                                </div>
-                                                            </a>
+                                                           
+															<div class="avatar player mid">
+																<?php if(isset($player_info['pid']) && $player_info['pid']>0){?>
+																<a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>"><img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>"></a>
+																<?php }else{?>
+																<img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>">
+																<?php }?>
+															</div>
+                                                            
                                                             <div class="avatar hero mid">
-                                                                <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name']??'';?>">
+                                                                <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name']??'';?>">
                                                                 <span class="lv"><?php echo $player_info['_hero_lv'];?></span>
                                                             </div>
                                                             <div class="jn-icon-wrap mid">
@@ -484,9 +497,13 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                                     </div>
                                                                 <?php }}?>
                                                             </div>
-                                                            <a href="##" target="_blank">
+															<?php if(isset($player_info['pid']) && $player_info['pid']>0){?>
+                                                            <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>" target="_blank">
                                                                 <span title="<?php echo $player_info['player_name']??'';?>" class="nickname mid"><?php echo $player_info['player_name']??'';?></span>
                                                             </a>
+															<?php }else{?>
+															 <span title="<?php echo $player_info['player_name']??'';?>" class="nickname mid"><?php echo $player_info['player_name']??'';?></span>
+															 <?php }?>
                                                         </td>
                                                         <td>
                                                             <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_star_equip_"))=="_star_equip_"){?>
@@ -536,13 +553,15 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                 <?php foreach($round_info['record_list_b'] as $key2 => $player_info){?>
                                                 <tr>
                                                     <td>
-                                                        <a href="##" target="_blank">
-                                                            <div class="avatar player mid">
-                                                                <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>"><img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>"></a>
-                                                            </div>
-                                                        </a>
+														<div class="avatar player mid">
+															<?php if(isset($player_info['pid']) && $player_info['pid']>0){?>
+															<a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>"><img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>"></a>
+															<?php }else{?>
+															<img data-original="<?php echo $player_info['logo']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" alt="<?php echo $player_info['player_name']??'';?>">
+															<?php }?>
+														</div>
                                                         <div class="avatar hero mid">
-                                                            <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name'];?>">
+                                                            <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name'];?>">
                                                             <span class="lv"><?php echo $player_info['_hero_lv'];?></span>
                                                         </div>
                                                         <div class="jn-icon-wrap mid">
@@ -553,9 +572,13 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                                 </div>
                                                             <?php }}?>
                                                         </div>
-                                                        <a href="##" target="_blank">
-                                                            <span title="<?php echo $player_info['player_name']??'';?>" class="nickname mid"><?php echo $player_info['player_name']??'';?></span>
-                                                        </a>
+                                                        <?php if(isset($player_info['pid']) && $player_info['pid']>0){?>
+														<a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $player_info['pid'];?>" target="_blank">
+															<span title="<?php echo $player_info['player_name']??'';?>" class="nickname mid"><?php echo $player_info['player_name']??'';?></span>
+														</a>
+														<?php }else{?>
+														 <span title="<?php echo $player_info['player_name']??'';?>" class="nickname mid"><?php echo $player_info['player_name']??'';?></span>
+														 <?php }?>
                                                     </td>
                                                     <td>
                                                         <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_star_equip_"))=="_star_equip_"){?>
