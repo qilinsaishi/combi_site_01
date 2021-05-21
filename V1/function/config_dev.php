@@ -15,6 +15,7 @@ $base_config = [
 		"teamList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
 		"playerList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
         "tournamentList"=>'?x-oss-process=image/resize,m_lfit,h_130,w_130',
+		"heroList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
     ]
 ];
 
