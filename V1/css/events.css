@@ -415,10 +415,14 @@
 }
 .imgauto{
     object-fit: cover;
-    width: 60%;
+    width: 100%;
 	display:block;
 	margin:0 auto;
-    height: 60%;
+    height: 100%;
+}
+.events_img .imgauto1{
+	display:block;
+	margin:0 auto;
 }
 .white{
     color: #333;
@@ -454,6 +458,9 @@
 .best_team_tab1 li:hover .team_name{
     background: #FF6649;
     color: #fff;
+}
+.events_ul .imgauto{
+	
 }
 /* 移动 */
 @media only screen and (max-width: 1024px){

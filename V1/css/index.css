@@ -515,12 +515,17 @@ margin-bottom: 14px;
     margin-bottom: 80px;
 }
 .game_special_list .div_img img{
-    width: 100%;
+    /* width: 100%; */
     z-index: 1;
     position: absolute;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+    /* object-fit: cover; */
+    /* width: 100%; */
+    /* height: 100%; */
+	left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
 .game_special_list a span{
     width: 100%;

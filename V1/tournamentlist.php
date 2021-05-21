@@ -89,7 +89,7 @@ $tournamentList["all"] = $return['tournamentList']['data'];
                                         <li>
                                             <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
                                                 <div class="events_img">
-                                                    <img class="imgauto" src="<?php echo $tournamentInfo['logo'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
+                                                    <img class="imgauto1" src="<?php echo $tournamentInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_130,w_130" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
                                                 </div>
                                                 <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                             </a>

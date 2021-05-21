@@ -624,7 +624,7 @@ color: #fff;
 /* 电竞战队详情页新闻资讯 */
 .team_news{
     width:100%;
-    height: 478px;
+    height: auto;
     background: #FFFFFF;
     border: 1px solid #EEEEEE;
     border-radius: 8px;
