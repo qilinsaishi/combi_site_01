@@ -62,12 +62,15 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                 <div class="game_title">
                     <div class="game_title_top">
                         <div class="game_team1">
+                            <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
                                     <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
+                            </a>
+
                         </div>
                         <div class="game_type">
                             <span class="span1"><?php echo $config['game'][$return['matchDetail']['data']['game']];?></span>
@@ -80,12 +83,14 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <p><?php echo date("Y.m.d H:i:s",strtotime($return['matchDetail']['data']['start_time'])+$config['hour_lag']*3600)?>·<?php echo generateMatchStatus($return['matchDetail']['data']['start_time']);?></p>
                         </div>
                         <div class="game_team1">
+                            <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
                                     <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>"  class="imgauto">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
+                            </a>
                         </div>
                     </div>
                     <div class="game_team_depiction">
@@ -127,11 +132,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         </div>
                                         <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
                                         <!--- 如果主队胜利-->
-                                        <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?>
                                             <div class="imgwidth30 imgheight30">
-                                                <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                                <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?> active <?php }?>">
                                             </div>
-                                        <?php }?>
                                         <!--- 如果主队胜利-->
                                     </div>
                                     <div class="center">
@@ -147,11 +150,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     </div>
                                     <div class="left right">
                                         <!--- 如果客队胜利-->
-                                        <?php if($round_info['win_teamID']==$return['matchDetail']['data']['away_id']){?>
                                             <div class="imgwidth30 imgheight30">
-                                                <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                                <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['away_id']){?> active <?php }?>">
                                             </div>
-                                        <?php }?>
                                         <!--- 如果客队胜利-->
                                         <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
                                         <div class="imgwidth40 imgheight40">
@@ -207,7 +208,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <!--- 主客队的金钱收益-->
                                     <div class="pk-detail-con">
                                         <div class="progress blue">
-                                            <div class="progress-bar" style="width: <?php echo !isset($round_info['money_a'])?0:(intval(100*$round_info['money_a']??0/($round_info['money_a']??0+$round_info['money_b']??0)));?>%;">
+                                            <div class="progress-bar" style="width: <?php echo !isset($round_info['money_a'])?0:(intval(100*($round_info['money_a']??0)/((($round_info['money_a']??0)+($round_info['money_b']??0)))));?>%;">
                                                 <i class="lightning"></i>
                                             </div>
                                         </div>
@@ -723,10 +724,10 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             </div>
                                             <div class="compare-bar compare_bar clearfix">
                                                 <div class="progress3 fl progress4 <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){echo " red";}else{echo " grey";}?>">
-                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']/(30))?>%;"></span>
+                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']/(40))?>%;"></span>
                                                 </div>
                                                 <div class="progress3 fr <?php if($return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_a']>$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']){echo " grey";}else{echo " blue";}?>">
-                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']/(30))?>%;"></span>
+                                                    <span class="green" style="width: <?php echo intval(100*$return['matchDetail']['data']['match_pre']['strength_index']['minute_hits_team_b']/(40))?>%;"></span>
                                                 </div>
                                             </div>
                                         </div>
