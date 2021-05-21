@@ -832,6 +832,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 .table-wrap .table tr th:nth-of-type(2), .table-wrap .table tr td:nth-of-type(2) {
     width: 25%;
+	font-size:0;
 }
 .table-wrap .table tr th:nth-of-type(3), .table-wrap .table tr td:nth-of-type(3) {
     width: 10%;
@@ -930,6 +931,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     height: 22px;
     border-radius: 3px;
     overflow: hidden;
+	margin-right:2px;
 } 
 .property-img1{
     margin: 3px 0 0 12px;

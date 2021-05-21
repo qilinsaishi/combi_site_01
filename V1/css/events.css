@@ -129,7 +129,7 @@
     margin-bottom: 32px;
 }
 .team_explain_top .name{
-    max-width: 150px;
+    /* max-width: 150px; */
     overflow:hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
@@ -505,6 +505,8 @@
         width: 100%;
         height: .6rem;
         line-height: .6rem;
+		font-size:.24rem;
+		padding: 0;
     }
     /* 5.17新增 */
     .team_explain{
@@ -554,4 +556,47 @@
         width: 90%;
         margin: 0 auto;
     }
+	.team_explain_top .name{
+		/* max-width:4rem; */
+		font-size:.3rem;
+		margin-bottom:.2rem;
+	}
+	.team_explain_top .classify{
+		width:1.7rem;
+		height:.5rem;
+		line-height:.5rem;
+		font-size:.28rem;
+		border-radius:.25rem;
+		margin-bottom:.2rem;
+	}
+	.team_explain_bottom p{
+		font-size:.24rem;
+		line-height:.32rem;
+		margin-bottom:.1rem;
+	}
+	.team_explain_top{
+		margin-bottom:0;
+	}
+	.esports_ul a{
+		font-size:.3rem;
+	}
+	.game_left .esports_ul li{
+		height:.56rem;
+		line-height:.56rem;
+		border-radius:.28rem;
+	}
+	.esports_ul li.active a{
+		border-radius:.28rem;
+		padding:0 .3rem;
+	}
+	.team_pub_more span{
+		font-size:.28rem;
+	}
+	.team_pbu_name{
+		font-size:.3rem;
+	}
+	.team_pub_img{
+		width:.3rem;
+		height:.3rem;
+	}
 }

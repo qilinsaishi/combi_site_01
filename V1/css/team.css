@@ -71,9 +71,24 @@
         /* margin-right: .4rem; */
     }
     .esports .game_team_list_detail li:nth-child(5n){
-        margin-right: .4rem;
+        margin-right: 0;
     }
 	.game_team_list_detail{
-		justify-content: space-around;
+		/* justify-content: space-around; */
+	}
+	.esports .game_team_list_detail li{
+		margin-right:.0;
+		width:25%;
+	}
+	.esports .game_team_list_detail li:nth-child(4n){
+		margin-right:0;
+	}
+	.game_team_list_detail li .a1{
+		margin:0 auto
 	}
 }
+/* @media only screen and (max-device-width: 320px) { */
+	/* .esports .game_team_list_detail li{ */
+		/* margin-right:.18rem; */
+	/* } */
+/* } */
