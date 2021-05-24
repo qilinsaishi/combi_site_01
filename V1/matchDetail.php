@@ -1025,6 +1025,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                         <?php }?>
                     </ul>
                 </div>
+				<?php if(isset($return['hotNewsList']['data']) && count($return['hotNewsList']['data'])>0){?>
                 <div class="game_news">
                     <div class="title clearfix">
                         <div class="fl clearfix">
@@ -1048,6 +1049,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                         <?php }?>
                     </ul>
                 </div>
+				<?php } ?>
                 <div class="game_team">
                     <div class="title clearfix">
                         <div class="fl clearfix">

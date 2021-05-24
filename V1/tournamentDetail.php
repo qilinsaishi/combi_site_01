@@ -106,12 +106,7 @@ unset($return['matchList']);
                             <p class="classify fl"><?php echo $config['game'][$return['tournament']['data']['game']];?></p>
                         </div>
                         <div class="team_explain_bottom">
-                            <p>
-                                王者荣耀职业联赛（简称KPL）是王者荣耀最高规格专业竞技赛事。全年分别为春季赛和秋季赛两个赛季，每个赛季分为常规赛、季后赛及总决赛三部分。 
-                            </p>
-                            <p>
-                                2019年9月10日，KPL联盟主席张易加宣布，未来将与广州体育学院合作，将有一批职业选手回到学校接受再教育。
-                            </p>
+                           <?php echo $return['tournament']['data']['description'] ?? '';?>
                         </div>
                     </div>
                 </div>
