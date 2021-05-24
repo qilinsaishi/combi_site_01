@@ -239,7 +239,7 @@
     display: flex;
     font-size: 0;
     align-items: center;
-    width: 170px;
+    max-width: 170px;
 }
 .imgauto{
     object-fit: cover;

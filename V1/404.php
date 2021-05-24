@@ -24,7 +24,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
         <div class="header">
             <div class="container clearfix">
                 <div class="row">
-                    <div class="logo"><a href="index.html">
+                    <div class="logo"><a href="<?php echo $config['site_url'];?>">
                             <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">

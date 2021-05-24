@@ -490,6 +490,7 @@ color: #fff;
 }
 .game3_team2 .game3_team1_top_name{
     margin-right: 20px;
+    text-align: right;
 }
 .game3_team2  .game3_team1_bottom{
     float: right;
