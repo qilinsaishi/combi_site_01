@@ -10,7 +10,7 @@ $base_config = [
     'default_source'=>"scoregg",
     'informationType'=>["news"=>[1,2,3,5,6,7],"stra"=>[4]],
     'baidu_token'=>'WGi6okVpl9ij8Gc3',
-    'hour_lag'=>8,
+    'hour_lag'=>0,
 	'default_oss_img_size'=>[
 		"teamList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
 		"playerList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',

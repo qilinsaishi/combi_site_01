@@ -138,7 +138,7 @@ $keyList = array_keys($return);
                                 <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
                                     <div class="game_match_top">
                                         <span class="game_match_name"><?php echo $matchInfo['tournament_info']['tournament_name'];?></span>
-                                        <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time'])+$config['hour_lag']*3600);?></span>
+                                        <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time']));?></span>
                                     </div>
                                     <div class="game_match_bottom clearfix">
                                         <div class="left ov_1">

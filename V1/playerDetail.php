@@ -257,7 +257,7 @@ else
 											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['match_id'];?>">
 												<div class="player_matchs_div1">
 													<span class="result"><?php if($side == $win_side){  ?>胜<?php }else{ ?>败<?php } ?></span>
-													<span class="time"><?php echo date("Y.m.d",strtotime($recentMatchInfo['start_time'])+$config['hour_lag']*3600);?></span>
+													<span class="time"><?php echo date("Y.m.d",strtotime($recentMatchInfo['start_time']));?></span>
 												</div>
 												<div class="player_matchs_div2">
 													<div class="team1">

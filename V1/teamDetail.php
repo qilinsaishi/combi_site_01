@@ -345,7 +345,7 @@ else
                                                     <img class="imgauto" src="<?php echo $recentMatchInfo['tournament_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['tournament_info']['tournament_name'] ;?>">
                                                 </div>
                                                 <div class="team_results_timei">
-													<?php echo date("Y.m.d H:i",strtotime($recentMatchInfo['start_time'])+$config['hour_lag']*3600);?> Bo<?php echo $recentMatchInfo['game_count'] ;?>
+													<?php echo date("Y.m.d H:i",strtotime($recentMatchInfo['start_time']));?> Bo<?php echo $recentMatchInfo['game_count'] ;?>
                                                     
                                                 </div>
                                             </div>
