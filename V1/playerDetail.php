@@ -7,7 +7,7 @@ if($pid<=0)
 }
 $params = [
     "intergratedPlayer"=>[$pid],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_skills_img","default_fuwen_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
@@ -244,7 +244,7 @@ else
 							<?php
 						  foreach($return['intergratedPlayer']['data']['recentMatchList'] as $recentMatchInfo)
 						  { 
-								if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list'])){$side = "home";}else{$side="away";}
+								if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list']['scoregg'])){$side = "home";}else{$side="away";}
 							   if(($recentMatchInfo['home_score'] >= $recentMatchInfo['away_score'])){$win_side = "home";}else{$win_side="away";}
 								if(count($recentMatchInfo['player_detail'])>0)
 								{
@@ -307,16 +307,16 @@ else
 															if((strpos($round_son_key,'skill_')!==false) ){
 														?>
 													<div>
-														<img src="<?php echo $round_son_detail; ?>" class="imgauto" alt="">
+														<img data-original="<?php echo $round_son_detail; ?>" src="<?php echo $return['defaultConfig']['data']['default_skills_img']['value'];?>" class="imgauto" alt="">
 													</div>
 													<?php }}?>
 												</div>
 												<div class="player_matchs_div7 clearfix">
 													<div>
-														<img src="<?php echo $config['site_url'];?>/images/game_skills1.png" class="imgauto" alt="">
+														<img src="<?php echo $return['defaultConfig']['data']['default_fuwen_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="">
 													</div>
 													<div>
-														<img src="<?php echo $config['site_url'];?>/images/game_skills2.png" class="imgauto" alt="">
+														<img src="<?php echo $return['defaultConfig']['data']['default_fuwen_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="">
 													</div>
 												</div>
 											</a>
