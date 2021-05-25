@@ -94,8 +94,8 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                         </div>
                     </div>
                     <div class="game_team_depiction">
-                        <p class="active"><?php echo strip_tags(checkJson($return['matchDetail']['data']['home_team_info']['description']));?></p>
-                        <p class="active"><?php echo strip_tags(checkJson($return['matchDetail']['data']['away_team_info']['description']));?></p>
+                        <p class="active"><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['home_team_info']['description'])));?></p>
+                        <p class="active"><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['away_team_info']['description'])));?></p>
                     </div>
                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
