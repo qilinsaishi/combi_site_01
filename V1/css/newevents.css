@@ -1,0 +1,718 @@
+
+/* CSS Document */
+/*点赞*/
+@-webkit-keyframes niceIn {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.5);
+		transform: scale(1.5)
+	}
+	70% {
+		-webkit-transform: scale(.8);
+		transform: scale(.8)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+@keyframes{
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		transform: scale(1)
+	}
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.5);
+		-ms-transform: scale(1.5);
+		transform: scale(1.5)
+	}
+	70% {
+		-webkit-transform: scale(.8);
+		-ms-transform: scale(.8);
+		transform: scale(.8)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		transform: scale(1)
+	}
+}
+
+@-o-keyframes niceIn{
+	0% {
+		opacity: 1;
+		-o-transform: scale(1);
+		transform: scale(1)
+	}
+	50% {
+		opacity: 1;
+		-o-transform: scale(1.5);
+		transform: scale(1.5)
+	}
+	70% {
+		-o-transform: scale(.8);
+		transform: scale(.8)
+	}
+	100% {
+		opacity: 1;
+		-o-transform: scale(1);
+		transform: scale(1)
+	}
+} 
+
+@-moz-keyframes niceIn{
+	0% {
+		opacity: 1;
+		-moz-transform: scale(1);
+		transform: scale(1)
+	}
+	50% {
+		opacity: 1;
+		-moz-transform: scale(1.5);
+		transform:scale(1.5)
+	}
+	70% {
+		-o-transform: scale(.8);
+		transform: scale(.8)
+	}
+	100% {
+		opacity: 1;
+		-moz-transform: scale(1);
+		transform: scale(1)
+	}
+}
+.niceIn {
+	-webkit-animation:niceIn 0.8s .2s ease;
+	-moz-animation:niceIn 0.8s .2s ease;
+	-o-animation:niceIn 0.8s .2s ease;
+	animation:niceIn 0.8s .2s ease;
+}
+/* 点赞 */
+
+.team_explain_bottom p{
+    margin-bottom: 6px;
+}
+.team_explain_bottom p span{
+    color: #FF6649;
+}
+.left_bg{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: rotate(180deg);
+}
+.schedule{
+    position: relative;
+}
+.right_bg{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.team_explain_top .name{
+    font-size: 36px;
+}
+.team_pbu_name{
+    font-weight: 500;
+}
+.format{
+    /* height: 324px; */
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    background-image:url("../images/format_bg.png") ;
+    background-repeat: no-repeat;
+    background-position: right top;
+    padding: 30px 20px;
+}
+.format_p{
+    border: 1px solid #FF6649;
+    border-radius: 4px;
+    height: 28px;
+    line-height: 28px;
+    color: #FF6649;
+    font-size: 18px;
+    display: inline-block;
+    padding: 0 12px;
+    margin-bottom: 18px;
+}
+.format_div p{
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+}
+.format_div p span{
+    color: #FF6649;
+}
+.format_div{
+    margin-bottom: 30px;
+}
+.format_div1{
+    margin-bottom: 0;
+}
+.dota2_teams li{
+    padding: 8px;
+    width: 98px;
+    float: left;
+    height: 98px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-image: url("../images/dota2_team_bg.png");
+}
+.dota2_teams li:nth-child(10n){
+    margin-right: 0;
+}
+.game_team_img{
+    width: 82px;
+    height: 82px;
+    display: block;
+    margin: 0 auto;
+}
+.hot_team{
+    padding: 20px 18px 0 20px;
+}
+.prizePool{
+    background-image: url("../images/pool.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 562px;
+    padding-top: 40px;
+    background-size: 100%;
+}
+.prizePool .title{
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+.money *{
+    font-family: shuzi;
+    color: #fff;
+    display: inline-block;
+}
+.money{
+    text-align: center;
+    height: 98px;
+    margin-bottom: 40px;
+}
+.money span{
+    background-image: url("../images/money_bg.png");
+    width: 98px;
+    height: 98px;
+    font-size: 108px;
+    line-height: 98px;
+    text-align: center;
+    background-size: contain;
+}
+.money i{
+    font-size: 52px;
+}
+.money em{
+    font-size: 96px;
+    color: #F8E8B6;
+}
+.prizePool .champion p{
+    font-family: shuzi;
+    font-size: 52px;
+    color: #fff;
+    height: 38px;
+    line-height: 52px;
+    margin-bottom: 10px;
+}
+.champion{
+    text-align: center;
+    margin-bottom: 34px;
+}
+.prizePool .champion span{
+    font-size: 20px;
+    color: #ccc;
+}
+.other,.others{
+    text-align: center;
+}
+.other{
+    margin-bottom: 34px;
+}
+.other .other_div p{
+    font-size: 32px;
+    color: #fff;
+    font-family: shuzi;
+    height: 24px;
+    line-height: 24px;
+    /* margin-bottom: 6px; */
+}
+.other .other_div,.others .others_div{
+    display: inline-block;
+}
+.other .other_div span{
+    font-size: 20px;
+    color: #ccc;
+    line-height: 24px;
+    height: 24px;
+}
+.other_mr{
+    margin-right: 94px;
+}
+.others_div p{
+    font-size: 26px;
+    color: #fff;
+    font-family: shuzi;
+    height: 20px;
+    line-height: 20px;
+    /* margin-bottom: 6px; */
+}
+.others_div{
+    margin-right: 86px;
+}
+.others_div:nth-last-child(1){
+    margin-right: 0;
+}
+.others_div span{
+    font-size: 20px;
+    color: #ccc;
+    line-height: 24px;
+    height: 24px;
+}
+.thumbsUp{
+    height: 468px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 20px;
+}
+.top_one{
+    width: 348px;
+    height: 376px;
+    background-image: url("../images/top.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 70px;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+.top_one .team{
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
+    position: relative;
+}
+.thumbstop{
+    position: absolute;
+    top: -30px;
+    left: -20px;
+}
+ .top_one .top_name{
+    text-align: center;
+    padding: 0 20px;
+    font-size: 24px;
+    color: #333;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 32px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap
+}
+#btn1{
+    width: 280px;
+    height: 52px;
+    border-radius: 26px;
+    /* text-align: center; */
+    background: #F7F4EC;
+    position: relative;
+    margin: 0 auto;
+}
+.btn1{
+    display: inline-block;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #A08046;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 52px;
+}
+#btn1 .i{
+   font-size: 28px;
+   color: #FFFBEB;
+    display: block;
+}
+#btn1 .likes{
+    font-size: 24px;
+    color: #7A5F36;
+    position: absolute;
+    width: 220px;
+    padding-left: 50px;
+    line-height: 52px;
+    height: 52px;
+    display: inline-block;
+}
+.num{
+    display: none;
+}
+.top_one{
+    margin-right: 20px;
+}
+.top_right{
+    height: 376px;
+}
+.top_two{
+    width: 300px;
+    height: 230px;
+    background-image: url("../images/top_two_bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 20px;
+    padding-top: 30px;
+}
+.top_thre{
+    width: 300px;
+    height: 126px;
+    background-image: url("../images/top_thre_bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 22px 20px 22px 36px;
+}
+.top_twoimg{
+    width: 88px;
+    height: 88px;
+}
+.top_two .team{
+    position: relative;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto;
+    margin-bottom: 14px;
+}
+.thumbstwo{
+    position: absolute;
+    left: -30px;
+    top: -26px;
+}
+.two_name{
+    font-size: 20px;
+    height: 16px;
+    line-height: 16px;
+    padding: 0 20px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 14px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap
+}
+#btn2{
+    width: 240px;
+    height: 48px;
+    background: #eee;
+    font-size: 0;
+    margin: 0 auto;
+    border-radius: 24px;
+}
+.btn2{
+    width: 48px;
+    height: 48px;
+    background: #B2B2B3;
+    border-radius: 50%;
+    line-height: 48px;
+    text-align: center;
+    display: inline-block;
+}
+.btn2 .i{
+    font-size: 24px;
+    color: #fff;
+    display: block;
+}
+#btn2 .likes{
+    width: 192px;
+    padding-left: 50px;
+    /* text-align: center; */
+    display: inline-block;
+    font-size: 24px;
+    color: #333;
+}
+.top_thre .team{
+    position: relative;
+}
+.thumbsthree{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: -20px;
+    top: -20px;
+    width: 44px;
+    height: 44px;
+}
+.top_thre .three_detali{
+    padding-left: 12px;
+    padding-top: 6px;
+    font-size: 0;
+}
+.thre_name{
+    font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 150px;
+    color: #333;
+    margin-bottom: 16px;
+}
+#btn3{
+   width: 140px;
+   height: 36px; 
+   background: #FBF0F0;
+   line-height: 36px;
+   border-radius: 18px;
+}
+.btn3{
+    text-align: center;
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    background: #A75A4D;
+    border-radius: 50%;
+    display: inline-block;
+}
+.btn3 i{
+    font-size: 20px;
+    color: #fff;
+    display: block;
+}
+#btn3 .likes{
+    width: 104px;
+    font-size: 20px;
+    color: #8B3E31;
+    display: inline-block;
+    text-align: center;
+}
+.thumb_others{
+    width: 472px;
+    height: 376px;
+    border: 1px solid #eee;
+}
+.thumb_others li{
+    padding: 10px 20px;
+}
+.ranking_span{
+    font-size: 18px;
+    color: #666;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+.thumb_others_img{
+    width: 42px;
+    height: 42px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.thumb_others_img img{
+    width: 42px;
+    height: 42px;
+    display: block;
+}
+.thumb_others_name{
+    width: 120px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    font-size: 18px;
+    display: inline-block;
+    color: #333;
+    vertical-align: middle;
+}
+.btn4{
+    width: 36px;
+    height: 36px;
+    background: #C5A96F;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 36px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+.thumb_others .likes{
+    width: 122px;
+    height: 30px;
+    background: #F7F4EC;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #333;
+    padding-left: 10px;
+    line-height: 30px;
+}
+.btn_others{
+    width: 158px;
+    display: inline-block;
+    float: right;
+    font-size: 0;
+    height: 30px;
+    background: #F7F4EC;
+    border-radius: 15px;
+    position: relative;
+    padding-left: 36px;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+.btn4 .i{
+    font-size: 20px;
+    color: #fff;
+    display: block;
+}
+.thumb_others{
+    height: 376px;
+    overflow-y: scroll;
+    padding-top: 6px;
+}
+ /*滚动条整体样式*/
+.thumb_others::-webkit-scrollbar {
+    width: 4px;
+    height: 1px;
+}
+/*滚动条滑块*/
+.thumb_others::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    -webkit-event_detail_content-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #ccc;
+    height: 168px;
+}
+/*滚动条轨道*/
+.thumb_others::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
+    border-radius: 4px;
+    background: rgba(0,0,0,0);
+}
+@media only screen and (max-width: 1024px){
+    .team_logo_img{
+        width: 1.22rem;
+        height: 1.18rem;
+    }
+    .format_p{
+        font-size: .28rem;
+        padding: 0 .14rem;
+        height: .42rem;
+        line-height: .42rem;
+        margin-bottom: .28rem;
+    }
+    .team_pbu_name{
+        font-size: .28rem;
+    }
+    .team_pub_top{
+        margin-bottom: .3rem;
+    }
+    .format_div p{
+        font-size: .24rem;
+        line-height: .32rem;
+    }
+    .format_div{
+        margin-bottom: .24rem;
+    }
+    .format{
+        background-size: 4.8rem 3.8rem;
+    }
+    .team_news_bot_ul li{
+        height: .72rem;
+        line-height: .72rem;
+    }
+    .team_news_bot_ul li a{
+        color: #333
+    }
+    .dota2_teams li{
+        width: .98rem;
+        height: .98rem;
+        margin-right: .2rem;
+    }
+    .dota2_teams li:nth-child(6n){
+        margin-right: 0;
+    }
+    .dota2_teams li:nth-child(10n){
+        margin-right: .2rem;
+    }
+    .hot_team,.team_news,.format{
+        padding: .3rem .3rem 0 .3rem;
+    }
+    .money span{
+        width: .6rem;
+        height: .6rem;
+        font-size: .68rem;
+        line-height: .6rem;
+        margin-right: .05rem;
+    }
+    .money i{
+        font-size: .32rem;
+    }
+    .money em{
+        font-size: .5rem;
+    }
+    .money{
+        height: .6rem;
+        margin-bottom: .2rem;
+    }
+    .prizePool .champion p{
+        font-size: .32rem;
+        margin-bottom: .06rem;
+        height: .24rem;
+        line-height: .24rem;
+    }
+    .prizePool .champion span{
+        font-size: .2rem;
+        height: .2rem;
+        line-height: .2rem;
+    }
+    .other .other_div p{
+        font-size: .24rem;
+        height: .17rem;
+        line-height: .17rem;
+        margin-bottom: .06rem;
+    }
+    .other .other_div span{
+        font-size: .2rem;
+        height: .2rem;
+        line-height: .2rem;
+    }
+    .others_div p{
+        font-size: .2rem;
+        height: .15rem;
+        line-height: .15rem;
+    }
+    .others_div{
+        margin-right: .3rem;
+    }
+    .prizePool{
+        height: 3.52rem;
+    }
+    .champion{
+        margin-bottom: .06rem;
+    }
+    .prizePool{
+        padding-top: .14rem;
+    }
+    .prizePool .title{
+        margin-bottom: .2rem;
+    }
+    .other{
+        margin-bottom: .06rem;
+    }
+    .others_div span{
+        font-size: .2rem;
+        height: .2rem;
+        line-height: .2rem;
+    }
+}
