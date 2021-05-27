@@ -474,6 +474,10 @@
     border-radius: 4px;
     background: rgba(0,0,0,0);
 }
+#chart{
+    width: 280px;
+    height: 240px;
+}
 
 @media only screen and (max-width: 1024px){
     .team_explain{
@@ -495,7 +499,7 @@
     .radar {
         margin: 0 auto;
         float: none;
-        width: 3rem;
+        width: 4rem;
         padding-top: .1rem;
         margin-bottom: .2rem;
     }
@@ -608,5 +612,52 @@
 		font-size:.28rem;
 		border-radius:.25rem;
 		margin-bottom:.2rem;
+    }
+    .team_explain_top .name{
+        height: .5rem;
+        line-height: .6rem;
+    }
+    .team_explain_top{
+        margin-bottom: 0;
+    }
+    .team_explain_name p{
+        width: 90%;
+    }
+    .English_name, .chinese_name{
+        float: none;
+    }
+    #chart{
+        width: 4rem;
+        height: 3rem;
+    }
+    .player_data_cell{
+        width: 31%;
+        height: .9rem;
+    }
+    .player_data_cell .num1{
+        font-size: .28rem;
+    }
+    .player_data_cell p{
+        font-size: .24rem;
+    }
+    .kpi_all {
+        width: 4rem;
+        height: 1rem;
+        margin: 0 auto;
+    }
+    .circle_right,.kpi_all{
+        float: none;
+    }
+    .kpi_all span:nth-child(2){
+        font-size: .24rem;
+    }
+    .rate_explain{
+        font-size: .24rem;
+    }
+    .rate_number{
+        font-size: .36rem;
+    }
+    .rate{
+        font-size: .2rem;
     }
 }

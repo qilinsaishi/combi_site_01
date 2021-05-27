@@ -117,7 +117,7 @@ foreach($allGameList as $key => $game)
             <div class="row clearfix">
                 <div class="game_left game3_left">
                     <div class="calendar">
-                        <div class="min_calendar">
+                        <div class="min_calendar active">
                             <div class="calendar_top clearfix">
                                 <div class="war_calendar fl">
                                     <div class="war_calendar_img">
@@ -508,10 +508,12 @@ foreach($allGameList as $key => $game)
 	
     <script>
         $(".calendar").on("click",".open_calendar",function(){
-            $(".max_calendar").addClass("active")
+            $(".max_calendar").addClass("active");
+            $(".min_calendar").removeClass("active")
         })
         $(".calendar").on("click",".stop_calendar",function(){
             $(".max_calendar").removeClass("active")
+            $(".min_calendar").addClass("active");
         })
 
         $(".game3_detail").on("click",".game3_detail_ul li",function(){

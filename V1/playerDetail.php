@@ -175,7 +175,7 @@ else
                     </div>
                     <div class="player_data_detail clearfix">
                         <div class="radar fl">
-                            <div id="chart" style="height: 280px;width: 240px" ></div>
+                            <div id="chart" ></div>
                         </div>
                         <div class="player_data_content fr">
                             <div class="player_data_top clearfix">
@@ -546,6 +546,29 @@ else
     <script src="<?php echo $config['site_url'];?>/js/circle-progress.js"></script>
 	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
     <script>
+
+        // $(function(){
+        //     //判断屏幕宽度
+        //     var winWide = window.screen.width;  //获取当前屏幕分辨率
+        //     var wideScreen = false;
+        //     if(winWide <= 1024){  //1024及以下分辨率
+        //     //这里写要加载的代码
+        //     }
+        //     else{  //大于1024的分辨率
+        //     //这里写要加载的代码
+        // }
+        function fz(){
+            var winWide = window.screen.width;  //获取当前屏幕分辨率
+            var wideScreen = false;
+            if(winWide <= 1024){  //1024及以下分辨率
+            return 24
+            }
+            else{  //大于1024的分辨率
+            //这里写要加载的代码
+            return 14
+        }
+    }
+
         var radar_chart = echarts.init(document.getElementById("chart"));
         // var kill = $('#chart').data('kill');
         // var assists = $('#chart').data('assists');
@@ -570,7 +593,7 @@ else
                     textStyle: {
                         color: '#333',
                         backgroundColor: '#fff',
-                        fontSize: 14,
+                        fontSize: fz(),
                     }
                 },
                 //指示器轴的分割段数
