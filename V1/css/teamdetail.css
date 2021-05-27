@@ -76,7 +76,7 @@
     color: #333;
 }
 .English_name,.chinese_name{
-    max-width: 150px;
+    /* max-width: 150px; */
     overflow:hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
@@ -552,8 +552,12 @@ li a .max_span span{
     .team_explain_bottom{
         padding-bottom: .2rem;
     }
+    .team_explain_name p{
+        width: 100%;
+    }
     .English_name, .chinese_name{
         max-width: 1.2rem;
+        float: none;
     }
     .team_explain_name p:nth-child(1){
         margin-right: .3rem;
