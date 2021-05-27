@@ -1,4 +1,10 @@
 
+@media only screen and (min-width: 1024px){
+    
+.dn_pc{
+    display: none;
+}
+}
 /* CSS Document */
 /*点赞*/
 @-webkit-keyframes niceIn {
@@ -203,8 +209,8 @@
 }
 .money{
     text-align: center;
-    height: 98px;
-    margin-bottom: 40px;
+    /* height: 98px; */
+    margin-bottom: 34px;
 }
 .money span{
     background-image: url("../images/money_bg.png");
@@ -214,13 +220,32 @@
     line-height: 98px;
     text-align: center;
     background-size: contain;
+    margin-right: 8px;
 }
 .money i{
     font-size: 52px;
+    margin-right: 11px;
+    vertical-align: bottom;
+    height: 32px;
+    line-height: 32px;
 }
-.money em{
+.money span:nth-last-child(4){
     font-size: 96px;
     color: #F8E8B6;
+    background: rgba(0,0,0,0);
+    width: auto;
+}
+.money span:nth-last-child(8){
+    font-size: 96px;
+    color: #F8E8B6;
+    background: rgba(0,0,0,0);
+    width: auto;
+}
+.money span:nth-last-child(12){
+    font-size: 96px;
+    color: #F8E8B6;
+    background: rgba(0,0,0,0);
+    width: auto;
 }
 .prizePool .champion p{
     font-family: shuzi;
@@ -477,6 +502,7 @@
    background: #FBF0F0;
    line-height: 36px;
    border-radius: 18px;
+   font-size: 0;
 }
 .btn3{
     text-align: center;
@@ -599,7 +625,24 @@
     border-radius: 4px;
     background: rgba(0,0,0,0);
 }
+.team_news_img p{
+    font-size: 20px;
+    font-weight: 500;
+}
+.team_news{
+    height: auto;
+}
+.team_news_bot_ul li a{
+    font-size: 16px;
+}
+.team_news_bot_ul li{
+    height: 56px;
+    line-height: 56px;
+}
 @media only screen and (max-width: 1024px){
+    .container{
+        width: 100%;
+    }
     .team_logo_img{
         width: 1.22rem;
         height: 1.18rem;
@@ -613,6 +656,8 @@
     }
     .team_pbu_name{
         font-size: .28rem;
+        height: .3rem;
+        line-height: .3rem;
     }
     .team_pub_top{
         margin-bottom: .3rem;
@@ -630,9 +675,11 @@
     .team_news_bot_ul li{
         height: .72rem;
         line-height: .72rem;
+        padding: 0;
     }
     .team_news_bot_ul li a{
-        color: #333
+        color: #333;
+        font-size: .24rem;
     }
     .dota2_teams li{
         width: .98rem;
@@ -699,20 +746,236 @@
         height: 3.52rem;
     }
     .champion{
-        margin-bottom: .06rem;
+        margin-bottom: .14rem;
     }
     .prizePool{
         padding-top: .14rem;
     }
     .prizePool .title{
-        margin-bottom: .2rem;
+        margin-bottom: .1rem;
     }
     .other{
-        margin-bottom: .06rem;
+        margin-bottom: .14rem;
     }
     .others_div span{
         font-size: .2rem;
         height: .2rem;
         line-height: .2rem;
+    }
+    .top_threes{
+        width: 100%;
+        padding: 0 .1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    .top_two,.top_three{
+        width: 2.2rem;
+        height: 1.72rem;
+        background-image: url('../images/wap_two.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        margin: 0;
+        padding: 0;
+        padding-top: .22rem;
+    }
+    .top_three{
+        background-image: url('../images/wap_three.png');
+    }
+    .top_one{
+        width: 2.2rem;
+        height: 2.4rem;
+        background-image: url('../images/wap_one.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .thumbsUp{
+        height: 9.38rem;
+    }
+    #btn2_1,#btn3_1{
+        width: 1.8rem;
+        height: .32rem;
+        margin: 0 auto;
+        font-size: 0;
+        border-radius: .16rem;
+    }
+    #btn2_1{
+        background: #eee;
+    }
+    #btn3_1{
+        background: #F7F1EC;
+    }
+    .btn2,.btn3{
+        width: .32rem;
+        height: .32rem;
+        text-align: center;
+        line-height: .3rem;
+        vertical-align: middle;
+    }
+    .btn2 .i,.btn3 .i{
+        font-size: .18rem;
+    }
+    #btn2_1 .likes,#btn3_1 .likes{
+        width: 1.48rem;
+        font-size: .24rem;
+        padding-left: .3rem;
+        vertical-align: middle;
+        text-align: left;
+        display: inline-block;
+        height: .32rem;
+        line-height: .32rem;
+        color: #333;
+    }
+    .top_two .team,.top_three .team{
+        width: .58rem;
+        height: .58rem;
+        margin-bottom: 0;
+        position: relative;
+        margin: 0 auto;
+    }
+    .top_twoimg{
+        width: .58rem;
+        height: .58rem;
+    }
+    .thumbstwo{
+        height: .32rem;
+        width: .32rem;
+        left: -.22rem;
+        top: -.12rem;
+    }
+    .two_name{
+        width: 1.58rem;
+        height: .24rem;
+        font-size: .26rem;
+        line-height: .24rem;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        padding: 0;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: .08rem;
+    }
+    .top_one{
+        padding-top: .46rem;
+    }
+    .top_one .team{
+        width: .8rem;
+        height: .8rem;
+        margin-bottom: .06rem;
+    }
+    .top_oneimg{
+        width: .8rem;
+        height: .8rem;
+    }
+    .thumbstop{
+        width: .32rem;
+        height: .32rem;
+        left: -.12rem;
+        top: -.18rem;
+    }
+    .top_one .top_name{
+        font-size: .26rem;
+        height: .2rem;
+        line-height: .2rem;
+        color: #333;
+        margin-bottom: .24rem;
+    }
+    #btn1_1{
+        width: 1.8rem;
+        height: .32rem;
+        background: #F7F4EC;
+        border-radius: .16rem;
+        font-size: 0;
+        margin: 0 auto;
+    }
+    .btn1{
+        width: .32rem;
+        height: .32rem;
+        text-align: center;
+        line-height: .3rem;
+    }
+    #btn1_1 .i{
+        font-size: .18rem;
+        color: #fff;
+        display: block;
+    }
+    #btn1_1 .likes{
+        width: 1.48rem;
+        font-size: .24rem;
+        height: .32rem;
+        line-height: .32rem;
+        padding-left: .24rem;
+        color: #333;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .thumb_others{
+        border: 0;
+        width: 100%;
+        height: 6rem;
+        padding-top: .1rem;
+    }
+    .thumb_others li{
+        padding: .16rem .1rem;
+    }
+    .ranking_span{
+        font-size: .24rem;
+    }
+    .thumb_others_img img{
+        width: .54rem;
+        height: .54rem;
+    }
+    .thumb_others_img{
+        width: .54rem;
+        height: .54rem;
+        margin-right: .12rem;
+    }
+    .thumb_others_name{
+        width: 1.58rem;
+        font-size: .24rem;
+    }
+    .btn_others{
+        width: 1.8rem;
+        height: .32rem;
+        margin-top: .11rem;
+    }
+    .btn4{
+        width: .32rem;
+        height: .32rem;
+        text-align: center;
+        line-height: .3rem;
+        top: 0;
+    }
+    .btn4 .i{
+        font-size: .18rem;
+    }
+    .thumb_others .likes{
+        padding-left: .32rem;
+        font-size: .2rem;
+        line-height: .32rem;
+        height: .32rem;
+    }
+    .hot_match_bot .imgauto1{
+        width: 100%;
+    }
+    .hot_match_bot li a{
+        overflow: hidden;
+    }
+    .team_news_img p{
+        font-size: .28rem;
+    }
+    .team_explain_top .name{
+        margin-bottom: .1rem;
+    }
+    .team_explain_bottom p{
+        margin-bottom: .1rem;
+    }
+    .dn_wap{
+        display: none;
     }
 }

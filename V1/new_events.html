@@ -324,19 +324,25 @@
                 </div>
                 <div class="prizePool mb20">
                     <p class="title">Ti10国际邀请赛奖金池</p>
-                    <div class="money">
+                    <div class="m_wrapper">
+
+                    </div>
+                    <!-- <div class="money">
                         <i>$</i>
                         <span>4</span>
                         <span>5</span>
-                        <em>,</em>
+                        <span>,</span>
                         <span>2</span>
                         <span>3</span>
                         <span>1</span>
-                        <em>,</em>
+                        <span>,</span>
                         <span>6</span>
                         <span>9</span>
                         <span>2</span>
-                    </div>
+                    </div> -->
+                    <!-- <div class="money">
+                        <i>$</i>
+                    </div> -->
                     <div class="champion">
                         <p>$22,543,333</p>
                         <span>冠军&nbsp;|&nbsp;45%</span>
@@ -386,7 +392,7 @@
                         <span class="fl team_pbu_name">Ti10国际邀请赛冠军预测</span>
                     </div>
                     <div class="clearfix thumbs">
-                        <div class="top_three fl clearfix">
+                        <div class="top_three fl clearfix dn_wap">
                             <div class="top_one fl">
                                 <a href="##">
                                     <div class="team">
@@ -435,6 +441,53 @@
                                         </div>
                                     </a>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="dn_pc top_threes">
+                            <div class="top_two">
+                                <a href="##">
+                                    <div class="team">
+                                        <img src="./images/thumbsUp.png" alt="" class="top_twoimg">
+                                        <img src="./images/thumbstwo.png" alt="" class="thumbstwo">
+                                    </div>
+                                    <p class="two_name">WEEEEEEEEE</p>
+                                    <div id="btn2_1">
+                                        <div class="btn2">
+                                            <i class="iconfont icon-dianzan i"></i>
+                                        </div>
+                                        <p class="likes">100</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="top_one">
+                                <a href="##">
+                                    <div class="team">
+                                        <img src="./images/thumbsUp.png" alt="" class="top_oneimg">
+                                        <img src="./images/thumbstop.png" alt="" class="thumbstop">
+                                    </div>
+                                    <p class="top_name">WEEEEEEEEE</p>
+                                    <div id="btn1_1">
+                                        <div class="btn1">
+                                            <i class="iconfont icon-dianzan i"></i>
+                                        </div>
+                                        <p class="likes">100</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="top_three">
+                                <a href="##">
+                                    <div class="team">
+                                        <img src="./images/thumbsUp.png" alt="" class="top_twoimg">
+                                        <img src="./images/thumbsthree.png" alt="" class="thumbstwo">
+                                    </div>
+                                    <p class="two_name">WEEEEEEEEE</p>
+                                    <div id="btn3_1">
+                                        <div class="btn3">
+                                            <i class="iconfont icon-dianzan i"></i>
+                                        </div>
+                                        <p class="likes">100</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <div class="fr thumb_others">
@@ -600,22 +653,26 @@
                     <div class="hot_match_bot">
                         <ul class="clearfix">
                             <li>
-                                <a href="##" style="background-image: url('./images/banner.png')">
+                                <a href="##">
+                                    <img src="./images/event_1.png" alt="" class="imgauto1">
                                     <span>2021 LPL春季赛</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="##" style="background-image: url('./images/event_1.png')">
+                                <a href="##">
+                                    <img src="./images/event_2.png" alt="" class="imgauto1">
                                     <span>2021 LPL春季赛</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="##" style="background-image: url('./images/event_2.png')">
+                                <a href="##">
+                                    <img src="./images/event_1.png" alt="" class="imgauto1">
                                     <span>2021 LPL春季赛</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="##" style="background-image: url('./images/game_detial2.png')">
+                                <a href="##">
+                                    <img src="./images/event_2.png" alt="" class="imgauto1">
                                     <span>2021 LPL春季赛</span>
                                 </a>
                             </li>
@@ -658,8 +715,32 @@
         </div>
     </div>
     <script src="./js/jquery.min.js"></script>
-    <!-- <script src="./js/index.js"></script> -->
+    <script src="./js/jquery.lazyload.js"></script>
+    <script src="./js/index.js"></script>
     <script src="./js/jquery.lineProgressbar.js"></script>
+    <!-- 金额js -->
+    <script>
+        var a = '13,456,789';
+        // Number.prototype.reverse = function(){
+        //      var s = this.toString();
+        //      var a = [];
+        //      for(var i=0;i<9;i++){
+        //       a.unshift(s[i]);
+        //      }
+        //      return a.join("");
+        //     }
+        //    var n =  a.reverse()
+        //    console.log(n.toString().split(""))
+        // console.log(a.split('').map(Number))
+        var money = a.split('')
+        var html = ''
+            html += '<div class="money">'+'<i>$</i>'
+        for (var i=0;i<money.length;i++){
+                html+='<span>'+money[i]+'</span>'
+            }
+            html += '</div>'
+            $(".m_wrapper").html(html)
+    </script>
     <script type="text/javascript">
         (function ($) {
             $.extend({
@@ -714,7 +795,7 @@
             $(this).parent().next().text(num);
         });
         $(function () {
-            $("#btn1").click(function () {
+            $("#btn1 .btn1").click(function () {
                 $.tipsBox({
                     obj: $(this),
                     str: "+1",
@@ -725,7 +806,7 @@
             });
         });
         $(function () {
-            $("#btn3").click(function () {
+            $("#btn2 .btn2").click(function () {
                 $.tipsBox({
                     obj: $(this),
                     str: "+1",
@@ -736,7 +817,40 @@
             });
         });
         $(function () {
-            $("#btn2").click(function () {
+            $("#btn3 .btn3").click(function () {
+                $.tipsBox({
+                    obj: $(this),
+                    str: "+1",
+                    callback: function () {
+                    }
+                });
+                niceIn($(this));
+            });
+        });
+        $(function () {
+            $("#btn1_1 .btn1").click(function () {
+                $.tipsBox({
+                    obj: $(this),
+                    str: "+1",
+                    callback: function () {
+                    }
+                });
+                niceIn($(this));
+            });
+        });
+        $(function () {
+            $("#btn2_1 .btn2").click(function () {
+                $.tipsBox({
+                    obj: $(this),
+                    str: "+1",
+                    callback: function () {
+                    }
+                });
+                niceIn($(this));
+            });
+        });
+        $(function () {
+            $("#btn3_1 .btn3").click(function () {
                 $.tipsBox({
                     obj: $(this),
                     str: "+1",
