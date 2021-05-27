@@ -536,7 +536,8 @@
                                             <p class="likes">100</p>
                                         </div>
                                     </a>
-                                </li> <li class="clearfix">
+                                </li>
+                                <li class="clearfix">
                                     <a href="##">
                                         <span class="ranking_span">7</span>
                                         <div class="thumb_others_img">
@@ -550,7 +551,8 @@
                                             <p class="likes">100</p>
                                         </div>
                                     </a>
-                                </li> <li class="clearfix">
+                                </li>
+                                <li class="clearfix">
                                     <a href="##">
                                         <span class="ranking_span">8</span>
                                         <div class="thumb_others_img">
@@ -564,7 +566,8 @@
                                             <p class="likes">100</p>
                                         </div>
                                     </a>
-                                </li> <li class="clearfix">
+                                </li>
+                                <li class="clearfix">
                                     <a href="##">
                                         <span class="ranking_span">9</span>
                                         <div class="thumb_others_img">
@@ -578,7 +581,8 @@
                                             <p class="likes">100</p>
                                         </div>
                                     </a>
-                                </li> <li class="clearfix">
+                                </li>
+                                <li class="clearfix">
                                     <a href="##">
                                         <span class="ranking_span">10</span>
                                         <div class="thumb_others_img">
@@ -592,7 +596,8 @@
                                             <p class="likes">100</p>
                                         </div>
                                     </a>
-                                </li> <li class="clearfix">
+                                </li>
+                                <li class="clearfix">
                                     <a href="##">
                                         <span class="ranking_span">11</span>
                                         <div class="thumb_others_img">
@@ -606,7 +611,8 @@
                                             <p class="likes">100</p>
                                         </div>
                                     </a>
-                                </li> <li class="clearfix">
+                                </li>
+                                <li class="clearfix">
                                     <a href="##">
                                         <span class="ranking_span">12</span>
                                         <div class="thumb_others_img">
@@ -620,9 +626,25 @@
                                             <p class="likes">100</p>
                                         </div>
                                     </a>
-                                </li> <li class="clearfix">
+                                </li>
+                                <li class="clearfix">
                                     <a href="##">
                                         <span class="ranking_span">13</span>
+                                        <div class="thumb_others_img">
+                                            <img src="./images/thumbsUp3.png" alt="">
+                                        </div>
+                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
+                                        <div id="btn13" class="btn_others">
+                                            <div class="btn4">
+                                                <i class="iconfont icon-dianzan i"></i>
+                                            </div>
+                                            <p class="likes">100</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="##">
+                                        <span class="ranking_span">14</span>
                                         <div class="thumb_others_img">
                                             <img src="./images/thumbsUp3.png" alt="">
                                         </div>
@@ -734,60 +756,60 @@
         // console.log(a.split('').map(Number))
         var money = a.split('')
         var html = ''
-            html += '<div class="money">'+'<i>$</i>'
-        for (var i=0;i<money.length;i++){
-                html+='<span>'+money[i]+'</span>'
-            }
-            html += '</div>'
-            $(".m_wrapper").html(html)
+        html += '<div class="money">' + '<i>$</i>'
+        for (var i = 0; i < money.length; i++) {
+            html += '<span>' + money[i] + '</span>'
+        }
+        html += '</div>'
+        $(".m_wrapper").html(html)
     </script>
     <script type="text/javascript">
-        (function ($) {
-            $.extend({
-                tipsBox: function (options) {
-                    options = $.extend({
-                        obj: null,  //jq对象，要在那个html标签上显示
-                        str: "+1",  //字符串，要显示的内容;也可以传一段html，如: "<b style='font-family:Microsoft YaHei;'>+1</b>"
-                        startSize: "12px",  //动画开始的文字大小
-                        endSize: "30px",    //动画结束的文字大小
-                        interval: 600,  //动画时间间隔
-                        color: "red",    //文字颜色
-                        callback: function () { }    //回调函数
-                    }, options);
-                    $("body").append("<span class='num'>" + options.str + "</span>");
-                    var box = $(".num");
-                    var left = options.obj.offset().left + options.obj.width() / 2;
-                    var top = options.obj.offset().top - options.obj.height();
-                    box.css({
-                        "position": "absolute",
-                        "left": left + "px",
-                        "top": top + "px",
-                        "z-index": 9999,
-                        "font-size": options.startSize,
-                        "line-height": options.endSize,
-                        "color": options.color
-                    });
-                    box.animate({
-                        "font-size": options.endSize,
-                        "opacity": "0",
-                        "top": top - parseInt(options.endSize) + "px"
-                    }, options.interval, function () {
-                        box.remove();
-                        options.callback();
-                    });
-                }
-            });
-        })(jQuery);
-          
-        function niceIn(prop){
+            (function ($) {
+                $.extend({
+                    tipsBox: function (options) {
+                        options = $.extend({
+                            obj: null,  //jq对象，要在那个html标签上显示
+                            str: "+1",  //字符串，要显示的内容;也可以传一段html，如: "<b style='font-family:Microsoft YaHei;'>+1</b>"
+                            startSize: "12px",  //动画开始的文字大小
+                            endSize: "30px",    //动画结束的文字大小
+                            interval: 600,  //动画时间间隔
+                            color: "red",    //文字颜色
+                            callback: function () { }    //回调函数
+                        }, options);
+                        $("body").append("<span class='num'>" + options.str + "</span>");
+                        var box = $(".num");
+                        var left = options.obj.offset().left + options.obj.width() / 2;
+                        var top = options.obj.offset().top - options.obj.height();
+                        box.css({
+                            "position": "absolute",
+                            "left": left + "px",
+                            "top": top + "px",
+                            "z-index": 9999,
+                            "font-size": options.startSize,
+                            "line-height": options.endSize,
+                            "color": options.color
+                        });
+                        box.animate({
+                            "font-size": options.endSize,
+                            "opacity": "0",
+                            "top": top - parseInt(options.endSize) + "px"
+                        }, options.interval, function () {
+                            box.remove();
+                            options.callback();
+                        });
+                    }
+                });
+            })(jQuery);
+
+        function niceIn(prop) {
             prop.find('.i').addClass('niceIn');
-            setTimeout(function(){
-                prop.find('.i').removeClass('niceIn');	
-            },1000);		
+            setTimeout(function () {
+                prop.find('.i').removeClass('niceIn');
+            }, 1000);
         }
         for (var i = 0; i < $('.likes').length; i++) {
             var ran = Math.floor(Math.random() * 1000000 + 1)
-            $('.likes').eq(i).text(ran)	
+            $('.likes').eq(i).text(ran)
         }
         $(".i").click(function () {
             var num = $(this).parent().next().text()
@@ -860,118 +882,22 @@
                 niceIn($(this));
             });
         });
-        $(function () {
-            $("#btn4").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
+        $(document).ready(function (index) {
+            $(".thumb_others ul li").each(function (index) {
+                var _this = $(this).find('a').find('.btn_others').find('.btn4')
+                _this.click(function () {
+                    $.tipsBox({
+                        obj: _this,
+                        str: "+1",
+                        callback: function () {
+                        }
+                    });
+                    niceIn(_this);
                 });
-                niceIn($(this));
             });
         });
-        $(function () {
-            $("#btn5").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn6").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn7").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn8").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn9").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn10").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn11").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn12").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        $(function () {
-            $("#btn13").click(function () {
-                $.tipsBox({
-                    obj: $(this),
-                    str: "+1",
-                    callback: function () {
-                    }
-                });
-                niceIn($(this));
-            });
-        });
-        </script>
-        
+    </script>
+
 </body>
 
 </html>
