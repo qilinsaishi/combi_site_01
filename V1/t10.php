@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
+$rankingList = array_unique(array_values($config['ti10']['ti9_ranking']));
 $params=[
     "connectInfo"=>["dataType"=>"keywordMapList","fields"=>"content_id","source_type"=>"another","word"=>$config['ti10']['keyword'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
     "teamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
     "hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"source"=>"scoregg","cache_time"=>86400*7],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","bounas_pool"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
@@ -216,13 +218,14 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                     </div>
                     <div class="clearfix thumbs">
                         <div class="top_three fl clearfix dn_wap">
+                            <?php $teamInfo = $return['ti9teamList']['data'][0];?>
                             <div class="top_one fl">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbsUp.png" alt="">
+                                        <img src="<?php echo $teamInfo['logo'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $teamInfo['team_name'];?>">
                                         <img src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
                                     </div>
-                                    <p class="top_name">WEEEEEEEEE</p>
+                                    <p class="top_name"><?php echo $teamInfo['team_name'];?></p>
                                     <div id="btn1">
                                         <div class="btn1">
                                             <i class="iconfont icon-dianzan i"></i>
@@ -232,48 +235,51 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 </a>
                             </div>
                             <div class="top_right fl">
+                                <?php $teamInfo = $return['ti9teamList']['data'][1];?>
                                 <div class="top_two">
-                                    <a href="##">
-                                        <div class="team">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp.png" alt="" class="top_twoimg">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
+                                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
+                                    <div class="team">
+                                        <img src="<?php echo $teamInfo['logo'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
+                                        <img src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
+                                    </div>
+                                    <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
+                                    <div id="btn2">
+                                        <div class="btn2">
+                                            <i class="iconfont icon-dianzan i"></i>
                                         </div>
-                                        <p class="two_name">WEEEEEEEEE</p>
-                                        <div id="btn2">
-                                            <div class="btn2">
+                                        <p class="likes">100</p>
+                                    </div>
+                                </a>
+                            </div>
+                                <?php $teamInfo = $return['ti9teamList']['data'][2];?>
+                                <div class="top_thre">
+                                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>" class="clearfix">
+                                    <div class="fl team">
+                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" alt="<?php echo $teamInfo['team_name'];?>" class="top_threeimg">
+                                        <img src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbsthree">
+                                    </div>
+                                    <div class="fl three_detali">
+                                        <p class="thre_name"><?php echo $teamInfo['team_name'];?></p>
+                                        <div id="btn3">
+                                            <div class="btn3">
                                                 <i class="iconfont icon-dianzan i"></i>
                                             </div>
                                             <p class="likes">100</p>
                                         </div>
-                                    </a>
-                                </div>
-                                <div class="top_thre">
-                                    <a href="##" class="clearfix">
-                                        <div class="fl team">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="" class="top_threeimg">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbsthree">
-                                        </div>
-                                        <div class="fl three_detali">
-                                            <p class="thre_name">这里是战队名称这里是战队名称</p>
-                                            <div id="btn3">
-                                                <div class="btn3">
-                                                    <i class="iconfont icon-dianzan i"></i>
-                                                </div>
-                                                <p class="likes">100</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
+                            </div>
                             </div>
                         </div>
                         <div class="dn_pc top_threes">
+                            <?php $teamInfo = $return['ti9teamList']['data'][0];?>
                             <div class="top_two">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbsUp.png" alt="" class="top_twoimg">
+                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
                                         <img src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
                                     </div>
-                                    <p class="two_name">WEEEEEEEEE</p>
+                                    <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
                                     <div id="btn2_1">
                                         <div class="btn2">
                                             <i class="iconfont icon-dianzan i"></i>
@@ -282,13 +288,14 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                     </div>
                                 </a>
                             </div>
+                            <?php $teamInfo = $return['ti9teamList']['data'][1];?>
                             <div class="top_one">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbsUp.png" alt="" class="top_oneimg">
+                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" alt="<?php echo $teamInfo['team_name'];?>" class="top_oneimg">
                                         <img src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
                                     </div>
-                                    <p class="top_name">WEEEEEEEEE</p>
+                                    <p class="top_name"><?php echo $teamInfo['team_name'];?></p>
                                     <div id="btn1_1">
                                         <div class="btn1">
                                             <i class="iconfont icon-dianzan i"></i>
@@ -297,13 +304,14 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                     </div>
                                 </a>
                             </div>
+                            <?php $teamInfo = $return['ti9teamList']['data'][2];?>
                             <div class="top_three">
-                                <a href="##">
+                                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbsUp.png" alt="" class="top_twoimg">
+                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
                                         <img src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbstwo">
                                     </div>
-                                    <p class="two_name">WEEEEEEEEE</p>
+                                    <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
                                     <div id="btn3_1">
                                         <div class="btn3">
                                             <i class="iconfont icon-dianzan i"></i>
@@ -315,13 +323,14 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         </div>
                         <div class="fr thumb_others">
                             <ul>
+                                <?php foreach($return['ti9teamList']['data'] as $key => $teamInfo){if($key>=3){?>
                                 <li class="clearfix">
                                     <a href="##">
-                                        <span class="ranking_span">4</span>
+                                        <span class="ranking_span"><?php echo $key+1;?></span>
                                         <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
+                                            <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_54,w_54" alt="<?php echo $teamInfo['team_name'];?>">
                                         </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
+                                        <span class="thumb_others_name"><?php echo $teamInfo['team_name'];?></span>
                                         <div id="btn4" class="btn_others">
                                             <div class="btn4">
                                                 <i class="iconfont icon-dianzan i"></i>
@@ -330,156 +339,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         </div>
                                     </a>
                                 </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">5</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn5" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">6</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn6" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">7</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn7" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">8</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn8" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">9</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn9" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">10</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn10" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">11</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn11" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">12</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn12" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">13</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn13" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="##">
-                                        <span class="ranking_span">14</span>
-                                        <div class="thumb_others_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/thumbsUp3.png" alt="">
-                                        </div>
-                                        <span class="thumb_others_name">WEEEEEEEEEWEEEEEEEEE</span>
-                                        <div id="btn13" class="btn_others">
-                                            <div class="btn4">
-                                                <i class="iconfont icon-dianzan i"></i>
-                                            </div>
-                                            <p class="likes">100</p>
-                                        </div>
-                                    </a>
-                                </li>
+                                <?php }} ?>
                             </ul>
                         </div>
                     </div>
