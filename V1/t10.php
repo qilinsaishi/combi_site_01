@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
+$params=[
+    "connectInfo"=>["dataType"=>"keywordMapList","fields"=>"content_id","source_type"=>"another","word"=>$config['ti10']['keyword'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
+];
+$return = curl_post($config['api_get'],json_encode($params),1);
 ?>
 <html lang="en">
 
@@ -98,7 +102,7 @@ require_once "function/init.php";
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">Ti10国际邀请赛最新资讯</span>
+                        <span class="fl team_pbu_name"><?php echo $config['ti10']['event_name']?>国际邀请赛最新资讯</span>
                         <a href="##" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
@@ -106,80 +110,29 @@ require_once "function/init.php";
                     </div>
                     <div class="team_news_mid">
                         <ul class="team_news_mid_ul clearfix">
+                            <?php foreach($return['connectInfo']['data'] as $key => $info){if($key<=3){?>
                             <li>
-                                <a href="##">
+                                <a href="<?php echo $config["site_url"]."/newsdetail/".$info['id'];?>">
                                     <div class="team_news_img">
                                         <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
+                                            <img class="imgauto" src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
                                         </div>
-                                        <p>竞燃杯｜企业电竞联赛竞燃杯｜企业电竞联赛</p>
+                                        <p><?php echo $info['title'];?></p>
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>CSGO精英对抗赛CSGO精英对抗赛</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>竞燃杯｜企业电竞联赛竞燃杯｜企业电竞联赛</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>CSGO精英对抗赛CSGO精英对抗赛</p>
-                                    </div>
-                                </a>
-                            </li>
+                            <?php }}?>
                         </ul>
                     </div>
                     <div class="team_news_bot">
                         <ul class="team_news_bot_ul clearfix">
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
+                            <?php foreach($return['connectInfo']['data'] as $key => $info){if($key>3){?>
+                                <li class="fl">
+                                    <a href="<?php echo $config["site_url"]."/newsdetail/".$info['id'];?>">
+                                        <?php echo $info['title'];?>
+                                    </a>
+                                </li>
+                            <?php }}?>
                         </ul>
                     </div>
                 </div>
