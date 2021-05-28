@@ -326,10 +326,7 @@ unset($return['matchList']);
             </div>
         </div>
     </div>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.min.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/index.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
-	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
+    <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
     <script>
          $(".event_detail").on("click",".event_detail_ul li",function(){
             $(".event_detail_ul li").removeClass("active");

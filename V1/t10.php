@@ -5,9 +5,11 @@ $params=[
     "connectInfo"=>["dataType"=>"keywordMapList","fields"=>"content_id","source_type"=>"another","word"=>$config['ti10']['keyword'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
     "teamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
     "hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"source"=>"scoregg","cache_time"=>86400*7],
+    "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","bounas_pool"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-
+$bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
 ?>
 <html lang="en">
 
@@ -54,7 +56,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                     <div class="team_explain fr">
                         <div class="team_explain_top clearfix">
                             <p class="name fl">Ti10 Dota2国际邀请赛</p>
-                            <p class="classify fl">DOTA2</p>
+                            <p class="classify fl"><?php echo $config['game'][$config['ti10']['game']];?></p>
                         </div>
                         <div class="team_explain_bottom">
                             <p>
@@ -180,44 +182,29 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <i>$</i>
                     </div> -->
                     <div class="champion">
-                        <p>$22,543,333</p>
-                        <span>冠军&nbsp;|&nbsp;45%</span>
+                        <?php $bounas = $bounas_pool[0];
+                        $bounas = explode("|",$bounas);?>
+                        <p>$<?php echo number_format($bounas[0]);?></p>
+                        <span><?php echo $bounas[1];?>&nbsp;|&nbsp;<?php echo $bounas[2];?>%</span>
                     </div>
                     <div class="other clearfix">
-                        <div class=" other_div other_mr">
-                            <p>$5,125,824</p>
-                            <span>亚军&nbsp;|&nbsp;13%</span>
-                        </div>
-                        <div class=" other_div other_mr">
-                            <p>$5,125,824</p>
-                            <span>季军&nbsp;|&nbsp;9%</span>
-                        </div>
-                        <div class=" other_div">
-                            <p>$5,125,824</p>
-                            <span>殿军&nbsp;|&nbsp;6%</span>
-                        </div>
+                        <?php foreach($bounas_pool as $key => $bounas){if($key>0 && $key<=3){
+                            $bounas = explode("|",$bounas);
+                            ?>
+                            <div class=" other_div other_mr">
+                                <p>$<?php echo number_format($bounas[0]);?></p>
+                                <span><?php echo $bounas[1];?>&nbsp;|&nbsp;<?php echo $bounas[2];?>%</span>
+                            </div>
+                        <?php }}?>
                     </div>
                     <div class="others">
-                        <div class="others_div">
-                            <p>$1,754,223</p>
-                            <span>5-6&nbsp;|&nbsp;3.5%</span>
-                        </div>
-                        <div class="others_div">
-                            <p>$1,254,621</p>
-                            <span>5-6&nbsp;|&nbsp;2.5%</span>
-                        </div>
-                        <div class="others_div">
-                            <p>$851,634</p>
-                            <span>5-6&nbsp;|&nbsp;2%</span>
-                        </div>
-                        <div class="others_div">
-                            <p>$684,881</p>
-                            <span>5-6&nbsp;|&nbsp;1.5%</span>
-                        </div>
-                        <div class="others_div">
-                            <p>$154,251</p>
-                            <span>5-6&nbsp;|&nbsp;0.25%</span>
-                        </div>
+                        <?php foreach($bounas_pool as $key => $bounas){if($key>3){
+                            $bounas = explode("|",$bounas);?>
+                            <div class="others_div">
+                                <p>$<?php echo number_format($bounas[0]);?></p>
+                                <span><?php echo $bounas[1];?>&nbsp;|&nbsp;<?php echo $bounas[2];?>%</span>
+                            </div>
+                        <?php }}?>
                     </div>
                 </div>
                 <div class="thumbsUp mb20">
@@ -533,18 +520,13 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                <?php
+                foreach($return['links']['data'] as $linksInfo)
+                {   ?>
+                    <li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+                <?php }?>
             </ul>
-            <p>Copyright © 2021 www.qilindianjing.com</p>
-            <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
+            <?php renderCertification();?>
         </div>
     </div>
     <div class="suspension">
@@ -557,10 +539,9 @@ $return = curl_post($config['api_get'],json_encode($params),1);
             </div>
         </div>
     </div>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.min.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/index.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
+    <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
+
+
     <!-- 金额js -->
     <script>
         var a = '13,456,789';

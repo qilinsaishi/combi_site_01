@@ -538,13 +538,7 @@ else
             </div>
         </div>
     </div>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.min.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/echarts.min.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/index.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
-    <!-- 这是本页新增的js -->
-    <script src="<?php echo $config['site_url'];?>/js/circle-progress.js"></script>
-	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
+    <?php renderFooterJsCss($config,[],["jquery.lineProgressbar","echarts.min","circle-progress"]);?>
     <script>
 
         // $(function(){
