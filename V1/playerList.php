@@ -251,10 +251,7 @@ $keyList = array_keys($return);
             </div>
         </div>
     </div>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.min.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/index.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
-	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
+    <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
     <script>
         $(".esports_ul").on("click","li",function(){
             $(".esports_ul li").removeClass("active");

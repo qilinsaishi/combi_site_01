@@ -841,7 +841,7 @@ color: #fff;
         padding: 0 5%;
         overflow:hidden;
         text-overflow:ellipsis;
-        white-space: nowrap
+        white-space: nowrap;
     }
     /* 分页移动 */
     .paging .paging_num{

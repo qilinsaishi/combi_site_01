@@ -15,6 +15,12 @@ $base_config = [
 		"teamList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
 		"playerList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
         "tournamentList"=>'?x-oss-process=image/resize,m_lfit,h_130,w_130',
+    ],
+    'ti10'=>[
+        'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],
+        'event_name'=>"Ti10",
+        'game'=>"dota2",
+        'ti9_ranking'=>["ig"=>670,"eg"=>671,"secret"=>609,"vp"=>520,"obheon"=>601,"tp"=>"632","psg"=>519,"bc"=>660,"fnatic"=>672,"vg"=>515,"qc"=>673,"alliance"=>674]
     ]
 ];
 

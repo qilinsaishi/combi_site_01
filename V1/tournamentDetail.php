@@ -97,7 +97,7 @@ unset($return['matchList']);
                 <div class="team_title mb20 clearfix">
                     <div class="team_logo fl">
                         <div class="team_logo_img mauto">
-                            <img class="imgauto" src="<?php echo $return['tournament']['data']['logo'];?>" alt="<?php echo $return['tournament']['data']['tournament_name'];?>">
+                            <img class="" src="<?php echo $return['tournament']['data']['logo'];?>?x-oss-process=image/resize,m_lfit,h_128,w_128" alt="<?php echo $return['tournament']['data']['tournament_name'];?>">
                         </div>
                     </div>
                     <div class="team_explain fr">
@@ -326,10 +326,7 @@ unset($return['matchList']);
             </div>
         </div>
     </div>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.min.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/index.js"></script>
-    <script src="<?php echo $config['site_url'];?>/js/jquery.lineProgressbar.js"></script>
-	<script src="<?php echo $config['site_url'];?>/js/jquery.lazyload.js"></script>
+    <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
     <script>
          $(".event_detail").on("click",".event_detail_ul li",function(){
             $(".event_detail_ul li").removeClass("active");

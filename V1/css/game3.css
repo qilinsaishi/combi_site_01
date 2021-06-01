@@ -22,6 +22,10 @@
     font-size: 0;
     padding: 20px;
     margin-bottom: 20px;
+    display: none;
+}
+.min_calendar.active{
+    display: block;
 }
 .war_calendar_img{
     width: 24px;
@@ -128,11 +132,11 @@
 }
 .max_calendar{
     width: 100%;
-    height: 410px;
+    height: auto;
     background: #fff;
     border: 1px solid #eee;
     border-radius: 8px;
-    padding:20px 10px;
+    padding:20px;
     position: relative;
     display: none;
 }
@@ -183,7 +187,7 @@
     position: relative;
 }
 .max_calendar_table{
-    position: absolute;
+    /* position: absolute; */
     padding: 0 52px;
     width: 100%;
 }
@@ -365,6 +369,13 @@ margin-right: 20px;
 .lol .one_day_top,.kpl .one_day_top,.dota2 .one_day_top{
     border-bottom: 0;
 }
+.max_calendar_bottom .left, .max_calendar_bottom .right{
+    position: absolute;
+    bottom: 20px;
+}
+ .max_calendar_bottom .right{
+     right: 0;
+ }
 @media only screen and (max-width: 1024px){
     .game_left{
         background: #F5F6F7;
