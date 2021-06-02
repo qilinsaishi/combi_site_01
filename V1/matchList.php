@@ -301,7 +301,7 @@ foreach($allGameList as $key => $game)
                                                                             <div class="fl clearfix game3_classify2_detail">
                                                                                 <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $matchInfo['tournament_id'];?>">
 																					<div class="game3_team_img fl">
-                                                                                        <img class="imgauto" data-original="<?php echo $matchInfo['tournament_info']['logo']?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $matchInfo['tournament_info']['tournament_name']?>">
+                                                                                        <img class="imgauto" data-original="<?php echo $matchInfo['tournament_info']['logo']?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>"  alt="<?php echo $matchInfo['tournament_info']['tournament_name']?>">
                                                                                     </div>
                                                                                     <span class="fr"><?php echo $matchInfo['tournament_info']['tournament_name']?></span>
                                                                                 </a>

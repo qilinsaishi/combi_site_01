@@ -7,7 +7,7 @@ if($currentGame=="")
 }
 $params = [
     "tournamentList"=>["page"=>1,"page_size"=>1000,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -15,6 +15,13 @@ $params = [
     "currentPage"=>["name"=>"tournamentList","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+//dota2数据参数
+$params2 = [
+    "dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1000,"source"=>"wca","cacheWith"=>"currentPage","cache_time"=>86400],
+];
+
+$return2 = curl_post($config['api_get'],json_encode($params2),1);
+
 $tournamentList = [];
 $tournamentList["all"] = [];
 foreach($config['game'] as $game => $game_name)
@@ -22,10 +29,25 @@ foreach($config['game'] as $game => $game_name)
     $tournamentList[$game] = [];
 }
 foreach($return['tournamentList']['data'] as $tournamentInfo)
-{
-    $tournamentList[$tournamentInfo['game']][] = $tournamentInfo;
+{	if($tournamentInfo['game']!='dota2')
+	{
+		$tournamentList[$tournamentInfo['game']][] = $tournamentInfo;
+	}
+    
 }
-$tournamentList["all"] = $return['tournamentList']['data'];
+foreach($return2['dota2TournamentList']['data'] as $tournamentInfo2)
+{	
+	$tournamentList[$tournamentInfo2['game']][] = $tournamentInfo2;
+}
+foreach($tournamentList as $game => $t_list)
+{
+	foreach($t_list as $tournament)
+	{
+	
+		$tournamentList["all"][] = $tournament;
+	}
+}
+unset($return2['dota2TournamentList']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,9 +109,9 @@ $tournamentList["all"] = $return['tournamentList']['data'];
                                 <ul class="events_ul clearfix">
                                     <?php foreach($List as $tournamentInfo){?>
                                         <li>
-                                            <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
+                                            <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>">
                                                 <div class="events_img">
-                                                    <img class="imgauto1" src="<?php echo $tournamentInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_130,w_130" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
+                                                    <img class="imgauto1" data-original="<?php echo $tournamentInfo['logo'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
                                                 </div>
                                                 <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                             </a>
