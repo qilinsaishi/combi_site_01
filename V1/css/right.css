@@ -152,7 +152,7 @@
 /* 最新赛事 */
 .game_match{
     width: 320px;
-    height: 569px;
+    /* height: 569px; */
     background: #FFFFFF;
     border: 1px solid #EEEEEE;
     border-radius: 8px;
@@ -175,6 +175,10 @@
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+}
+.game_match_detail li a img{
+    display: block;
+    margin: 0 auto;
 }
 .game_match_detail li a span {
     display: block;
