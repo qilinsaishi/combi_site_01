@@ -174,7 +174,7 @@ else
                                 </div>
                                 <div class="circle_right fl">
                                     <div class="red">
-                                        <div class="won_red circle" data-num="<?php echo  (isset($return['intergratedTeam']['data']['team_stat']['victory_rate']) && $return['intergratedTeam']['data']['team_stat']['victory_rate']>0 )? ($return['intergratedTeam']['data']['team_stat']['victory_rate']/100):0 ?>">
+                                        <div class="won_red circle" data-num="<?php echo  (isset($return['intergratedTeam']['data']['team_stat']['red_victory_rate']) && $return['intergratedTeam']['data']['team_stat']['victory_rate']>0 )? ($return['intergratedTeam']['data']['team_stat']['red_victory_rate']/100):0 ?>">
                                         </div>
                                         <div class="red_explain">
                                             <span class="rate_number"><?php echo $return['intergratedTeam']['data']['team_stat']['red_victory_rate']?? 0;?>%</span>
@@ -183,7 +183,7 @@ else
                                         </div>
                                     </div>
                                     <div class="blue">
-                                        <div class="won_blue circle" data-num="<?php echo  (isset($return['intergratedTeam']['data']['team_stat']['victory_rate']) && $return['intergratedTeam']['data']['team_stat']['victory_rate']>0 )? ($return['intergratedTeam']['data']['team_stat']['victory_rate']/100):0 ?>">
+                                        <div class="won_blue circle" data-num="<?php echo  (isset($return['intergratedTeam']['data']['team_stat']['blue_victory_rate']) && $return['intergratedTeam']['data']['team_stat']['victory_rate']>0 )? ($return['intergratedTeam']['data']['team_stat']['blue_victory_rate']/100):0 ?>">
                                         </div>
                                         <div class="blue_explain">
                                             <span class="rate_number"><?php echo $return['intergratedTeam']['data']['team_stat']['blue_victory_rate']??0;?>%</span>
