@@ -8,10 +8,10 @@ if($page==''){
     $page=1;
 }
 $params = [
-    "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
     "allNewsList" =>
         ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>("all"==$currentGame)?$page:1,"page_size"=>$pageSize,"game"=>array_keys($config['game']),"fields"=>'id,title,logo,site_time,content',"type"=>$config['informationType'][$type],"cache_time"=>86400*7],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
@@ -24,6 +24,16 @@ foreach ($config['game'] as $game => $gameName)
         ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>($currentGame==$game)?$page:1,"page_size"=>$pageSize,"game"=>$game,"fields"=>'id,title,logo,site_time,content',"type"=>$config['informationType'][$type],"cache_time"=>86400*7];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
+$params2 = [
+    "tournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1,"game"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
+];
+$return2 = curl_post($config['api_get'],json_encode($params2),1);
+
+$return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return2['tournamentList']['data']);
+unset($return2['tournamentList']);
+
+
+$return2 = curl_post($config['api_get'],json_encode($params2),1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,7 +152,8 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         <ul class="game_match_detail">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>" >
+									 <img  data-original="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" >
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>

@@ -15,7 +15,7 @@ $source=$config['game_source'][$game]??$config['default_source'];
 
 $params = [
     "tournament"=>[$tournament_id,"source"=>$source],
-    "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$source,"cacheWith"=>"currentPage","cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$source,"game"=>$game,"cache_time"=>86400],
 	"matchList" =>
         ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>100,"cache_time"=>3600],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
@@ -371,8 +371,8 @@ unset($return['matchList']);
                         <ul class="clearfix">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" >
-									<img src="<?php echo $tournamentInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_130,w_130" alt="" class='imgauto1'>
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>" >
+									<img data-original="<?php echo $tournamentInfo['logo'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>"  alt="" class='imgauto1'>
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>

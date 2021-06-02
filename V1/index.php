@@ -2,8 +2,8 @@
 require_once "function/init.php";
 $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
-    "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
@@ -20,6 +20,18 @@ foreach ($config['game'] as $game => $gameName)
         ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
+
+$params2 = [
+    "tournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>2,"source"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
+];
+
+$return2 = curl_post($config['api_get'],json_encode($params2),1);
+$return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return2['tournamentList']['data']);
+unset($return2['tournamentList']);
+
+//$return['tournamentList']['data']
+
+
 //文章类型
 $newsTypeList = ["News"];
 //返回值键名数组
@@ -427,14 +439,15 @@ foreach($newsTypeList as $newsType)
                 <ul class="game_special_list">
                     <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                     <li class="col-md-3 col-xs-6">
-                        <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
+                        <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>">
                             <div class="div_img">
-                                <img src="<?php echo $tournamentInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_130,w_130" alt="<?php echo $tournamentInfo['tournament_name'];?>">
+                                <img data-original="<?php echo $tournamentInfo['logo'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>"  alt="<?php echo $tournamentInfo['tournament_name'];?>">
                                 <span><?php echo $tournamentInfo['tournament_name'];?></span>
                             </div>
                         </a>
                     </li>
                     <?php }?>
+					 
                 </ul>
             </div>
         </div>

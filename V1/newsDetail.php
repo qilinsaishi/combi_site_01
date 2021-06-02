@@ -3,8 +3,8 @@ require_once "function/init.php";
 $id = $_GET['id']??1;
 $params = [
     "information"=>[$id],
-    "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
@@ -23,9 +23,13 @@ $ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
 $params2 = [
     "ConnectInformationList"=>["dataType"=>"5118InformaitonList","ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
-    "recentInformationList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7]
+    "recentInformationList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7],
+	"tournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
 ];
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
+$return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return2['tournamentList']['data']);
+unset($return2['tournamentList']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,11 +98,11 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                                                         <?php echo $connectInfo['content']['title'];?>
                                                     </p>
                                                     <div class="news_explain_content">
-                                                        <?php echo $connectInfo['content']['content'];?>
+                                                        <?php echo substr(html_entity_decode($connectInfo['content']['content']),0,100);?>
                                                     </div>
                                                 </div>
                                                 <div class="news_img">
-                                                    <img class="imgauto" src="<?php echo $connectInfo['content']['logo'];?>" alt="<?php echo $connectInfo['content']['title'];?>">
+                                                    <img class="imgauto" src="<?php echo $connectInfo['content']['logo'].'?x-oss-process=image/resize,m_lfit,h_100,w_100';?>" alt="<?php echo $connectInfo['content']['title'];?>">
                                                 </div>
                                             </div>
                                         </a>
@@ -158,7 +162,8 @@ $return2 = curl_post($config['api_get'],json_encode($params2),1);
                         <ul class="game_match_detail">
                             <?php foreach($return['tournamentList']['data'] as $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>" style="background-image:url('<?php echo $tournamentInfo['logo'];?>')">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>" >
+									<img data-original="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>">
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>
