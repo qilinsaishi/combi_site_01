@@ -308,16 +308,16 @@ foreach($allGameList as $key => $game)
                                                                             </div>
                                                                         </div>
                                                                     <?php }?>
-                                                                    <?php if($game=='lol' || $game=='kpl') {   
-                                                                    ?>
-                                                                        <div class="game3_game_item">
+                                                                    
+                                                                    <div class="game3_game_item">
+																		<?php if($matchInfo['game'] !='dota2'){?>
                                                                         <div class="game3_team1 fl">
                                                                             <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
                                                                                 <div class="game3_team1_top clearfix">
                                                                                     <div class="game3_team1_top_img fl">
                                                                                         <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" class="imgauto" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
                                                                                     </div>
-                                                                                    <span class="game3_team1_top_name fl"><?php echo $matchInfo['home_team_info']['team_name'];?></span>
+                                                                                    <span class="game3_team1_top_name fl"><?php echo $matchInfo['home_team_info']['team_name'];?><?php echo $matchInfo['game'];?></span>
                                                                                 </div>
                                                                                 <div class="game3_team1_bottom red">
                                                                                     <div class="game3_team1_allplayer">
@@ -339,7 +339,7 @@ foreach($allGameList as $key => $game)
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="time_over">
-                                                                                        <p class="game3_team2_vs_time stop"><?php echo date("H:i",strtotime($matchInfo['start_time']));?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
+                                                                                        <p class="game3_team2_vs_time stop"><?php echo date("m-d H:i",strtotime($matchInfo['start_time']));?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="game3_team2_vs_bot">
@@ -377,59 +377,61 @@ foreach($allGameList as $key => $game)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                    </div>
-                                                                    <?php }else{?>
-                                                                        <div class="game3_game_item">
-                                                                            <div class="game3_team1 fl">
-                                                                                <a href="#">
-                                                                                    <div class="game3_team1_top clearfix">
-                                                                                        <div class="game3_team1_top_img fl">
+																		<?php }else{?>
+																		<!--dota2-->
+																		<div class="game3_team1 fl">
+                                                                            <a href="javascripts:;">
+                                                                                <div class="game3_team1_top clearfix">
+                                                                                    <div class="game3_team1_top_img fl">
                                                                                             <img data-original="<?php echo $matchInfo['home_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="<?php echo $matchInfo['home_name'];?>">
                                                                                         </div>
                                                                                         <span class="game3_team1_top_name fl"><?php echo $matchInfo['home_name'];?></span>
-                                                                                    </div>
-
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="game3_team2_vs fl">
-                                                                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
-                                                                                    <div class="game3_team2_vs_top">
-                                                                                        <div class="bg_wr">
-                                                                                            <div class="game3_team2_vs_bg">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="time_over">
-                                                                                            <p class="game3_team2_vs_time stop"><?php echo date("H:i",strtotime($matchInfo['start_time']));?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="game3_team2_vs_bot">
-                                                                                        <div class="frequency clearfix">
-                                                                                            <?php $maxScore = ($matchInfo['home_score']+$matchInfo['away_score']);?>
-                                                                                            <span class="fl frequency_left"><?php echo $matchInfo['home_score'];?></span>
-                                                                                            <p class="fl frequency_center grey">对战详情</p>
-                                                                                            <span class="fr frequency_right"><?php echo $matchInfo['away_score'];?></span>
-                                                                                        </div>
-                                                                                        <div class="compare-bar">
-                                                                                            <div class="l-bar fl red" style="width: <?php echo $maxScore==0?0:intval(($matchInfo['home_score']/$maxScore*100));?>%;">
-                                                                                            </div> <div class="r-bar fr blue" style="width: <?php echo $maxScore==0?0:intval(($matchInfo['away_score']/$maxScore*100));?>%;">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="game3_team2 fr">
-                                                                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
-                                                                                    <div class="game3_team1_top clearfix">
-                                                                                        <span class="game3_team1_top_name fl"><?php echo $matchInfo['away_name'];?></span>
-                                                                                        <div class="game3_team1_top_img fl">
-                                                                                            <img data-original="<?php echo $matchInfo['away_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   class="imgauto" alt="<?php echo $matchInfo['away_name'];?>">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                   
-                                                                                </a>
-                                                                            </div>
+                                                                                </div>
+                                                                                
+                                                                            </a>
                                                                         </div>
-                                                                    <?php } ?>
+                                                                        <div class="game3_team2_vs fl">
+                                                                            <a href="javascripts:;">
+                                                                                <div class="game3_team2_vs_top">
+                                                                                    <div class="bg_wr">
+                                                                                        <div class="game3_team2_vs_bg">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="time_over">
+                                                                                        <p class="game3_team2_vs_time stop"><?php echo date("m-d H:i",strtotime($matchInfo['start_time']));?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="game3_team2_vs_bot">
+                                                                                    <div class="frequency clearfix">
+                                                                                        <?php $maxScore = ($matchInfo['home_score']+$matchInfo['away_score']);?>
+                                                                                        <span class="fl frequency_left"><?php echo $matchInfo['home_score'];?></span>
+                                                                                        <p class="fl frequency_center grey">对战详情</p>
+                                                                                        <span class="fr frequency_right"><?php echo $matchInfo['away_score'];?></span>
+                                                                                    </div>
+                                                                                    <div class="compare-bar">
+                                                                                        <div class="l-bar fl red" style="width: <?php echo $maxScore==0?0:intval(($matchInfo['home_score']/$maxScore*100));?>%;">
+                                                                                        </div> <div class="r-bar fr blue" style="width: <?php echo $maxScore==0?0:intval(($matchInfo['away_score']/$maxScore*100));?>%;">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="game3_team2 fr">
+                                                                            <a href="javascripts:;">
+                                                                                <div class="game3_team1_top clearfix">
+                                                                                    <span class="game3_team1_top_name fl"><?php echo $matchInfo['away_name'];?></span>
+                                                                                    <div class="game3_team1_top_img fl">
+                                                                                        <img data-original="<?php echo $matchInfo['away_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   class="imgauto" alt="<?php echo $matchInfo['away_name'];?>">
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                            </a>
+                                                                        </div>
+																		<!--dota2-->
+																		
+																		<?php }?>
+                                                                    </div>
+                                                                  
                                                                     <div class="li_bg">
                                                                         <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                                     </div>
