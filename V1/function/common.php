@@ -165,7 +165,7 @@
         {
             if(trim($file)!="")
             {
-                echo '<link rel="stylesheet" href="'.$config['site_url'].'/js/'.$file.'.js" type="text/javascript" />';
+                echo '<link href="'.$config['site_url'].'/js/'.$file.'.js" type="text/javascript" />';
             }
         }
         echo '<script src="'.$config['site_url'].'/js/bootstrap.js" type="text/javascript"></script>';
