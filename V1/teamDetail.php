@@ -101,24 +101,29 @@ else
         <div class="container">
             <div class="row">
                 <!-- 战队介绍 -->
-                <div class="team_title mb20 clearfix">
-                    <div class="team_logo fl">
-                        <div class="team_logo_img mauto">
-                            <img class="imgauto" src="<?php echo $return['intergratedTeam']['data']['logo'];?>" alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>">
+                <div class='add_bg mb20'>
+                    <div class="team_title  clearfix">
+                        <div class="team_logo fl">
+                            <div class="team_logo_img mauto">
+                                <img class="imgauto" src="<?php echo $return['intergratedTeam']['data']['logo'];?>" alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>">
+                            </div>
+                        </div>
+                        <div class="team_explain fr">
+                            <div class="team_explain_top clearfix">
+                                <p class="name fl"><?php echo $return['intergratedTeam']['data']['team_name'];?></p>
+                                <p class="classify fl"><?php if($return['intergratedTeam']['data']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedTeam']['data']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedTeam']['data']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
+                            </div>
+                            <div class="team_explain_name clearfix">
+                                <p class="clearfix fl">英文名：<span class="English_name fr"><span class="English_name fr"><?php echo $return['intergratedTeam']['data']['team_name'];?></span></p>
+                                <p class="clearfix fl">别称：<span class="chinese_name fr"><?php echo $return['intergratedTeam']['data']['aka'] ?></span></p>
+                            </div>
+                            <div class="team_explain_bottom">
+                                <?php echo $description;?>
+                            </div>
                         </div>
                     </div>
-                    <div class="team_explain fr">
-                        <div class="team_explain_top clearfix">
-                            <p class="name fl"><?php echo $return['intergratedTeam']['data']['team_name'];?></p>
-                            <p class="classify fl"><?php if($return['intergratedTeam']['data']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedTeam']['data']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedTeam']['data']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
-                        </div>
-                        <div class="team_explain_name clearfix">
-                            <p class="clearfix fl">英文名：<span class="English_name fr"><span class="English_name fr"><?php echo $return['intergratedTeam']['data']['team_name'];?></span></p>
-                            <p class="clearfix fl">别称：<span class="chinese_name fr"><?php echo $return['intergratedTeam']['data']['aka'] ?></span></p>
-                        </div>
-                        <div class="team_explain_bottom">
-                             <?php echo $description;?>
-                        </div>
+                    <div class="team_logo_bg mauto" style='background-image:url(<?php echo $return['intergratedTeam']['data']['logo'];?>)'>
+                        <!-- <img class="imgauto" src="" alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>"> -->
                     </div>
                 </div>
                 <!-- 战队介绍 -->
@@ -532,6 +537,10 @@ else
     </div>
     <?php renderFooterJsCss($config,[],["jquery.lineProgressbar","echarts.min","circle-progress"]);?>
     <script>
+        // 添加背景图定位后父元素的高度
+        var father = document.querySelector('.add_bg'); 
+        var son = document.querySelector('.team_title');
+        father .style.height=son.offsetHeight+'px';
 
     var value = $('.won_all').data('num');
     $('.won_all.circle').circleProgress({

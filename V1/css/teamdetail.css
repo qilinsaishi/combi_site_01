@@ -540,7 +540,44 @@ li a .max_span span{
 .team_results_detail li:hover .team_results_see{
     border-color: #FF6649;
 }
-
+/* 2021.6.2新增 */
+.add_bg{
+    position: relative;
+    min-height: 300px;
+    background-color: #fff;
+}
+.team_title{
+    background-color: rgba(0,0,0,0);
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    padding-bottom: 20px;
+}
+.team_logo_bg{
+    width: 450px;
+    height: 298px;
+    filter: grayscale(1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-size: auto 298px;
+    background-position: top right;
+    z-index: 1;
+    opacity: .05;
+}
+.team_explain_bottom{
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+}
+.team_explain_bottom *{
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+}
+/* 2021.6.2新增 */
 /* 移动 */
 @media only screen and (max-width: 1024px){
     .team_explain{
