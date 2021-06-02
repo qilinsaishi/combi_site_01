@@ -38,7 +38,7 @@ $additional_config = [
         'news'=>['url'=>"newslist/","name"=>"电竞资讯"],
         'stra'=>['url'=>"stralist/","name"=>"游戏攻略"],
         'tournament'=>['url'=>"tournamentlist/","name"=>"赛事专题"],
-		't10'=>['url'=>"t10","name"=>"T10"],
+		't10'=>['url'=>"t10","name"=>"Ti10"],
     ]
 ];
 return array_merge($base_config,$additional_config);
