@@ -9,7 +9,7 @@ $tournament_id = $postParams[1]??0;
 $tournament_id=intval($tournament_id);
 if(!isset($tournament_id ) ||$tournament_id==0 )
 {
-    //render404($config);
+    render404($config);
 }
 $source=$config['game_source'][$game]??$config['default_source'];
 
@@ -298,9 +298,11 @@ unset($return['matchList']);
                     </div>
                     <ul class="game_team_list_detail">
                         <?php if(count($return['tournament']['data']['teamList'])>0){?>
-                        <?php foreach($return['tournament']['data']['teamList'] as $key => $teamInfo){?>
+                        <?php foreach($return['tournament']['data']['teamList'] as $key => $teamInfo){
+								if($game=='dota2'){$team_url="javascript:;";}else{$team_url=$config['site_url']."/teamdetail/".$teamInfo['tid'];};
+							?>
                                 <li <?php if($key==0){?> class="active col-xs-6" <?php }?>>
-                                    <a href="<?php echo $config['site_url']?>\teamdetail\<?php echo $teamInfo['tid'];?>">
+                                    <a href="<?php echo $team_url;?>">
                                         <div class="a1">
                                             <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="game_team_img">
                                         </div>
