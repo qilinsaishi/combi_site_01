@@ -98,11 +98,11 @@ unset($return2['tournamentList']);
                                                         <?php echo $connectInfo['content']['title'];?>
                                                     </p>
                                                     <div class="news_explain_content">
-                                                        <?php echo substr(html_entity_decode($connectInfo['content']['content']),0,100);?>
+                                                        <?php echo $connectInfo['content']['content'];?>
                                                     </div>
                                                 </div>
                                                 <div class="news_img">
-                                                    <img class="imgauto" src="<?php echo $connectInfo['content']['logo'].'?x-oss-process=image/resize,m_lfit,h_100,w_100';?>" alt="<?php echo $connectInfo['content']['title'];?>">
+                                                    <img class="imgauto" src="<?php echo $connectInfo['content']['logo'];?>" alt="<?php echo $connectInfo['content']['title'];?>">
                                                 </div>
                                             </div>
                                         </a>
