@@ -4,7 +4,7 @@ $id = $_GET['id']??1;
 $params = [
     "information"=>[$id],
     "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
@@ -102,7 +102,7 @@ unset($return2['tournamentList']);
                                                     </div>
                                                 </div>
                                                 <div class="news_img">
-                                                    <img class="imgauto" src="<?php echo $connectInfo['content']['logo'];?>" alt="<?php echo $connectInfo['content']['title'];?>">
+                                                    <img class="imgauto" data-original="<?php echo $connectInfo['content']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $connectInfo['content']['title'];?>">
                                                 </div>
                                             </div>
                                         </a>

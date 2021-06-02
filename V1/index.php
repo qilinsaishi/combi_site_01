@@ -3,7 +3,7 @@ require_once "function/init.php";
 $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
 ];
@@ -326,7 +326,7 @@ foreach($newsTypeList as $newsType)
                                                 <div class="news_dianjing_top">
                                                     <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_top_div">
-                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                            <img data-original="<?php echo $info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $info['title'];?>">
                                                         </div>
                                                         <span><?php echo $info['title'];?></span>
                                                     </a>
@@ -337,7 +337,7 @@ foreach($newsTypeList as $newsType)
                                                 <?php if($key>=1 && $key<=2){?>
                                                     <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_mid_img">
-                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                            <img data-original="<?php echo $info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $info['title'];?>">
                                                         </div>
                                                         <span><?php echo $info['title'];?></span>
                                                     </a>
@@ -388,7 +388,7 @@ foreach($newsTypeList as $newsType)
                                                 <div class="news_dianjing_top">
                                                     <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_top_div">
-                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                            <img data-original="<?php echo $info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $info['title'];?>">
                                                         </div>
                                                         <span><?php echo $info['title'];?></span>
                                                     </a>
@@ -399,7 +399,7 @@ foreach($newsTypeList as $newsType)
                                                 <?php if($key>=1 && $key<=2){?>
                                                     <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>">
                                                         <div class="news_dianjing_mid_img">
-                                                            <img src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                                            <img data-original="<?php echo $info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $info['title'];?>">
                                                         </div>
                                                         <span><?php echo $info['title'];?></span>
                                                     </a>
