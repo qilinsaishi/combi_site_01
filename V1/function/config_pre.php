@@ -5,6 +5,7 @@ $base_config = [
     'api_url'=>'http://preapi.querylist.cn',//api站点URL
     'site_url'=>'http://pre.combi_01_info.com',//本站URl
     'game'=>["lol"=>"英雄联盟","kpl"=>"王者荣耀","dota2"=>"DOTA2"],
+	'game_source'=>['dota2'=>'wca'],
     'default_game' => "lol",
     'site_id'=>5,
     'default_source'=>"scoregg",
@@ -14,7 +15,8 @@ $base_config = [
 	'default_oss_img_size'=>[
 		"teamList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
 		"playerList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
-        "tournamentList"=>'?x-oss-process=image/resize,m_lfit,h_130,w_130',
+		"tournamentList"=>'?x-oss-process=image/resize,m_lfit,h_130,w_130',
+		"heroList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
     ],
     'ti10'=>[
         'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],

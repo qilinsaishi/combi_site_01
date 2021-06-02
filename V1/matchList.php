@@ -22,22 +22,38 @@ $params = [
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-	"defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+	"defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"matchList","date"=>$currentDate,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
 //依次加入所有游戏
 foreach ($config['game'] as $game => $gameName)
 {
-    $params[$game."matchList"] =
+	if($game!='dota2'){
+		$params[$game."matchList"] =
         ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>$game,"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
+	}
+    
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
+foreach ($config['game'] as $game2 => $gameName2)
+{
+	if($game2=='dota2'){
+		$params2[$game."matchList"] =
+        ["dataType"=>"matchList","source"=>$config['game_source'][$game2],"page"=>1,"page_size"=>100,"game"=>$game2,"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
+	}
+    
+}
+$return2 = curl_post($config['api_get'],json_encode($params2),1);
+$return['dota2matchList']=$return2['dota2matchList'] ?? [];
+
+unset($return2['dota2matchList'] );
+
 $return["allmatchList"]['data'] = [];
 $allGameList = array_keys($config['game']);
 array_unshift($allGameList,"all");
 $matchCountList = [];
 foreach($config['game'] as $game => $game_name)
-{
+{	
     $return["allmatchList"]['data'] = array_merge($return["allmatchList"]['data'],$return[$game."matchList"]['data']);
     $matchCountList[$game] = 0;
 }
@@ -47,6 +63,7 @@ foreach($allGameList as $key => $game)
     $gameList = [];
     foreach($config['game'] as $game_key => $game_name)
     {
+		
         foreach($dateList as $date)
         {
             if($game=="all")
@@ -62,6 +79,7 @@ foreach($allGameList as $key => $game)
     $List = $return[$game."matchList"]['data'];
     foreach($List as $matchInfo)
     {
+		
         if(isset($gameList[date("Y-m-d",strtotime($matchInfo['start_time']))][$matchInfo['game']]))
         {
             $gameList[date("Y-m-d",strtotime($matchInfo['start_time']))][$matchInfo['game']][$matchInfo['tournament_id']][] = $matchInfo;
@@ -73,6 +91,7 @@ foreach($allGameList as $key => $game)
     }
     $return[$game."matchList"]['data'] = $gameList;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -271,26 +290,27 @@ foreach($allGameList as $key => $game)
                                                         <div class="game3_classify clearfix">
                                                             <span class="game3_classify1 fl"><?php echo $config['game'][$game];?></span>
                                                         </div>
-                                                        <?php if(count($currentGameList)>0) {?>
+                                                        <?php if(count($currentGameList)>0) {  ?>
                                                             <!-- 循环赛事 -->
                                                             <!-- 循环比赛 -->
-                                                            <?php foreach($currentGameList as $currentTournament => $currentTournamentList){?>
+                                                            <?php foreach($currentGameList as $currentTournament => $currentTournamentList){ ?>
                                                                 <!-- 循环比赛 -->
                                                                 <?php foreach($currentTournamentList as $key => $matchInfo){
                                                                     if($key==0){?>
                                                                         <div class="game3_classify2 clearfix">
                                                                             <div class="fl clearfix game3_classify2_detail">
                                                                                 <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $matchInfo['tournament_id'];?>">
-                                                                                    <div class="game3_team_img fl">
-                                                                                        <img class="imgauto" src="<?php echo $matchInfo['tournament_info']['logo']?>" alt="<?php echo $matchInfo['tournament_info']['tournament_name']?>">
+																					<div class="game3_team_img fl">
+                                                                                        <img class="imgauto" data-original="<?php echo $matchInfo['tournament_info']['logo']?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $matchInfo['tournament_info']['tournament_name']?>">
                                                                                     </div>
                                                                                     <span class="fr"><?php echo $matchInfo['tournament_info']['tournament_name']?></span>
                                                                                 </a>
                                                                             </div>
                                                                         </div>
                                                                     <?php }?>
-
-                                                                    <div class="game3_game_item">
+                                                                    <?php if($game=='lol' || $game=='kpl') {   
+                                                                    ?>
+                                                                        <div class="game3_game_item">
                                                                         <div class="game3_team1 fl">
                                                                             <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
                                                                                 <div class="game3_team1_top clearfix">
@@ -358,6 +378,58 @@ foreach($allGameList as $key => $game)
                                                                             </a>
                                                                         </div>
                                                                     </div>
+                                                                    <?php }else{?>
+                                                                        <div class="game3_game_item">
+                                                                            <div class="game3_team1 fl">
+                                                                                <a href="#">
+                                                                                    <div class="game3_team1_top clearfix">
+                                                                                        <div class="game3_team1_top_img fl">
+                                                                                            <img data-original="<?php echo $matchInfo['home_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="<?php echo $matchInfo['home_name'];?>">
+                                                                                        </div>
+                                                                                        <span class="game3_team1_top_name fl"><?php echo $matchInfo['home_name'];?></span>
+                                                                                    </div>
+
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="game3_team2_vs fl">
+                                                                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
+                                                                                    <div class="game3_team2_vs_top">
+                                                                                        <div class="bg_wr">
+                                                                                            <div class="game3_team2_vs_bg">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="time_over">
+                                                                                            <p class="game3_team2_vs_time stop"><?php echo date("H:i",strtotime($matchInfo['start_time']));?>·<?php echo generateMatchStatus($matchInfo['start_time']);?></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="game3_team2_vs_bot">
+                                                                                        <div class="frequency clearfix">
+                                                                                            <?php $maxScore = ($matchInfo['home_score']+$matchInfo['away_score']);?>
+                                                                                            <span class="fl frequency_left"><?php echo $matchInfo['home_score'];?></span>
+                                                                                            <p class="fl frequency_center grey">对战详情</p>
+                                                                                            <span class="fr frequency_right"><?php echo $matchInfo['away_score'];?></span>
+                                                                                        </div>
+                                                                                        <div class="compare-bar">
+                                                                                            <div class="l-bar fl red" style="width: <?php echo $maxScore==0?0:intval(($matchInfo['home_score']/$maxScore*100));?>%;">
+                                                                                            </div> <div class="r-bar fr blue" style="width: <?php echo $maxScore==0?0:intval(($matchInfo['away_score']/$maxScore*100));?>%;">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="game3_team2 fr">
+                                                                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
+                                                                                    <div class="game3_team1_top clearfix">
+                                                                                        <span class="game3_team1_top_name fl"><?php echo $matchInfo['away_name'];?></span>
+                                                                                        <div class="game3_team1_top_img fl">
+                                                                                            <img data-original="<?php echo $matchInfo['away_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   class="imgauto" alt="<?php echo $matchInfo['away_name'];?>">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                   
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    <?php } ?>
                                                                     <div class="li_bg">
                                                                         <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                                     </div>

@@ -5,6 +5,7 @@ $base_config = [
     'api_url'=>'http://lol_api.querylist.cn',//api站点URL
     'site_url'=>'http://info.combi_01_info.com',//本站URl
     'game'=>["lol"=>"英雄联盟","kpl"=>"王者荣耀","dota2"=>"DOTA2"],
+	'game_source'=>['dota2'=>'wca'],
     'default_game' => "lol",
     'site_id'=>5,
     'default_source'=>"scoregg",
