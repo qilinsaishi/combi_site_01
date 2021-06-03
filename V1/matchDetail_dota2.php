@@ -2,16 +2,14 @@
 require_once "function/init.php";
 
 $postParams=explode('-',trim($_GET['match_id']));
-if(count($postParams)<2){
-	render404($config);
-}
+
 $game=$postParams[0]?? $config['default_game'];
 $match_id = $postParams[1]??0;
 $match_id=intval($match_id);
-if(!isset($match_id ) ||$match_id==0 )
+/*if(!isset($match_id ) ||$match_id==0 )
 {
     render404($config);
-}
+}*/
 $source=$config['game_source'][$game]??$config['default_source'];
 
 $params = [
@@ -26,10 +24,7 @@ $params = [
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
 
-if(!isset($return["matchDetail"]['data']['match_id']))
-{
-    render404($config);
-}
+
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
 ?>
 <!DOCTYPE html>

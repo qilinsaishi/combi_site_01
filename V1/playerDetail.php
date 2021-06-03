@@ -255,7 +255,7 @@ else
 										
 										?>
 										<li class="<?php if($side == $win_side){  ?>red<?php }else{ ?>blue<?php } ?>">
-											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['match_id'];?>">
+											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['game'];?>-<?php echo $recentMatchInfo['match_id'];?>">
 												<div class="player_matchs_div1">
 													<span class="result"><?php if($side == $win_side){  ?>胜<?php }else{ ?>败<?php } ?></span>
 													<span class="time"><?php echo date("Y.m.d",strtotime($recentMatchInfo['start_time']));?></span>

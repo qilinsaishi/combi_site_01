@@ -323,7 +323,7 @@ else
 						  { 
 							?>
                             <li>
-                               <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['match_id'];?>" class="clearfix">
+                               <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $game;?>-<?php echo $recentMatchInfo['match_id'];?>" class="clearfix">
 							   
                                    <div class="team_results_explain fl clearfix">
                                          <?php if(in_array($recentMatchInfo['home_id'],$return['intergratedTeam']['data']['intergrated_site_id_list']['scoregg'])){$side = "home";}else{$side="away";}
