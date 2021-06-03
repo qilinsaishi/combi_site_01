@@ -3,7 +3,7 @@ rewrite  ^/tournamentlist/$  /tournamentList.php  last;
 rewrite  ^/tournamentlist/(.*)$  /tournamentList.php?game=$1?  last;
 rewrite  ^/teamlist/(.*)/(.*)$  /teamList.php?game=$1&page=$2?  last;
 rewrite  ^/teamlist/$  /teamList.php  last;
-rewrite  ^/matchdetail/kpl-(.*)$  /matchDetail.php?match_id=$1?  last;
+rewrite  ^/matchdetail/lol-(.*)$  /matchDetail.php?match_id=$1?  last;
 rewrite  ^/matchdetail/kpl-(.*)$  /matchDetail.php?match_id=$1?  last;
 rewrite  ^/matchdetail/dota2-(.*)$  /matchDetail_dota2.php?match_id=$1?  last;
 rewrite  ^/match/$  /matchList.php  last;
