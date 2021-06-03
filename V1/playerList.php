@@ -135,7 +135,7 @@ $keyList = array_keys($return);
                         <ul class="game_match_ul">
 							 <?php foreach($return['recentMatchList']['data'] as $matchInfo){?>
                             <li class="col-md-12 col-xs-12">
-                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['match_id'];?>">
+                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['game'];?>-<?php echo $matchInfo['match_id'];?>">
                                     <div class="game_match_top">
                                         <span class="game_match_name"><?php echo $matchInfo['tournament_info']['tournament_name'];?></span>
                                         <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time']));?></span>
