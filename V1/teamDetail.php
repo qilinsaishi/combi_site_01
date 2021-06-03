@@ -258,7 +258,7 @@ else
                            <?php
 						  foreach($return['intergratedTeam']['data']['honor_list'] as $honorInfo)
 						  { 
-							if($i<=3){
+							
 							?>
                             <li>
                                 <a href="javascript:;" class="clearfix">
@@ -295,7 +295,7 @@ else
                                     </div>
                                 </a>
                             </li>
-							<?php $i++;} }?>
+							<?php  }?>
                             
                         </ul>
 						<?php }else{?>

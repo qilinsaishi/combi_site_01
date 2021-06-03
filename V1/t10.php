@@ -7,7 +7,7 @@ $params=[
     "teamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
     "hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"source"=>"scoregg","cache_time"=>86400*7],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","bounas_pool"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
@@ -360,8 +360,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <ul class="clearfix">
                             <?php foreach($return['hotTournamentList']['data'] as $key => $tournamentInfo){?>
                                 <li>
-                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['tournament_id'];?>">
-                                        <img src="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" class="imgauto1">
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>">
+                                        <img data-original="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" class="imgauto1">
                                         <span><?php echo $tournamentInfo['tournament_name'];?></span>
                                     </a>
                                 </li>
