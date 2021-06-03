@@ -175,9 +175,7 @@
     function renderCertification()
     {
         $str='<div class="container">';
-
-        $str.='<p><span>网络文化经营许可证：琼网文〔2015〕2197-011号</span><a style="color:#454545;padding:0 0 1em 0;" href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-4</a></p>
-<p>网站内容来源于网络，如果侵犯您的权益请联系删除</p></div>';
+        $str.='<p><span>网络文化经营许可证：琼网文〔2015〕2197-011号</span><a style="color:#454545;padding:0 0 1em 0;" href="https://beian.miit.gov.cn/#/Integrated/index">琼ICP备19001306号-4</a></p><div><p>本站资源均来源于网络，版权属于原作者！仅供学习参考，严禁用于任何商业目的。</p><p>如果无意中侵犯了您的权益，敬请联系 qilinsaishi@163.com， 我们会尽快核实并删除</p></div></div>';
         echo $str;
     }
     function str_replace_limit($search, $replace, $subject, $limit=-1){
