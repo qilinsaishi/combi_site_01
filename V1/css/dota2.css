@@ -33,6 +33,12 @@
     border: 1px solid #eee;
     border-radius: 8px;
 }
+.dota2_item{
+    display: none;
+}
+.dota2_item.active{
+    display: block;
+}
 .dota2_top{
     padding-top: 30px;
     padding-left: 20px;
@@ -107,4 +113,321 @@
 }
 .bpBox{
     padding: 0 60px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 52px;
 }
+.bpBox_circle{
+    
+}
+.bpBox_circle .circle.third{
+    position: relative;
+    margin-bottom: 10px;
+}
+/* .circle strong{
+    font-size: 20px;
+    color: #FF5C6A;
+    font-weight: 400;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 36px;
+    width: 60px;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+} */
+.bpBox_circle  .circle strong {
+    font-weight: 400;
+    font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    top: -6px;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.bpBox_circle  .circle.Dred strong{
+    color: #FF5C6A;
+}
+.bpBox_circle  .circle strong p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+.bpBox_circle  .circle strong span{
+    font-size: 14px;
+    color: #999;
+    display: block;
+    height: 14px;
+    line-height: 14px;
+}
+.bpBox_result{
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    height: 16px;
+    line-height: 16px;
+}
+.bpBox_kda{
+    width: 100px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-bottom: 6px;
+}
+.bpBox_kda.red{
+    background: #FFF9F7;
+    color: #FF5C6A;
+}
+.bpBox_Date{
+    font-size: 14px;
+    color: #999;
+    line-height: 14px;
+    height: 14px;
+    text-align: center;
+}
+.bpBox .left{
+    width: 132px;
+}
+.bpBox .center{
+    width: 380px;
+}
+.bpBox .rate, .average_time{
+    width: 70px;
+    font-size: 16px;
+}
+.bpBox .time1,.bpBox .time2{
+    font-size: 14px;
+    color: #333;
+}
+.bpBox .progress3{
+    width: 188px;
+}
+.bpBox .rate_data_left,.bpBox .compare_bar{
+    width: 380px;
+    margin-bottom: 12px;
+}
+.bpBox_circle .circle.Dblue strong{
+    color: #0C8DFC;
+}
+.bpBox_kda.blue{
+    color: #0C8DFC;
+    background: #F7F9FF;
+}
+.barChart{
+    padding: 30px 80px 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 270px;
+}
+.bar_item{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.bar_item .outCol {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 200px;
+}
+.bar_item .col {
+    width: 14px;
+    margin: 0 10px;
+    display: flex;
+    align-items: flex-end;
+    /* margin-bottom: 10px; */
+}
+.bar_item .itemName {
+    color: #333;
+    font-size: 16px;
+    white-space: nowrap;
+    position: absolute;
+    bottom: -26px;
+    height: 16px;
+    line-height: 16px;
+}
+.bar_item .bar {
+    width: 10px;
+    position: relative;
+    transition: all .3s;
+}
+.bar_item .bar.blue{
+    background: rgb(103, 126, 234)
+}
+.bar_item .bar.red{
+    background: rgb(237, 86, 86);
+}
+.bar_item .bar_rate {
+    color: #999;
+    font-size: 14px;
+    height: 14px;
+    line-height: 14px;
+    position: absolute;
+    top: -23px;
+    transform: translateX(-50%);
+}
+.recentGame-box {
+    width: 100%;
+    /* margin: 0 auto 20px; */
+}
+.recentGame-box .box {
+    width: 100%;
+    /* border: 1px solid #ededed; */
+    overflow-x: auto;
+}
+.recentGame-box .box .row1, .recentGame-box .box .thead {
+    height: 60px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #000;
+}
+.recentGame-box .box .th {
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    background: #39e;
+    font-size: 16px;
+    font-weight: 500;
+}
+.recentGame-box .box .td, .recentGame-box .box .th {
+    flex: 1;
+    flex-wrap: nowrap;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.box .td:first-child, .box .th:first-child {
+    padding-left: 20px;
+}
+.recentGame-box.red .box .th {
+    background: #ed5656;
+    color: #fff;
+}
+.recentGame-box .box .td.flex2, .recentGame-box .box .th.flex2 {
+    flex: 2;
+}
+.recentGame-box .box .td.flex15, .recentGame-box .box .th.flex15 {
+    flex: 1.5;
+}
+.recentGame-box .box .td.flex12, .recentGame-box .box .th.flex12 {
+    flex: 1.2;
+}
+.recentGame-box .box .row1 {
+    padding: 15px 0;
+    height: 60px;
+    transition: all .3s;
+    cursor: pointer;
+}
+.recentGame-box .box .td {
+    border-bottom: 1px solid #ededed;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    line-height: 60px;
+}
+.box .td:first-child, .box .th:first-child {
+    padding-left: 20px;
+}
+.recentGame-box .box .td.elips, .recentGame-box .box .th.elips {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-style: normal;
+    overflow: hidden;
+    width: 100%;
+}
+.recentGame-box .box .td.flex2, .recentGame-box .box .th.flex2 {
+    flex: 2;
+}
+.recentGame-box .box .td.wrap, .recentGame-box .box .th.wrap {
+    flex-direction: column;
+}
+.recentGame-box .leagueName {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    color: #000;
+}
+.recentGame-box .leagueTime {
+    font-size: 12px;
+    color: #999;
+    padding-top: 10px;
+    line-height: 1;
+}
+.recentGame-box .box .td, .recentGame-box .box .th {
+    flex: 1;
+    flex-wrap: nowrap;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.box .td .elips, .box .th .elips {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-style: normal;
+    overflow: hidden;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1;
+}
+.dota2_dot{
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(0,0,0,0);
+    border-radius: 50%;
+}
+.dota2_dot.red{
+    border: 2px solid rgba(255, 92, 106, 1);
+}
+.dota2_dot.blue{
+    border: 2px solid rgba(12, 141, 252, 1);
+}
+.span_red{
+    color: rgba(255, 92, 106, 1);
+}
+.span_blue{
+    color: rgba(12, 141, 252, 1);
+}
+.recentGame-box.red .rowBox .row1:nth-child(even) {
+    background: #FFF9F7;
+}
+.recentGame-box.blue .rowBox .row1:nth-child(even) {
+    background: rgba(241, 249, 255, 1);
+}
+/* 比赛详情 */
+.war_report_detail{
+    padding: 0 20px 20px 20px;
+}
+.war_report_detail p,.war_report_detail span{
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+    word-break: break-all;
+    text-align: justify;
+    margin-bottom: 4px;
+}
+/* 比赛详情 */

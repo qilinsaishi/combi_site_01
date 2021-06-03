@@ -119,7 +119,7 @@ margin: 0 auto;
   .foot{
     width: 100%;
     background: #000;
-    height: 328px;
+    min-height: 328px;
     padding-top: 38px;
 }
 .links_title{
