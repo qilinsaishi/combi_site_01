@@ -23,7 +23,7 @@ $base_config = [
         'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],
         'event_name'=>"Ti10",
         'game'=>"dota2",
-        'ti9_ranking'=>["ig"=>670,"eg"=>671,"secret"=>609,"vp"=>520,"obheon"=>601,"tp"=>"632","psg"=>519,"bc"=>660,"fnatic"=>672,"vg"=>515,"qc"=>673,"alliance"=>674]
+        'ti9_ranking'=>["ig"=>675,"eg"=>676,"secret"=>609,"vp"=>520,"obheon"=>601,"tp"=>"632","psg"=>519,"bc"=>660,"fnatic"=>677,"vg"=>515,"qc"=>673,"alliance"=>674]
     ]
 ];
 
@@ -38,7 +38,7 @@ $additional_config = [
         'news'=>['url'=>"newslist/","name"=>"电竞资讯"],
         'stra'=>['url'=>"stralist/","name"=>"游戏攻略"],
         'tournament'=>['url'=>"tournamentlist/","name"=>"赛事专题"],
-		't10'=>['url'=>"t10","name"=>"T10"],
+		't10'=>['url'=>"t10","name"=>"Ti10"],
     ]
 ];
 return array_merge($base_config,$additional_config);
