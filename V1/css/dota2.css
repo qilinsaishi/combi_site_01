@@ -1,3 +1,9 @@
+@-webkit-keyframes animate-positive{
+    50% { width: 0%; }
+}
+@keyframes animate-positive{
+    50% { width: 0%; }
+}
 .imgauto{
     object-fit: contain;
     width: 100%;
@@ -29,8 +35,9 @@
 }
 .dota2_div{
     width: 860px;
-    background: #fff;
+    /* background: #fff; */
     border: 1px solid #eee;
+    border-bottom: 0;
     border-radius: 8px;
 }
 .dota2_item{
@@ -42,7 +49,8 @@
 .dota2_top{
     padding-top: 30px;
     padding-left: 20px;
-    margin-bottom: 30px;
+    padding-bottom: 30px;
+    background: #fff;
 }
 .dota2_top img{
     width: 24px;
@@ -57,7 +65,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    padding-bottom: 40px;
+    background: #fff;
 }
 .teamInfo_img{
     width: 40px;
@@ -116,7 +125,7 @@
     background-color: #fff;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 52px;
+    padding-bottom: 52px;
 }
 .bpBox_circle{
     
@@ -202,21 +211,23 @@
 .bpBox .left{
     width: 132px;
 }
-.bpBox .center{
+.dota2_item .center{
     width: 380px;
 }
-.bpBox .rate, .average_time{
+.dota2_item .rate, .average_time{
     width: 70px;
     font-size: 16px;
+    height: 16px;
+    line-height: 16px;
 }
-.bpBox .time1,.bpBox .time2{
+.dota2_item .time1,.dota2_item .time2{
     font-size: 14px;
     color: #333;
 }
-.bpBox .progress3{
+.dota2_item .progress3{
     width: 188px;
 }
-.bpBox .rate_data_left,.bpBox .compare_bar{
+.dota2_item .rate_data_left,.dota2_item .compare_bar{
     width: 380px;
     margin-bottom: 12px;
 }
@@ -233,6 +244,7 @@
     justify-content: space-between;
     align-items: flex-end;
     height: 270px;
+    background: #fff;
 }
 .bar_item{
     text-align: center;
@@ -289,6 +301,7 @@
     width: 100%;
     /* border: 1px solid #ededed; */
     overflow-x: auto;
+    background: #fff;
 }
 .recentGame-box .box .row1, .recentGame-box .box .thead {
     height: 60px;
@@ -421,6 +434,7 @@
 /* 比赛详情 */
 .war_report_detail{
     padding: 0 20px 20px 20px;
+    background: #fff;
 }
 .war_report_detail p,.war_report_detail span{
     font-size: 18px;
@@ -429,5 +443,146 @@
     word-break: break-all;
     text-align: justify;
     margin-bottom: 4px;
+}
+.battle_details{
+    background: #fff;
+}
+.battle_item{
+    display: none;
+}
+.battle_item.active{
+    display: block;
+}
+.battle_item_top{
+    padding: 0 26px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.heroBox{
+    width: 98px;
+    height: 98px;
+}
+.battle_hero{
+    position: relative;
+    height: 98px;
+    width: 98px;
+    margin-bottom: 10px;
+}
+.heroBox,.heroUse{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.heroUse{
+    width: 38px;
+    height: 38px;
+}
+.heroBox{
+    z-index: 1;
+}
+.heroUse{
+    z-index: 2;
+}
+.battle_hero .imgauto{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.battle_hero_name{
+    display: block;
+    width: 166px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 18px;
+    color: #333;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-bottom: 18px;
+}
+.battle_top_left{
+    width: 166px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.thumbList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 98px;
+}
+.thumbList img{
+    width: 30px;
+    height: 30px;
+    margin-bottom: 4px;
+}
+.kad_big{
+    font-size: 18px;
+    color: #333;
+}
+.kda_detail{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.kad_small{
+    font-size: 14px;
+}
+.kad_big.blue,.kad_small.blue{
+    color: #0C8DFC;
+}
+.kad_big.red,.kad_small.red{
+    color: #FF5C6A;
+}
+.battleBox .rate, .average_time{
+    margin-bottom: 8px;
+}
+.battleBox .rate_data_left, .battleBox .compare_bar{
+    margin-bottom: 8px;
+}
+.battle_item_bottom{
+    padding: 0 20px 30px 20px;
+}
+.battle_bottom1{
+    display: flex;
+    justify-content: space-between;
+}
+.battle_list .war_situation{
+    margin-bottom: 12px;
+    width: 326px;
+}
+.battle_list .war_situation span{
+    font-size: 14px;
+    height: 20px;
+    padding: 0 10px;
+    line-height: 20px;
+}
+.battle_bottom2 .row2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.heroBan,.heroPick{
+    display: flex;
+}
+.heroBan img,.heroPick img{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.heroBan img{
+    filter: grayscale(1);
+}
+.battle_bottom2 .bans{
+    font-size: 20px;
+    color: #333;
 }
 /* 比赛详情 */
