@@ -4,6 +4,7 @@ $id = $_GET['id']??1;
 $params = [
     "information"=>[$id],
     "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
+	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -24,11 +25,10 @@ $currentType = in_array($return['information']['data']['type'],$config['informat
 $params2 = [
     "ConnectInformationList"=>["dataType"=>"5118InformaitonList","ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
     "recentInformationList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7],
-	"tournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
+	
 ];
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
-$return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return2['tournamentList']['data']);
-unset($return2['tournamentList']);
+$return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['hotTournamentList']['data']);
 
 ?>
 <!DOCTYPE html>

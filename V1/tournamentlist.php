@@ -7,6 +7,7 @@ if($currentGame=="")
 }
 $params = [
     "tournamentList"=>["page"=>1,"page_size"=>1000,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1000,"source"=>"wca","cacheWith"=>"currentPage","cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -15,12 +16,6 @@ $params = [
     "currentPage"=>["name"=>"tournamentList","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-//dota2数据参数
-$params2 = [
-    "dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1000,"source"=>"wca","cacheWith"=>"currentPage","cache_time"=>86400],
-];
-
-$return2 = curl_post($config['api_get'],json_encode($params2),1);
 
 $tournamentList = [];
 $tournamentList["all"] = [];
@@ -35,7 +30,7 @@ foreach($return['tournamentList']['data'] as $tournamentInfo)
 	}
     
 }
-foreach($return2['dota2TournamentList']['data'] as $tournamentInfo2)
+foreach($return['dota2TournamentList']['data'] as $tournamentInfo2)
 {	
 	$tournamentList[$tournamentInfo2['game']][] = $tournamentInfo2;
 }
@@ -47,7 +42,7 @@ foreach($tournamentList as $game => $t_list)
 		$tournamentList["all"][] = $tournament;
 	}
 }
-unset($return2['dota2TournamentList']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
