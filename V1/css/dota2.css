@@ -929,4 +929,7 @@
     .vs_data2 li a,.vs_data1 li a{
         font-size: .2rem;
     }
+    .lineup_td p{
+        font-size: .22rem;
+    }
 }
