@@ -2001,7 +2001,7 @@
                                         </div>
                                     </div>
                                     <div class="lineup_bottom">
-                                        <ul class="vs_data1">
+                                        <ul class="vs_data2">
                                             <li class="active">
                                                 <a href="##">
                                                     胜率
@@ -2996,11 +2996,11 @@
 
 
     //阵容数据tab切换
-    $(".lineup_bottom .vs_data1").on("click", 'li', function () {
+    $(".lineup_bottom .vs_data2").on("click", 'li', function () {
         var _this = $(this).index() - 1;
-        $(".lineup_bottom .vs_data1 li").removeClass("active");
+        $(".lineup_bottom .vs_data2 li").removeClass("active");
         $(this).addClass("active");
-        $(this).parents(".vs_data1").find("li").removeClass("active1").eq(_this).addClass("active1");
+        $(this).parents(".vs_data2").find("li").removeClass("active1").eq(_this).addClass("active1");
         $(".lineup_bottom .vs_data2 .vs_data2_item").removeClass("active").eq($(this).index()).addClass("active");
         $(this).parents(".lineup_bottom").find(".lineup_list").find(".lineup_item").removeClass("active").eq($(this).index()).addClass("active")
     })
