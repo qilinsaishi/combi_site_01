@@ -585,4 +585,116 @@
     font-size: 20px;
     color: #333;
 }
+.lineup_data{
+    background: #fff;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+}
+.lineup_data .game_detail_item3_top p{
+    font-size: 16px;
+    color: #333;
+    background: rgba(0,0,0,0);
+}
+.lineup_data .game_detail_item3_top .left span{
+    font-size: 14px;
+    color: #333;
+    font-family: shuzi1;
+}
+.lineup_mid{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.lineup_mid .game_detail_item3{
+    width: 378px;
+}
+.lineup_data .progress.blue{
+    background: #0C8DFC;
+}
+.lineup_data .red .progress-bar{
+    background: #FF5C6A;
+}
+.lineup_data .progress{
+    margin-bottom: 10px;
+}
+.mb60{
+    margin-bottom: 60px;
+}
+.lineup_list,.lineup_item,.lineup_th{
+    width: 100%;
+}
+.lineup_item{
+    display: none;
+}
+.lineup_item.active{
+    display: block;
+}
+.lineup_thItem{
+    width: 50%;
+    height: 38px;
+    padding-left: 10px;
+}
+.lineup_th,.lineup_td{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.lineup_thItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.lineup_thRever{
+    flex-direction: row-reverse;
+    padding-left: 0;
+    padding-right: 10px;
+}
+.lineup_thItem.red{
+    background: #FF5C6A;
+}
+.lineup_thItem.blue{
+    background: #0C8DFC;
+}
+.lineup_thItem span{
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+}
+.lineup_thItem span i{
+    color: #999;
+}
+.lineup_td span{
+    color: #333;
+}
+.lineup_th .flex15,.lineup_td .flex15{
+   width: 150px;
+}
+.lineup_td{
+    height: 68px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    position: relative;
+}
+.lineup_img{
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.lineup_td .dn{
+    visibility: hidden;
+}
+.lineup_td p{
+    height: 68px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 68px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+}
 /* 比赛详情 */
