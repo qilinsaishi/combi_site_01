@@ -1051,10 +1051,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 30%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 70%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1066,10 +1066,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 20%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 80%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1081,10 +1081,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 10%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 90%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1209,10 +1209,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 60%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 40%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1224,10 +1224,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 70%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 30%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1239,10 +1239,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 80%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 20%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1254,10 +1254,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 90%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 10%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1382,10 +1382,10 @@
                                                             </div>
                                                             <div class="compare-bar compare_bar clearfix">
                                                                 <div class="progress3 fl progress4 red">
-                                                                    <span class="green" style="width: 40%;"></span>
+                                                                    <span class="green" style="width: 44%;"></span>
                                                                 </div>
                                                                 <div class="progress3 fr blue">
-                                                                    <span class="green" style="width: 60%;"></span>
+                                                                    <span class="green" style="width: 56%;"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2983,9 +2983,16 @@
         $(this).addClass("active");
         $(this).parents(".dota2").find(".dota2_div").find(".dota2_item").removeClass("active").eq($(this).index()).addClass("active");
     }) 
-
+    var value1 = $(".progress3 span").css('width')
     //对战详情tab切换
     $(".battleBox .vs_data1").on("click", 'li', function () {
+        // alert(1)
+        // //循环遍历对象
+        // $("#uploadList li img").each(function(){
+        //     imagesPath.push(this.src.substring(this.src.indexOf("upload/danger")));
+        // })
+
+        $(".progress3 span").addClass("active");
         var _this = $(this).index() - 1;
         $(".battleBox .vs_data1 li").removeClass("active");
         $(this).addClass("active");
@@ -3004,7 +3011,7 @@
         $(".lineup_bottom .vs_data2 .vs_data2_item").removeClass("active").eq($(this).index()).addClass("active");
         $(this).parents(".lineup_bottom").find(".lineup_list").find(".lineup_item").removeClass("active").eq($(this).index()).addClass("active")
     })
-
+        $(".progress-bar").css()
     </script>
 </body>
 

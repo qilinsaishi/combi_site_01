@@ -119,12 +119,13 @@
   position: relative;
   float: left;
   margin: 0 -1px;
-  min-width: 30px;
+  /* min-width: 30px; */
   height: 8px;
   line-height: 16px;
   text-align: right;
   background: #cccccc;
   border-radius: 4px;
+  transition: opacity 0.3s;
 }
 .progress3 > span > span {
   padding: 0 8px;
@@ -141,7 +142,8 @@
   right: 0;
   z-index: 1;
   height: 8px;
-  background: #0C8DFC;
+  /* background: #0C8DFC; */
+  background: linear-gradient(135deg,#0d7eff 0%,#0f97ff 100%);
   border-radius: 10px;
 }
 .progress3.red > span:before {
@@ -155,6 +157,7 @@
   height: 8px;
   background: #FF5C6A;
   border-radius: 10px;
+  transition: width 0.3s;
 }
 .progress4{
   transform: rotate(180deg);

@@ -448,10 +448,14 @@
     background: #fff;
 }
 .battle_item{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
 }
 .battle_item.active{
-    display: block;
+   visibility: visible;
+   opacity: 1;
+   height: auto;
 }
 .battle_item_top{
     padding: 0 26px;
@@ -734,3 +738,195 @@
     border-bottom-right-radius: 4px;
 }
 /* 比赛详情 */
+/* 移动 */
+@media only screen and (max-width: 1024px){
+    .dota2_div{
+        width: 100%;
+    }
+    .dota2_ul1{
+        height: .5rem;
+    }
+    .dota2_ul1 li{
+        width: 1.6rem;
+        height: .5rem;
+        line-height: .5rem;
+        border-radius: .25rem;
+    }
+    .dota2_ul1 li a{
+        font-size: .3rem;
+    }
+    .bpBox{
+        padding: 0 .16rem;
+    }
+    .teamInfo span{
+        font-size: .28rem;
+    }
+    .teamInfo_img{
+        width: .5rem;
+        height: .5rem;
+    }
+    .bpBox_circle .circle strong p{
+        font-size: .26rem;
+    }
+    .bpBox_circle .circle strong span{
+        font-size: .2rem;
+        height: .2rem;
+        line-height: .2rem;
+    }
+    .bpBox_result{
+        font-size: .2rem;
+        height: .2rem;
+        line-height: .2rem;
+    }
+    .bpBox_kda{
+        width: 1.4rem;
+        height: .4rem;
+        font-size: .2rem;
+        line-height: .4rem;
+    }
+    .bpBox_Date{
+        font-size: .2rem;
+    }
+    .dota2_item .rate, .average_time{
+        font-size: .24rem;
+        width: 100%;
+        text-align: center;
+        height: .24rem;
+        line-height: .24rem;
+    }
+    .dota2_item .time1, .dota2_item .time2{
+        font-size: .2rem;
+    }
+    .dota2_item .progress3{
+        width: 49.4%;
+    }
+    .rate_data_top{
+        margin-bottom: .1rem;
+    }
+    .dota2_vs{
+        width: .48rem;
+        height: .4rem;
+    }
+    .barChart{
+        padding: .5rem .8rem .54rem;
+    }
+    .barChart{
+        height: 3.1rem;
+    }
+    .bar_item .outCol{
+        height: 2rem;
+    }
+    .bar_item .bar{
+        width: .12rem;
+    }
+    .bar_item .itemName{
+        font-size: .24rem;
+    }
+    .bar_item .bar_rate{
+        font-size: .2rem;
+    }
+    .dota2_item{
+        margin-bottom: .2rem;
+    }
+    .dota2_top span{
+        font-size: .28rem;
+    }
+    .dota2_top img{
+        width: .36rem;
+        height: .36rem;
+    }
+    .recentGame-box .box .td, .recentGame-box .box .th{
+        font-size: .22rem;
+    }
+    .box .td .elips, .box .th .elips{
+        font-size: .22rem;
+    }
+    .recentGame-box .leagueTime{
+        font-size: .2rem;
+    }
+    .recentGame-box{
+        overflow-x: scroll;
+    }
+    .recentGame-box .box{
+        width: 12rem;
+    }
+    .recentGame-box .box .row1{
+        height: .8rem;
+    }
+    .recentGame-box .box .td{
+        height: .8rem;
+        line-height: .8rem;
+    }
+    .war_report_detail p, .war_report_detail span{
+        font-size: .24rem;
+        line-height: .36rem;
+    }
+    .battle_top_left{
+        width: 1.36rem;
+    }
+    .battle_hero_name{
+        width: 1.36rem;
+        font-size: .2rem;
+        line-height: .2rem;
+        height: .2rem;
+    }
+    .dota2_item .center{
+        width: 3.5rem;
+    }
+    .battle_item_top{
+        padding: 0 .1rem;
+    }
+    .kad_big{
+        font-size: .22rem;
+    }
+    .kad_small{
+        font-size: .2rem;
+    }
+    .battle_list .war_situation span {
+        font-size: .2rem;
+        height: .3rem;
+        padding: 0 .1rem;
+        line-height: .3rem;
+        margin-bottom: .1rem;
+    }
+    .heroBan img, .heroPick img {
+        width: .36rem;
+        height: .36rem;
+        border-radius: 50%;
+        overflow: hidden;
+        display: block;
+        object-fit: cover;
+        margin-right: .02rem;
+    }
+    .battle_bottom2 .bans{
+        font-size: .22rem;
+    }
+    .lineup_mid .game_detail_item3{
+        width: 50%;
+    }
+    .lineup_data .game_detail_item3_top p{
+        font-size: .22rem;
+    }
+    .lineup_data .game_detail_item3_top .left span{
+        font-size: .2rem;
+    }
+    .lineup_thItem span{
+        font-size: .22rem;
+    }
+    .lineup_th .flex15, .lineup_td .flex15{
+        width: 1.9rem;
+    }
+    .lineup_list{
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .lineup_item, .lineup_th{
+        width: 11rem;
+    }
+    .lineup_thItem{
+        height: .68rem;
+    }
+    .vs_data2 li a,.vs_data1 li a{
+        font-size: .2rem;
+    }
+}
