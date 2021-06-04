@@ -1,10 +1,8 @@
 <?php
 require_once "function/init.php";
 
-$postParams=explode('-',trim($_GET['match_id']));
-
-$game=$postParams[0]?? $config['default_game'];
-$match_id = $postParams[1]??0;
+$match_id = $_GET['match_id']??0;
+$game='dota2';
 $match_id=intval($match_id);
 /*if(!isset($match_id ) ||$match_id==0 )
 {
@@ -22,10 +20,10 @@ $params = [
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$source,"site_id"=>$config['site_id']]
 ];
+
 $return = curl_post($config['api_get'],json_encode($params),1);
 
 
-$return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +37,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
     <title><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据比分直播视频_<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>-<?php echo $config['site_name'];?></title>
     <meta name="Keywords" content="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>,<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛">
     <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>比赛数据,了解<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>在<?php echo $config['game'][$return['matchDetail']['data']['game']]?><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>的表现,请关注<?php echo $config['site_name'];?>">
-    <?php renderHeaderJsCss($config,["progress-bars","game","doat2"]);?>
+    <?php renderHeaderJsCss($config,["game","right","progress-bars","dota2"]);?>
 
 </head>
 
@@ -49,7 +47,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
         <div class="container clearfix">
             <div class="row">
                 <div class="logo"><a href="index.html">
-                        <img src="<?php echo $con?>/images/logo.png"></a>
+                        <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
                 </div>
                 <div class="hamburger" id="hamburger-6">
                     <span class="line"></span>
@@ -72,34 +70,33 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                         <div class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
+                                    <img data-original="<?php echo $return['matchDetail']['data']['away_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
                                 </div>
                             </div>
-                            <span>WE</span>
+                            <span><?php echo $return['matchDetail']['data']['away_name']??'';?></span>
                         </div>
                         <div class="game_type">
-                            <span class="span1">英雄联盟</span>
-                            <span class="span2">2021 KPL 春季赛</span>
+                            <span class="span1"><?php echo $config['game'][$game];?></span>
+                            <span class="span2"><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?></span>
                             <div class="game_vs">
-                                <span class="span1">2</span>
+                                <span class="span1"><?php echo $return['matchDetail']['data']['away_score']??'0';?></span>
                                 <img src="<?php echo $config['site_url'];?>/images/vs.png" alt="">
-                                <span class="span2">1</span>
+                                <span class="span2"><?php echo $return['matchDetail']['data']['home_score']??'0';?></span>
                             </div>
-                            <p>2021.04.26 18:00·已结束</p>
+                            <p><?php echo date("Y.m.d H:i",strtotime($return['matchDetail']['data']['start_time']))?>·<?php echo generateMatchStatus($return['matchDetail']['data']['start_time']);?></p>
                         </div>
                         <div class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img src="<?php echo $config['site_url'];?>/images/game_teaml.png" alt="">
+                                    <img data-original="<?php echo $return['matchDetail']['data']['home_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>">
                                 </div>
                             </div>
-                            <span>WE</span>
+                            <span><?php echo $return['matchDetail']['data']['home_name']??'';?></span>
                         </div>
                     </div>
                     <div class="game_team_depiction">
-                        <p class="active">TeamWE是一家中国电子竞技俱乐部，成立于2005年4月21日，是TeamWE是一家中国电子竞技俱乐部，成立于2005年4月21日，是</p>
-                        <p class="active">
-                            SV电子竞技俱乐部于2016年11月成立。SuperValiant译为超级勇猛...SV电子竞技俱乐部于2016年11月成立。SuperValiant译为超级勇猛...</p>
+                        <p class="active"><!--主队描述--></p>
+                        <p class="active"><!--客队描述--></p>
                     </div>
                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
@@ -127,9 +124,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                 <div class="teamInfo ">
                                     <div class="colorBlock colorBlock_right red"></div>
                                     <div class="teamInfo_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/dota2_team1.png" alt="" class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
                                     </div>
-                                    <span class="text_left">WE</span>
+                                    <span class="text_left"><?php echo $return['matchDetail']['data']['away_name']??'';?></span>
                                 </div>
                                 <div class="dota2_vs">
                                     <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
@@ -137,172 +134,82 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                 <div class="teamInfo teamInfo_reverse">
                                     <div class="colorBlock blue"></div>
                                     <div class="teamInfo_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/dota2_team2.png" alt="" class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
                                     </div>
-                                    <span class="text_right">VS</span>
+                                    <span class="text_right"><?php echo $return['matchDetail']['data']['home_name']??'';?></span>
                                 </div>
                             </div>
                             <div class="bpBox">
                                 <div class="left">
                                     <div class="bpBox_circle">
-                                        <div class="Dred third circle" data-num="0.5">
+                                        <div class="Dred third circle" data-num="<?php echo ($return['matchDetail']['data']['match_data']['team_base_data']['red_victory_rate']/100)??'0';?>">
                                             <strong>
                                                 <p></p>
                                                 <span>胜率</span>
                                             </strong>
                                         </div>
-                                        <p class="bpBox_result">5胜5负</p>
-                                        <p class="bpBox_kda red">KDA：4.28</p>
-                                        <p class="bpBox_Date">25.4/19.2/56.7</p>
+                                        <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_victory_tip_text']??'';?></p>
+                                        <p class="bpBox_kda red">KDA：<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_kda']??'0';?></p>
+                                        <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_kills']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_deaths']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_assists']??'0';?></p>
                                     </div>
                                 </div>
                                 <div class="center">
-                                    <div class="rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">2160.5</span>
-                                            <span class="fr time2">2519.4</span>
-                                            <div class="average_time">局均经济</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">925</span>
-                                            <span class="fr time2">1252</span>
-                                            <div class="average_time">局均补刀</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">35'03"</span>
-                                            <span class="fr time2">35'03"</span>
-                                            <div class="average_time">局均时长</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rate_data_left">
-                                        <div class="rate_data_top">
-                                            <span class="fl time1">36313</span>
-                                            <span class="fr time2">63121</span>
-                                            <div class="average_time">局均输出</div>
-                                        </div>
-                                        <div class="compare-bar compare_bar clearfix">
-                                            <div class="progress3 fl progress4 red">
-                                                <span class="green" style="width: 40%;"></span>
-                                            </div>
-                                            <div class="progress3 fr blue">
-                                                <span class="green" style="width: 60%;"></span>
-                                            </div>
-                                        </div>
-                                    </div>
+									<?php if($return['matchDetail']['data']['match_data']['team_base_data']['data_list_item'] &&count($return['matchDetail']['data']['match_data']['team_base_data']['data_list_item'])>0){?>
+										<?php foreach($return['matchDetail']['data']['match_data']['team_base_data']['data_list_item'] as $dataKeyItem=>$dataInfoItem){ ?>
+											<div class="rate_data_left">
+												<div class="rate_data_top">
+													<span class="fl time1"><?php echo $dataInfoItem['red']??0; ?></span>
+													<span class="fr time2"><?php echo $dataInfoItem['blue']??0; ?></span>
+													<div class="average_time"><?php echo $dataInfoItem['title']??0; ?></div>
+												</div>
+												<div class="compare-bar compare_bar clearfix">
+													<div class="progress3 fl progress4 red">
+														<span class="green" style="width: <?php echo $dataInfoItem['red']/($dataInfoItem['red']+$dataInfoItem['blue'])*100; ?>%;"></span>
+													</div>
+													<div class="progress3 fr blue">
+														<span class="green" style="width: <?php echo $dataInfoItem['blue']/($dataInfoItem['red']+$dataInfoItem['blue'])*100; ?>%;"></span>
+													</div>
+												</div>
+											</div>
+										<?php }?>
+									<?php } ?>
+                                    
                                 </div>
                                 <div class="left">
                                     <div class="bpBox_circle">
-                                        <div class="Dblue third circle" data-num="0.75">
+                                        <div class="Dblue third circle" data-num="<?php echo ($return['matchDetail']['data']['match_data']['team_base_data']['blue_victory_rate']/100)??'0';?>">
                                             <strong>
                                                 <p></p>
                                                 <span>胜率</span>
                                             </strong>
                                         </div>
-                                        <p class="bpBox_result">5胜5负</p>
-                                        <p class="bpBox_kda blue">KDA：4.28</p>
-                                        <p class="bpBox_Date">25.4/19.2/56.7</p>
+                                        <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_victory_tip_text']??'';?></p>
+                                        <p class="bpBox_kda blue">KDA：<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_kda']??'';?></p>
+                                        <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_kills']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_deaths']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_assists']??'0';?></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="barChart">
-                                <div class="bar_item">
-                                    <div class="outCol">
-                                        <div class="col">
-                                            <div class="bar blue" style="height: 50%;">
-                                                <span class="bar_rate">50%</span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="bar red" style=" height:60%;">
-                                                <span class="bar_rate">60%</span>
-                                            </div>
-                                        </div><span class="itemName">一血率</span>
-                                    </div>
-                                </div>
-                                <div class="bar_item">
-                                    <div class="outCol">
-                                        <div class="col">
-                                            <div class="bar blue" style="height: 50%;">
-                                                <span class="bar_rate">50%</span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="bar red" style=" height: 70%;">
-                                                <span class="bar_rate">70%</span>
-                                            </div>
-                                        </div><span class="itemName">一塔率</span>
-                                    </div>
-                                </div>
-                                <div class="bar_item">
-                                    <div class="outCol">
-                                        <div class="col">
-                                            <div class="bar blue" style="height: 20%;">
-                                                <span class="bar_rate">20%</span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="bar red" style=" height: 66%;">
-                                                <span class="bar_rate">66%</span>
-                                            </div>
-                                        </div><span class="itemName">五杀率</span>
-                                    </div>
-                                </div>
-                                <div class="bar_item">
-                                    <div class="outCol">
-                                        <div class="col">
-                                            <div class="bar blue" style="height: 20%;">
-                                                <span class="bar_rate">20%</span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="bar red" style=" height: 15%;">
-                                                <span class="bar_rate">15%</span>
-                                            </div>
-                                        </div><span class="itemName">十杀率</span>
-                                    </div>
-                                </div>
-                                <div class="bar_item">
-                                    <div class="outCol">
-                                        <div class="col">
-                                            <div class="bar blue" style="height: 100%;">
-                                                <span class="bar_rate">100%</span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="bar red" style=" height: 60%;">
-                                                <span class="bar_rate">60%</span>
-                                            </div>
-                                        </div><span class="itemName">首肉山</span>
-                                    </div>
-                                </div>
+								<?php if($return['matchDetail']['data']['match_data']['team_base_data']['statistics_list'] &&count($return['matchDetail']['data']['match_data']['team_base_data']['statistics_list'])>0){?>
+									<?php foreach($return['matchDetail']['data']['match_data']['team_base_data']['statistics_list'] as $statisticsInfo){ ?>
+									<div class="bar_item">
+										<div class="outCol">
+											<div class="col">
+												<div class="bar red" style=" height:<?php echo trim($statisticsInfo['red'])??'0';?>%;">
+													<span class="bar_rate"><?php echo trim($statisticsInfo['red'])??'0';?>%</span>
+												</div>
+											</div>
+											<div class="col">
+												<div class="bar blue" style="height: <?php echo intval(trim($statisticsInfo['blue']))??'0';?>%;">
+													<span class="bar_rate"><?php echo trim($statisticsInfo['blue'])??'0';?>%</span>
+												</div>
+											</div>
+											<span class="itemName"><?php echo $statisticsInfo['name']??'0';?></span>
+										</div>
+									</div>
+									<?php }?>
+								<?php } ?>
+                                
                             </div>
                             <div class="recentGame-box red">
                                 <div class="box">
@@ -319,7 +226,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <span class="th">肉山</span>
                                     </div>
                                     <div class="rowBox">
-                                        <div class="row1">
+                                        <!--<div class="row1">
                                                 <span title="cSc" class="td elips flex15">
                                                     cSc
                                                 </span>
@@ -349,286 +256,11 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <span class="td">
                                                     <i class="dota2_dot red"></i>
                                                 </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_red">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot red"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
+                                        </div>-->
+										<div class="null">
+											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+										</div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -647,7 +279,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <span class="th">肉山</span>
                                     </div>
                                     <div class="rowBox">
-                                        <div class="row1">
+                                        <!--<div class="row1">
                                                 <span title="cSc" class="td elips flex15">
                                                     cSc
                                                 </span>
@@ -677,291 +309,18 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <span class="td">
                                                     <i class="dota2_dot blue"></i>
                                                 </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                        </div>
-                                        <div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    ADSGASGADSGASGA
-                                                </span>
-                                            <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
-                                                </span>
-                                            <span class="td flex15">49分12秒</span>
-                                            <span title="WE" class="td elips flex15">
-                                                    WEWEWEWEWE
-                                                </span>
-                                            <span class="td">
-                                                    <span class="span_blue">23</span>:34
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot blue"></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot"></i>
-                                                </span>
-                                        </div>
+                                        </div>-->
+                                        <div class="null">
+											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+										</div>
+                                      
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- 赛前分析 -->
+
+						
                         <!-- 比赛详情 -->
                         <div class="dota2_item live_box active">
                             <div class="war_report mb20">
