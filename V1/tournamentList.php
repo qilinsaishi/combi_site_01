@@ -1,6 +1,7 @@
 <?php
 require_once "function/init.php";
 $currentGame = $_GET['game']??'all';
+
 if($currentGame=="")
 {
     $currentGame = "all";
@@ -54,7 +55,7 @@ foreach($tournamentList as $game => $t_list)
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <title><?php if($currentGame=="all"){?>电竞热门赛事_电子竞技比赛-<?php }else{?><?php echo $config['game'][$currentGame];?>热门赛事_<?php echo $config['game'][$currentGame];?>电子竞技比赛-<?php }?><?php echo $config['site_name'];?></title>
-    <meta name="Keywords" content="<?php if($currentGame=="all"){?>电竞热门比赛,电竞热门赛事,电竞赛事大全<?php }else{?><?php echo $config['game'][$currentGame];?>热门比赛,<?php echo $config['game'][$currentGame];?>热门赛事,<?php echo $config['game'][$currentGame];?>电竞赛事大全<?php } ?>">
+    <meta name="Keywords" content="<?php if($currentGame=="all"){?>电竞热门比赛,电竞热门赛事,电竞赛事大全<?php }else{?><?php echo $config['game'][$currentGame];?>热门比赛,<?php echo $config['game'][$currentGame];?>热门赛事, <?php echo $config['game'][$currentGame];?>电竞赛事大全<?php } ?>">
     <meta name="description" content="<?php if($currentGame=="all"){?>提供电竞热门比赛，了解最新电竞赛事，掌握大型电子竞技比赛，请关注<?php }else{?>提供<?php echo $config['game'][$currentGame];?>热门比赛，了解最新<?php echo $config['game'][$currentGame];?>电竞赛事，掌握大型<?php echo $config['game'][$currentGame];?>电子竞技比赛，请关注<?php } ?><?php echo $config['site_name'];?>">
     <?php renderHeaderJsCss($config,["right","events"]);?>
 </head>
