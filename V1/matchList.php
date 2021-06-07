@@ -380,7 +380,7 @@ foreach($allGameList as $key => $game)
 																		<?php }else{?>
 																		<!--dota2-->
 																		<div class="game3_team1 fl">
-                                                                            <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['game'];?>-<?php echo $matchInfo['match_id'];?>">
+                                                                            <a href="javascripts:;">
                                                                                 <div class="game3_team1_top clearfix">
                                                                                     <div class="game3_team1_top_img fl">
                                                                                             <img data-original="<?php echo $matchInfo['home_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="<?php echo $matchInfo['home_name'];?>">
@@ -391,7 +391,7 @@ foreach($allGameList as $key => $game)
                                                                             </a>
                                                                         </div>
                                                                         <div class="game3_team2_vs fl">
-                                                                            <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['game'];?>-<?php echo $matchInfo['match_id'];?>">
+                                                                            <a href="javascripts:;">
                                                                                 <div class="game3_team2_vs_top">
                                                                                     <div class="bg_wr">
                                                                                         <div class="game3_team2_vs_bg">
@@ -417,7 +417,7 @@ foreach($allGameList as $key => $game)
                                                                             </a>
                                                                         </div>
                                                                         <div class="game3_team2 fr">
-                                                                            <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['game'];?>-<?php echo $matchInfo['match_id'];?>">
+                                                                            <a href="javascripts:;">
                                                                                 <div class="game3_team1_top clearfix">
                                                                                     <span class="game3_team1_top_name fl"><?php echo $matchInfo['away_name'];?></span>
                                                                                     <div class="game3_team1_top_img fl">
