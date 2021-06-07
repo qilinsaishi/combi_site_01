@@ -184,13 +184,13 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <i>$</i>
                     </div> -->
                     <div class="champion">
-                        <?php $bounas = $bounas_pool[0];
+                        <?php $bounas = $bounas_pool[1];
                         $bounas = explode("|",$bounas);?>
                         <p>$<?php echo number_format($bounas[0]);?></p>
                         <span><?php echo $bounas[1];?>&nbsp;|&nbsp;<?php echo $bounas[2];?>%</span>
                     </div>
                     <div class="other clearfix">
-                        <?php foreach($bounas_pool as $key => $bounas){if($key>0 && $key<=3){
+                        <?php foreach($bounas_pool as $key => $bounas){if($key>1 && $key<=4){
                             $bounas = explode("|",$bounas);
                             ?>
                             <div class=" other_div other_mr">
@@ -200,7 +200,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <?php }}?>
                     </div>
                     <div class="others">
-                        <?php foreach($bounas_pool as $key => $bounas){if($key>3){
+                        <?php foreach($bounas_pool as $key => $bounas){if($key>4){
                             $bounas = explode("|",$bounas);?>
                             <div class="others_div">
                                 <p>$<?php echo number_format($bounas[0]);?></p>
@@ -404,7 +404,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
 
     <!-- 金额js -->
     <script>
-        var a = '13,456,789';
+        var a = '<?php echo number_format($bounas_pool[0])?>';
         // Number.prototype.reverse = function(){
         //      var s = this.toString();
         //      var a = [];
@@ -423,7 +423,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
             html += '<span>' + money[i] + '</span>'
         }
         html += '</div>'
-        $("<?php echo $config['site_url'];?>m_wrapper").html(html)
+        $(".m_wrapper").html(html)
     </script>
     <script type="text/javascript">
             (function ($) {
