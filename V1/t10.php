@@ -475,7 +475,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
             var second = 1000000 - thumb1;
             var arr1 = new Array();
             arr1.push(first,second);
-            for(var i = 2; i < $('.likes').length-2; i++){
+            for(var i = 2; i < $('.likes').length; i++){
                 arr1[i] = second - thumb1;
                 second = arr1[i];
                 thumb1 = Math.floor(Math.random() * 100000 + 1)
