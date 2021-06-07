@@ -469,10 +469,20 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                 prop.find('.i').removeClass('niceIn');
             }, 1000);
         }
-        for (var i = 0; i < $('.likes').length; i++) {
-            var ran = Math.floor(Math.random() * 1000000 + 1)
-            $('.likes').eq(i).text(ran)
-        }
+            var thumbs = 1000000;
+            var thumb1 = Math.floor(Math.random() * 5000 + 1)
+            var first = 1000000 + thumb1;
+            var second = 1000000 - thumb1;
+            var arr1 = new Array();
+            arr1.push(first,second);
+            for(var i = 2; i < $('.likes').length-2; i++){
+                arr1[i] = second - thumb1;
+                second = arr1[i];
+                thumb1 = Math.floor(Math.random() * 100000 + 1)
+            }
+            for (var i = 0; i < arr1.length; i++) {
+                $('.likes').eq(i).text(arr1[i])
+            }
             $(".i").click(function () {
             var num = $(this).parent().next().text()
             num++;
