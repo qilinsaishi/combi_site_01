@@ -439,7 +439,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             callback: function () { }    //回调函数
                         }, options);
                         $("body").append("<span class='num'>" + options.str + "</span>");
-                        var box = $("<?php echo $config['site_url'];?>num");
+                        var box = $(".num");
                         var left = options.obj.offset().left + options.obj.width() / 2;
                         var top = options.obj.offset().top - options.obj.height();
                         box.css({
@@ -473,7 +473,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
             var ran = Math.floor(Math.random() * 1000000 + 1)
             $('.likes').eq(i).text(ran)
         }
-        $("<?php echo $config['site_url'];?>i").click(function () {
+            $(".i").click(function () {
             var num = $(this).parent().next().text()
             num++;
             $(this).parent().next().text(num);
@@ -545,7 +545,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
             });
         });
         $(document).ready(function (index) {
-            $("<?php echo $config['site_url'];?>thumb_others ul li").each(function (index) {
+            $(".thumb_others ul li").each(function (index) {
                 var _this = $(this).find('a').find('.btn_others').find('.btn4')
                 _this.click(function () {
                     $.tipsBox({
