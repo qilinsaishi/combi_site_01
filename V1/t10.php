@@ -69,7 +69,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 <span>TI10国际邀请赛时间：</span>8月5日至8月8日举办小组赛，8月10日至15日举办正式比赛，举办地点将位于瑞典首都斯德哥尔摩。
                             </p>
                             <p>
-                                <span>TI10国际邀请赛奖金：</span>本届ti10国际邀请赛奖金池高达<span>40018195美金（约合人民币2.5亿元）</span>
+                                <span>TI10国际邀请赛奖金：</span>本届ti10国际邀请赛奖金池高达<span><?php echo $bounas_pool[0];?>美金（约合人民币2.5亿元）</span>
                             </p>
                         </div>
                     </div>
