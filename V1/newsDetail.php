@@ -25,7 +25,6 @@ $currentType = in_array($return['information']['data']['type'],$config['informat
 $params2 = [
     "ConnectInformationList"=>["dataType"=>"5118InformaitonList","ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
     "recentInformationList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7],
-	
 ];
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['hotTournamentList']['data']);
@@ -72,9 +71,9 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
                         <div class="news_label clearfix">
-                            <?php if(count($return["information"]['data']['5118_word_list'])>0){foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
+                            <?php if(count($return["information"]['data']['5118_word_list'])>0){ $i=0;foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
                                 <span><?php echo $word;?></span>
-                            <?php }}?>
+                            <?php $i++;if($i==3){break;}}}?>
                         </div>
                         <div class="news_top_content">
                             <?php echo html_entity_decode($return['information']['data']['content']);?>
@@ -89,7 +88,7 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                         </div>
                         <div class="news_detail_item active">
                             <ul class="news_item">
-                                <?php if(count($return2["ConnectInformationList"]['data'])>0){foreach($return2["ConnectInformationList"]['data'] as $connectInfo){?>
+                                <?php if(is_array($return2["ConnectInformationList"]) && count($return2["ConnectInformationList"]['data'])>0){foreach($return2["ConnectInformationList"]['data'] as $connectInfo){?>
                                     <li>
                                         <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $connectInfo['content']['id'];?>">
                                             <div class="news_content">
@@ -137,11 +136,11 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                             </div>
                         </div>
                         <ul>
-                            <?php foreach($return2['recentInformationList']['data'] as $recentInfo){?>
+                            <?php if(is_array($return2['recentInformationList'])){foreach($return2['recentInformationList']['data'] as $recentInfo){?>
                                 <li>
                                     <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $recentInfo['id'];?>"><?php echo $recentInfo['title'];?></a>
                                 </li>
-                            <?php }?>
+                            <?php }}?>
                         </ul>
                     </div>
                     <div class="game_match">
