@@ -52,19 +52,23 @@ $return['information']['data']['content'] = str_replace("&nbsp;"," ",$return['in
 if(isset($return2["keywordPlayerList"]['data']) && count($return2["keywordPlayerList"]['data'])>0)
 {
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['player'],"id"),array_keys($return["information"]['data']['keywords_list']['player']));
+    $i=0;
     foreach($return2["keywordPlayerList"]['data'] as $player_id => $player_info)
     {
         $player_url = $config['site_url']."/playerdetail/".$player_info['pid'];
         $return['information']['data']['content'] = str_replace_limit($keywordList[$player_id],"<a href='".$player_url."'>".$keywordList[$player_id]."</a>",$return['information']['data']['content'],1);
+        $i++;if($i>=5){break;}
     }
 }
 if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList"]['data'])>0)
 {
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['team'],"id"),array_keys($return["information"]['data']['keywords_list']['team']));
+    $i=0;
     foreach($return2["keywordTeamList"]['data'] as $team_id => $team_info)
     {
         $team_url = $config['site_url']."/teamdetail/".$team_info['tid'];
         $return['information']['data']['content'] = str_replace_limit($keywordList[$team_id],"<a href='".$team_url."'>".$keywordList[$team_id]."</a>",$return['information']['data']['content'],1);
+        $i++;if($i>=5){break;}
     }
 }
 ?>
