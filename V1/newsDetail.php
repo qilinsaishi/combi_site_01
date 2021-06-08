@@ -108,23 +108,10 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                     <div class="news_top">
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
-                        <span>-----------------------scws</span>
-                        <div class="news_label clearfix">
-                            <?php $i=0;if(count($return["information"]['data']['scws_list'])>0){ foreach($return["information"]['data']['scws_list'] as $key => $word){?>
-                                <span><?php echo $word['word'];?></span>
-                                <?php $i++;if($i==100){break;}}}?>
-                        </div>
-                        <span>------------------------5118</span>
-                        <div class="news_label clearfix">
-                            <?php $i=0;if(count($return["information"]['data']['5118_word_list'])>0){ foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
-                                <span><?php echo $word;?></span>
-                            <?php $i++;if($i==100){break;}}}?>
-                        </div>
-                        <span>-----------------------baidu</span>
                         <div class="news_label clearfix">
                             <?php $i=0;if(count($return["information"]['data']['baidu_word_list'])>0){ foreach($return["information"]['data']['baidu_word_list'] as $key => $word){?>
                                 <span><?php echo $word['tag'];?></span>
-                                <?php $i++;if($i==100){break;}}}?>
+                                <?php $i++;if($i==3){break;}}}?>
                         </div>
                         <div class="news_top_content">
                             <?php echo html_entity_decode($return['information']['data']['content']);?>
