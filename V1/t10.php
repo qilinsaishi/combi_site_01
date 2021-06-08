@@ -226,13 +226,13 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <img src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
                                     </div>
                                     <p class="top_name"><?php echo $teamInfo['team_name'];?></p>
+                                </a>
                                     <div id="btn1">
                                         <div class="btn1">
                                             <i class="iconfont icon-dianzan i"></i>
                                         </div>
                                         <p class="likes">100</p>
                                     </div>
-                                </a>
                             </div>
                             <div class="top_right fl">
                                 <?php $teamInfo = $return['ti9teamList']['data'][1];?>
@@ -243,13 +243,13 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <img src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
                                     </div>
                                     <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
+                                </a>
                                     <div id="btn2">
                                         <div class="btn2">
                                             <i class="iconfont icon-dianzan i"></i>
                                         </div>
                                         <p class="likes">100</p>
                                     </div>
-                                </a>
                             </div>
                                 <?php $teamInfo = $return['ti9teamList']['data'][2];?>
                                 <div class="top_thre">
@@ -258,8 +258,11 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" alt="<?php echo $teamInfo['team_name'];?>" class="top_threeimg">
                                         <img src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbsthree">
                                     </div>
+                                </a>
                                     <div class="fl three_detali">
+                                        <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>" class="clearfix">
                                         <p class="thre_name"><?php echo $teamInfo['team_name'];?></p>
+                                        </a>
                                         <div id="btn3">
                                             <div class="btn3">
                                                 <i class="iconfont icon-dianzan i"></i>
@@ -267,7 +270,6 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                             <p class="likes">100</p>
                                         </div>
                                     </div>
-                                </a>
                             </div>
                             </div>
                         </div>
@@ -280,13 +282,13 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <img src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
                                     </div>
                                     <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
-                                    <div id="btn2_1">
+                                </a>
+                                <div id="btn2_1">
                                         <div class="btn2">
                                             <i class="iconfont icon-dianzan i"></i>
                                         </div>
                                         <p class="likes">100</p>
                                     </div>
-                                </a>
                             </div>
                             <?php $teamInfo = $return['ti9teamList']['data'][1];?>
                             <div class="top_one">
@@ -296,13 +298,13 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <img src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
                                     </div>
                                     <p class="top_name"><?php echo $teamInfo['team_name'];?></p>
-                                    <div id="btn1_1">
+                                </a>
+                                <div id="btn1_1">
                                         <div class="btn1">
                                             <i class="iconfont icon-dianzan i"></i>
                                         </div>
                                         <p class="likes">100</p>
                                     </div>
-                                </a>
                             </div>
                             <?php $teamInfo = $return['ti9teamList']['data'][2];?>
                             <div class="top_three">
@@ -312,13 +314,13 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <img src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbstwo">
                                     </div>
                                     <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
-                                    <div id="btn3_1">
+                                </a>
+                                <div id="btn3_1">
                                         <div class="btn3">
                                             <i class="iconfont icon-dianzan i"></i>
                                         </div>
                                         <p class="likes">100</p>
                                     </div>
-                                </a>
                             </div>
                         </div>
                         <div class="fr thumb_others">
