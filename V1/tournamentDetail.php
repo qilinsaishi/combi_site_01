@@ -116,6 +116,19 @@ unset($return['matchList']);
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $return['tournament']['data']['game'];?>">
+                    <?php echo  $config['game'][$return['tournament']['data']['game']]; ?>
+                </a >
+                >
+                <span><?php echo $return['tournament']['data']['tournament_name'];?></span>
+            </div>
+        </div>
+        <div class="container">
             <div class="row events_top">
                 <!-- 比赛介绍 -->
                 <div class="team_title mb20 clearfix">

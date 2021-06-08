@@ -133,6 +133,23 @@ else
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $return['intergratedPlayer']['data']['game'];?>/">
+                    <?php echo  $config['game'][$return['intergratedPlayer']['data']['game']]; ?>
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo  $return['intergratedPlayer']['data']['teamInfo']['tid']; ?>">
+                    <?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name']; ?>
+                </a >
+                >
+                <span><?php echo $return['intergratedPlayer']['data']['player_name'];?></span>
+            </div>
+        </div>
+        <div class="container">
             <div class="row">
                 <!-- 战队介绍 -->
                 <div class="team_title mb20 clearfix">

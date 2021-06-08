@@ -107,6 +107,18 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/<?php echo $currentType;?>list/<?php echo $return['information']['data']['game'];?>/">
+                    <?php echo  $config['game'][$return['information']['data']['game']]; ?>
+                </a >
+                >
+                <span><?php echo $return['information']['data']['title'];?></span>
+            </div></div>
+        <div class="container">
             <div class="row clearfix">
                 <div class="game_left news fl">
                     <div class="news_top">

@@ -882,4 +882,32 @@ color: #fff;
 		width:.3rem;
 		height:.3rem;
 	}
+
 }
+/* 面包屑导航 */
+.navigation{
+    padding: 0 0 20px;
+}
+.navigation a{
+    font-size: 22px;
+    color: #333;
+}
+.navigation span{
+    font-size: 22px;
+    color: #333;
+}
+.navigation a:hover{
+    color: #333;
+}
+/* 移动 */
+@media only screen and (max-width: 1024px){
+    .navigation a{
+        font-size: .24rem;
+        color: #333;
+    }
+    .navigation span{
+        font-size: .24rem;
+        color: #333;
+    }
+}
+/* 面包屑导航 */

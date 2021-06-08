@@ -100,6 +100,18 @@ else
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $return['intergratedTeam']['data']['game'];?>/">
+                    <?php echo  $config['game'][$return['intergratedTeam']['data']['game']]; ?>
+                </a >
+                >
+                <span><?php echo $return['intergratedTeam']['data']['team_name'];?></span>
+            </div></div>
+        <div class="container">
             <div class="row">
                 <!-- 战队介绍 -->
                 <div class='add_bg mb20'>

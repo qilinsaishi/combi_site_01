@@ -56,6 +56,23 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
         </div>
     </div>
     <div class="container">
+        <div class="navigation row">
+            <a href="<?php echo $config['site_url'];?>">
+                首页
+            </a >
+            >
+            <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $return['matchDetail']['data']['game'];?>">
+                <?php echo  $config['game'][$return['matchDetail']['data']['game']]; ?>
+            </a >
+            >
+            <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $return['matchDetail']['data']['game'];?>-<?php echo $return['matchDetail']['data']['tournament_info']['tournament_id'];?>">
+                <?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>
+            </a >
+            >
+            <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
+        </div>
+    </div>
+    <div class="container">
         <div class="row clearfix">
             <div class="game_left">
                 <!--- 比赛双方基本信息-->
