@@ -63,7 +63,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['team'],"id"),array_keys($return["information"]['data']['keywords_list']['team']));
     foreach($return2["keywordTeamList"]['data'] as $team_id => $team_info)
     {
-        $team_url = $config['site_url']."/teamdetail/".$team_info['pid'];
+        $team_url = $config['site_url']."/teamdetail/".$team_info['tid'];
         $return['information']['data']['content'] = str_replace_limit($keywordList[$team_id],"<a href='".$team_url."'>".$keywordList[$team_id]."</a>",$return['information']['data']['content'],1);
     }
 }
@@ -108,13 +108,13 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                     <div class="news_top">
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
+                        <div class="news_top_content">
+                            <?php echo html_entity_decode($return['information']['data']['content']);?>
+                        </div>
                         <div class="news_label clearfix">
                             <?php $i=0;if(count($return["information"]['data']['baidu_word_list'])>0){ foreach($return["information"]['data']['baidu_word_list'] as $key => $word){?>
                                 <span><?php echo $word['tag'];?></span>
                                 <?php $i++;if($i==3){break;}}}?>
-                        </div>
-                        <div class="news_top_content">
-                            <?php echo html_entity_decode($return['information']['data']['content']);?>
                         </div>
                     </div>
                     <div class="news_detail">

@@ -393,13 +393,18 @@
 .player_team_bot .name{
     font-size: 20px;
     color: #999;
-    /* max-width: 300px; */
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap
 }
 .player_team_bot .name span{
     color: #333;
+    width: 286px;
+    float: left;
+    word-break: break-all;
+}
+.player_team_bot .name .name_description{
+    width: 80px;
+}
+.player_team_bot .right{
+    width: 67%;
 }
 .player_team_word{
     font-size: 18px;
