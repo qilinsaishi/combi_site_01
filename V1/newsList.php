@@ -68,6 +68,19 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <?php if($currentGame!="all"){?>
+                        <?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电竞资讯":"游戏攻略";?>
+                <?php }else{?>
+                    <span><?php echo $type=="news"?"电竞资讯":"游戏攻略";?></span>
+                <?php }?>
+            </div>
+        </div>
+        <div class="container">
             <div class="row clearfix">
                 <div class="game_left news fl">
                     <ul class="esports_ul clearfix">

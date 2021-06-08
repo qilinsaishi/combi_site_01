@@ -17,7 +17,6 @@ $params = [
     "currentPage"=>["name"=>"tournamentList","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-
 $tournamentList = [];
 $tournamentList["all"] = [];
 foreach($config['game'] as $game => $game_name)

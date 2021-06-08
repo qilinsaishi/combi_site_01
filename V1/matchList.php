@@ -131,6 +131,25 @@ foreach($allGameList as $key => $game)
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/match/">
+                    赛事赛程
+                </a >
+                >
+                <?php if($currentGame!="all"){?>
+                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo $currentDate;?>">
+                        <?php echo $config['game'][$currentGame];?>
+                    </a >
+                    >
+                <?php }?>
+                <span><?php echo $currentDate;?></span>
+            </div>
+        </div>
+        <div class="container">
             <div class="row clearfix">
                 <div class="game_left game3_left">
                     <div class="calendar">
