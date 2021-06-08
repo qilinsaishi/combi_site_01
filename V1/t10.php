@@ -325,19 +325,19 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <ul>
                                 <?php foreach($return['ti9teamList']['data'] as $key => $teamInfo){if($key>=3){?>
                                 <li class="clearfix">
-                                    <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                         <span class="ranking_span"><?php echo $key+1;?></span>
+                                        <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                         <div class="thumb_others_img">
                                             <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_54,w_54" alt="<?php echo $teamInfo['team_name'];?>">
                                         </div>
                                         <span class="thumb_others_name"><?php echo $teamInfo['team_name'];?></span>
+                                        </a>
                                         <div id="btn4" class="btn_others">
                                             <div class="btn4">
                                                 <i class="iconfont icon-dianzan i"></i>
                                             </div>
                                             <p class="likes">100</p>
                                         </div>
-                                    </a>
                                 </li>
                                 <?php }} ?>
                             </ul>
