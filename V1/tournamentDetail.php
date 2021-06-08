@@ -18,7 +18,7 @@ $params = [
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$source,"game"=>$game,"cache_time"=>86400],
 	"matchList" =>
         ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>100,"cache_time"=>3600],
-    "defaultConfig"=>["keys"=>["contact","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
 ];
@@ -408,7 +408,7 @@ unset($return['matchList']);
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $config['site_url'];?>/images/qrcode.png" alt="">
+                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
             </div>
         </div>
     </div>

@@ -18,6 +18,7 @@ $base_config = [
 		"tournamentList"=>'?x-oss-process=image/resize,m_lfit,h_130,w_130',
 		"heroList"=>'?x-oss-process=image/resize,m_lfit,h_100,w_100',
 		"informationList"=>'?x-oss-process=image/resize,m_lfit,h_74,w_120',
+        "qr_code"=>'?x-oss-process=image/resize,m_lfit,h_200,h_200',
     ],
     'ti10'=>[
         'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],

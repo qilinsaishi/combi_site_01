@@ -154,7 +154,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $config['site_url'];?>/images/qrcode.png" alt="">
+                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
             </div>
         </div>
     </div>
