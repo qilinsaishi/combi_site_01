@@ -20,6 +20,14 @@ $return["information"]['data']['keywords_list'] = json_decode($return["informati
 $return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
 $return["information"]['data']['5118_word_list'] = json_decode($return["information"]['data']['5118_word_list'],true)??[];
 $return["information"]['data']['baidu_word_list'] = json_decode($return["information"]['data']['baidu_word_list'],true)??[];
+if(isset($return["information"]['data']['keywords_list']['player']) && count($return["information"]['data']['keywords_list']['player'])>0)
+{
+    $playerIds = array_column($return["information"]['data']['keywords_list']['player'],"id");
+}
+if(isset($return["information"]['data']['keywords_list']['team']) && count($return["information"]['data']['keywords_list']['team'])>0)
+{
+    $teamIds = array_column($return["information"]['data']['keywords_list']['team'],"id");
+}
 $ids = array_keys($return["information"]['data']['5118_word_list']);
 $ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
@@ -27,9 +35,38 @@ $params2 = [
     "ConnectInformationList"=>["dataType"=>"5118InformaitonList","ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
     "recentInformationList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7],
 ];
+if(isset($return["information"]['data']['keywords_list']['player']) && count($return["information"]['data']['keywords_list']['player'])>0)
+{
+    $playerIds = array_column($return["information"]['data']['keywords_list']['player'],"id");
+    $params2["keywordPlayerList"] = ["dataType"=>"intergratedPlayerListByPlayer","ids"=>$playerIds,"game"=>$return['information']['data']['game'],"page"=>1,"page_size"=>1000,"fields"=>"pid,player_name,logo"];
+}
+if(isset($return["information"]['data']['keywords_list']['team']) && count($return["information"]['data']['keywords_list']['team'])>0)
+{
+    $teamIds = array_column($return["information"]['data']['keywords_list']['team'],"id");
+    $params2["keywordTeamList"] = ["dataType"=>"intergratedTeamListByTeam","ids"=>$teamIds,"game"=>$return['information']['data']['game'],"page"=>1,"page_size"=>1000,"fields"=>"tid,team_name,logo"];
+}
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['hotTournamentList']['data']);
-
+$return['information']['data']['content'] = html_entity_decode($return['information']['data']['content']);
+$return['information']['data']['content'] = str_replace("&nbsp;"," ",$return['information']['data']['content']);
+if(isset($return2["keywordPlayerList"]['data']) && count($return2["keywordPlayerList"]['data'])>0)
+{
+    $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['player'],"id"),array_keys($return["information"]['data']['keywords_list']['player']));
+    foreach($return2["keywordPlayerList"]['data'] as $player_id => $player_info)
+    {
+        $player_url = $config['site_url']."/playerdetail/".$player_info['pid'];
+        $return['information']['data']['content'] = str_replace_limit($keywordList[$player_id],"<a href='".$player_url."'>".$keywordList[$player_id]."</a>",$return['information']['data']['content'],1);
+    }
+}
+if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList"]['data'])>0)
+{
+    $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['team'],"id"),array_keys($return["information"]['data']['keywords_list']['team']));
+    foreach($return2["keywordTeamList"]['data'] as $team_id => $team_info)
+    {
+        $team_url = $config['site_url']."/teamdetail/".$team_info['pid'];
+        $return['information']['data']['content'] = str_replace_limit($keywordList[$team_id],"<a href='".$team_url."'>".$keywordList[$team_id]."</a>",$return['information']['data']['content'],1);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,18 +141,18 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                             <ul class="news_item">
                                 <?php if(is_array($return2["ConnectInformationList"]) && count($return2["ConnectInformationList"]['data'])>0){foreach($return2["ConnectInformationList"]['data'] as $connectInfo){?>
                                     <li>
-                                        <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $connectInfo['content']['id'];?>">
+                                        <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $connectInfo['id'];?>">
                                             <div class="news_content">
                                                 <div class="news_explain have_img">
                                                     <p class="news_title">
-                                                        <?php echo $connectInfo['content']['title'];?>
+                                                        <?php echo $connectInfo['title'];?>
                                                     </p>
                                                     <div class="news_explain_content">
-                                                        <?php echo $connectInfo['content']['content'];?>
+                                                        <?php echo $connectInfo['content'];?>
                                                     </div>
                                                 </div>
                                                 <div class="news_img">
-                                                    <img class="imgauto" data-original="<?php echo $connectInfo['content']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $connectInfo['content']['title'];?>">
+                                                    <img class="imgauto" data-original="<?php echo $connectInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $connectInfo['title'];?>">
                                                 </div>
                                             </div>
                                         </a>
