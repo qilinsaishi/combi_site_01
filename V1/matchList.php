@@ -314,10 +314,10 @@ foreach($allGameList as $key => $game)
                                                                         <div class="game3_team1 fl">
                                                                             <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['game'];?>-<?php echo $matchInfo['match_id'];?>">
                                                                                 <div class="game3_team1_top clearfix">
-                                                                                    <div class="game3_team1_top_img fl">
+                                                                                    <div class="game3_team1_top_img flq">
                                                                                         <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" class="imgauto" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
                                                                                     </div>
-                                                                                    <span class="game3_team1_top_name fl"><?php echo $matchInfo['home_team_info']['team_name'];?><?php echo $matchInfo['game'];?></span>
+                                                                                    <span class="game3_team1_top_name fl"><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                                                                 </div>
                                                                                 <div class="game3_team1_bottom red">
                                                                                     <div class="game3_team1_allplayer">

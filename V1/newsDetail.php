@@ -19,6 +19,7 @@ if(!isset($return["information"]['data']['id']))
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 $return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
 $return["information"]['data']['5118_word_list'] = json_decode($return["information"]['data']['5118_word_list'],true)??[];
+$return["information"]['data']['baidu_word_list'] = json_decode($return["information"]['data']['baidu_word_list'],true)??[];
 $ids = array_keys($return["information"]['data']['5118_word_list']);
 $ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
@@ -70,10 +71,23 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                     <div class="news_top">
                         <p class="title"><?php echo $return['information']['data']['title']?></p>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
+                        <span>-----------------------scws</span>
                         <div class="news_label clearfix">
-                            <?php if(count($return["information"]['data']['5118_word_list'])>0){ $i=0;foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
+                            <?php $i=0;if(count($return["information"]['data']['scws_list'])>0){ foreach($return["information"]['data']['scws_list'] as $key => $word){?>
+                                <span><?php echo $word['word'];?></span>
+                                <?php $i++;if($i==100){break;}}}?>
+                        </div>
+                        <span>------------------------5118</span>
+                        <div class="news_label clearfix">
+                            <?php $i=0;if(count($return["information"]['data']['5118_word_list'])>0){ foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
                                 <span><?php echo $word;?></span>
-                            <?php $i++;if($i==3){break;}}}?>
+                            <?php $i++;if($i==100){break;}}}?>
+                        </div>
+                        <span>-----------------------baidu</span>
+                        <div class="news_label clearfix">
+                            <?php $i=0;if(count($return["information"]['data']['baidu_word_list'])>0){ foreach($return["information"]['data']['baidu_word_list'] as $key => $word){?>
+                                <span><?php echo $word['tag'];?></span>
+                                <?php $i++;if($i==100){break;}}}?>
                         </div>
                         <div class="news_top_content">
                             <?php echo html_entity_decode($return['information']['data']['content']);?>
