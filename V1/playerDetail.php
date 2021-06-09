@@ -139,11 +139,11 @@ else
                 </a >
                 >
                 <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $return['intergratedPlayer']['data']['game'];?>/">
-                    <?php echo  $config['game'][$return['intergratedPlayer']['data']['game']]; ?>
+                    <?php echo  $config['game'][$return['intergratedPlayer']['data']['game']]; ?>战队
                 </a >
                 >
                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo  $return['intergratedPlayer']['data']['teamInfo']['tid']; ?>">
-                    <?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name']; ?>
+                    <?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name']; ?>选手
                 </a >
                 >
                 <span><?php echo $return['intergratedPlayer']['data']['player_name'];?></span>

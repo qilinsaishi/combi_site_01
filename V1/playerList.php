@@ -78,7 +78,7 @@ $keyList = array_keys($return);
                         <li <?php if($currentGame == $game){echo 'class="active "';}?>>
                             <!--<a href="javascript:;">-->
                             <a href="<?php echo $config['site_url']?>/playerlist/<?php echo $game;?>/<?php echo $params[$game."PlayerList"]['page'];?>">
-                            <?php echo $game_name;?>
+                            <?php echo $game_name;?>选手
                             </a>
                         </li>
                         

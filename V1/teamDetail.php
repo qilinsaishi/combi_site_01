@@ -106,7 +106,7 @@ else
                 </a >
                 >
                 <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $return['intergratedTeam']['data']['game'];?>/">
-                    <?php echo  $config['game'][$return['intergratedTeam']['data']['game']]; ?>
+                    <?php echo  $config['game'][$return['intergratedTeam']['data']['game']]; ?>战队
                 </a >
                 >
                 <span><?php echo $return['intergratedTeam']['data']['team_name'];?></span>

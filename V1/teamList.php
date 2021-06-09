@@ -78,7 +78,7 @@ $keyList = array_keys($return);
 						 <?php foreach($config['game'] as $game => $game_name){?>
                         <li <?php if($currentGame == $game){echo 'class="active "';}?>>
                             <a href="<?php echo $config['site_url']?>/teamlist/<?php echo $game;?>/<?php echo $params[$game."TeamList"]['page'];?>">
-                                <?php echo $game_name;?>
+                                <?php echo $game_name;?>战队
                             </a>
                         </li>
                         
