@@ -66,19 +66,32 @@ if($game=='dota2'){
 	];
 }
 else{
-    $return['tournament']['data']['roundList'] = (count($return['tournament']['data']['roundList'])>0)?($return['tournament']['data']['roundList']) : ([["round_id"=>0,"round_name"=>"默认轮次"]]);
-    $defaultRound = 1;
+    if(count($return['tournament']['data']['roundList'])==0)
+    {
+        $defaultRound = 1;
+    }
+    //$return['tournament']['data']['roundList'] = (count($return['tournament']['data']['roundList'])>0)?($return['tournament']['data']['roundList']) : ([["round_id"=>0,"round_name"=>"默认轮次"]]);
 }
-
 foreach($return['tournament']['data']['roundList'] as $roundInfo)
 {
     $matchList[$roundInfo['round_id']] = [];
 }
 foreach($return['matchList']['data'] as $matchInfo)
 {
-    $matchInfo['round_id'] = $defaultRound!=1?$matchInfo['round_id']:0;
+    $i=0;
+    if($defaultRound == 1)
+    {
+        $matchInfo['round_id'] = $matchInfo['round_id']??0;
+        if(!isset($return['tournament']['data']['roundList'][$matchInfo['round_id']]))
+        {
+            $return['tournament']['data']['roundList'][$matchInfo['round_id']] = ['round_id'=>$matchInfo['round_id'],"round_name"=>("轮次".($i+1))];
+            $i++;
+        }
+    }
+    //$matchInfo['round_id'] = $defaultRound!=1?$matchInfo['round_id']:0;
     $matchList[$matchInfo['round_id']??0][] = $matchInfo;
 }
+$return['tournament']['data']['roundList'] = array_values($return['tournament']['data']['roundList']);
 unset($return['matchList']);
 ?>
 <!DOCTYPE html>
@@ -165,7 +178,7 @@ unset($return['matchList']);
                             <div class="event_detail_div <?php if($key==0){echo ' active';}?>">
                                 <div class="scroll">
                                     <ul class="event_detail_item">
-                                        <?php if(count($matchList[$roundInfo['round_id']])>0){?>
+                                        <?php if(count($matchList[$roundInfo['round_id']])>0){ krsort($matchList[$roundInfo['round_id']]);?>
                                         <?php foreach($matchList[$roundInfo['round_id']] as $matchInfo){?>
                                                 <li>
 													<?php if($game=='lol' || $game=='kpl') {   
