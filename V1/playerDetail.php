@@ -93,7 +93,6 @@ else
 {
     $connectedInformationList = $return2["keywordMapList"]["data"];
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -248,7 +247,17 @@ else
                         
                     </div>
                     <div class="scroll">
-						<?php if(isset($return['intergratedPlayer']['data']['recentMatchList']) && count($return['intergratedPlayer']['data']['recentMatchList'])>0 ){?>
+						<?php
+                        if(isset($return['intergratedPlayer']['data']['recentMatchList']) && count($return['intergratedPlayer']['data']['recentMatchList'])>0 ){?>
+                                <?php
+                            $playerDetailList = array_column($return['intergratedPlayer']['data']['recentMatchList'],"player_detail");
+                            $count = 0;
+                            foreach($playerDetailList as $detail)
+                            {
+                                $count+=count($detail);
+                            }
+                            if($count>0){
+                            ?>
                         <div class="player_matchs_name">
                             <span class="span1">时间</span>
                             <span class="span2">对阵</span>
@@ -262,14 +271,12 @@ else
 							<?php
 						  foreach($return['intergratedPlayer']['data']['recentMatchList'] as $recentMatchInfo)
 						  { 
-								if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list']['scoregg'])){$side = "home";}else{$side="away";}
+							   	if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list']['scoregg'])){$side = "home";}else{$side="away";}
 							   if(($recentMatchInfo['home_score'] >= $recentMatchInfo['away_score'])){$win_side = "home";}else{$win_side="away";}
 								if(count($recentMatchInfo['player_detail'])>0)
 								{
 									foreach($recentMatchInfo['player_detail'] as $round_key => $round_detail)
 									{
-										
-										
 										?>
 										<li class="<?php if($side == $win_side){  ?>red<?php }else{ ?>blue<?php } ?>">
 											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['game'];?>-<?php echo $recentMatchInfo['match_id'];?>">
@@ -344,6 +351,11 @@ else
                             
 						  <?php }?>
                         </ul>
+                            <?php }else{?>
+                                <div class="null">
+                                    <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                </div>
+                            <?php } ?>
 						<?php }else{?>
 							 <div class="null">
 								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
