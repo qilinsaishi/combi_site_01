@@ -24,7 +24,7 @@ $base_config = [
         'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],
         'event_name'=>"Ti10",
         'game'=>"dota2",
-        'ti9_ranking'=>["ig"=>675,"eg"=>676,"secret"=>609,"vp"=>520,"obheon"=>601,"tp"=>"632","psg"=>519,"bc"=>660,"fnatic"=>677,"vg"=>515,"qc"=>673,"alliance"=>678]
+        'ti9_ranking'=>["ig"=>416,"eg"=>417,"secret"=>72,"vp"=>15,"obheon"=>69,"tp"=>"82","psg"=>14,"bc"=>104,"fnatic"=>94,"vg"=>9,"qc"=>418,"alliance"=>419]
     ]
 ];
 
