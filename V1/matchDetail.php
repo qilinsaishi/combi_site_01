@@ -415,7 +415,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <!--- 输出对比-->
                                             <div class="vs_data2_item<?php if($i==0){echo ' active';}?>">
                                                 <?php
-                                                $max = max(array_merge(array_column($round_info['record_list_a'],$key_name),array_column($round_info['record_list_b'],$key_name)),0);
+                                                $max = max(array_merge(array_column($round_info['record_list_a'],$key_name),array_column($round_info['record_list_b'],$key_name),[0]));
                                                 ?>
                                                 <div class="left">
                                                     <?php foreach($round_info['record_list_a'] as $key2 => $player_info){?>
@@ -423,6 +423,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             <div class="progress1_parent">
                                                                 <div class="progress1 red">
                                                                     <span style="width: <?php echo $player_info[$key_name]==0?0:intval($player_info[$key_name]/$max*100);?>%"><span><?php echo $player_info[$key_name]??"??";?></span></span>
+
                                                                 </div>
                                                             </div>
                                                             <div class="vs_player">
