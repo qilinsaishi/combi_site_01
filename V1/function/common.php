@@ -138,6 +138,7 @@
     }
     function renderHeaderJsCss($config,$customCss = [])
     {
+        echo '<link rel="shortcut icon" href="'.$config['site_url'].'/images/favicon.ico">';
         $version=time();
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/bootstrap.css" type="text/css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css?v='.$version.'" type="text/css" />';
