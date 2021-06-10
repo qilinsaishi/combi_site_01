@@ -23,7 +23,7 @@ foreach ($config['game'] as $game => $gameName)
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['dota2TournamentList']['data']);
 //文章类型
-$newsTypeList = ["News"];
+$newsTypeList = ["News","Stra"];
 //返回值键名数组
 $keyList = array_keys($return);
 foreach($newsTypeList as $newsType)
@@ -360,19 +360,21 @@ foreach($newsTypeList as $newsType)
                         </div>
                         <div class="news_dianjing news_dianjing_tab2">
                             <ul class="clearfix news_dianjing2">
-                                <?php $i = 1;foreach($config['game'] as $game => $game_name){?>
-                                    <li <?php if($i==1){echo ' class="active"';}?>><a href="##"><?php echo $game_name;?></a></li>
-                                <?php $i++;}?>
+                                <li  class="active"><a href="##">综合</a></li>
+                                <?php foreach($config['game'] as $game => $game_name){?>
+                                    <li ><a href="##"><?php echo $game_name;?></a></li>
+                                    <?php }?>
                             </ul>
                             <div class="news_dianjing_list">
                                 <?php $allGameList = array_keys($config['game']);
-                                foreach($allGameList as $key => $game)
+                                array_unshift($allGameList,"all");
+                                foreach($allGameList as $game)
                                 {
                                     $infoListKey = $game."StraList";
                                     $infoList = $return[$infoListKey];
-                                    //$gameName = $config["game"][$game]??"综合";
+                                    $gameName = $config["game"][$game]??"综合";
                                     ?>
-                                    <div class="news_dianjing_detail<?php if($key==0){echo ' active';}?>">
+                                    <div class="news_dianjing_detail<?php if($game=="all"){echo " active";}?>">
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                             <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
