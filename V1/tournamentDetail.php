@@ -22,7 +22,6 @@ $params = [
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
 ];
-
 $return = curl_post($config['api_get'],json_encode($params),1);
 //获取当前战队的游戏
  $intergrated_id_list=array_column($return['tournament']['data']['teamList'], 'intergrated_id_list');
@@ -59,12 +58,16 @@ if(!isset($return["tournament"]['data']['tournament_id']))
     render404($config);
 }
 $matchList = [];
-
+$defaultRound = 0;
 if($game=='dota2'){
 	$return['tournament']['data']['roundList'][] = [
 	"round_id"=>0,
 	"round_name"=>"默认轮次"
 	];
+}
+else{
+    $return['tournament']['data']['roundList'] = (count($return['tournament']['data']['roundList'])>0)?($return['tournament']['data']['roundList']) : ([["round_id"=>0,"round_name"=>"默认轮次"]]);
+    $defaultRound = 1;
 }
 
 foreach($return['tournament']['data']['roundList'] as $roundInfo)
@@ -73,11 +76,9 @@ foreach($return['tournament']['data']['roundList'] as $roundInfo)
 }
 foreach($return['matchList']['data'] as $matchInfo)
 {
-	$matchList[$matchInfo['round_id']??0][] = $matchInfo; 
+    $matchInfo['round_id'] = $defaultRound!=1?$matchInfo['round_id']:0;
+    $matchList[$matchInfo['round_id']??0][] = $matchInfo;
 }
-
-
-
 unset($return['matchList']);
 ?>
 <!DOCTYPE html>
