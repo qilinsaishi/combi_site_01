@@ -8,9 +8,10 @@ $params=[
     "hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"source"=>"scoregg","cache_time"=>86400*7],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
-    "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
+    //"ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return['ti9teamList']['data'] = [];
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
 ?>
 <html lang="en">
@@ -58,7 +59,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                     <div class="team_explain fr">
                         <div class="team_explain_top clearfix">
                             <p class="name fl">Ti10 Dota2国际邀请赛</p>
-                            <p class="classify fl"><?php echo $config['game'][$config['ti10']['game']];?></p>
+                            <p class="classify fl"><?php echo 'DOTA2';/*$config['game'][$config['ti10']['game']]*/;?></p>
                         </div>
                         <div class="team_explain_bottom">
                             <p>
@@ -143,7 +144,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         </ul>
                     </div>
                 </div>
-                <div class="hot_team mb20">
+                <?php if(count($return['teamList']['data'])>0){?>
+                    <div class="hot_team mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
@@ -161,7 +163,9 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             </li>
                         <?php }?>
                     </ul>
+
                 </div>
+                <?php }?>
                 <div class="prizePool mb20">
                     <p class="title">Ti10国际邀请赛奖金池</p>
                     <div class="m_wrapper">
@@ -209,6 +213,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <?php }}?>
                     </div>
                 </div>
+                <?php if(count($return['ti9teamList']['data'])>0){?>
                 <div class="thumbsUp mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
@@ -346,6 +351,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         </div>
                     </div>
                 </div>
+                <?php }?>
+
                 <div class="hot_match mb20">
 
                     <div class="team_pub_top clearfix">

@@ -311,6 +311,7 @@ foreach($newsTypeList as $newsType)
                                     $gameName = $config["game"][$game]??"综合";
                                     ?>
                                     <div class="news_dianjing_detail<?php if($game=="all"){echo " active";}?>">
+                                    <?php if(count($infoList['data'])>0){?>
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                         <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
@@ -343,7 +344,13 @@ foreach($newsTypeList as $newsType)
                                                 <?php }?><?php }?>
                                             </ul>
                                         </div>
+                                        <?php }else{?>
+                                    <div class="null">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                     </div>
+                                <?php }?>
+                                    </div>
+
                                 <?php } ?>
                             </div>
                         </div>
@@ -366,7 +373,8 @@ foreach($newsTypeList as $newsType)
                                     <?php }?>
                             </ul>
                             <div class="news_dianjing_list">
-                                <?php $allGameList = array_keys($config['game']);
+
+                            <?php $allGameList = array_keys($config['game']);
                                 array_unshift($allGameList,"all");
                                 foreach($allGameList as $game)
                                 {
@@ -375,6 +383,8 @@ foreach($newsTypeList as $newsType)
                                     $gameName = $config["game"][$game]??"综合";
                                     ?>
                                     <div class="news_dianjing_detail<?php if($game=="all"){echo " active";}?>">
+
+                                    <?php if(count($infoList['data'])>0){?>
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                             <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
@@ -407,10 +417,14 @@ foreach($newsTypeList as $newsType)
                                                     <?php }?><?php }?>
                                             </ul>
                                         </div>
+
+                                <?php }else{?>
+                                    <div class="null">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                     </div>
-                                    <?php
-                                }
-                                ?>
+                                <?php }?>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

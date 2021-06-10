@@ -43,7 +43,7 @@ foreach ($config['game'] as $game2 => $gameName2)
 	}
     
 }
-$return2 = curl_post($config['api_get'],json_encode($params2),1);
+$return2 = curl_post($config['api_get'],json_encode($params2??[]),1);
 $return['dota2matchList']=$return2['dota2matchList'] ?? [];
 
 unset($return2['dota2matchList'] );
