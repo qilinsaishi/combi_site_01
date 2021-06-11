@@ -66,6 +66,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
+    align-items: center;
 }
 .team_explain_name{
     margin-bottom: 26px;
@@ -118,6 +119,9 @@
     width: 24px;
     height: 24px;
     margin-right: 10px;
+}
+.player_location img{
+    display: block;
 }
 .imgauto{
     object-fit: cover;
@@ -707,5 +711,11 @@
     }
     .player_team_word{
         font-size: .28rem;
+    }
+    .player_data_cell:nth-child(3n){
+        margin-right: 0;
+    }
+    .player_data_cell p span{
+        font-size: .22rem;
     }
 }
