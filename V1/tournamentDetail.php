@@ -346,7 +346,7 @@ unset($return['matchList']);
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">WE战队资讯</span>
+                        <span class="fl team_pbu_name">相关资讯</span>
                         <a href="##" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
