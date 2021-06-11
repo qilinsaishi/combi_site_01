@@ -911,5 +911,8 @@ color: #fff;
         font-size: .24rem;
         color: #666;
     }
+    .suspension{
+        display: none;
+    }
 }
 /* 面包屑导航 */
