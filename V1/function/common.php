@@ -152,6 +152,15 @@
         }
         echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/flexible.js" type="text/javascript"></script>';
+        echo '<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?12a5143506ef959a217dbc4a3d53475e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>';
     }
     function renderFooterJsCss($config,$customCss = [],$customJs = [])
     {

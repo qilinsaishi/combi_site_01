@@ -483,6 +483,22 @@
     width: 280px;
     height: 240px;
 }
+/* 6.11新增 */
+.game_title_more {
+    transform: rotate(90deg);
+    width: 10px;
+    height: 18px;
+    display: none;
+    margin: 0 auto;
+}
+.game_title_more.active1{
+    display: block;
+}
+.game_title_more.active {
+    transform: rotate(270deg);
+}
+
+/* 6.11新增 */
 
 @media only screen and (max-width: 1024px){
     .team_explain{
@@ -664,5 +680,12 @@
     }
     .rate{
         font-size: .2rem;
+    }
+    .game_title_more {
+        transform: rotate(90deg);
+        width: .2rem;
+        height: .36rem;
+        display: none;
+        margin: 0 auto;
     }
 }

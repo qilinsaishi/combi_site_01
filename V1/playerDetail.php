@@ -362,6 +362,7 @@ else
 							</div>
 						<?php } ?>
                     </div>
+                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
                 <!-- 比赛战绩 -->
                 <!-- 战队介绍和队员介绍 -->
@@ -709,6 +710,47 @@ else
             lineCap: 'round',
             fill: { color: '#FF6649' }
         });
+        </script>
+        <script>
+            var windowWidth = $(window).width();
+            if(windowWidth < 1080){
+                $(".player_record").on("click", ".game_title_more", function () {
+                    $(".player_record").css( {"overflow":"auto","height":"auto"})
+                    $(".player_matchs_content").css( {"overflow":"auto","height":"auto"})
+                    $(".game_title_more").addClass("active")
+                })
+                $(".player_record").on("click", ".game_title_more.active", function () {
+                    if($('.player_matchs_content li').length > 10){
+                        $(".player_record").css( {"overflow":"hidden","height":"778px"})
+                        $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                        $(".game_title_more").removeClass("active")
+                    }
+                })
+                if($('.player_matchs_content li').length > 10){
+                    $(".player_record").css( {"overflow":"hidden","height":"778px"})
+                    $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                    $(".game_title_more").addClass("active1")
+                }
+            }
+            if(windowWidth >= 1080){
+                $(".player_record").on("click", ".game_title_more", function () {
+                    $(".player_record").css( {"overflow":"auto","height":"auto"})
+                    $(".player_matchs_content").css( {"overflow":"auto","height":"auto"})
+                    $(".game_title_more").addClass("active")
+                })
+                $(".player_record").on("click", ".game_title_more.active", function () {
+                    if($('.player_matchs_content li').length > 10){
+                        $(".player_record").css( {"overflow":"hidden","height":"750px"})
+                        $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                        $(".game_title_more").removeClass("active")
+                    }
+                })
+                if($('.player_matchs_content li').length > 10){
+                    $(".player_record").css( {"overflow":"hidden","height":"750px"})
+                    $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                    $(".game_title_more").addClass("active1")
+                }
+            }
         </script>
 </body>
 
