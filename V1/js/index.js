@@ -1,3 +1,7 @@
+    var banner = $(".banner_img").height()
+    $('.banner_img img').load(function () {
+        $(".banner").css("height", banner)
+    });
 //懒加载
  $(function(){
 		//初始化插件
