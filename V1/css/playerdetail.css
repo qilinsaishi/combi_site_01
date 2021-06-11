@@ -688,4 +688,24 @@
         display: none;
         margin: 0 auto;
     }
+    .player_team_bot .name{
+        display: flex;
+    }
+    .player_team_bot .right{
+        width: 74%;
+    }
+    .player_team_bot .name .name_description{
+        width: 24%;
+        font-size: .28rem;
+        float: none;
+    }
+    .player_team_bot .name span{
+        font-size: .28rem;
+        width: 76%;
+        max-width: 76%;
+        float: none;
+    }
+    .player_team_word{
+        font-size: .28rem;
+    }
 }
