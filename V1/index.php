@@ -85,16 +85,19 @@ foreach($newsTypeList as $newsType)
                     <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="">
                 </div>
                 <div class="button">
+                    <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank">
                     <div class="download_ios download">
-                        <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank"><img src="<?php echo $config['site_url'];?>/images/ios.png" alt="">
+                        <img src="<?php echo $config['site_url'];?>/images/ios.png" alt="">
                         <span>IOS下载</span>
-						</a>
+
                     </div>
+                    </a>
+                    <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank">
                     <div class="download_android download">
-                        <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank"><img src="<?php echo $config['site_url'];?>/images/android.png" alt="">
+                        <img src="<?php echo $config['site_url'];?>/images/android.png" alt="">
                         <span>Android下载</span>
-						</a>
                     </div>
+                    </a>
                 </div>
             </div>
             <div class="game_match container">

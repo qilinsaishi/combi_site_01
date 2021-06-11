@@ -123,11 +123,13 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                                                     </a>
                                                 </li>
                                             <?php }?>
-                                                <div class="paging">
+                                        </ul>
+                                        <div class="paging">
                                                     <?php render_page_pagination($return[$game.'NewsList']['count'],$pageSize,$params[$game."NewsList"]['page'],$config['site_url']."/".$type."list/".$game); ?>
                                                 </div>
                                             <?php }else{?>
-                                                <!-- 暂无内容 -->
+                                            <ul class="news_item">
+                                            <!-- 暂无内容 -->
                                                 <div class="null">
                                                     <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                                     <span>暂无内容</span>
