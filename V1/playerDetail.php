@@ -383,8 +383,8 @@ else
                                     <p class="name fl"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?></p>
                                     <p class="classify fl"><?php if($return['intergratedPlayer']['data']['teamInfo']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                                 </div>
-                                <p class="name"><span class="name_description">英文名：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
-                                <p class="name"><span class="name_description">别称：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
+                                <p class="name clearfix"><span class="name_description">英文名：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
+                                <p class="name clearfix"><span class="name_description">别&nbsp;&nbsp;&nbsp;称：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
                             </div>
                         </div>
                         <div class="player_team_word">
