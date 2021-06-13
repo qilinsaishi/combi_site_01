@@ -11,7 +11,7 @@ $params = [
     "allTeamList"=>["dataType"=>"intergratedTeamList","page"=>($currentGame=="all")?$page:1,"page_size"=>$info['page']['page_size'],"fields"=>'tid,team_name,logo',"game"=>array_keys($config['game']),"cache_time"=>86400*7],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "recentMatchList"=>["dataType"=>"matchList","recent"=>1,"page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "recentMatchList"=>["dataType"=>"matchList","recent"=>1,"page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"team","site_id"=>$config['site_id']]
