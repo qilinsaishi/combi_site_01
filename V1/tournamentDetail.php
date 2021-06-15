@@ -17,7 +17,7 @@ $params = [
     "tournament"=>[$tournament_id,"source"=>$source],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$source,"game"=>$game,"cache_time"=>86400],
 	"matchList" =>
-        ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>100,"cache_time"=>3600],
+        ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>1000,"cache_time"=>3600],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
