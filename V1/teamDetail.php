@@ -301,6 +301,7 @@ if($game=='dota2'){
                 </div>
                 <!-- 战队数据 -->
                 <!-- 战队荣誉 -->
+				<?php if($game!='dota2'){?>
                 <div class="team_honor mb20">
                     <div class="team_honor_top clearfix">
                         <div class="team_honor_img fl">
@@ -367,6 +368,7 @@ if($game=='dota2'){
 						<?php } ?>
                     </div>
                 </div>
+				<?php }?>
                 <!-- 战队荣誉 -->
                 <!-- 战队成绩 -->
                 <div class="mb20 team_results">

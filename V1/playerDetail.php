@@ -16,12 +16,6 @@ if(!isset($return["intergratedPlayer"]['data']['pid']))
 {
     render404($config);
 }
-//雷达图数据
-$radarData=[];
-if($return['intergratedPlayer']['data']['radarData']!="")
-{
-	$radarData=json_encode(array_values($return['intergratedPlayer']['data']['radarData']),JSON_UNESCAPED_UNICODE);
-}
 
 
 if($return['intergratedPlayer']['data']['description']!="")
@@ -93,6 +87,102 @@ else
 {
     $connectedInformationList = $return2["keywordMapList"]["data"];
 }
+//雷达图数据
+$radarData=[];
+if($return['intergratedPlayer']['data']['radarData']!="")
+{
+	if($game=='dota2'){
+		$return['intergratedPlayer']['data']['radarData']['kill']['empno']=$return['intergratedPlayer']['data']['player_stat']['killCount'];
+		$return['intergratedPlayer']['data']['radarData']['assists']['empno']=$return['intergratedPlayer']['data']['player_stat']['assistsCount'];
+		$return['intergratedPlayer']['data']['radarData']['join_rate']['empno']=$return['intergratedPlayer']['data']['player_stat']['participationRate'];
+		
+	}
+	
+	$radarData=json_encode(array_values($return['intergratedPlayer']['data']['radarData']),JSON_UNESCAPED_UNICODE);
+}
+if($game=='dota2'){//组合成scoregg 一样的数组格式
+	$return['intergratedPlayer']['data']['player_stat']['join_rate']=$return['intergratedPlayer']['data']['player_stat']['participationRate']?? 0;//参团率
+	$return['intergratedPlayer']['data']['player_stat']['join_rank']=$return['intergratedPlayer']['data']['player_stat']['participationRateSort']?? 0;//参团排名
+	$return['intergratedPlayer']['data']['player_stat']['kda']=$return['intergratedPlayer']['data']['player_stat']['kda']?? 0;
+	$return['intergratedPlayer']['data']['player_stat']['kda_rank']=$return['intergratedPlayer']['data']['player_stat']['kdaSort']?? 0;
+	$return['intergratedPlayer']['data']['player_stat']['base_ability_detail']=[
+		'kills'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['killCount']?? 0,
+			'score-des'=>'总击杀',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['killCountSort']?? 0,
+		],
+		'assists'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['assistsCount']?? 0,
+			'score-des'=>'总助攻',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['assistsCountSort']?? 0,
+		],
+		'deaths'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['dieCount']?? 0,
+			'score-des'=>'总死亡',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['dieCountSort']?? 0,
+		],
+		'minute_injury'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteNumber']?? 0,
+			'score-des'=>'分均补刀',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteNumberSort']?? 0,
+		],
+		'injury_rate'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['appearCount']?? 0,
+			'score-des'=>'出场次数',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['appearCountSortt']?? 0,
+		],
+		'injury_inversion_rate'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageKill']?? 0,
+			'score-des'=>'场均击杀',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageKillSort']?? 0,
+		],
+		'minute_damagetaken'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageDie']?? 0,
+			'score-des'=>'场均死亡',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageDieSort']?? 0,
+		],
+		'damagetaken_rate'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageAssists']?? 0,
+			'score-des'=>'场均助攻',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageAssistsSort']?? 0,
+		],
+		'minute_hits'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteOutput']?? 0,
+			'score-des'=>'分均输出',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteOutputSort']?? 0,
+		],
+		'minute_wardsplaced'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['hurtTransfRate'].'%'?? 0,
+			'score-des'=>'输出转化率',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['hurtTransfRateSort']?? 0,
+		],
+		'minute_wardkilled'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteBear'].'%'?? 0,
+			'score-des'=>'分均承伤',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteBearSort']?? 0,
+		],
+		'hero_pool'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['bearRate'].'%'?? 0,
+			'score-des'=>'承伤占比',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['bearRateSort']?? 0,
+		],
+	];
+	
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,6 +287,7 @@ else
                         <div class="player_data_content fr">
                             <div class="player_data_top clearfix">
                                 <div class="circle_right fl">
+									<?php if($game!='dota2'){?>
                                     <div class="win_rate">
                                         <div class="win_rate1 circle" data-num="<?php echo  (isset($return['intergratedPlayer']['data']['player_stat']['victory_rate']) && $return['intergratedPlayer']['data']['player_stat']['victory_rate']>0 )? ($return['intergratedPlayer']['data']['player_stat']['victory_rate']/100):0 ?>">
                                         </div>
@@ -206,6 +297,18 @@ else
                                             <span class="rate"><?php echo $return['intergratedPlayer']['data']['player_stat']['total_count']?? 0;?>场<?php echo $return['intergratedPlayer']['data']['player_stat']['win']?? 0;?>胜<?php echo $return['intergratedPlayer']['data']['player_stat']['lose']?? 0;?>败</span>
                                         </div>
                                     </div>
+									<?php }else{?>
+									<div class="win_rate">
+                                        <div class="win_rate1 circle" data-num="<?php echo  (isset($return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']) && $return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']>0 )? ($return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']/100):0 ?>">
+                                        </div>
+                                        <div class="red_explain">
+                                            <span class="rate_number"><?php echo $return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']?? 0;?>%</span>
+                                            <span class="rate_explain">伤害转化率</span>
+                                            <span class="rate">联赛第<i><?php echo $return['intergratedPlayer']['data']['player_stat']['hurtTransfRateSort']?? 0;?></span>
+                                        </div>
+                                    </div>
+									
+									<?php }?>
                                     <div class="part_rate">
                                         <div class="part_rate1 circle" data-num="<?php echo  (isset($return['intergratedPlayer']['data']['player_stat']['join_rate']) && $return['intergratedPlayer']['data']['player_stat']['join_rate']>0 )? ($return['intergratedPlayer']['data']['player_stat']['join_rate']/100):0 ?>">
                                         </div>
