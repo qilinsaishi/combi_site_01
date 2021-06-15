@@ -134,7 +134,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 		[
 			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['appearCount']?? 0,
 			'score-des'=>'出场次数',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['appearCountSortt']?? 0,
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['appearCountSort']?? 0,
 		],
 		'injury_inversion_rate'=>
 		[
@@ -168,7 +168,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 		],
 		'minute_wardkilled'=>
 		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteBear'].'%'?? 0,
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteBear']?? 0,
 			'score-des'=>'分均承伤',
 			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteBearSort']?? 0,
 		],
