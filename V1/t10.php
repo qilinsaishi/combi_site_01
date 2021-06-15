@@ -12,6 +12,8 @@ $params=[
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return['ti9teamList']['data'] = [];
+$return['teamList']['data'] = [];
+
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
 ?>
 <html lang="en">

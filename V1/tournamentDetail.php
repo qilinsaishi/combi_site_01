@@ -17,7 +17,7 @@ $params = [
     "tournament"=>[$tournament_id,"source"=>$source],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$source,"game"=>$game,"cache_time"=>86400],
 	"matchList" =>
-        ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>100,"cache_time"=>3600],
+        ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>1000,"cache_time"=>3600],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
@@ -346,7 +346,7 @@ unset($return['matchList']);
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">WE战队资讯</span>
+                        <span class="fl team_pbu_name">相关资讯</span>
                         <a href="##" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">

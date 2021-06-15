@@ -630,6 +630,7 @@ color: #fff;
     border: 1px solid #EEEEEE;
     border-radius: 8px;
     padding: 20px 20px 0 18px;
+    border-bottom: 0;
 }
 .team_news_mid{
     margin-bottom: 10px;

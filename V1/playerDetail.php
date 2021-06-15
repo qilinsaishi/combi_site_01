@@ -362,6 +362,7 @@ else
 							</div>
 						<?php } ?>
                     </div>
+                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
                 <!-- 比赛战绩 -->
                 <!-- 战队介绍和队员介绍 -->
@@ -382,8 +383,8 @@ else
                                     <p class="name fl"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?></p>
                                     <p class="classify fl"><?php if($return['intergratedPlayer']['data']['teamInfo']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                                 </div>
-                                <p class="name"><span class="name_description">英文名：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
-                                <p class="name"><span class="name_description">别称：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
+                                <p class="name clearfix"><span class="name_description">英文名：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
+                                <p class="name clearfix"><span class="name_description">别&nbsp;&nbsp;&nbsp;称：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
                             </div>
                         </div>
                         <div class="player_team_word">
@@ -709,6 +710,47 @@ else
             lineCap: 'round',
             fill: { color: '#FF6649' }
         });
+        </script>
+        <script>
+            var windowWidth = $(window).width();
+            if(windowWidth < 1080){
+                $(".player_record").on("click", ".game_title_more", function () {
+                    $(".player_record").css( {"overflow":"auto","height":"auto"})
+                    $(".player_matchs_content").css( {"overflow":"auto","height":"auto"})
+                    $(".game_title_more").addClass("active")
+                })
+                $(".player_record").on("click", ".game_title_more.active", function () {
+                    if($('.player_matchs_content li').length > 10){
+                        $(".player_record").css( {"overflow":"hidden","height":"778px"})
+                        $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                        $(".game_title_more").removeClass("active")
+                    }
+                })
+                if($('.player_matchs_content li').length > 10){
+                    $(".player_record").css( {"overflow":"hidden","height":"778px"})
+                    $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                    $(".game_title_more").addClass("active1")
+                }
+            }
+            if(windowWidth >= 1080){
+                $(".player_record").on("click", ".game_title_more", function () {
+                    $(".player_record").css( {"overflow":"auto","height":"auto"})
+                    $(".player_matchs_content").css( {"overflow":"auto","height":"auto"})
+                    $(".game_title_more").addClass("active")
+                })
+                $(".player_record").on("click", ".game_title_more.active", function () {
+                    if($('.player_matchs_content li').length > 10){
+                        $(".player_record").css( {"overflow":"hidden","height":"750px"})
+                        $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                        $(".game_title_more").removeClass("active")
+                    }
+                })
+                if($('.player_matchs_content li').length > 10){
+                    $(".player_record").css( {"overflow":"hidden","height":"750px"})
+                    $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                    $(".game_title_more").addClass("active1")
+                }
+            }
         </script>
 </body>
 
