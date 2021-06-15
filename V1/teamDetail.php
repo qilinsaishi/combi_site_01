@@ -60,6 +60,33 @@ else
 {
     $connectedInformationList = $return2["keywordMapList"]["data"];
 }
+if($game=='dota2'){
+	$return["intergratedTeam"]["data"]['team_stat']['victory_rate']=$return["intergratedTeam"]["data"]['team_stat']['winRate']??0;
+	$return["intergratedTeam"]["data"]['team_stat']['victory_rate_rank']=$return["intergratedTeam"]["data"]['team_stat']['winRateSort']??0;
+	$return["intergratedTeam"]["data"]['team_stat']['base_ability_detail']=[
+		"kda"=>[
+			'score-num'=>$return["intergratedTeam"]["data"]['team_stat']['kda']??0,
+			'score-des'=>'KDA',
+			'score-rank'=>$return["intergratedTeam"]["data"]['team_stat']['kdaSort']??0,
+		],
+		"kills"=>[
+			'score-num'=>$return["intergratedTeam"]["data"]['team_stat']['averageKill']??0,
+			'score-des'=>'场均击杀',
+			'score-rank'=>$return["intergratedTeam"]["data"]['team_stat']['averageKillSort']??0,
+		],
+		"deaths"=>[
+			'score-num'=>$return["intergratedTeam"]["data"]['team_stat']['averageDie']??0,
+			'score-des'=>'场均死亡',
+			'score-rank'=>$return["intergratedTeam"]["data"]['team_stat']['averageDieSort']??0,
+		],
+		"assists"=>[
+			'score-num'=>$return["intergratedTeam"]["data"]['team_stat']['averageHarm']??0,
+			'score-des'=>'场均伤害',
+			'score-rank'=>$return["intergratedTeam"]["data"]['team_stat']['averageHarmSort']??0,
+		],
+	];
+	
+}
 
 ?>
 <!DOCTYPE html>
@@ -180,7 +207,9 @@ else
                         </div>
                         <span class="fl team_data_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队基础数据</span>
                         <div class="team_data_frequency fr clearfix">
+							<?php if($game !='dota2'){?>
                             <p class="matches_number fl">比赛场次：<span><?php echo $return['intergratedTeam']['data']['team_stat']['total_count']??0;?>场</span></p>
+							<?php }?>
                             <p class="matches_rank fl">联赛排名：<span>第 <?php echo $return['intergratedTeam']['data']['team_stat']['victory_rate_rank']??9999;?></span></p>
                         </div>
                     </div>
@@ -191,6 +220,7 @@ else
                                     <strong></strong>
                                 </div>
                                 <div class="circle_right fl">
+									<?php if($game!='dota2'){?>
                                     <div class="red">
                                         <div class="won_red circle" data-num="<?php echo  (isset($return['intergratedTeam']['data']['team_stat']['red_victory_rate']) && $return['intergratedTeam']['data']['team_stat']['victory_rate']>0 )? ($return['intergratedTeam']['data']['team_stat']['red_victory_rate']/100):0 ?>">
                                         </div>
@@ -209,6 +239,26 @@ else
                                             <span class="rate">蓝方胜率</span>
                                         </div>
                                     </div>
+									<?php }else{?>
+									<div class="red">
+                                        <div class="won_red circle" data-num="<?php echo  (isset($return['intergratedTeam']['data']['team_stat']['firstBloodRate']) && $return['intergratedTeam']['data']['team_stat']['firstBloodRate']>0 )? ($return['intergratedTeam']['data']['team_stat']['firstBloodRate']/100):0 ?>">
+                                        </div>
+                                        <div class="red_explain">
+                                            <span class="rate_number"><?php echo $return['intergratedTeam']['data']['team_stat']['firstBloodRate']?? 0;?>%</span>
+                                            <span class="rate_explain">一血率</span>
+                                            <span class="rate">联赛第<?php echo $return['intergratedTeam']['data']['team_stat']['firstBloodRateSort']?? 0;?></span>
+                                        </div>
+                                    </div>
+                                    <div class="blue">
+                                        <div class="won_blue circle" data-num="<?php echo  (isset($return['intergratedTeam']['data']['team_stat']['firstTowerRate']) && $return['intergratedTeam']['data']['team_stat']['firstTowerRate']>0 )? ($return['intergratedTeam']['data']['team_stat']['firstTowerRate']/100):0 ?>">
+                                        </div>
+                                        <div class="blue_explain">
+                                            <span class="rate_number"><?php echo $return['intergratedTeam']['data']['team_stat']['firstTowerRate']??0;?>%</span>
+                                            <span class="rate_explain">一塔率</span>
+                                            <span class="rate">联赛第<?php echo $return['intergratedTeam']['data']['team_stat']['firstTowerRateSort']?? 0;?></span>
+                                        </div>
+                                    </div>
+									<?php }?>
                                    
                                 </div>
                             </div>

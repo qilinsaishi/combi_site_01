@@ -5,7 +5,7 @@ $base_config = [
     'api_url'=>'http://preapi.querylist.cn',//api站点URL
     'site_url'=>'http://pre.combi_01_info.com',//本站URl
     'game'=>["lol"=>"英雄联盟","kpl"=>"王者荣耀","dota2"=>"DOTA2"],
-	'game_source'=>['dota2'=>'wca'],
+	'game_source'=>['dota2'=>'shangniu'],
     'default_game' => "lol",
     'site_id'=>5,
     'default_source'=>"scoregg",
