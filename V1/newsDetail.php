@@ -81,7 +81,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title><?php echo $return['information']['data']['title']?>_<?php echo $config['game'][$return['information']['data']['game']];?><?php echo $currentType=="news"?"电竞资讯":"游戏攻略"; ?><?php echo $config['site_name'];?></title>
+    <title><?php echo $return['information']['data']['title']?>_<?php echo $config['game'][$return['information']['data']['game']];?><?php echo $currentType=="news"?"电竞资讯":"游戏攻略"; ?>-<?php echo $config['site_name'];?></title>
     <?php renderHeaderJsCss($config,["right","news"]);?>
 </head>
 
