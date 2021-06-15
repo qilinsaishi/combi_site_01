@@ -187,16 +187,17 @@ foreach($newsTypeList as $newsType)
                     <div class="game_team_list">
                         <?php foreach($config['game'] as $game => $game_name){?>
                         <div class="game_team_div<?php if($game == $config['default_game']){echo " active ";}?>">
-                            <div class="game_title clearfix game_team_e">
-                                <span class="title"><?php echo $game_name;?>热门战队</span>
-                                <div class="more">
-                                    <a href="<?php echo $config['site_url'];?>/teamlist/">
-                                        <span>更多</span>
-                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
+
 							<?php if(isset($return[$game.'TeamList']['data']) && count($return[$game.'TeamList']['data'])>0){ ?>
+                                <div class="game_title clearfix game_team_e">
+                                    <span class="title"><?php echo $game_name;?>热门战队</span>
+                                    <div class="more">
+                                        <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $game;?>/">
+                                            <span>更多</span>
+                                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
                             <ul class="game_team_list_detail">
                                 <?php foreach ($return[$game."TeamList"]['data'] as $key => $teamInfo) {?>
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
