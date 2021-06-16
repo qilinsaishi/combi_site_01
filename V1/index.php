@@ -254,7 +254,7 @@ foreach($newsTypeList as $newsType)
                     <ul class="hot_player_list clearfix">
                         <?php foreach ($config['game'] as $game => $game_name){?>
                         <li <?php if($game == $config['default_game']){echo 'class="active"';}?>>
-                            <a href="##"><?php echo $game_name;?></a>
+                            <span><?php echo $game_name;?></span>
                         </li>
                         <?php }?>
                     </ul>
@@ -300,9 +300,9 @@ foreach($newsTypeList as $newsType)
                         </div>
                         <div class="news_dianjing news_dianjing_tab1">
                             <ul class="clearfix news_dianjing1">
-                                <li class="active"><a href="##">综合</a></li>
+                                <li class="active"><span>综合</span></li>
                                 <?php foreach($config['game'] as $game => $game_name){?>
-                                <li><a href="##"><?php echo $game_name;?></a></li>
+                                <li><span><?php echo $game_name;?></span></li>
                                 <?php }?>
                             </ul>
                             <div class="news_dianjing_list">
@@ -371,9 +371,9 @@ foreach($newsTypeList as $newsType)
                         </div>
                         <div class="news_dianjing news_dianjing_tab2">
                             <ul class="clearfix news_dianjing2">
-                                <li  class="active"><a href="##">综合</a></li>
+                                <li  class="active"><span>综合</span></li>
                                 <?php foreach($config['game'] as $game => $game_name){?>
-                                    <li ><a href="##"><?php echo $game_name;?></a></li>
+                                    <li ><span><?php echo $game_name;?></span></li>
                                     <?php }?>
                             </ul>
                             <div class="news_dianjing_list">

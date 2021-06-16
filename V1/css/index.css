@@ -274,7 +274,7 @@
 .hot_player_list li {
     float: left;
 }
-.hot_player_list li a{
+.hot_player_list li span{
     font-size: 20px;
     color: #ff6649;
     padding: 0 20px;
@@ -283,7 +283,7 @@
     background: #ff6649;
     border-radius: 20px;
 }
-.hot_player_list li.active a{
+.hot_player_list li.active span{
     color: #fff;
 }
 .hot_player_list li:hover a{
@@ -399,7 +399,7 @@
 .news_dianjing li:nth-child(4){
     margin-right: 0;
 }
-.news_dianjing li a{
+.news_dianjing li span{
     font-size: 20px;
     color: #ff6649;
     line-height: 40px;
@@ -409,7 +409,7 @@
     background: #ff6649;
     border-radius: 20px; 
 }
-.news_dianjing li.active a{
+.news_dianjing li.active span{
     color: #fff;
 }
 .news_dianjing_top{

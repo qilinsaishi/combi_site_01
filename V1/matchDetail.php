@@ -123,7 +123,6 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <ul class="game_detail_ul clearfix">
                         <?php foreach($return['matchDetail']['data']['match_data']['result_list'] as $key => $round_info) {?>
                             <li <?php if($key==0){echo ' class="active"';} ?>>
-                                <a href="##">
                                     <div class="game_detail_img1">
                                         <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?>
                                             <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
@@ -132,7 +131,6 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <?php }?>
                                     </div>
                                     <span>GAME <?php echo ($key+1);?></span>
-                                </a>
                             </li>
                         <?php }?>
                     </ul>
