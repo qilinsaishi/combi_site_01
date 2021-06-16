@@ -633,7 +633,10 @@ li a .max_span span{
     }
     .data_right{
         width: 100%;
-        padding-left: .4rem;
+        /* padding-left: .4rem; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     .team_data{
         height: auto;
@@ -695,7 +698,7 @@ li a .max_span span{
         align-items: center;
     }
     .team_news_img p{
-        width: 90%;
+        width: 100%;
     }
     .team_news_img{
         width: 90%;
@@ -737,7 +740,41 @@ li a .max_span span{
     }
     /* 5.17新增 */
     .circle_left{
-        padding-left: 1.2rem;
+        display: flex;
+        justify-content: center;
+    }
+    .won_all,.circle_right{
+        float: none;
+    }
+    .won_all{
+        margin-right: 1rem;
     }
     /* 5.17新增 */
+    /* 2021.6.16新增 */
+    .team_logo{
+        margin-right: .3rem;
+        width: 1.44rem;
+        height: 2.88rem;
+        padding-top: .86rem;
+    }
+    .data_btn{
+        width: 3.3rem;
+    }
+    .data_btn_all{
+        width: 3.3rem;
+    }
+    .team_data_frequency{
+        width: 100%;
+        padding-top: .2rem;
+        width: 100%;
+        float: none;
+        display: flex;
+        justify-content: center;
+    }
+    .team_data_frequency p{
+        font-size: .24rem;
+    }
+    .matches_number{
+        margin-right: .3rem;
+    }
 }

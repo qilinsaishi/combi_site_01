@@ -689,7 +689,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
             var winWide = window.screen.width;  //获取当前屏幕分辨率
             var wideScreen = false;
             if(winWide <= 1024){  //1024及以下分辨率
-            return 24
+            return 17
             }
             else{  //大于1024的分辨率
             //这里写要加载的代码
