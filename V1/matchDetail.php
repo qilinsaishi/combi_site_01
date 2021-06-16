@@ -325,7 +325,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     <td>
                                                         <a href="##">
                                                             <div class="bans_picks_div">
-                                                                <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                                <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                             </div>
                                                         </a>
                                                     </td>
@@ -342,7 +342,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     <td>
                                                         <a href="##">
                                                             <div class="bans_picks_div">
-                                                                <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                                <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                             </div>
                                                         </a>
                                                     </td>
@@ -371,7 +371,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <td>
                                                             <a href="##">
                                                                 <div class="bans_picks_div">
-                                                                    <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                                    <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                                 </div>
                                                             </a>
                                                         </td>
@@ -387,7 +387,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <td>
                                                             <a href="##">
                                                                 <div class="bans_picks_div">
-                                                                    <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                                    <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                                 </div>
                                                             </a>
                                                         </td>
