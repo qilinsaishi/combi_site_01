@@ -14,7 +14,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title>404-<?php echo $config['site_name'];?></title>
     <?php renderHeaderJsCss($config,["404"]);?>

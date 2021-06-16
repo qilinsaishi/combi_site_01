@@ -37,7 +37,7 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title><?php if($currentGame=="all"){?><?php echo $type=="news"?"电竞资讯":"游戏攻略";?>_电子竞技<?php echo $type=="news"?"赛事新闻":"游戏攻略";?>-<?php echo $config['site_name'];?><?php }else{?><?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电竞资讯":"攻略";?>_<?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电子竞技赛事新闻":"游戏攻略";?>-<?php echo $config['site_name'];?><?php } ?></title>
     <meta name=”Keywords” Content=”<?php if($currentGame=="all"){?><?php echo $type=="news"?"电竞资讯,电子竞技新闻,电竞赛事新闻":"电竞游戏攻略,游戏攻略";?><?php }else{?><?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电竞资讯":"攻略";?>,<?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电子竞技新闻":"游戏攻略";?>,<?php echo $config['game'][$currentGame];?><?php echo $type=="news"?"电竞赛事新闻":"上分技巧";?><?php } ?>″>

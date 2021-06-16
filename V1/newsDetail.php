@@ -75,7 +75,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title><?php echo $return['information']['data']['title']?>_<?php echo $config['game'][$return['information']['data']['game']];?><?php echo $currentType=="news"?"电竞资讯":"游戏攻略"; ?><?php echo $config['site_name'];?></title>
     <?php renderHeaderJsCss($config,["right","news"]);?>
@@ -106,7 +106,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
             <div class="row clearfix">
                 <div class="game_left news fl">
                     <div class="news_top">
-                        <p class="title"><?php echo $return['information']['data']['title']?></p>
+                        <h1 class="title"><?php echo $return['information']['data']['title']?></h1>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
                         <span>-----------------------scws</span>
                         <div class="news_label clearfix">

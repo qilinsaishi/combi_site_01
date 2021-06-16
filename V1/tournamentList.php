@@ -52,7 +52,7 @@ foreach($tournamentList as $game => $t_list)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title><?php if($currentGame=="all"){?>电竞热门赛事_电子竞技比赛-<?php }else{?><?php echo $config['game'][$currentGame];?>热门赛事_<?php echo $config['game'][$currentGame];?>电子竞技比赛-<?php }?><?php echo $config['site_name'];?></title>
     <meta name="Keywords" content="<?php if($currentGame=="all"){?>电竞热门比赛,电竞热门赛事,电竞赛事大全<?php }else{?><?php echo $config['game'][$currentGame];?>热门比赛,<?php echo $config['game'][$currentGame];?>热门赛事, <?php echo $config['game'][$currentGame];?>电竞赛事大全<?php } ?>">

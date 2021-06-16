@@ -28,7 +28,7 @@
 		transform: scale(1)
 	}
 }
-@keyframes{
+@-webkit-keyframes{
 	0% {
 		opacity: 1;
 		-webkit-transform: scale(1);
@@ -51,6 +51,97 @@
 		-webkit-transform: scale(1);
 		-ms-transform: scale(1);
 		transform: scale(1)
+	}
+}
+@-moz-keyframes{
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform: scale(1);
+		     transform: scale(1)
+	}
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.5);
+		-ms-transform: scale(1.5);
+		-moz-transform: scale(1.5);
+		     transform: scale(1.5)
+	}
+	70% {
+		-webkit-transform: scale(.8);
+		-ms-transform: scale(.8);
+		-moz-transform: scale(.8);
+		     transform: scale(.8)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform: scale(1);
+		     transform: scale(1)
+	}
+}
+@-o-keyframes{
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		   transform: scale(1)
+	}
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.5);
+		-ms-transform: scale(1.5);
+		-o-transform: scale(1.5);
+		   transform: scale(1.5)
+	}
+	70% {
+		-webkit-transform: scale(.8);
+		-ms-transform: scale(.8);
+		-o-transform: scale(.8);
+		   transform: scale(.8)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		   transform: scale(1)
+	}
+}
+@keyframes{
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform: scale(1);
+		  -o-transform: scale(1);
+		     transform: scale(1)
+	}
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.5);
+		-ms-transform: scale(1.5);
+		-moz-transform: scale(1.5);
+		  -o-transform: scale(1.5);
+		     transform: scale(1.5)
+	}
+	70% {
+		-webkit-transform: scale(.8);
+		-ms-transform: scale(.8);
+		-moz-transform: scale(.8);
+		  -o-transform: scale(.8);
+		     transform: scale(.8)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform: scale(1);
+		  -o-transform: scale(1);
+		     transform: scale(1)
 	}
 }
 
@@ -89,7 +180,8 @@
 	}
 	70% {
 		-o-transform: scale(.8);
-		transform: scale(.8)
+		-moz-transform: scale(.8);
+		     transform: scale(.8)
 	}
 	100% {
 		opacity: 1;
@@ -115,7 +207,11 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+       -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+         -o-transform: rotate(180deg);
+            transform: rotate(180deg);
 }
 .schedule{
     position: relative;
@@ -193,7 +289,8 @@
     background-position: center;
     height: 562px;
     padding-top: 40px;
-    background-size: 100%;
+    -o-background-size: 100%;
+       background-size: 100%;
 }
 .prizePool .title{
     font-size: 30px;
@@ -219,7 +316,8 @@
     font-size: 108px;
     line-height: 98px;
     text-align: center;
-    background-size: contain;
+    -o-background-size: contain;
+       background-size: contain;
     margin-right: 8px;
 }
 .money i{
@@ -346,7 +444,8 @@
     line-height: 18px;
     margin-bottom: 32px;
     overflow:hidden;
-    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+       text-overflow:ellipsis;
     white-space: nowrap
 }
 #btn1{
@@ -402,6 +501,9 @@
     padding-top: 30px;
 }
 .top_thre{
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
     width: 300px;
     height: 126px;
@@ -435,7 +537,8 @@
     color: #333;
     margin-bottom: 14px;
     overflow:hidden;
-    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+       text-overflow:ellipsis;
     white-space: nowrap
 }
 #btn2{
@@ -491,7 +594,8 @@
     line-height: 20px;
     text-align: center;
     overflow:hidden;
-    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+       text-overflow:ellipsis;
     white-space: nowrap;
     width: 150px;
     color: #333;
@@ -554,7 +658,8 @@
 .thumb_others_name{
     width: 120px;
     overflow:hidden;
-    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+       text-overflow:ellipsis;
     white-space: nowrap;
     font-size: 18px;
     display: inline-block;
@@ -671,7 +776,8 @@
         margin-bottom: .24rem;
     }
     .format{
-        background-size: 4.8rem 3.8rem;
+        -o-background-size: 4.8rem 3.8rem;
+           background-size: 4.8rem 3.8rem;
     }
     .team_news_bot_ul li{
         height: .72rem;
@@ -757,8 +863,14 @@
     }
     .other {
         margin-bottom: .14rem;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-between;
+        -webkit-justify-content: space-between;
+           -moz-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         width: 100%;
         padding: 0 .2rem;
     }
@@ -773,9 +885,18 @@
     .top_threes{
         width: 100%;
         padding: 0 .1rem;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+        -webkit-justify-content: space-between;
+           -moz-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-align-items: flex-end;
+           -moz-box-align: end;
+            -ms-flex-align: end;
+                align-items: flex-end;
     }
     .top_two,.top_three{
         width: 2.2rem;
@@ -783,7 +904,8 @@
         background-image: url('../images/wap_two.png');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 100%;
+        -o-background-size: 100%;
+           background-size: 100%;
         margin: 0;
         padding: 0;
         padding-top: .22rem;
@@ -797,7 +919,8 @@
         background-image: url('../images/wap_one.png');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 100%;
+        -o-background-size: 100%;
+           background-size: 100%;
         margin: 0;
         padding: 0;
     }
@@ -861,7 +984,8 @@
         font-size: .26rem;
         line-height: .24rem;
         overflow:hidden;
-        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+           text-overflow:ellipsis;
         white-space: nowrap;
         padding: 0;
         text-align: center;

@@ -55,7 +55,7 @@ foreach($newsTypeList as $newsType)
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title><?php echo $config['site_name'];?>-热门电竞战队赛事资讯网</title>
     <meta name=”Keywords” Content=”电竞赛事,电竞战队,电竞资讯″>

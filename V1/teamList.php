@@ -34,7 +34,7 @@ $keyList = array_keys($return);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title><?php if($currentGame=="all"){?>电竞战队大全_电子竞技俱乐部-<?php echo $config['site_name'];?><?php }else{?><?php echo $config['game'][$currentGame];?>电竞战队大全_<?php echo $config['game'][$currentGame];?>电子竞技俱乐部-<?php echo $config['site_name'];?> <?php } ?></title>
     <meta name=”Keywords” Content=”<?php if($currentGame=="all"){?>电竞战队,电子竞技俱乐部<?php }else{?><?php echo $config['game'][$currentGame];?>电竞战队大全,<?php echo $config['game'][$currentGame];?>电子竞技俱乐部<?php } ?>″>

@@ -384,4 +384,25 @@ margin-right: 20px;
      .game_right{
         float: right;
     }
+    .calendar1{
+        padding: 0 .3rem;
+    }
+    .max_calendar_table{
+        padding: 0 .5rem;
+    }
+    .calendar1 li span.time2{
+        width: .72rem;
+    }
+    .calendar td a{
+        width: 100%;
+    }
+    .calendar1 li.active span.time2{
+        width: .9rem;
+    }
+    .time3 .year span{
+        font-size: .24rem;
+    }
+    .time3 .month span{
+        font-size: .24rem;
+    }
 }

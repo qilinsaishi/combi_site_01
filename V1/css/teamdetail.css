@@ -45,11 +45,13 @@
     margin-bottom: 32px;
 }
 .team_explain_top .name{
-    max-width: 150px;
-    overflow:hidden;
+    /* max-width: 150px; */
+    /* overflow:hidden;
     text-overflow:ellipsis;
-    white-space: nowrap;
+    white-space: nowrap; */
     margin-right: 24px;
+    font-size: 32px;
+    font-weight: 500;
 }
 .team_explain_top .classify{
     width: 124px;
@@ -109,7 +111,7 @@
     font-size: 0;
 }
 .team_member_top .team_number_name,.team_data_top .team_data_name,.team_honor_name,.team_results_name{
-    font-size: 24px;
+    font-size: 20px;
     color: #333;
     height: 24px;
     line-height: 24px;
@@ -356,6 +358,9 @@
     float: left;
     display: flex;
     align-items: center;
+}
+.w25.w25wap{
+    justify-content: flex-end;
 }
 .honor_bottom_img1{
     width: 24px;

@@ -100,7 +100,7 @@ else
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
       <title><?php echo $return['intergratedPlayer']['data']['player_name'];?>_<?php echo $config['game'][$game]?><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?><?php echo $return['intergratedPlayer']['data']['cn_name'] ??'' ;?>个人简介资料信息-<?php echo $config['site_name']?>
 	  </title>
@@ -143,7 +143,7 @@ else
                     </div>
                     <div class="team_explain fr">
                         <div class="team_explain_top clearfix">
-                            <p class="name fl"><?php echo $return['intergratedPlayer']['data']['player_name'];?></p>
+                            <h1 class="name fl"><?php echo $return['intergratedPlayer']['data']['player_name'];?></h1>
 							<?php if(isset($return['intergratedPlayer']['data']['position']) && $return['intergratedPlayer']['data']['position'] !=''){ ?>
                             <div class="classify fl">
                                 <div class="player_location">
@@ -171,7 +171,7 @@ else
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_data.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">基础数据</span>
+                        <h2 class="fl team_pbu_name">基础数据</h2>
                         
                     </div>
                     <div class="player_data_detail clearfix">
@@ -227,7 +227,7 @@ else
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_match.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>比赛战绩</span>
+                        <h2 class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>比赛战绩</h2>
                         
                     </div>
                     <div class="scroll">
@@ -342,7 +342,7 @@ else
                             <div class="team_pub_img fl">
                                 <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                             </div>
-                            <span class="fl team_pbu_name"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>战队简介</span>
+                            <h2 class="fl team_pbu_name"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>战队简介</h2>
                         </div>
                         <div class="player_team_bot clearfix">
                             <div class="left fl">
@@ -366,7 +366,7 @@ else
                             <div class="team_pub_img fl">
                                 <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team_number.png" alt="">
                             </div>
-                            <span class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>队友</span>
+                            <h2 class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>队友</h2>
                         </div>
 						<?php if(isset($return['intergratedPlayer']['data']['playerList']) && count($return['intergratedPlayer']['data']['playerList'])>0 ){?>
                         <ul class="player_xs clearfix">
@@ -397,7 +397,7 @@ else
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>资讯</span>
+                        <h2 class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>资讯</h2>
                         <a href="<?php echo $config['site_url'];?>/newslist/" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
@@ -449,7 +449,7 @@ else
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">热门战队</span>
+                        <h2 class="fl team_pbu_name">热门战队</h2>
                         <a href="<?php echo $config['site_url'];?>/teamlist/" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">

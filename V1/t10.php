@@ -18,7 +18,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <?php renderHeaderJsCss($config,["newevents","events","../fonts/iconfont"]);?>
     <title>TI10_2021年DOTA2国际邀请赛ti10赛事赛程奖金规则热门资讯-<?php echo $config['site_name'];?></title>
@@ -57,7 +57,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                     </div>
                     <div class="team_explain fr">
                         <div class="team_explain_top clearfix">
-                            <p class="name fl">Ti10 Dota2国际邀请赛</p>
+                            <h1 class="name fl">Ti10 Dota2国际邀请赛</h1>
                             <p class="classify fl"><?php echo $config['game'][$config['ti10']['game']];?></p>
                         </div>
                         <div class="team_explain_bottom">
@@ -87,7 +87,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/format_icon.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">Ti10国际邀请赛赛制</span>
+                        <h2 class="fl team_pbu_name">Ti10国际邀请赛赛制</h2>
                     </div>
                     <div class="format_detail">
                         <p class="format_p">地区预选赛赛制</p>
@@ -148,7 +148,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">Ti10国际邀请赛参赛队伍</span>
+                        <h2 class="fl team_pbu_name">Ti10国际邀请赛参赛队伍</h2>
                     </div>
                     <ul class="dota2_teams clearfix">
                         <?php foreach($return['teamList']['data'] as $key => $teamInfo){?>
@@ -214,7 +214,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/ranking.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">Ti10国际邀请赛冠军预测</span>
+                        <h2 class="fl team_pbu_name">Ti10国际邀请赛冠军预测</h2>
                     </div>
                     <div class="clearfix thumbs">
                         <div class="top_three fl clearfix dn_wap">

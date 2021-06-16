@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title>Document</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
@@ -1335,7 +1335,7 @@
                         </a>
                     </div>
                 </div>
-                <ul class="game_special_list">
+                <!-- <ul class="game_special_list">
                     <li class="col-md-3 col-xs-6">
                         <a href="##">
                             <div class="div_img">
@@ -1368,7 +1368,7 @@
                             </div>
                         </a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
@@ -1396,18 +1396,26 @@
     </div>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.js"></script>
-    <script src="./js/index.js"></script>
+    <!-- <script src="./js/index.js"></script> -->
     <script type="text/javascript">
-        // var banner = $(".banner_img").height()
-        // console.log(banner)
-        // $('.banner_img img').load(function () {
-        //     $(".banner").css("height", banner)
-        // });
+     var windowWidth = $(window).width();
+     console.log(windowWidth)
+    if(windowWidth < 640){
+        console.log(1)
+    }
+    if(windowWidth >= 18000){
+        console.log(2)
+    }
+        var banner = $(".banner_img").height()
+        $('.banner_img img').load(function () {
+            console.log(1111)
+            $(".banner").css("height", banner)
+        });
         // banner消失
         function slideup(){ 
             $(".banner").slideUp();
         } 
-        var t1 = window.setTimeout(slideup,3000); 
+        // var t1 = window.setTimeout(slideup,3000); 
         
     </script>
     <script>

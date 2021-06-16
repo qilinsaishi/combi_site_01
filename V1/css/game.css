@@ -1367,4 +1367,37 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
         line-height: 60px;
         font-size: 24px;
     }
+    .game_detail_line1{
+        width: .5rem;
+    }
+    .game_detail_item1 .right .imgheight30{
+        width: auto;
+        height: auto;
+    }
+    .game_detail_item1 .right .imgheight3 .imgauto{
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+    .vs_data1{
+        width: 100%;
+    }
+
+
+
+    .bans_pincks td .bans_picks_div {
+        display: block;
+        width: .44rem;
+        height: .44rem;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: .14rem;
+        margin-bottom: .14rem;
+    }
+    .vs_data_combat {
+        width: 100%;
+    }
+    .vs_data2_item .left{
+        width: 48%;
+    }
   }

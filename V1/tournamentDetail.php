@@ -86,7 +86,7 @@ unset($return['matchList']);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title><?php echo $config['game'][$return['tournament']['data']['game']];?><?php echo $return['tournament']['data']['tournament_name'];?>_<?php echo $return['tournament']['data']['tournament_name'];?>数据赛程信息-<?php echo $config['site_name'];?></title>
     <meta name="Keywords" content="<?php echo $return['tournament']['data']['tournament_name'];?>,<?php echo $config['game'][$return['tournament']['data']['game']];?><?php echo $return['tournament']['data']['tournament_name'];?>">
@@ -126,7 +126,7 @@ unset($return['matchList']);
                     </div>
                     <div class="team_explain fr">
                         <div class="team_explain_top clearfix">
-                            <p class="name fl"><?php echo $return['tournament']['data']['tournament_name'];?></p>
+                            <h1 class="name fl"><?php echo $return['tournament']['data']['tournament_name'];?></h1>
                             <p class="classify fl"><?php echo $config['game'][$return['tournament']['data']['game']];?></p>
                         </div>
                         <div class="team_explain_bottom">

@@ -932,4 +932,14 @@
     .lineup_td p{
         font-size: .22rem;
     }
+
+
+
+
+    .dota2_item .rate_data_left, .dota2_item .compare_bar{
+        width: 3.5rem;
+    }
+    .vs_data2{
+		width:100%;
+	}
 }

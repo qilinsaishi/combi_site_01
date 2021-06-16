@@ -1,5 +1,6 @@
 .wrapper{
     background: #F5F6F7;
+    width: 100%;
 }
 .header{
     height: 88px;
@@ -68,7 +69,8 @@
     z-index: 1;
 }
 .imgauto{
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     width: 100%;
     height: 100%;
 }
@@ -82,7 +84,8 @@
     position: absolute;
     z-index: 2;
     overflow:hidden;
-    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+       text-overflow:ellipsis;
     white-space: nowrap;
     left: 0;
     bottom: 0;
@@ -106,7 +109,8 @@
     margin: 0 auto;
 }
 .imgauto{
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     width: 100%;
     height: 100%;
 }
@@ -134,9 +138,8 @@
 }
 .team_explain_top .name{
     /* max-width: 150px; */
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
+    font-size: 32px;
+    font-weight: 500;
     margin-right: 24px;
 }
 .team_explain_top .classify{
@@ -166,7 +169,8 @@
 .English_name,.chinese_name{
     max-width: 150px;
     overflow:hidden;
-    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+       text-overflow:ellipsis;
     white-space: nowrap;
 }
 .team_explain_bottom p{
@@ -319,6 +323,9 @@
     padding: 20px 20px 0 18px;
 }
 .match1{
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
     min-width:224px;
     height: 32px;
@@ -326,8 +333,14 @@
     border: 1px solid #EEEEEE;
     border-radius: 16px;
     padding: 0 20px;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: space-between;
+       -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     margin-bottom: 10px;
 }
 .match1 p{
@@ -335,7 +348,11 @@
     color: #333;
 }
 .match1 img{
-    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+         -o-transform: rotate(90deg);
+            transform: rotate(90deg);
     width: 10px;
     height: 18px;
 }
@@ -378,6 +395,9 @@
     display: none;
 }
 .best_team_tab1.active{
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
 }
 .best_team_tab1 li{
@@ -418,7 +438,8 @@
     display: block;
 }
 .imgauto{
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     width: 100%;
 	display:block;
 	margin:0 auto;
@@ -532,7 +553,9 @@
         border-top:0;
     }
     .best_team_tab1{
-        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
         /* justify-content: space-between; */
     }
     .best_team_tab1 li:nth-child(3n){

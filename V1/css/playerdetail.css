@@ -48,10 +48,12 @@
 }
 .team_explain_top .name{
     /* max-width: 150px; */
-    overflow:hidden;
+    /* overflow:hidden;
     text-overflow:ellipsis;
-    white-space: nowrap;
+    white-space: nowrap; */
     margin-right: 24px;
+    font-size: 32px;
+    font-weight: 500;
 }
 .team_explain_top .classify{
     /* width: 124px; */
@@ -66,6 +68,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
+    align-items: center;
 }
 .team_explain_name{
     margin-bottom: 26px;
@@ -118,6 +121,9 @@
     width: 24px;
     height: 24px;
     margin-right: 10px;
+}
+.player_location img{
+    display: block;
 }
 .imgauto{
     object-fit: cover;
@@ -393,13 +399,18 @@
 .player_team_bot .name{
     font-size: 20px;
     color: #999;
-    /* max-width: 300px; */
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap
 }
 .player_team_bot .name span{
     color: #333;
+    width: 286px;
+    float: left;
+    word-break: break-all;
+}
+.player_team_bot .name .name_description{
+width: 80px;
+}
+.player_team_bot .right{
+    width: 67%;
 }
 .player_team_word{
     font-size: 18px;
@@ -409,6 +420,7 @@
     height: 202px;
     width: 100%
 }
+
  /*滚动条整体样式*/
  .player_team_word::-webkit-scrollbar {
     width: 4px;
@@ -478,6 +490,23 @@
     width: 280px;
     height: 240px;
 }
+
+/* 6.11新增 */
+.game_title_more {
+    transform: rotate(90deg);
+    width: 10px;
+    height: 18px;
+    display: none;
+    margin: 0 auto;
+}
+.game_title_more.active1{
+    display: block;
+}
+.game_title_more.active {
+    transform: rotate(270deg);
+}
+
+/* 6.11新增 */
 
 @media only screen and (max-width: 1024px){
     .team_explain{
@@ -658,6 +687,54 @@
         font-size: .36rem;
     }
     .rate{
+        font-size: .2rem;
+    }
+    .game_title_more {
+        transform: rotate(90deg);
+        width: .2rem;
+        height: .36rem;
+        display: none;
+        margin: 0 auto;
+    }
+    .player_team_bot .name{
+        display: flex;
+    }
+    .player_team_bot .right{
+        width: 74%;
+    }
+    .player_team_bot .name .name_description{
+        width: 24%;
+        font-size: .28rem;
+        float: none;
+    }
+    .player_team_bot .name span{
+        font-size: .28rem;
+        width: 76%;
+        max-width: 76%;
+        float: none;
+    }
+    .player_team_word{
+        font-size: .28rem;
+    }
+    .player_data_cell:nth-child(3n){
+        margin-right: 0;
+    }
+    .player_data_cell p span{
+        font-size: .22rem;
+    }
+
+
+
+    .team_title{
+		display:flex;
+	}
+	.win_rate, .part_rate{
+		margin-right:0
+	}
+    .player_data_cell{
+        width: 32%;
+    }
+    .player_data_cell p{
         font-size: .2rem;
     }
 }

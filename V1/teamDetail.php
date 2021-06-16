@@ -67,7 +67,7 @@ else
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title><?php echo $return['intergratedTeam']['data']['team_name'];?>战队_<?php echo $return['intergratedTeam']['data']['team_name'];?>电竞俱乐部_<?php echo $config['game'][$game]?><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资料-<?php echo $config['site_name'];?></title>
     <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game'][$game]?><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资料,<?php echo strip_tags($return['intergratedTeam']['data']['description']);?>">
@@ -111,7 +111,7 @@ else
                         </div>
                         <div class="team_explain fr">
                             <div class="team_explain_top clearfix">
-                                <p class="name fl"><?php echo $return['intergratedTeam']['data']['team_name'];?></p>
+                                <h1 class="name fl"><?php echo $return['intergratedTeam']['data']['team_name'];?></h1>
                                 <p class="classify fl"><?php if($return['intergratedTeam']['data']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedTeam']['data']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedTeam']['data']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                             </div>
                             <div class="team_explain_name clearfix">
@@ -134,7 +134,7 @@ else
                         <div class="team_member_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team_number.png" alt="">
                         </div>
-                        <span class="fl team_number_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队成员</span>
+                        <h2 class="fl team_number_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队成员</h2>
                     </div>
 					<?php if(isset($return['intergratedTeam']['data']['playerList']) && count($return['intergratedTeam']['data']['playerList'])>0 ){?>
                     <ul class="team_member_detail clearfix">
@@ -166,7 +166,7 @@ else
                         <div class="team_data_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team_data.png" alt="">
                         </div>
-                        <span class="fl team_data_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队基础数据</span>
+                        <h2 class="fl team_data_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队基础数据</h2>
                         <div class="team_data_frequency fr clearfix">
                             <p class="matches_number fl">比赛场次：<span><?php echo $return['intergratedTeam']['data']['team_stat']['total_count']??0;?>场</span></p>
                             <p class="matches_rank fl">联赛排名：<span>第 <?php echo $return['intergratedTeam']['data']['team_stat']['victory_rate_rank']??9999;?></span></p>
@@ -244,7 +244,7 @@ else
                         <div class="team_honor_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team_honor.png" alt="">
                         </div>
-                        <span class="fl team_honor_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队历史荣誉</span>
+                        <h2 class="fl team_honor_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队历史荣誉</h2>
                     </div>
                     <div class="team_honor_detail">
 						<?php if(isset($return['intergratedTeam']['data']['honor_list']) && count($return['intergratedTeam']['data']['honor_list'])>0 ){?>
@@ -312,7 +312,7 @@ else
                         <div class="team_results_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/teamdetail_vs_active.png" alt="">
                         </div>
-                        <span class="fl team_results_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队近期战绩</span>
+                        <h2 class="fl team_results_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队近期战绩</h2>
                        
                     </div>
                     <div class="team_results_bottom">
@@ -391,7 +391,7 @@ else
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资讯</span>
+                        <h2 class="fl team_pbu_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资讯</h2>
                         <a href="<?php echo $config['site_url']; ?>/newslist/" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
@@ -444,7 +444,7 @@ else
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">热门战队</span>
+                        <h2 class="fl team_pbu_name">热门战队</h2>
                         <a href="<?php echo $config['site_url'];?>/teamlist/" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
