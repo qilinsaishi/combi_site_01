@@ -186,7 +186,7 @@
     float: left;
     margin-bottom: 10px;
 }
-.game_detail_ul li a{
+.game_detail_ul li{
     display: flex;
     align-items:center;
 }

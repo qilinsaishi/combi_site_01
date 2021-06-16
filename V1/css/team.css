@@ -61,8 +61,11 @@
         margin-bottom: .2rem;
         padding-bottom: .3rem;
     }
+    .game_left .esports_ul li{
+        margin-right: 0;
+    }
     .esports_ul a{
-        font-size: .24rem;
+        font-size: .26rem;
     }
     .esports_ul{
         padding-left: .2rem;
@@ -86,6 +89,9 @@
 	.game_team_list_detail li .a1{
 		margin:0 auto
 	}
+    .esports .game_team_list_detail li span{
+        font-size: .24rem;
+    }
 }
 /* @media only screen and (max-device-width: 320px) { */
 	/* .esports .game_team_list_detail li{ */

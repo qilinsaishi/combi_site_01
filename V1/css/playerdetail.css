@@ -651,7 +651,7 @@ width: 80px;
 		margin-bottom:.2rem;
     }
     .team_explain_top .classify{
-        width:1.7rem;
+        width:1.9rem;
 		height:.5rem;
 		line-height:.5rem;
 		font-size:.28rem;
@@ -738,9 +738,6 @@ width: 80px;
     .player_data_cell p span{
         font-size: .22rem;
     }
-
-
-
     .team_title{
 		display:flex;
 	}
@@ -752,5 +749,16 @@ width: 80px;
     }
     .player_data_cell p{
         font-size: .2rem;
+    }
+    .team_explain_bottom{
+        font-size: .24rem;
+    }
+    .game_team_list_detail li{
+        width: 25%;
+        float: none;
+        margin-right: 0;
+    }
+    .game_team_list_detail li:nth-child(4n){
+        margin-right: 0;
     }
 }

@@ -297,6 +297,7 @@ a:focus{text-decoration: none}
 }
 .game_team_list_detail li .a1{
     padding:14px 12px 0 12px;
+    margin-bottom: 10px;
 }
 .game_team_list_detail li a{
     border-radius: 8px;
@@ -312,7 +313,8 @@ a:focus{text-decoration: none}
 	overflow:hidden;
 	-o-text-overflow:ellipsis;
 	   text-overflow:ellipsis;
-	white-space: nowrap
+	white-space: nowrap;
+    font-size: 24px;
 } 
 .game_team_list_detail li:hover span{
     background: -webkit-linear-gradient(left, #FAC569, #FF6551);
@@ -446,6 +448,11 @@ color: #fff;
 }
 /* 分页 */
 /* 右侧悬浮窗 */
+.suspension_close{
+    position: absolute;
+    right: 0;
+    top: -10px;
+}
 .suspension{
     position: fixed;
     top: 200px;
@@ -895,9 +902,15 @@ color: #fff;
 @media only screen and (max-width: 1024px){
     /* 右面移动端 */
     .game_right{
-    float: none;
-    width: 100%;
-}
+        float: none;
+        width: 100%;
+    }
+    .game_team_list_detail li span{
+        font-size: .24rem;
+    }
+    .game_team_list_detail li .a1{
+        margin-bottom: .2rem;
+    }
     .game_lately, .game_news, .game_team, .game_player{
         width: 100%;
         height: auto;

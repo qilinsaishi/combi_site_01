@@ -663,6 +663,9 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
         </div>
     </div>
     <div class="suspension">
+        <div class="suspension_close">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+        </div>
         <div class="suspension_img">
             <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
@@ -689,7 +692,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
             var winWide = window.screen.width;  //获取当前屏幕分辨率
             var wideScreen = false;
             if(winWide <= 1024){  //1024及以下分辨率
-            return 24
+            return 17
             }
             else{  //大于1024的分辨率
             //这里写要加载的代码

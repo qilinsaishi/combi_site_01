@@ -113,7 +113,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">Ti10国际邀请赛最新资讯</span>
+                        <h2 class="fl team_pbu_name">Ti10国际邀请赛最新资讯</h2>
                         <a href="<?php echo $config['site_url']."/newslist/dota2/";?>" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
@@ -170,7 +170,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                 </div>
                 <?php }?>
                 <div class="prizePool mb20">
-                    <p class="title">Ti10国际邀请赛奖金池</p>
+                    <h2 class="title">Ti10国际邀请赛奖金池</h2>
                     <div class="m_wrapper">
 
                     </div>
@@ -402,6 +402,9 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
         </div>
     </div>
     <div class="suspension">
+        <div class="suspension_close">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+        </div>
         <div class="suspension_img">
             <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>

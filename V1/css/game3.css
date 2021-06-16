@@ -156,6 +156,12 @@
 .time3 .year{
     margin-right: 30px;
 }
+.time3 .year span{
+    font-size: 18px;
+}
+.time3 .month span{
+    font-size: 18px;
+}
 .time3 .icon-shangyige{
     margin-right: 10px;
 }

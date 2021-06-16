@@ -4,7 +4,7 @@ $match_id = $_GET['match_id']??0;
 $params = [
     "matchDetail"=>["source"=>$config['default_source'],"match_id"=>$match_id,"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_hero_img"],"fields"=>["name","key","value"],"site_id"=>$config["site_id"]],
-    "recentMatchList"=>["dataType"=>"matchList","page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "recentMatchList"=>["dataType"=>"matchList","page"=>1,"recent"=>1,"page_size"=>3,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -123,7 +123,6 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <ul class="game_detail_ul clearfix">
                         <?php foreach($return['matchDetail']['data']['match_data']['result_list'] as $key => $round_info) {?>
                             <li <?php if($key==0){echo ' class="active"';} ?>>
-                                <a href="##">
                                     <div class="game_detail_img1">
                                         <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?>
                                             <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
@@ -132,7 +131,6 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <?php }?>
                                     </div>
                                     <span>GAME <?php echo ($key+1);?></span>
-                                </a>
                             </li>
                         <?php }?>
                     </ul>
@@ -1168,6 +1166,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
     </div>
 </div>
 <div class="suspension">
+    <div class="suspension_close">
+        <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+    </div>
 	<div class="suspension_img">
 		<img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
 	</div>

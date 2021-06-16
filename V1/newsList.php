@@ -8,8 +8,8 @@ if($page==''){
     $page=1;
 }
 $params = [
-    "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
-	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1,"game"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
+	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>0,"game"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "allNewsList" =>
         ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>("all"==$currentGame)?$page:1,"page_size"=>$pageSize,"game"=>array_keys($config['game']),"fields"=>'id,title,logo,site_time,content',"type"=>$config['informationType'][$type],"cache_time"=>86400*7],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
@@ -249,6 +249,9 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
         </div>
     </div>
 	<div class="suspension">
+        <div class="suspension_close">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+        </div>
 		<div class="suspension_img">
 			<img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
 		</div>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <title>赛事赛程</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
@@ -790,6 +790,9 @@
         </div>
     </div>
     <div class="suspension">
+        <div class="suspension_close">
+            <img src="./images/t_close.png" alt="">
+        </div>
         <div class="suspension_img">
             <img src="./images/suspension.png" alt="">
         </div>
@@ -801,10 +804,14 @@
     </div>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/jquery.lazyload.js"></script>
     <script src="./js/jquery.lineProgressbar.js"></script>
     <!-- 这是本页新增的js -->
     <script src="./js/circle-progress.js"></script>
     <script>
+         $(".suspension").on("click",".suspension_close",function(){
+            $(".suspension").css("display","none")
+        })
 
     var value = $('.won_all').data('num');
     console.log(value)

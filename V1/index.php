@@ -2,8 +2,8 @@
 require_once "function/init.php";
 $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"recent"=>1,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
-    "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
-	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>2,"source"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cache_time"=>86400],
+	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>0,"game"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"index","site_id"=>$config['site_id']]
@@ -254,7 +254,7 @@ foreach($newsTypeList as $newsType)
                     <ul class="hot_player_list clearfix">
                         <?php foreach ($config['game'] as $game => $game_name){?>
                         <li <?php if($game == $config['default_game']){echo 'class="active"';}?>>
-                            <a href="##"><?php echo $game_name;?></a>
+                            <span><?php echo $game_name;?></span>
                         </li>
                         <?php }?>
                     </ul>
@@ -300,9 +300,9 @@ foreach($newsTypeList as $newsType)
                         </div>
                         <div class="news_dianjing news_dianjing_tab1">
                             <ul class="clearfix news_dianjing1">
-                                <li class="active"><a href="##">综合</a></li>
+                                <li class="active"><span>综合</span></li>
                                 <?php foreach($config['game'] as $game => $game_name){?>
-                                <li><a href="##"><?php echo $game_name;?></a></li>
+                                <li><span><?php echo $game_name;?></span></li>
                                 <?php }?>
                             </ul>
                             <div class="news_dianjing_list">
@@ -371,9 +371,9 @@ foreach($newsTypeList as $newsType)
                         </div>
                         <div class="news_dianjing news_dianjing_tab2">
                             <ul class="clearfix news_dianjing2">
-                                <li  class="active"><a href="##">综合</a></li>
+                                <li  class="active"><span>综合</span></li>
                                 <?php foreach($config['game'] as $game => $game_name){?>
-                                    <li ><a href="##"><?php echo $game_name;?></a></li>
+                                    <li ><span><?php echo $game_name;?></span></li>
                                     <?php }?>
                             </ul>
                             <div class="news_dianjing_list">

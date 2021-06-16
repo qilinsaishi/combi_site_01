@@ -3,8 +3,8 @@ require_once "function/init.php";
 $id = $_GET['id']??1;
 $params = [
     "information"=>[$id],
-    "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
-	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
+	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>0,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -32,7 +32,7 @@ $ids = array_keys($return["information"]['data']['5118_word_list']);
 $ids = count($ids)>0?implode(",",$ids):"0";
 $currentType = in_array($return['information']['data']['type'],$config['informationType']["stra"])?"stra":"news";
 $params2 = [
-    "ConnectInformationList"=>["dataType"=>"5118InformaitonList","ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
+    "ConnectInformationList"=>["dataType"=>"5118InformaitonList","site"=>$config['site_id'],"ids"=>$ids,"game"=>array_keys($config['game']),"page"=>1,"page_size"=>5,"type"=>implode(",",$config['informationType'][$currentType]),"fields"=>"id,title,site_time","expect_id"=>$id],
     "recentInformationList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType'][$currentType],"cache_time"=>86400*7],
 ];
 if(isset($return["information"]['data']['keywords_list']['player']) && count($return["information"]['data']['keywords_list']['player'])>0)
@@ -302,6 +302,9 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
         </div>
     </div>
 	<div class="suspension">
+        <div class="suspension_close">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+        </div>
 		<div class="suspension_img">
 			<img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
 		</div>
