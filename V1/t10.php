@@ -11,7 +11,7 @@ $params=[
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-//$return['ti9teamList']['data'] = [];
+$return['ti9teamList']['data'] = [];
 $return['teamList']['data'] = [];
 
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
@@ -61,7 +61,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                     <div class="team_explain fr">
                         <div class="team_explain_top clearfix">
                             <h1 class="name fl">Ti10 Dota2国际邀请赛</h1>
-                            <p class="classify fl"><?php echo $config['game'][$config['ti10']['game']];?></p>
+                            <p class="classify fl">DOTA2</p>
+                            <!--<p class="classify fl"><?php echo $config['game'][$config['ti10']['game']];?></p>-->
                         </div>
                         <div class="team_explain_bottom">
                             <p>
