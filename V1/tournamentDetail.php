@@ -17,12 +17,11 @@ $params = [
     "tournament"=>[$tournament_id,"source"=>$source],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$source,"game"=>$game,"cache_time"=>86400],
 	"matchList" =>
-        ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>100,"cache_time"=>3600],
+        ["dataType"=>"matchList","tournament_id"=>$tournament_id,"source"=>$source,"game"=>$game,"page"=>1,"page_size"=>1000,"cache_time"=>3600],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"tournamentDetail","tournament_id"=>$tournament_id,"site_id"=>$config['site_id']]
 ];
-
 $return = curl_post($config['api_get'],json_encode($params),1);
 //获取当前战队的游戏
  $intergrated_id_list=array_column($return['tournament']['data']['teamList'], 'intergrated_id_list');
@@ -59,25 +58,40 @@ if(!isset($return["tournament"]['data']['tournament_id']))
     render404($config);
 }
 $matchList = [];
-
+$defaultRound = 0;
 if($game=='dota2'){
 	$return['tournament']['data']['roundList'][] = [
 	"round_id"=>0,
 	"round_name"=>"默认轮次"
 	];
 }
-
+else{
+    if(count($return['tournament']['data']['roundList'])==0)
+    {
+        $defaultRound = 1;
+    }
+    //$return['tournament']['data']['roundList'] = (count($return['tournament']['data']['roundList'])>0)?($return['tournament']['data']['roundList']) : ([["round_id"=>0,"round_name"=>"默认轮次"]]);
+}
 foreach($return['tournament']['data']['roundList'] as $roundInfo)
 {
     $matchList[$roundInfo['round_id']] = [];
 }
 foreach($return['matchList']['data'] as $matchInfo)
 {
-	$matchList[$matchInfo['round_id']??0][] = $matchInfo; 
+    $i=0;
+    if($defaultRound == 1)
+    {
+        $matchInfo['round_id'] = $matchInfo['round_id']??0;
+        if(!isset($return['tournament']['data']['roundList'][$matchInfo['round_id']]))
+        {
+            $return['tournament']['data']['roundList'][$matchInfo['round_id']] = ['round_id'=>$matchInfo['round_id'],"round_name"=>("轮次".($i+1))];
+            $i++;
+        }
+    }
+    //$matchInfo['round_id'] = $defaultRound!=1?$matchInfo['round_id']:0;
+    $matchList[$matchInfo['round_id']??0][] = $matchInfo;
 }
-
-
-
+$return['tournament']['data']['roundList'] = array_values($return['tournament']['data']['roundList']);
 unset($return['matchList']);
 ?>
 <!DOCTYPE html>
@@ -116,6 +130,19 @@ unset($return['matchList']);
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $return['tournament']['data']['game'];?>">
+                    <?php echo  $config['game'][$return['tournament']['data']['game']]; ?>
+                </a >
+                >
+                <span><?php echo $return['tournament']['data']['tournament_name'];?></span>
+            </div>
+        </div>
+        <div class="container">
             <div class="row events_top">
                 <!-- 比赛介绍 -->
                 <div class="team_title mb20 clearfix">
@@ -151,7 +178,7 @@ unset($return['matchList']);
                             <div class="event_detail_div <?php if($key==0){echo ' active';}?>">
                                 <div class="scroll">
                                     <ul class="event_detail_item">
-                                        <?php if(count($matchList[$roundInfo['round_id']])>0){?>
+                                        <?php if(count($matchList[$roundInfo['round_id']])>0){ krsort($matchList[$roundInfo['round_id']]);?>
                                         <?php foreach($matchList[$roundInfo['round_id']] as $matchInfo){?>
                                                 <li>
 													<?php if($game=='lol' || $game=='kpl') {   
@@ -231,9 +258,9 @@ unset($return['matchList']);
 															<a href="javascripts:;">
 																<div class="game3_team1_top clearfix">
 																	<div class="game3_team1_top_img fl">
-																		<img data-original="<?php echo $matchInfo['home_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="<?php echo $matchInfo['home_name'];?>">
+																		<img data-original="<?php echo $matchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  class="imgauto" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
 																	</div>
-																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['home_name'];?></span>
+																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['home_team_info']['team_name'];?></span>
 																</div>
 
 															</a>
@@ -267,9 +294,9 @@ unset($return['matchList']);
 														<div class="game3_team2 fr">
 															<a href="javascripts:;">
 																<div class="game3_team1_top clearfix">
-																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['away_name'];?></span>
+																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['away_team_info']['team_name'];?></span>
 																	<div class="game3_team1_top_img fl">
-																		<img data-original="<?php echo $matchInfo['away_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   class="imgauto" alt="<?php echo $matchInfo['away_name'];?>">
+																		<img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   class="imgauto" alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
 																	</div>
 																</div>
 															   
@@ -319,7 +346,7 @@ unset($return['matchList']);
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <span class="fl team_pbu_name">WE战队资讯</span>
+                        <span class="fl team_pbu_name">相关资讯</span>
                         <a href="##" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">

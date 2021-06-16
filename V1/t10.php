@@ -11,6 +11,9 @@ $params=[
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+//$return['ti9teamList']['data'] = [];
+$return['teamList']['data'] = [];
+
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
 ?>
 <html lang="en">
@@ -143,7 +146,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         </ul>
                     </div>
                 </div>
-                <div class="hot_team mb20">
+                <?php if(count($return['teamList']['data'])>0){?>
+                    <div class="hot_team mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
@@ -161,7 +165,9 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             </li>
                         <?php }?>
                     </ul>
+
                 </div>
+                <?php }?>
                 <div class="prizePool mb20">
                     <p class="title">Ti10国际邀请赛奖金池</p>
                     <div class="m_wrapper">
@@ -209,6 +215,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <?php }}?>
                     </div>
                 </div>
+                <?php if(count($return['ti9teamList']['data'])>0){?>
                 <div class="thumbsUp mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
@@ -346,6 +353,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         </div>
                     </div>
                 </div>
+                <?php }?>
+
                 <div class="hot_match mb20">
 
                     <div class="team_pub_top clearfix">

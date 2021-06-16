@@ -1,7 +1,7 @@
 <?php
 require_once "function/init.php";
 $params = [
-    "matchList"=>["page"=>1,"page_size"=>8,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "matchList"=>["page"=>1,"page_size"=>8,"recent"=>1,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
     "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
 	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>2,"source"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
@@ -21,15 +21,9 @@ foreach ($config['game'] as $game => $gameName)
         ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
-
-
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['dota2TournamentList']['data']);
-
-
-
-
 //文章类型
-$newsTypeList = ["News"];
+$newsTypeList = ["News","Stra"];
 //返回值键名数组
 $keyList = array_keys($return);
 foreach($newsTypeList as $newsType)
@@ -91,16 +85,19 @@ foreach($newsTypeList as $newsType)
                     <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="">
                 </div>
                 <div class="button">
+                    <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank">
                     <div class="download_ios download">
-                        <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank"><img src="<?php echo $config['site_url'];?>/images/ios.png" alt="">
+                        <img src="<?php echo $config['site_url'];?>/images/ios.png" alt="">
                         <span>IOS下载</span>
-						</a>
+
                     </div>
+                    </a>
+                    <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank">
                     <div class="download_android download">
-                        <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank"><img src="<?php echo $config['site_url'];?>/images/android.png" alt="">
+                        <img src="<?php echo $config['site_url'];?>/images/android.png" alt="">
                         <span>Android下载</span>
-						</a>
                     </div>
+                    </a>
                 </div>
             </div>
             <div class="game_match container">
@@ -190,16 +187,17 @@ foreach($newsTypeList as $newsType)
                     <div class="game_team_list">
                         <?php foreach($config['game'] as $game => $game_name){?>
                         <div class="game_team_div<?php if($game == $config['default_game']){echo " active ";}?>">
-                            <div class="game_title clearfix game_team_e">
-                                <span class="title"><?php echo $game_name;?>热门战队</span>
-                                <div class="more">
-                                    <a href="<?php echo $config['site_url'];?>/teamlist/">
-                                        <span>更多</span>
-                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
+
 							<?php if(isset($return[$game.'TeamList']['data']) && count($return[$game.'TeamList']['data'])>0){ ?>
+                                <div class="game_title clearfix game_team_e">
+                                    <span class="title"><?php echo $game_name;?>热门战队</span>
+                                    <div class="more">
+                                        <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $game;?>/">
+                                            <span>更多</span>
+                                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
                             <ul class="game_team_list_detail">
                                 <?php foreach ($return[$game."TeamList"]['data'] as $key => $teamInfo) {?>
                                 <li class="<?php if($key == 0 && $game == $config['default_game']){echo "active ";}?> col-xs-6">
@@ -317,6 +315,7 @@ foreach($newsTypeList as $newsType)
                                     $gameName = $config["game"][$game]??"综合";
                                     ?>
                                     <div class="news_dianjing_detail<?php if($game=="all"){echo " active";}?>">
+                                    <?php if(count($infoList['data'])>0){?>
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                         <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
@@ -349,7 +348,13 @@ foreach($newsTypeList as $newsType)
                                                 <?php }?><?php }?>
                                             </ul>
                                         </div>
+                                        <?php }else{?>
+                                    <div class="null">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                     </div>
+                                <?php }?>
+                                    </div>
+
                                 <?php } ?>
                             </div>
                         </div>
@@ -366,19 +371,24 @@ foreach($newsTypeList as $newsType)
                         </div>
                         <div class="news_dianjing news_dianjing_tab2">
                             <ul class="clearfix news_dianjing2">
-                                <?php $i = 1;foreach($config['game'] as $game => $game_name){?>
-                                    <li <?php if($i==1){echo ' class="active"';}?>><a href="##"><?php echo $game_name;?></a></li>
-                                <?php $i++;}?>
+                                <li  class="active"><a href="##">综合</a></li>
+                                <?php foreach($config['game'] as $game => $game_name){?>
+                                    <li ><a href="##"><?php echo $game_name;?></a></li>
+                                    <?php }?>
                             </ul>
                             <div class="news_dianjing_list">
-                                <?php $allGameList = array_keys($config['game']);
-                                foreach($allGameList as $key => $game)
+
+                            <?php $allGameList = array_keys($config['game']);
+                                array_unshift($allGameList,"all");
+                                foreach($allGameList as $game)
                                 {
                                     $infoListKey = $game."StraList";
                                     $infoList = $return[$infoListKey];
-                                    //$gameName = $config["game"][$game]??"综合";
+                                    $gameName = $config["game"][$game]??"综合";
                                     ?>
-                                    <div class="news_dianjing_detail<?php if($key==0){echo ' active';}?>">
+                                    <div class="news_dianjing_detail<?php if($game=="all"){echo " active";}?>">
+
+                                    <?php if(count($infoList['data'])>0){?>
                                         <?php foreach($infoList['data'] as $key => $info){?>
                                             <?php if($key==0){?>
                                                 <div class="news_dianjing_top">
@@ -411,10 +421,14 @@ foreach($newsTypeList as $newsType)
                                                     <?php }?><?php }?>
                                             </ul>
                                         </div>
+
+                                <?php }else{?>
+                                    <div class="null">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                     </div>
-                                    <?php
-                                }
-                                ?>
+                                <?php }?>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

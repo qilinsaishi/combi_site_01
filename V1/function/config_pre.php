@@ -5,7 +5,7 @@ $base_config = [
     'api_url'=>'http://api02.qilindianjing.com',//api站点URL
     'site_url'=>'http://pre.combi_01_info.com',//本站URl
     'game'=>["lol"=>"英雄联盟","kpl"=>"王者荣耀","dota2"=>"DOTA2"],
-	'game_source'=>['dota2'=>'wca'],
+	'game_source'=>['dota2'=>'shangniu'],
     'default_game' => "lol",
     'site_id'=>5,
     'default_source'=>"scoregg",
@@ -24,7 +24,7 @@ $base_config = [
         'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],
         'event_name'=>"Ti10",
         'game'=>"dota2",
-        'ti9_ranking'=>["ig"=>675,"eg"=>676,"secret"=>609,"vp"=>520,"obheon"=>601,"tp"=>"632","psg"=>519,"bc"=>660,"fnatic"=>677,"vg"=>515,"qc"=>673,"alliance"=>678]
+        'ti9_ranking'=>["ig"=>1321,"eg"=>1322,"secret"=>1323,"vp"=>1318,"obheon"=>0,"tp"=>1311,"psg"=>1316,"bc"=>1313,"fnatic"=>0,"vg"=>1324,"qc"=>0,"alliance"=>1320]
     ]
 ];
 

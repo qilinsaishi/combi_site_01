@@ -52,19 +52,23 @@ $return['information']['data']['content'] = str_replace("&nbsp;"," ",$return['in
 if(isset($return2["keywordPlayerList"]['data']) && count($return2["keywordPlayerList"]['data'])>0)
 {
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['player'],"id"),array_keys($return["information"]['data']['keywords_list']['player']));
+    $i=0;
     foreach($return2["keywordPlayerList"]['data'] as $player_id => $player_info)
     {
         $player_url = $config['site_url']."/playerdetail/".$player_info['pid'];
         $return['information']['data']['content'] = str_replace_limit($keywordList[$player_id],"<a href='".$player_url."'>".$keywordList[$player_id]."</a>",$return['information']['data']['content'],1);
+        $i++;if($i>=5){break;}
     }
 }
 if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList"]['data'])>0)
 {
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['team'],"id"),array_keys($return["information"]['data']['keywords_list']['team']));
+    $i=0;
     foreach($return2["keywordTeamList"]['data'] as $team_id => $team_info)
     {
-        $team_url = $config['site_url']."/teamdetail/".$team_info['pid'];
+        $team_url = $config['site_url']."/teamdetail/".$team_info['tid'];
         $return['information']['data']['content'] = str_replace_limit($keywordList[$team_id],"<a href='".$team_url."'>".$keywordList[$team_id]."</a>",$return['information']['data']['content'],1);
+        $i++;if($i>=5){break;}
     }
 }
 ?>
@@ -77,7 +81,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
-    <title><?php echo $return['information']['data']['title']?>_<?php echo $config['game'][$return['information']['data']['game']];?><?php echo $currentType=="news"?"电竞资讯":"游戏攻略"; ?><?php echo $config['site_name'];?></title>
+    <title><?php echo $return['information']['data']['title']?>_<?php echo $config['game'][$return['information']['data']['game']];?><?php echo $currentType=="news"?"电竞资讯":"游戏攻略"; ?>-<?php echo $config['site_name'];?></title>
     <?php renderHeaderJsCss($config,["right","news"]);?>
 </head>
 
@@ -103,31 +107,30 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
             </div>
         </div>
         <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/<?php echo $currentType;?>list/<?php echo $return['information']['data']['game'];?>/">
+                    <?php echo  $config['game'][$return['information']['data']['game']]; ?>
+                </a >
+                >
+                <span><?php echo $return['information']['data']['title'];?></span>
+            </div></div>
+        <div class="container">
             <div class="row clearfix">
                 <div class="game_left news fl">
                     <div class="news_top">
                         <h1 class="title"><?php echo $return['information']['data']['title']?></h1>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
-                        <span>-----------------------scws</span>
-                        <div class="news_label clearfix">
-                            <?php $i=0;if(count($return["information"]['data']['scws_list'])>0){ foreach($return["information"]['data']['scws_list'] as $key => $word){?>
-                                <span><?php echo $word['word'];?></span>
-                                <?php $i++;if($i==100){break;}}}?>
+                        <div class="news_top_content">
+                            <?php echo html_entity_decode($return['information']['data']['content']);?>
                         </div>
-                        <span>------------------------5118</span>
-                        <div class="news_label clearfix">
-                            <?php $i=0;if(count($return["information"]['data']['5118_word_list'])>0){ foreach($return["information"]['data']['5118_word_list'] as $key => $word){?>
-                                <span><?php echo $word;?></span>
-                            <?php $i++;if($i==100){break;}}}?>
-                        </div>
-                        <span>-----------------------baidu</span>
                         <div class="news_label clearfix">
                             <?php $i=0;if(count($return["information"]['data']['baidu_word_list'])>0){ foreach($return["information"]['data']['baidu_word_list'] as $key => $word){?>
                                 <span><?php echo $word['tag'];?></span>
-                                <?php $i++;if($i==100){break;}}}?>
-                        </div>
-                        <div class="news_top_content">
-                            <?php echo html_entity_decode($return['information']['data']['content']);?>
+                                <?php $i++;if($i==3){break;}}}?>
                         </div>
                     </div>
                     <div class="news_detail">

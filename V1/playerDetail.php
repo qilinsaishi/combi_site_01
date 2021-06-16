@@ -16,12 +16,6 @@ if(!isset($return["intergratedPlayer"]['data']['pid']))
 {
     render404($config);
 }
-//雷达图数据
-$radarData=[];
-if($return['intergratedPlayer']['data']['radarData']!="")
-{
-	$radarData=json_encode(array_values($return['intergratedPlayer']['data']['radarData']),JSON_UNESCAPED_UNICODE);
-}
 
 
 if($return['intergratedPlayer']['data']['description']!="")
@@ -93,6 +87,101 @@ else
 {
     $connectedInformationList = $return2["keywordMapList"]["data"];
 }
+//雷达图数据
+$radarData=[];
+if($return['intergratedPlayer']['data']['radarData']!="")
+{
+	if($game=='dota2'){
+		$return['intergratedPlayer']['data']['radarData']['kill']['empno']=$return['intergratedPlayer']['data']['player_stat']['killCount'];
+		$return['intergratedPlayer']['data']['radarData']['assists']['empno']=$return['intergratedPlayer']['data']['player_stat']['assistsCount'];
+		$return['intergratedPlayer']['data']['radarData']['join_rate']['empno']=$return['intergratedPlayer']['data']['player_stat']['participationRate'];
+		
+	}
+	
+	$radarData=json_encode(array_values($return['intergratedPlayer']['data']['radarData']),JSON_UNESCAPED_UNICODE);
+}
+if($game=='dota2'){//组合成scoregg 一样的数组格式
+	$return['intergratedPlayer']['data']['player_stat']['join_rate']=$return['intergratedPlayer']['data']['player_stat']['participationRate']?? 0;//参团率
+	$return['intergratedPlayer']['data']['player_stat']['join_rank']=$return['intergratedPlayer']['data']['player_stat']['participationRateSort']?? 0;//参团排名
+	$return['intergratedPlayer']['data']['player_stat']['kda']=$return['intergratedPlayer']['data']['player_stat']['kda']?? 0;
+	$return['intergratedPlayer']['data']['player_stat']['kda_rank']=$return['intergratedPlayer']['data']['player_stat']['kdaSort']?? 0;
+	$return['intergratedPlayer']['data']['player_stat']['base_ability_detail']=[
+		'kills'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['killCount']?? 0,
+			'score-des'=>'总击杀',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['killCountSort']?? 0,
+		],
+		'assists'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['assistsCount']?? 0,
+			'score-des'=>'总助攻',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['assistsCountSort']?? 0,
+		],
+		'deaths'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['dieCount']?? 0,
+			'score-des'=>'总死亡',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['dieCountSort']?? 0,
+		],
+		'minute_injury'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteNumber']?? 0,
+			'score-des'=>'分均补刀',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteNumberSort']?? 0,
+		],
+		'injury_rate'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['appearCount']?? 0,
+			'score-des'=>'出场次数',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['appearCountSort']?? 0,
+		],
+		'injury_inversion_rate'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageKill']?? 0,
+			'score-des'=>'场均击杀',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageKillSort']?? 0,
+		],
+		'minute_damagetaken'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageDie']?? 0,
+			'score-des'=>'场均死亡',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageDieSort']?? 0,
+		],
+		'damagetaken_rate'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageAssists']?? 0,
+			'score-des'=>'场均助攻',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageAssistsSort']?? 0,
+		],
+		'minute_hits'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteOutput']?? 0,
+			'score-des'=>'分均输出',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteOutputSort']?? 0,
+		],
+		'minute_wardsplaced'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['hurtTransfRate'].'%'?? 0,
+			'score-des'=>'输出转化率',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['hurtTransfRateSort']?? 0,
+		],
+		'minute_wardkilled'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteBear']?? 0,
+			'score-des'=>'分均承伤',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteBearSort']?? 0,
+		],
+		'hero_pool'=>
+		[
+			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['bearRate'].'%'?? 0,
+			'score-des'=>'承伤占比',
+			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['bearRateSort']?? 0,
+		],
+	];
+	
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -104,7 +193,7 @@ else
     <meta name="format-detection" content="telephone=no">
       <title><?php echo $return['intergratedPlayer']['data']['player_name'];?>_<?php echo $config['game'][$game]?><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?><?php echo $return['intergratedPlayer']['data']['cn_name'] ??'' ;?>个人简介资料信息-<?php echo $config['site_name']?>
 	  </title>
-  <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game'][$game]?><?php echo strip_tags($return['intergratedPlayer']['data']['teamInfo']['team_name']);?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人信息资料，<?php echo $description ;?>">
+  <meta name="description" content="<?php echo $config['site_name'];?>提供<?php echo $config['game'][$game]?><?php echo strip_tags($return['intergratedPlayer']['data']['teamInfo']['team_name']);?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人信息资料，<?php echo trim(substr(strip_tags($description),0,100)) ;?>">
 	<meta name=”Keywords” Content=”<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人信息,<?php echo $return['intergratedPlayer']['data']['player_name'];?>个人资料,<?php echo $config['game'][$game]?><?php echo $return['intergratedPlayer']['data']['teamInfo']['team_name'];?>战队<?php if(!in_array($return['intergratedPlayer']['data']['position'],["","?"])){echo $return['intergratedPlayer']['data']['position'];}?>选手<?php echo $return['intergratedPlayer']['data']['player_name'];?>信息简介">
 	<?php renderHeaderJsCss($config,["playerdetail"]);?> 
     <!-- 这是本页面新增的css  playerdetail.css -->
@@ -130,6 +219,23 @@ else
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $return['intergratedPlayer']['data']['game'];?>/">
+                    <?php echo  $config['game'][$return['intergratedPlayer']['data']['game']]; ?>战队
+                </a >
+                >
+                <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo  $return['intergratedPlayer']['data']['teamInfo']['tid']; ?>">
+                    <?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name']; ?>选手
+                </a >
+                >
+                <span><?php echo $return['intergratedPlayer']['data']['player_name'];?></span>
             </div>
         </div>
         <div class="container">
@@ -181,6 +287,7 @@ else
                         <div class="player_data_content fr">
                             <div class="player_data_top clearfix">
                                 <div class="circle_right fl">
+									<?php if($game!='dota2'){?>
                                     <div class="win_rate">
                                         <div class="win_rate1 circle" data-num="<?php echo  (isset($return['intergratedPlayer']['data']['player_stat']['victory_rate']) && $return['intergratedPlayer']['data']['player_stat']['victory_rate']>0 )? ($return['intergratedPlayer']['data']['player_stat']['victory_rate']/100):0 ?>">
                                         </div>
@@ -190,6 +297,18 @@ else
                                             <span class="rate"><?php echo $return['intergratedPlayer']['data']['player_stat']['total_count']?? 0;?>场<?php echo $return['intergratedPlayer']['data']['player_stat']['win']?? 0;?>胜<?php echo $return['intergratedPlayer']['data']['player_stat']['lose']?? 0;?>败</span>
                                         </div>
                                     </div>
+									<?php }else{?>
+									<div class="win_rate">
+                                        <div class="win_rate1 circle" data-num="<?php echo  (isset($return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']) && $return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']>0 )? ($return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']/100):0 ?>">
+                                        </div>
+                                        <div class="red_explain">
+                                            <span class="rate_number"><?php echo $return['intergratedPlayer']['data']['player_stat']['hurtTransfRate']?? 0;?>%</span>
+                                            <span class="rate_explain">伤害转化率</span>
+                                            <span class="rate">联赛第<i><?php echo $return['intergratedPlayer']['data']['player_stat']['hurtTransfRateSort']?? 0;?></span>
+                                        </div>
+                                    </div>
+									
+									<?php }?>
                                     <div class="part_rate">
                                         <div class="part_rate1 circle" data-num="<?php echo  (isset($return['intergratedPlayer']['data']['player_stat']['join_rate']) && $return['intergratedPlayer']['data']['player_stat']['join_rate']>0 )? ($return['intergratedPlayer']['data']['player_stat']['join_rate']/100):0 ?>">
                                         </div>
@@ -231,7 +350,17 @@ else
                         
                     </div>
                     <div class="scroll">
-						<?php if(isset($return['intergratedPlayer']['data']['recentMatchList']) && count($return['intergratedPlayer']['data']['recentMatchList'])>0 ){?>
+						<?php
+                        if(isset($return['intergratedPlayer']['data']['recentMatchList']) && count($return['intergratedPlayer']['data']['recentMatchList'])>0 ){?>
+                                <?php
+                            $playerDetailList = array_column($return['intergratedPlayer']['data']['recentMatchList'],"player_detail");
+                            $count = 0;
+                            foreach($playerDetailList as $detail)
+                            {
+                                $count+=count($detail);
+                            }
+                            if($count>0){
+                            ?>
                         <div class="player_matchs_name">
                             <span class="span1">时间</span>
                             <span class="span2">对阵</span>
@@ -245,14 +374,12 @@ else
 							<?php
 						  foreach($return['intergratedPlayer']['data']['recentMatchList'] as $recentMatchInfo)
 						  { 
-								if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list']['scoregg'])){$side = "home";}else{$side="away";}
+							   	if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list']['scoregg'])){$side = "home";}else{$side="away";}
 							   if(($recentMatchInfo['home_score'] >= $recentMatchInfo['away_score'])){$win_side = "home";}else{$win_side="away";}
 								if(count($recentMatchInfo['player_detail'])>0)
 								{
 									foreach($recentMatchInfo['player_detail'] as $round_key => $round_detail)
 									{
-										
-										
 										?>
 										<li class="<?php if($side == $win_side){  ?>red<?php }else{ ?>blue<?php } ?>">
 											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['game'];?>-<?php echo $recentMatchInfo['match_id'];?>">
@@ -327,12 +454,18 @@ else
                             
 						  <?php }?>
                         </ul>
+                            <?php }else{?>
+                                <div class="null">
+                                    <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                </div>
+                            <?php } ?>
 						<?php }else{?>
 							 <div class="null">
 								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 						<?php } ?>
                     </div>
+                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
                 <!-- 比赛战绩 -->
                 <!-- 战队介绍和队员介绍 -->
@@ -353,8 +486,8 @@ else
                                     <p class="name fl"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?></p>
                                     <p class="classify fl"><?php if($return['intergratedPlayer']['data']['teamInfo']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                                 </div>
-                                <p class="name">英文名：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
-                                <p class="name">别&nbsp;&nbsp;&nbsp;称：<span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
+                                <p class="name clearfix"><span class="name_description">英文名：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['en_name'] ?></span></p>
+                                <p class="name clearfix"><span class="name_description">别&nbsp;&nbsp;&nbsp;称：</span><span><?php echo  $return['intergratedPlayer']['data']['teamInfo']['aka'] ?></span></p>
                             </div>
                         </div>
                         <div class="player_team_word">
@@ -680,6 +813,47 @@ else
             lineCap: 'round',
             fill: { color: '#FF6649' }
         });
+        </script>
+        <script>
+            var windowWidth = $(window).width();
+            if(windowWidth < 1080){
+                $(".player_record").on("click", ".game_title_more", function () {
+                    $(".player_record").css( {"overflow":"auto","height":"auto"})
+                    $(".player_matchs_content").css( {"overflow":"auto","height":"auto"})
+                    $(".game_title_more").addClass("active")
+                })
+                $(".player_record").on("click", ".game_title_more.active", function () {
+                    if($('.player_matchs_content li').length > 10){
+                        $(".player_record").css( {"overflow":"hidden","height":"778px"})
+                        $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                        $(".game_title_more").removeClass("active")
+                    }
+                })
+                if($('.player_matchs_content li').length > 10){
+                    $(".player_record").css( {"overflow":"hidden","height":"778px"})
+                    $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                    $(".game_title_more").addClass("active1")
+                }
+            }
+            if(windowWidth >= 1080){
+                $(".player_record").on("click", ".game_title_more", function () {
+                    $(".player_record").css( {"overflow":"auto","height":"auto"})
+                    $(".player_matchs_content").css( {"overflow":"auto","height":"auto"})
+                    $(".game_title_more").addClass("active")
+                })
+                $(".player_record").on("click", ".game_title_more.active", function () {
+                    if($('.player_matchs_content li').length > 10){
+                        $(".player_record").css( {"overflow":"hidden","height":"750px"})
+                        $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                        $(".game_title_more").removeClass("active")
+                    }
+                })
+                if($('.player_matchs_content li').length > 10){
+                    $(".player_record").css( {"overflow":"hidden","height":"750px"})
+                    $(".player_matchs_content").css( {"overflow":"hidden","height":"594px"})
+                    $(".game_title_more").addClass("active1")
+                }
+            }
         </script>
 </body>
 

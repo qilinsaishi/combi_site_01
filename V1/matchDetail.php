@@ -56,6 +56,23 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
         </div>
     </div>
     <div class="container">
+        <div class="navigation row">
+            <a href="<?php echo $config['site_url'];?>">
+                首页
+            </a >
+            >
+            <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $return['matchDetail']['data']['game'];?>">
+                <?php echo  $config['game'][$return['matchDetail']['data']['game']]; ?>
+            </a >
+            >
+            <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $return['matchDetail']['data']['game'];?>-<?php echo $return['matchDetail']['data']['tournament_info']['tournament_id'];?>">
+                <?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?>
+            </a >
+            >
+            <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?> vs <?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
+        </div>
+    </div>
+    <div class="container">
         <div class="row clearfix">
             <div class="game_left">
                 <!--- 比赛双方基本信息-->
@@ -123,7 +140,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <!--- 比赛各轮次信息-->
                     <div class="game_detail_div">
                         <?php foreach($return['matchDetail']['data']['match_data']['result_list'] as $key => $round_info) {
-                            $round_minute = $round_info['game_time_m']+$round_info['game_time_m']/60;?>
+                            $round_minute = $round_info['game_time_m']??"0"+($round_info['game_time_m']??0)/60;?>
                             <div class="game_detail_div_item<?php if($key==0){echo ' active';} ?>">
                                 <div class="game_detail_item1">
                                     <div class="left">
@@ -196,7 +213,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <span><?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k</span>
                                         </div>
                                         <!--- 轮次时间-->
-                                        <p><?php echo ($round_info['game_time_m']).":".($round_info['game_time_s']);?></p>
+                                        <p><?php echo ($round_info['game_time_m']??"??").":".($round_info['game_time_s']??"??");?></p>
                                         <!--- 轮次时间-->
                                         <div class="left">
                                             <span><?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k</span>
@@ -298,66 +315,87 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <!--- 主客队的Ban/Pick数据对比-->
                                     <div class="bans_pincks">
                                         <div class="left">
-                                            <div class="bans bans_bot">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+											<table>
+                                                <tr>
+												<?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){
                                                         $count++;}}?>
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){?>
-                                                        <div class="bans_img">
-                                                            <img src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                <?php $i++;if($i==4 && $count>3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
-                                            <div class="bans picks">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                    <td>
+                                                        <a href="##">
+                                                            <div class="bans_picks_div">
+                                                                <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
+                                                            </div>
+                                                        </a>
+                                                    </td>
+													
+                                                    <?php }}?>
+                                                    
+                                                </tr>
+                                                <tr>
+													 <?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){
                                                         $count++;}}?>
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){?>
-                                                        <div class="bans_img">
-                                                            <img src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                        <?php $i++;if($i==4 && $count>3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
+                                                    <td>
+                                                        <a href="##">
+                                                            <div class="bans_picks_div">
+                                                                <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
+                                                            </div>
+                                                        </a>
+                                                    </td>
+													
+                                                    <?php }}?>
+                                                    
+                                                </tr>
+                                            </table>
+											
+                                            
                                         </div>
                                         <div class="center">
                                             <span>Bans</span>
                                             <span>Picks</span>
                                         </div>
-                                        <div class="left">
-                                            <div class="bans bans_bot">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                        <div class="right">
+											<table>
+                                                <tbody>
+                                                    <tr>
+													<?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){
                                                         $count++;}}?>
-                                                <?php $i=1;foreach($round_info as $key_ban => $ban){
+													<?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){?>
-                                                        <div class="bans_img">
-                                                            <img type = "<?php echo ($count-$i);?>" src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                        <?php $i++;if($c==3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
-                                            <div class="bans bans_bot">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                        <td>
+                                                            <a href="##">
+                                                                <div class="bans_picks_div">
+                                                                    <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
+                                                                </div>
+                                                            </a>
+                                                        </td>
+                                                    <?php }}?>
+                                                    </tr>
+                                                    <tr>
+													<?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){
                                                         $count++;}}?>
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){?>
-                                                        <div class="bans_img">
-                                                            <img type = "<?php echo ($count-$i);?>" src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                        <?php $i++;if($c==3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
+                                                        <td>
+                                                            <a href="##">
+                                                                <div class="bans_picks_div">
+                                                                    <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
+                                                                </div>
+                                                            </a>
+                                                        </td>
+                                                    <?php }}?>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            
                                         </div>
                                     </div>
                                     <!--- 主客队的Ban/Pick数据对比-->
@@ -398,14 +436,15 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                             <!--- 输出对比-->
                                             <div class="vs_data2_item<?php if($i==0){echo ' active';}?>">
                                                 <?php
-                                                $max = max(array_merge(array_column($round_info['record_list_a'],$key_name),array_column($round_info['record_list_b'],$key_name)));
+                                                $max = max(array_merge(array_column($round_info['record_list_a'],$key_name),array_column($round_info['record_list_b'],$key_name),[0]));
                                                 ?>
                                                 <div class="left">
                                                     <?php foreach($round_info['record_list_a'] as $key2 => $player_info){?>
                                                         <div class="vs_data_combat">
                                                             <div class="progress1_parent">
                                                                 <div class="progress1 red">
-                                                                    <span style="width: <?php echo $player_info[$key_name]==0?0:intval($player_info[$key_name]/$max*100);?>%"><span><?php echo $player_info[$key_name];?></span></span>
+                                                                    <span style="width: <?php echo $player_info[$key_name]==0?0:intval($player_info[$key_name]/$max*100);?>%"><span><?php echo $player_info[$key_name]??"??";?></span></span>
+
                                                                 </div>
                                                             </div>
                                                             <div class="vs_player">
@@ -441,7 +480,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             </div>
                                                             <div class="progress1_parent">
                                                                 <div class="progress2 blue">
-                                                                    <span style="width: <?php echo intval($player_info[$key_name]==0?0:$player_info[$key_name]/$max*100);?>%"><span><?php echo $player_info[$key_name];?></span></span>
+                                                                    <span style="width: <?php echo intval($player_info[$key_name]==0?0:$player_info[$key_name]/$max*100);?>%"><span><?php echo $player_info[$key_name]??"??";?></span></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -488,7 +527,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             
                                                             <div class="avatar hero mid">
                                                                 <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name']??'';?>">
-                                                                <span class="lv"><?php echo $player_info['_hero_lv'];?></span>
+                                                                <span class="lv"><?php echo $player_info['_hero_lv']??0;?></span>
                                                             </div>
                                                             <div class="jn-icon-wrap mid">
                                                                 <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_skill_"))=="_skill_" && !is_null($value)){?>
@@ -514,23 +553,23 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             <?php }}?>
                                                         </td>
                                                         <td class="kda">
-                                                            <p class="p1"><?php echo $player_info['_star_kda'];?></p>
-                                                            <p class="p2"><?php echo $player_info['_star_kills'];?> / <?php echo $player_info['_star_deaths'];?> / <?php echo $player_info['_star_assists'];?></p>
+                                                            <p class="p1"><?php echo $player_info['_star_kda']??0;?></p>
+                                                            <p class="p2"><?php echo $player_info['_star_kills']??0;?> / <?php echo $player_info['_star_deaths']??0;?> / <?php echo $player_info['_star_assists']??0;?></p>
                                                         </td>
                                                         <td class="damage atk">
-                                                            <p><?php echo $player_info['_star_atk_p'];?>%</p>
+                                                            <p><?php echo $player_info['_star_atk_p']??0;?>%</p>
                                                         </td>
                                                         <td class="damage def">
-                                                            <p><?php echo $player_info['_star_def_p'];?>%</p>
+                                                            <p><?php echo $player_info['_star_def_p']??0;?>%</p>
                                                         </td>
                                                         <td class="hits">
-                                                            <p class="p1"><?php echo $player_info['_star_hits'];?></p>
+                                                            <p class="p1"><?php echo $player_info['_star_hits']??0;?></p>
                                                             <p class="p2"><?php echo $round_minute==0?:sprintf("%10.1f",$player_info['_star_hits']/$round_minute)?>/分</p>
                                                         </td>
                                                         <td>
-                                                            <p><?php echo $player_info['_star_money'];?></p>
+                                                            <p><?php echo $player_info['_star_money']??0;?></p>
                                                         </td>
-                                                        <td><?php echo $player_info['_star_score'];?></td>
+                                                        <td><?php echo $player_info['_star_score']??0;?></td>
                                                     </tr>
                                                 <?php }?>
                                                 </tbody>
@@ -563,7 +602,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
 														</div>
                                                         <div class="avatar hero mid">
                                                             <img data-original="<?php echo $player_info['_hero_pic']??'';?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" class="role-icon mid" alt="<?php echo $player_info['_hero_name'];?>">
-                                                            <span class="lv"><?php echo $player_info['_hero_lv'];?></span>
+                                                            <span class="lv"><?php echo $player_info['_hero_lv']??0;?></span>
                                                         </div>
                                                         <div class="jn-icon-wrap mid">
                                                             <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_skill_"))=="_skill_" && !is_null($value)){?>
@@ -589,23 +628,23 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <?php }}?>
                                                     </td>
                                                     <td class="kda">
-                                                        <p class="p1"><?php echo $player_info['_star_kda'];?></p>
-                                                        <p class="p2"><?php echo $player_info['_star_kills'];?> / <?php echo $player_info['_star_deaths'];?> / <?php echo $player_info['_star_assists'];?></p>
+                                                        <p class="p1"><?php echo $player_info['_star_kda']??0;?></p>
+                                                        <p class="p2"><?php echo $player_info['_star_kills']??0;?> / <?php echo $player_info['_star_deaths']??0;?> / <?php echo $player_info['_star_assists']??0;?></p>
                                                     </td>
                                                     <td class="damage atk">
-                                                        <p><?php echo $player_info['_star_atk_p'];?>%</p>
+                                                        <p><?php echo $player_info['_star_atk_p']??0;?>%</p>
                                                     </td>
                                                     <td class="damage def">
-                                                        <p><?php echo $player_info['_star_def_p'];?>%</p>
+                                                        <p><?php echo $player_info['_star_def_p']??0;?>%</p>
                                                     </td>
                                                     <td class="hits">
-                                                        <p class="p1"><?php echo $player_info['_star_hits'];?></p>
+                                                        <p class="p1"><?php echo $player_info['_star_hits']??0;?></p>
                                                         <p class="p2"><?php echo $round_minute==0?0:sprintf("%10.1f",$player_info['_star_hits']/$round_minute)?>/分</p>
                                                     </td>
                                                     <td>
-                                                        <p><?php echo $player_info['_star_money'];?></p>
+                                                        <p><?php echo $player_info['_star_money']??0;?></p>
                                                     </td>
-                                                    <td><?php echo $player_info['_star_score'];?></td>
+                                                    <td><?php echo $player_info['_star_score']??0;?></td>
                                                 </tr>
                                                 <?php }?>
                                                 </tbody>

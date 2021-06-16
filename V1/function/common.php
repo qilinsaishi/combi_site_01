@@ -138,6 +138,7 @@
     }
     function renderHeaderJsCss($config,$customCss = [])
     {
+        echo '<link rel="shortcut icon" href="'.$config['site_url'].'/images/favicon.ico">';
         $version=time();
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/bootstrap.css" type="text/css" />';
         echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/reset.css?v='.$version.'" type="text/css" />';
@@ -151,6 +152,15 @@
         }
         echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/flexible.js" type="text/javascript"></script>';
+        echo '<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?12a5143506ef959a217dbc4a3d53475e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>';
     }
     function renderFooterJsCss($config,$customCss = [],$customJs = [])
     {

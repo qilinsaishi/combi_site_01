@@ -17,7 +17,6 @@ $params = [
     "currentPage"=>["name"=>"tournamentList","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-
 $tournamentList = [];
 $tournamentList["all"] = [];
 foreach($config['game'] as $game => $game_name)
@@ -81,6 +80,20 @@ foreach($tournamentList as $game => $t_list)
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="navigation row">
+                <a href="<?php echo $config['site_url'];?>">
+                    首页
+                </a >
+                >
+                <?php if($currentGame!="all"){?>
+                    <?php echo $config['game'][$currentGame];?>赛事列表
+                <?php }else{?>
+                    <span>赛事列表</span>
+                <?php }?>
+            </div>
+        </div>
+
         <div class="container">
             <div class="row clearfix">
                 <div class="game_left events fl">
