@@ -663,6 +663,9 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
         </div>
     </div>
     <div class="suspension">
+        <div class="suspension_close">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+        </div>
         <div class="suspension_img">
             <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>

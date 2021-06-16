@@ -1168,6 +1168,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
     </div>
 </div>
 <div class="suspension">
+    <div class="suspension_close">
+        <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+    </div>
 	<div class="suspension_img">
 		<img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
 	</div>
