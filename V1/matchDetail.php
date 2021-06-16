@@ -315,66 +315,87 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <!--- 主客队的Ban/Pick数据对比-->
                                     <div class="bans_pincks">
                                         <div class="left">
-                                            <div class="bans bans_bot">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+											<table>
+                                                <tr>
+												<?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){
                                                         $count++;}}?>
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){?>
-                                                        <div class="bans_img">
-                                                            <img src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                <?php $i++;if($i==4 && $count>3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
-                                            <div class="bans picks">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                    <td>
+                                                        <a href="##">
+                                                            <div class="bans_picks_div">
+                                                                <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                            </div>
+                                                        </a>
+                                                    </td>
+													
+                                                    <?php }}?>
+                                                    
+                                                </tr>
+                                                <tr>
+													 <?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){
                                                         $count++;}}?>
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){?>
-                                                        <div class="bans_img">
-                                                            <img src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                        <?php $i++;if($i==4 && $count>3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
+                                                    <td>
+                                                        <a href="##">
+                                                            <div class="bans_picks_div">
+                                                                <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                            </div>
+                                                        </a>
+                                                    </td>
+													
+                                                    <?php }}?>
+                                                    
+                                                </tr>
+                                            </table>
+											
+                                            
                                         </div>
                                         <div class="center">
                                             <span>Bans</span>
                                             <span>Picks</span>
                                         </div>
-                                        <div class="left">
-                                            <div class="bans bans_bot">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                        <div class="right">
+											<table>
+                                                <tbody>
+                                                    <tr>
+													<?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){
                                                         $count++;}}?>
-                                                <?php $i=1;foreach($round_info as $key_ban => $ban){
+													<?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){?>
-                                                        <div class="bans_img">
-                                                            <img type = "<?php echo ($count-$i);?>" src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                        <?php $i++;if($c==3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
-                                            <div class="bans bans_bot">
-                                                <?php $count=0;foreach($round_info as $key_ban => $ban){
+                                                        <td>
+                                                            <a href="##">
+                                                                <div class="bans_picks_div">
+                                                                    <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                                </div>
+                                                            </a>
+                                                        </td>
+                                                    <?php }}?>
+                                                    </tr>
+                                                    <tr>
+													<?php $count=0;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){
                                                         $count++;}}?>
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){?>
-                                                        <div class="bans_img">
-                                                            <img type = "<?php echo ($count-$i);?>" src="<?php echo $ban;?>" alt="" class="imgauto">
-                                                        </div>
-                                                        <?php $i++;if($c==3){?>
-                                                            <div class="line3"></div>
-                                                        <?php }}}?>
-                                            </div>
+                                                        <td>
+                                                            <a href="##">
+                                                                <div class="bans_picks_div">
+                                                                    <img class="imgauto" src="<?php echo $ban;?>" alt="">
+                                                                </div>
+                                                            </a>
+                                                        </td>
+                                                    <?php }}?>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            
                                         </div>
                                     </div>
                                     <!--- 主客队的Ban/Pick数据对比-->
