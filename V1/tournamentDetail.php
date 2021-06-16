@@ -258,9 +258,9 @@ unset($return['matchList']);
 															<a href="javascripts:;">
 																<div class="game3_team1_top clearfix">
 																	<div class="game3_team1_top_img fl">
-																		<img data-original="<?php echo $matchInfo['home_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="<?php echo $matchInfo['home_name'];?>">
+																		<img data-original="<?php echo $matchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  class="imgauto" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
 																	</div>
-																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['home_name'];?></span>
+																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['home_team_info']['team_name'];?></span>
 																</div>
 
 															</a>
@@ -294,9 +294,9 @@ unset($return['matchList']);
 														<div class="game3_team2 fr">
 															<a href="javascripts:;">
 																<div class="game3_team1_top clearfix">
-																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['away_name'];?></span>
+																	<span class="game3_team1_top_name fl"><?php echo $matchInfo['away_team_info']['team_name'];?></span>
 																	<div class="game3_team1_top_img fl">
-																		<img data-original="<?php echo $matchInfo['away_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   class="imgauto" alt="<?php echo $matchInfo['away_name'];?>">
+																		<img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   class="imgauto" alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
 																	</div>
 																</div>
 															   
