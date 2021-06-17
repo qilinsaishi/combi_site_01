@@ -1,9 +1,11 @@
 <?php
 require_once "function/init.php";
 $params = [
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>6,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>4,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>4,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"404","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
@@ -66,7 +68,8 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             <li class="col-md-3 col-xs-3">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="a1">
-                                        <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                        <img class="game_team_img" data-original="<?php echo $teamInfo['logo'];?><?php echo $config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   alt="<?php echo $teamInfo['team_name'];?>">
+
                                     </div>
                                     <span><?php echo $teamInfo['team_name'];?></span>
                                 </a>
@@ -88,7 +91,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             <li class="col-md-3 col-xs-3">
                                 <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
                                     <div class="team_number_photo">
-                                        <img src="<?php echo $playerInfo['logo'];?>" alt="<?php echo $playerInfo['player_name'];?>">
+                                        <img data-original="<?php echo $playerInfo['logo'];?><?php echo $config['default_oss_img_size']['playerList'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"   alt="<?php echo $playerInfo['player_name'];?>">
                                     </div>
                                     <span class="team_number_name"><?php echo $playerInfo['player_name'];?></span>
                                 </a>
@@ -135,15 +138,11 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                <?php
+                foreach($return['links']['data'] as $linksInfo)
+                {   ?>
+                    <li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+                <?php }?>
             </ul>
 <?php renderCertification();?>
         </div>

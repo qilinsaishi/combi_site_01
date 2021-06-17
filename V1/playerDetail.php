@@ -181,8 +181,6 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 	];
 	
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
