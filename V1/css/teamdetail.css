@@ -393,6 +393,8 @@ li a .w25:nth-child(3n) .honor_bottom_img2{
     font-family: shuzi;
     height: 30px;
     line-height: 30px;
+    width: 24px;
+    text-align: center;
 }
 .span_left{
     margin-left: 30px;

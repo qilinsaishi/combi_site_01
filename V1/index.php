@@ -80,10 +80,7 @@ foreach($newsTypeList as $newsType)
             </div>
         </div>
         <div class="bg1">
-            <div class="banner">
-                <div class="banner_img">
-                    <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="">
-                </div>
+            <div class="banner" style="background:url(<?php echo $config['site_url'];?>images/banner.png) no-repeat center / cover;">
                 <div class="button">
                     <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank">
                     <div class="download_ios download">
@@ -488,10 +485,10 @@ foreach($newsTypeList as $newsType)
        /* $(function() {
             $('img.lazy').lazyload();
         });*/
-        var banner = $(".banner_img").height()
-        $('.banner_img img').load(function () {
-            $(".banner").css("height", banner)
-        });
+        // var banner = $(".banner_img").height()
+        // $('.banner_img img').load(function () {
+        //     $(".banner").css("height", banner)
+        // });
         //banner消失
         function slideup(){ 
             $(".banner").slideUp();
