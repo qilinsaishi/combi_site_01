@@ -89,6 +89,17 @@
     text-overflow:ellipsis;
     white-space: nowrap;
 }
+.team_explain_bottom {
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+    padding-bottom: 16px;
+}
+.team_explain_bottom *{
+    font-size: 18px;
+    color: #333;
+    line-height: 24px;
+}
 .team_explain_bottom p{
     font-size: 18px;
     color: #333;
