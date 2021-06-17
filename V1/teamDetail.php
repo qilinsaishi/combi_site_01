@@ -154,7 +154,7 @@ if($game=='dota2'){
                                 <p class="classify fl"><?php if($return['intergratedTeam']['data']['game']=='lol'){?>英雄联盟<?php }elseif($return['intergratedTeam']['data']['game']=='kpl'){ ?>王者荣耀<?php }elseif($return['intergratedTeam']['data']['game']=='dota2'){ ?>DOTA2<?php } ?></p>
                             </div>
                             <div class="team_explain_name clearfix">
-                                <p class="clearfix fl">英文名：<span class="English_name fr"><span class="English_name fr"><?php echo $return['intergratedTeam']['data']['team_name'];?></span></p>
+                                <p class="clearfix fl">英文名：<span class="English_name fr"><span class="English_name fr"><?php echo $return['intergratedTeam']['data']['en_name'];?></span></p>
                                 <p class="clearfix fl">别称：<span class="chinese_name fr"><?php echo $return['intergratedTeam']['data']['aka'] ?></span></p>
                             </div>
                             <div class="team_explain_bottom">
