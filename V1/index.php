@@ -80,7 +80,7 @@ foreach($newsTypeList as $newsType)
             </div>
         </div>
         <div class="bg1">
-            <div class="banner" style="background:url(<?php echo $config['site_url'];?>images/banner.png) no-repeat center / cover;">
+            <div class="banner" style="background:url(<?php echo $config['site_url'];?>/images/banner.png) no-repeat center / cover;">
                 <div class="button">
                     <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank">
                     <div class="download_ios download">
