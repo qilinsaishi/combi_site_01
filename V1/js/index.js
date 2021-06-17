@@ -32,13 +32,30 @@ $(document).ready(function () {
 })
 
 // vs_data1切换
-$(".vs_data1").on("click", 'li', function () {
-    var _this = $(this).index() - 1;
-    $(".vs_data1 li").removeClass("active");
-    $(this).addClass("active");
-    $(this).parents(".vs_data1").find("li").removeClass("active1").eq(_this).addClass("active1");
-    $(".vs_data2 .vs_data2_item").removeClass("active").eq($(this).index()).addClass("active");
-    $(this).parents(".game_detail_item5").find(".vs_data2").find(".vs_data2_item").removeClass("active").eq($(this).index()).addClass("active")
+$(function () {
+    //第一个高亮
+    $(".game_detail_ul li:first").addClass("active");
+    //展示第二个tab中的第一个div   其他的都隐藏
+    $(".game_detail_div_item:first").addClass("active").siblings().removeClass("active");
+    // $(".game_detail_div_item:first li:first").addClass("active")
+    //展示第二个tab中的第一个div中的第一个vs_data2_item  其他的都隐藏
+    $(".vs_data2 .vs_data2_item:first").addClass("active").siblings().removeClass("active");
+
+    //点击li
+    $(".game_detail_ul li").click(function () {
+        // li选中的添加new   其他的都去掉
+        $(this).addClass("active").siblings().removeClass("active");
+        // console.log($(".game_detail_ul li").index(this))
+        $(".game_detail_div_item").eq($(".game_detail_ul li").index(this))
+        .show().siblings().hide();
+    });
+
+    //这是点击info的
+    $(".game_detail_div_item li").click(function () {
+        console.log($(".game_detail_div_item li").index(this))
+        $(this).addClass("active").siblings().removeClass("active")
+        $(".vs_data2 .vs_data2_item").eq($(".game_detail_div_item li").index(this)).show().siblings().hide();
+    });
 })
 
 // if ($(".game_detail_ul li").length > 5) {
@@ -54,10 +71,6 @@ $(".game_before_after").on("click", 'li', function () {
     console.log($(this).parents(".game_detail_item6").find(".vs_data3").find(".vs_data3_left"))
 })
 
-$(".game_detail_ul").on("click", 'li', function () {
-    $(".game_detail_ul li").removeClass("active").eq($(this).index()).addClass("active");
-    $(".game_detail_div .game_detail_div_item").removeClass("active").eq($(this).index()).addClass("active");
-})
 
 
  //字体溢出隐藏
