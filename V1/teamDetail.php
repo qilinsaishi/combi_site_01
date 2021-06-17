@@ -145,7 +145,7 @@ if($game=='dota2'){
                     <div class="team_title  clearfix">
                         <div class="team_logo fl">
                             <div class="team_logo_img mauto">
-                                <img class="imgauto" src="<?php echo $return['intergratedTeam']['data']['logo'];?>" alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>">
+                                <img class="imgauto" data-original="<?php echo $return['intergratedTeam']['data']['logo'];?>?x-oss-process=image/resize,m_lfit,h_100,w_100" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['intergratedTeam']['data']['team_name'];?>" />
                             </div>
                         </div>
                         <div class="team_explain fr">
@@ -377,7 +377,6 @@ if($game=='dota2'){
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/teamdetail_vs_active.png" alt="">
                         </div>
                         <h2 class="fl team_results_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队近期战绩</h2>
-                       
                     </div>
                     <div class="team_results_bottom">
 						<?php if(isset($return['intergratedTeam']['data']['recentMatchList']) && count($return['intergratedTeam']['data']['recentMatchList'])>0 ){?>

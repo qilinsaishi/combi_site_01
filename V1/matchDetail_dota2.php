@@ -26,6 +26,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
 
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,12 +105,12 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                 </div>
                 <div class="dota2">
                     <ul class="dota2_ul1 clearfix mb20">
-                        <li>
+                        <li class="active">
                             <a href="##">
                                 赛前分析
                             </a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="##">
                                 比赛详情
                             </a>
@@ -117,7 +118,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                     </ul>
                     <div class="dota2_div">
                         <!-- 赛前分析 -->
-                        <div class="dota2_item">
+                        <div class="dota2_item active">
                             <div class="dota2_top">
                                 <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
                                 <span>近期战队数据对比</span>
@@ -126,9 +127,10 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                                 <div class="teamInfo ">
                                     <div class="colorBlock colorBlock_right red"></div>
                                     <div class="teamInfo_img">
-                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
+									
+                                        <img data-original="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamLogo']??'').'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamName'] ?? '';?>" class="imgauto">
                                     </div>
-                                    <span class="text_left"><?php echo $return['matchDetail']['data']['away_name']??'';?></span>
+                                    <span class="text_left"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamName'] ?? '';?></span>
                                 </div>
                                 <div class="dota2_vs">
                                     <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
@@ -136,81 +138,258 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                                 <div class="teamInfo teamInfo_reverse">
                                     <div class="colorBlock blue"></div>
                                     <div class="teamInfo_img">
-                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
+                                        <img data-original="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamLogo']??'').'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamName'] ?? '';?>" class="imgauto">
                                     </div>
-                                    <span class="text_right"><?php echo $return['matchDetail']['data']['home_name']??'';?></span>
+                                    <span class="text_right"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamName'] ?? '';?></span>
                                 </div>
                             </div>
                             <div class="bpBox">
                                 <div class="left">
                                     <div class="bpBox_circle">
-                                        <div class="Dred third circle" data-num="<?php echo ($return['matchDetail']['data']['match_data']['team_base_data']['red_victory_rate']/100)??'0';?>">
+                                        <div class="Dred third circle" data-num="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['winRate']??0);?>">
                                             <strong>
                                                 <p></p>
                                                 <span>胜率</span>
                                             </strong>
                                         </div>
-                                        <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_victory_tip_text']??'';?></p>
-                                        <p class="bpBox_kda red">KDA：<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_kda']??'0';?></p>
-                                        <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_kills']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_deaths']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['red_assists']??'0';?></p>
+                                        <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['winCount']??'0';?>胜<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['loseCount']??'0';?>负</p>
+                                        <p class="bpBox_kda red">KDA：<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['kda']??'0';?></p>
+                                        <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgKill']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgDie']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgAssists']??'0';?></p>
                                     </div>
                                 </div>
                                 <div class="center">
-									<?php if($return['matchDetail']['data']['match_data']['team_base_data']['data_list_item'] &&count($return['matchDetail']['data']['match_data']['team_base_data']['data_list_item'])>0){?>
-										<?php foreach($return['matchDetail']['data']['match_data']['team_base_data']['data_list_item'] as $dataKeyItem=>$dataInfoItem){ ?>
-											<div class="rate_data_left">
-												<div class="rate_data_top">
-													<span class="fl time1"><?php echo $dataInfoItem['red']??0; ?></span>
-													<span class="fr time2"><?php echo $dataInfoItem['blue']??0; ?></span>
-													<div class="average_time"><?php echo $dataInfoItem['title']??0; ?></div>
-												</div>
-												<div class="compare-bar compare_bar clearfix">
-													<div class="progress3 fl progress4 red">
-														<span class="green" style="width: <?php echo $dataInfoItem['red']/($dataInfoItem['red']+$dataInfoItem['blue'])*100; ?>%;"></span>
-													</div>
-													<div class="progress3 fr blue">
-														<span class="green" style="width: <?php echo $dataInfoItem['blue']/($dataInfoItem['red']+$dataInfoItem['blue'])*100; ?>%;"></span>
-													</div>
-												</div>
+									<div class="rate_data_left">
+										<div class="rate_data_top">
+											<span class="fl time1"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgEconomics']??'0';?></span>
+											<span class="fr time2"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgEconomics']??'0';?></span>
+											<div class="average_time">局均经济</div>
+										</div>
+										<div class="compare-bar compare_bar clearfix">
+											<div class="progress3 fl progress4 red">
+												<span class="green" style="width: <?php 
+												 $avgEconomics=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgEconomics']??0;
+												 $avgEconomics1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgEconomics']??0;
+												 $totalAvgEconomics=($avgEconomics+$avgEconomics1);
+												echo ($avgEconomics1/$totalAvgEconomics)*100; ?>%;"></span>
 											</div>
-										<?php }?>
-									<?php } ?>
+											<div class="progress3 fr blue">
+												<span class="green" style="width:<?php 
+												 $avgEconomics=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgEconomics']??0;
+												 $avgEconomics1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgEconomics']??0;
+												 $totalAvgEconomics=($avgEconomics+$avgEconomics1);
+												
+												echo ($avgEconomics/$totalAvgEconomics)*100; ?>%;"></span>
+											</div>
+										</div>
+									</div>
+									<div class="rate_data_left">
+										<div class="rate_data_top">
+											<span class="fl time1"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgSoldiers']??'0';?></span>
+											<span class="fr time2"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgSoldiers']??'0';?></span>
+											<div class="average_time">局均补刀</div>
+										</div>
+										<div class="compare-bar compare_bar clearfix">
+											<div class="progress3 fl progress4 red">
+												<span class="green" style="width: <?php 
+												 $avgSoldiers=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgSoldiers']??0;
+												 $avgSoldiers1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgSoldiers']??0;
+												 $totalAvgSoldiers=($avgSoldiers+$avgSoldiers1);
+												echo ($avgSoldiers1/$totalAvgSoldiers)*100; ?>%;"></span>
+											</div>
+											<div class="progress3 fr blue">
+												<span class="green" style="width: <?php 
+												 $avgSoldiers=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgSoldiers']??0;
+												 $avgSoldiers1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgSoldiers']??0;
+												 $totalAvgSoldiers=($avgSoldiers+$avgSoldiers1);
+												echo ($avgSoldiers/$totalAvgSoldiers)*100; ?>%;"></span>
+											</div>
+										</div>
+									</div>
+									<div class="rate_data_left">
+										<div class="rate_data_top">
+											<span class="fl time1"><?php 
+												 $avgLengthTime=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgLengthTime']??0;
+												echo date("i",$avgLengthTime);
+												 ?>'<?php 
+												 $avgLengthTime=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgLengthTime']??0;
+												echo date("s",$avgLengthTime);
+												 ?>"</span>
+											<span class="fr time2"><?php 
+												 $avgLengthTime1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgLengthTime']??0;
+												echo date("i",$avgLengthTime1);
+												 ?>'<?php 
+												 $avgLengthTime1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgLengthTime']??0;
+												echo date("s",$avgLengthTime1);
+												 ?>"</span>
+											<div class="average_time">局均时长</div>
+										</div>
+										<div class="compare-bar compare_bar clearfix">
+											<div class="progress3 fl progress4 red">
+												<span class="green" style="width: <?php 
+												 $avgLengthTime=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgLengthTime']??0;
+												 $avgLengthTime1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgLengthTime']??0;
+												 $totalAvgLengthTime=($avgLengthTime+$avgLengthTime1);
+												echo ($avgLengthTime1/$totalAvgLengthTime)*100; ?>%;"></span>
+											</div>
+											<div class="progress3 fr blue">
+												<span class="green" style="width: <?php 
+												 $avgLengthTime=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgLengthTime']??0;
+												 $avgLengthTime1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgLengthTime']??0;
+												 $totalAvgLengthTime=($avgLengthTime+$avgLengthTime1);
+												echo ($avgLengthTime/$totalAvgLengthTime)*100; ?>%;"></span>
+											</div>
+										</div>
+									</div>
+									<div class="rate_data_left">
+										<div class="rate_data_top">
+											<span class="fl time1"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgOutput']??'0';?></span>
+											<span class="fr time2"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgOutput']??'0';?></span>
+											<div class="average_time">局均输出</div>
+										</div>
+										<div class="compare-bar compare_bar clearfix">
+											<div class="progress3 fl progress4 red">
+												<span class="green" style="width: <?php 
+												 $avgOutput=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgOutput']??0;
+												 $avgOutput1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgOutput']??0;
+												 $totalAvgOutput=($avgOutput+$avgOutput1);
+												echo ($avgOutput1/$totalAvgOutput)*100; ?>%;"></span>
+											</div>
+											<div class="progress3 fr blue">
+												<span class="green" style="width: <?php 
+												 $avgOutput=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgOutput']??0;
+												 $avgOutput1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgOutput']??0;
+												 $totalAvgOutput=($avgOutput+$avgOutput1);
+												echo ($avgOutput/$totalAvgOutput)*100; ?>%;"></span>
+											</div>
+										</div>
+									</div>
                                     
                                 </div>
                                 <div class="left">
                                     <div class="bpBox_circle">
-                                        <div class="Dblue third circle" data-num="<?php echo ($return['matchDetail']['data']['match_data']['team_base_data']['blue_victory_rate']/100)??'0';?>">
+                                        <div class="Dblue third circle" data-num="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['winRate']??'0')??'0';?>">
                                             <strong>
                                                 <p></p>
                                                 <span>胜率</span>
                                             </strong>
                                         </div>
-                                        <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_victory_tip_text']??'';?></p>
-                                        <p class="bpBox_kda blue">KDA：<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_kda']??'';?></p>
-                                        <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_kills']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_deaths']??'0';?>/<?php echo $return['matchDetail']['data']['match_data']['team_base_data']['blue_assists']??'0';?></p>
+                                        <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['winCount']??'0';?>胜<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['loseCount']??'0';?>负</p>
+                                        <p class="bpBox_kda blue">KDA：<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['kda']??'0';?></p>
+                                        <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgKill']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgDie']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgAssists']??'0';?></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="barChart">
-								<?php if($return['matchDetail']['data']['match_data']['team_base_data']['statistics_list'] &&count($return['matchDetail']['data']['match_data']['team_base_data']['statistics_list'])>0){?>
-									<?php foreach($return['matchDetail']['data']['match_data']['team_base_data']['statistics_list'] as $statisticsInfo){ ?>
 									<div class="bar_item">
-										<div class="outCol">
-											<div class="col">
-												<div class="bar red" style=" height:<?php echo trim($statisticsInfo['red'])??'0';?>%;">
-													<span class="bar_rate"><?php echo trim($statisticsInfo['red'])??'0';?>%</span>
-												</div>
-											</div>
-											<div class="col">
-												<div class="bar blue" style="height: <?php echo intval(trim($statisticsInfo['blue']))??'0';?>%;">
-													<span class="bar_rate"><?php echo trim($statisticsInfo['blue'])??'0';?>%</span>
-												</div>
-											</div>
-											<span class="itemName"><?php echo $statisticsInfo['name']??'0';?></span>
-										</div>
-									</div>
-									<?php }?>
-								<?php } ?>
+                                        <div class="outCol">
+                                            <div class="col">
+                                                <div class="bar red" style="height: <?php 
+												$firstBloodRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['firstBloodRate']??'0';
+												echo ($firstBloodRate*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$firstBloodRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['firstBloodRate']??'0';
+												echo ($firstBloodRate*100);?>%</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="bar blue" style=" height:<?php 
+												$firstBloodRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['firstBloodRate']??'0';
+												echo ($firstBloodRate1*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$firstBloodRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['firstBloodRate']??'0';
+												echo ($firstBloodRate1*100);?>%</span>
+                                                </div>
+                                            </div><span class="itemName">一血率</span>
+                                        </div>
+                                    </div>
+                                    <div class="bar_item">
+                                        <div class="outCol">
+                                            <div class="col">
+                                                <div class="bar red" style="height: <?php 
+												$firstTowerRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['firstTowerRate']??'0';
+												echo ($firstTowerRate*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$firstTowerRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['firstTowerRate']??'0';
+												echo ($firstTowerRate*100);?>%</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="bar blue" style=" height: <?php 
+												$firstTowerRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['firstTowerRate']??'0';
+												echo ($firstTowerRate1*100);?>%;">
+                                                    <span class="bar_rate"> <?php 
+												$firstTowerRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['firstTowerRate']??'0';
+												echo ($firstTowerRate1*100);?>%</span>
+                                                </div>
+                                            </div><span class="itemName">一塔率</span>
+                                        </div>
+                                    </div>
+                                    <div class="bar_item">
+                                        <div class="outCol">
+                                            <div class="col">
+                                                <div class="bar red" style="height: <?php 
+												$fiveKillRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['fiveKillRate']??'0';
+												echo ($fiveKillRate*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$fiveKillRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['fiveKillRate']??'0';
+												echo ($fiveKillRate*100);?>%</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="bar blue" style=" height: <?php 
+												$fiveKillRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['fiveKillRate']??'0';
+												echo ($fiveKillRate1*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$fiveKillRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['fiveKillRate']??'0';
+												echo ($fiveKillRate1*100);?>%</span>
+                                                </div>
+                                            </div><span class="itemName">五杀率</span>
+                                        </div>
+                                    </div>
+                                    <div class="bar_item">
+                                        <div class="outCol">
+                                            <div class="col">
+                                                <div class="bar red" style="height: <?php 
+												$tenKillRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['tenKillRate']??'0';
+												echo ($tenKillRate*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$tenKillRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['tenKillRate']??'0';
+												echo ($tenKillRate*100);?>%</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="bar blue" style=" height: <?php 
+												$tenKillRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['tenKillRate']??'0';
+												echo ($tenKillRate1*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$tenKillRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['tenKillRate']??'0';
+												echo ($tenKillRate1*100);?>%</span>
+                                                </div>
+                                            </div><span class="itemName">十杀率</span>
+                                        </div>
+                                    </div>
+                                    <div class="bar_item">
+                                        <div class="outCol">
+                                            <div class="col">
+                                                <div class="bar red" style="height: <?php 
+												$firstRoushanRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['firstRoushanRate']??0;
+												echo ($firstRoushanRate*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$firstRoushanRate=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['firstRoushanRate']??0;
+												echo ($firstRoushanRate*100);?>%</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="bar blue" style=" height: <?php 
+												$firstRoushanRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['firstRoushanRate']??0;
+												echo ($firstRoushanRate1*100);?>%;">
+                                                    <span class="bar_rate"><?php 
+												$firstRoushanRate1=$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['firstRoushanRate']??0;
+												echo ($firstRoushanRate1*100);?>%</span>
+                                                </div>
+                                            </div><span class="itemName">首肉山</span>
+                                        </div>
+                                    </div>
                                 
                             </div>
                             <div class="recentGame-box red">
@@ -228,41 +407,59 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                                         <span class="th">肉山</span>
                                     </div>
                                     <div class="rowBox">
-                                        <!--<div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
+										<?php if(isset($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['battleDetailList']) && count($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['battleDetailList'])>0){
+											foreach($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['battleDetailList'] as $battleDetailInfo){?>
+                                        <div class="row1">
+                                            <span title="cSc" class="td elips flex15">
+                                                    <?php if($return['matchDetail']['data']['away_name']!=$battleDetailInfo['direName']){ echo $battleDetailInfo['direName'] ??'';}else{echo $battleDetailInfo['radiantName'] ??'';} ?>
+                                            </span>
                                             <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
+                                                    <span class="leagueName elips"><?php echo $battleDetailInfo['tournamentName'] ??''; ?></span>
+                                                    <span class="leagueTime"><?php echo date("Y-m-d H:i:s",substr($battleDetailInfo['matchTime'] ??0,0,-3));?></span>
                                                 </span>
-                                            <span class="td flex15">49分12秒</span>
+                                            <span class="td flex15"><?php echo date("i",$battleDetailInfo['lengthTime']??0 );?>分<?php echo date("s",$battleDetailInfo['lengthTime']??0 );?>秒</span>
                                             <span title="WE" class="td elips flex15">
-                                                    WE
+                                                   <?php if($battleDetailInfo['radiantWin']==1 ){echo $battleDetailInfo['radiantName'] ??''; }else{ echo $battleDetailInfo['direName'] ??'';} ?>
                                                 </span>
                                             <span class="td">
-                                                    <span class="span_red">23</span>:34
+                                                    <span class="span_red">
+													<?php if($return['matchDetail']['data']['away_name']!=$battleDetailInfo['direName']){  ?>
+													<?php echo $battleDetailInfo['radiantScore'] ??''; ?></span>:<?php echo $battleDetailInfo['direScore'] ??''; ?>
+													<?php }else{?>
+													<?php echo $battleDetailInfo['direScore'] ??''; ?></span>:<?php echo $battleDetailInfo['radiantScore'] ??''; ?>
+													<?php }?>
                                                 </span>
                                             <span class="td">
+													<?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['firstBloodTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
-                                                    <i class="dota2_dot "></i>
-                                                </span>
-                                            <span class="td">
+                                                    <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['firstTowerTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
                                             <span class="td">
+                                                    <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['fiveKillTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
-                                        </div>-->
+                                            <span class="td">
+                                                    <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['tenKillTeamId']){  ?>
+                                                    <i class="dota2_dot red"></i>
+													<?php }?>
+                                                </span>
+                                            <span class="td">
+                                                   <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['firstRoushanTeamId']){  ?>
+                                                    <i class="dota2_dot red"></i>
+													<?php }?>
+                                                </span>
+                                        </div>
+											<?php }}else{?>
 										<div class="null">
 											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
 										</div>
-                                       
+										<?php }?>
                                     </div>
                                 </div>
                             </div>
@@ -281,40 +478,59 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                                         <span class="th">肉山</span>
                                     </div>
                                     <div class="rowBox">
-                                        <!--<div class="row1">
-                                                <span title="cSc" class="td elips flex15">
-                                                    cSc
-                                                </span>
+                                        <?php if(isset($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['battleDetailList']) && count($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['battleDetailList'])>0){
+											foreach($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['battleDetailList'] as $battleDetailInfo){?>
+                                        <div class="row1">
+                                            <span title="cSc" class="td elips flex15">
+                                                    <?php if($return['matchDetail']['data']['home_name']!=$battleDetailInfo['direName']){ echo $battleDetailInfo['direName'] ??'';}else{echo $battleDetailInfo['radiantName'] ??'';} ?>
+                                            </span>
                                             <span title="Pinnacle杯" class="td flex2 wrap">
-                                                    <span class="leagueName elips">Pinnacle杯</span>
-                                                    <span class="leagueTime">2021-05-30 06:45</span>
+                                                    <span class="leagueName elips"><?php echo $battleDetailInfo['tournamentName'] ??''; ?></span>
+                                                    <span class="leagueTime"><?php echo date("Y-m-d H:i:s",substr($battleDetailInfo['matchTime'] ??0,0,-3));?></span>
                                                 </span>
-                                            <span class="td flex15">49分12秒</span>
+                                            <span class="td flex15"><?php echo date("i",$battleDetailInfo['lengthTime']??0 );?>分<?php echo date("s",$battleDetailInfo['lengthTime']??0 );?>秒</span>
                                             <span title="WE" class="td elips flex15">
-                                                    WE
+                                                   <?php if($battleDetailInfo['radiantWin']==1 ){echo $battleDetailInfo['radiantName'] ??''; }else{ echo $battleDetailInfo['direName'] ??'';} ?>
                                                 </span>
                                             <span class="td">
-                                                    <span class="span_blue">23</span>:34
+                                                    <span class="span_red">
+													<?php if($return['matchDetail']['data']['home_name']!=$battleDetailInfo['direName']){  ?>
+													<?php echo $battleDetailInfo['radiantScore'] ??''; ?></span>:<?php echo $battleDetailInfo['direScore'] ??''; ?>
+													<?php }else{?>
+													<?php echo $battleDetailInfo['direScore'] ??''; ?></span>:<?php echo $battleDetailInfo['radiantScore'] ??''; ?>
+													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <i class="dota2_dot blue"></i>
+													<?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['firstBloodTeamId']){  ?>
+                                                    <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <i class="dota2_dot "></i>
+                                                    <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['firstTowerTeamId']){  ?>
+                                                    <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <i class="dota2_dot "></i>
+                                                    <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['fiveKillTeamId']){  ?>
+                                                    <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <i class="dota2_dot blue"></i>
+                                                    <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['tenKillTeamId']){  ?>
+                                                    <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <i class="dota2_dot blue"></i>
+                                                   <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['firstRoushanTeamId']){  ?>
+                                                    <i class="dota2_dot red"></i>
+													<?php }?>
                                                 </span>
-                                        </div>-->
-                                        <div class="null">
+                                        </div>
+											<?php }}else{?>
+										<div class="null">
 											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
 										</div>
+										<?php }?>
                                       
                                     </div>
                                 </div>
@@ -324,7 +540,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
 
 						
                         <!-- 比赛详情 -->
-                        <div class="dota2_item live_box active">
+                        <div class="dota2_item live_box ">
                             <div class="war_report mb20">
                                 <div class="dota2_top">
                                     <img src="<?php echo $config['site_url'];?>/images/report.png" alt="">
