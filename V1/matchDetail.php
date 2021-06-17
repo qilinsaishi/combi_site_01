@@ -82,7 +82,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
+                                    <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
@@ -103,7 +103,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>"  class="imgauto">
+                                    <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
