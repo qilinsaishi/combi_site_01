@@ -82,14 +82,14 @@ foreach($newsTypeList as $newsType)
         <div class="bg1">
             <div class="banner" style="background:url(<?php echo $config['site_url'];?>/images/banner.png) no-repeat center / cover;">
                 <div class="button">
-                    <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank">
+                    <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank" rel="nofollow" >
                     <div class="download_ios download">
                         <img src="<?php echo $config['site_url'];?>/images/ios.png" alt="">
                         <span>IOS下载</span>
 
                     </div>
                     </a>
-                    <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank">
+                    <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank" rel="nofollow">
                     <div class="download_android download">
                         <img src="<?php echo $config['site_url'];?>/images/android.png" alt="">
                         <span>Android下载</span>
