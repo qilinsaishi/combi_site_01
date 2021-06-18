@@ -105,6 +105,29 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 	$return['intergratedPlayer']['data']['player_stat']['join_rank']=$return['intergratedPlayer']['data']['player_stat']['participationRateSort']?? 0;//参团排名
 	$return['intergratedPlayer']['data']['player_stat']['kda']=$return['intergratedPlayer']['data']['player_stat']['kda']?? 0;
 	$return['intergratedPlayer']['data']['player_stat']['kda_rank']=$return['intergratedPlayer']['data']['player_stat']['kdaSort']?? 0;
+	$map = [
+        'kills'=>['killCount','killCountSort','总击杀'],
+        'assists'=>['assistsCount','assistsCountSort','总助攻'],
+        'deaths'=>['dieCount','dieCountSort','总死亡'],
+        'minute_injury'=>['minuteNumber','minuteNumberSort','分均补刀'],
+        'injury_rate'=>['appearCount','appearCountSort','出场次数'],
+        'injury_inversion_rate'=>['averageKill','averageKillSort','场均击杀'],
+        'minute_damagetaken'=>['averageDie','averageDieSort','场均死亡'],
+        'minute_hits'=>['minuteOutput','minuteOutputSort','分均输出'],
+        'minute_wardsplaced'=>['hurtTransfRate','hurtTransfRateSort','输出转化率'],
+        'minute_wardkilled'=>['minuteBear','minuteBearSort','分均承伤'],
+        'hero_pool'=>['bearRate','bearRateSort','承伤占比'],
+    ];
+    $return['intergratedPlayer']['data']['player_stat']['base_ability_detail'] = [];
+	foreach($map as $map_key => $map_detail)
+    {
+        $return['intergratedPlayer']['data']['player_stat']['base_ability_detail'][$map_key] =
+        [
+            'score-num'=>$return['intergratedPlayer']['data']['player_stat'][$map_detail['0']]?? 0,
+            'score-des'=>$map_detail['2'],
+            'score-rank'=>$return['intergratedPlayer']['data']['player_stat'][$map_detail['1']]?? 0,
+        ];
+    }
 	$return['intergratedPlayer']['data']['player_stat']['base_ability_detail']=[
 		'kills'=>
 		[
