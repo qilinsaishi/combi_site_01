@@ -24,6 +24,13 @@ $params = [
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['data']['match_pre'],true);
 
+if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])>0){
+    array_multisort(array_column($return['matchDetail']['data']['match_data']['matchData'],"boxNum"),SORT_ASC,$return['matchDetail']['data']['match_data']['matchData']);
+}
+
+
+
+
 
 
 
@@ -541,1642 +548,1695 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
 						
                         <!-- 比赛详情 -->
                         <div class="dota2_item live_box ">
-                            <div class="war_report mb20">
-                                <div class="dota2_top">
-                                    <img src="<?php echo $config['site_url'];?>/images/report.png" alt="">
-                                    <span>对战战报</span>
+							<?php if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])>0){?>
+                                <div class="war_report mb20">
+                                    <div class="dota2_top">
+                                        <img src="<?php echo $config['site_url'];?>/images/report.png" alt="">
+                                        <span>对战战报</span>
+                                    </div>
+									
+                                    <div class="war_report_detail">
+                                        <span>本次比赛共计<?php echo count($return['matchDetail']['data']['match_data']['matchData']);?>局</span>
+										<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchInfo){
+												if(isset($matchInfo['homeTeam']['teamStat']['firstBlood']) && $matchInfo['homeTeam']['teamStat']['firstBlood']==0){
+													$firstBloodTeam=$matchInfo['awayTeam']['teamName'] ??'';
+												}else{
+													$firstBloodTeam=$matchInfo['homeTeam']['teamName'] ??'';
+												}
+												if(isset($matchInfo['homeTeam']['teamStat']['firstTower']) && $matchInfo['homeTeam']['teamStat']['firstTower']==0){
+													$firstTowerTeam=$matchInfo['awayTeam']['teamName'] ??'';
+												}else{
+													$firstTowerTeam=$matchInfo['homeTeam']['teamName'] ??'';
+												}
+												if(isset($matchInfo['homeTeam']['teamStat']['fiveKill']) && $matchInfo['homeTeam']['teamStat']['fiveKill']==0){
+													$fiveKillTeam=$matchInfo['awayTeam']['teamName'] ??'';
+												}else{
+													$fiveKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
+												}
+												if(isset($matchInfo['homeTeam']['teamStat']['tenKill']) && $matchInfo['homeTeam']['teamStat']['tenKill']==0){
+													$tenKillTeam=$matchInfo['awayTeam']['teamName'] ??'';
+												}else{
+													$tenKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
+												}
+												if(isset($matchInfo['homeTeam']['teamStat']['fifteenKill']) && $matchInfo['homeTeam']['teamStat']['fifteenKill']==0){
+													$fifteenKillTeam=$matchInfo['awayTeam']['teamName'] ??'';
+												}else{
+													$fifteenKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
+												}
+											?>
+                                        <p>第一局比赛中： <?php echo $firstBloodTeam; ?>夺得一血，<?php echo $firstTowerTeam; ?>首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?>拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀， <?php echo $fifteenKillTeam; ?>  豪取十五杀。</p>
+										<?php }?>
+                                        
+                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_name']?? '';}else{echo $return['matchDetail']['data']['home_name']?? '';}?>取得本次<?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?>的冠军</p>
+                                    </div>
+									
                                 </div>
-                                <div class="war_report_detail">
-                                    <span>本次比赛共计三局</span>
-                                    <p>第一局比赛中：The Cut 夺得一血，The Cut 首先攻下第一座防御塔，4Zs 拿下五杀， 4Zs 取得十杀，4Zs 豪取十五杀。</p>
-                                    <p>第二局比赛：4Zs 夺得一血，4Zs 首先攻下第一座防御塔，4Zs 拿下五杀， 4Zs 取得十杀，The Cut 豪取十五杀。</p>
-                                    <p>第三局比赛：ViKin.gg 夺得一血，Winstrike 首先攻下第一座防御塔，ViKin.gg 拿下五杀， Winstrike 取得十杀</p>
-                                    <p>最终恭喜WE取得本次Pinnacle杯赛事的冠军</p>
+                                <ul class="live_box_ul clearfix">
+									<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){?>
+                                    <li <?php if($matchKey==0){?>class="active"<?php }?>>
+                                        <div class="game_detail_img1">
+                                            <img src="<?php echo $config['site_url'];?>/images/game_detail1.png" alt="">
+                                        </div>
+                                        <span>GAME <?php echo ($matchKey+1);?></span>
+                                      
+                                    </li>
+									<?php }?>
+                                    
+                                   
+                                </ul>
+                                <div class="live_box_detail">
+								
+									<!--第一局-->
+                                    <div class="live_box_item active">
+                                        <div class="battle_details mb20">
+                                            <div class="dota2_top">
+                                                <img src="<?php echo $config['site_url'];?>/images/dota2_vs.png" alt="">
+                                                <span>对战详情</span>
+                                            </div>
+                                            <div class="battleBox">
+                                                <ul class="battleBox_vs_data1 vs_data2">
+                                                    <li class="active">
+                                                        <a href="##">
+                                                            一号位
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="##">
+                                                            二号位
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="##">
+                                                            三号位
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="##">
+                                                            四号位
+                                                        </a>
+                                                    </li>
+                                                    <li class="active1">
+                                                        <a href="##">
+                                                            五号位
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="battle_list">
+                                                    <div class="battle_item active">
+                                                        <div class="battle_item_top">
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">第一个轮播的第一个BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="center">
+                                                                <div class="kda_detail">
+                                                                    <span class="red kad_big">12.5</span>
+                                                                    <span class="red kad_small">2/2/23</span>
+                                                                    <span class="kad_big">KDA</span>
+                                                                    <span class="blue kad_small">2/2/23</span>
+                                                                    <span class="blue kad_big">12.5</span>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">2160.5</span>
+                                                                        <span class="fr time2">2519.4</span>
+                                                                        <div class="average_time">局均经济</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">925</span>
+                                                                        <span class="fr time2">1252</span>
+                                                                        <div class="average_time">局均补刀</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">35'03"</span>
+                                                                        <span class="fr time2">35'03"</span>
+                                                                        <div class="average_time">局均时长</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">36313</span>
+                                                                        <span class="fr time2">63121</span>
+                                                                        <div class="average_time">局均输出</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="battle_item_bottom">
+                                                            <div class="battle_bottom1">
+                                                                <div class="war_situation">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                                <div class="war_situation" style="justify-content: flex-end;">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_bottom2">
+                                                                <div class="row2 mb20">
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Bans</span>
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Picks</span>
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="battle_item">
+                                                        <div class="battle_item_top">
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">第一个轮播的第二个BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="center">
+                                                                <div class="kda_detail">
+                                                                    <span class="red kad_big">12.5</span>
+                                                                    <span class="red kad_small">2/2/23</span>
+                                                                    <span class="kad_big">KDA</span>
+                                                                    <span class="blue kad_small">2/2/23</span>
+                                                                    <span class="blue kad_big">12.5</span>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">2160.5</span>
+                                                                        <span class="fr time2">2519.4</span>
+                                                                        <div class="average_time">局均经济</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">925</span>
+                                                                        <span class="fr time2">1252</span>
+                                                                        <div class="average_time">局均补刀</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">35'03"</span>
+                                                                        <span class="fr time2">35'03"</span>
+                                                                        <div class="average_time">局均时长</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">36313</span>
+                                                                        <span class="fr time2">63121</span>
+                                                                        <div class="average_time">局均输出</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="battle_item_bottom">
+                                                            <div class="battle_bottom1">
+                                                                <div class="war_situation">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                                <div class="war_situation" style="justify-content: flex-end;">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_bottom2">
+                                                                <div class="row2 mb20">
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Bans</span>
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Picks</span>
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="battle_item">
+                                                        <div class="battle_item_top">
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">第一个轮播的第三个BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="center">
+                                                                <div class="kda_detail">
+                                                                    <span class="red kad_big">12.5</span>
+                                                                    <span class="red kad_small">2/2/23</span>
+                                                                    <span class="kad_big">KDA</span>
+                                                                    <span class="blue kad_small">2/2/23</span>
+                                                                    <span class="blue kad_big">12.5</span>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">2160.5</span>
+                                                                        <span class="fr time2">2519.4</span>
+                                                                        <div class="average_time">局均经济</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">925</span>
+                                                                        <span class="fr time2">1252</span>
+                                                                        <div class="average_time">局均补刀</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">35'03"</span>
+                                                                        <span class="fr time2">35'03"</span>
+                                                                        <div class="average_time">局均时长</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">36313</span>
+                                                                        <span class="fr time2">63121</span>
+                                                                        <div class="average_time">局均输出</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="battle_item_bottom">
+                                                            <div class="battle_bottom1">
+                                                                <div class="war_situation">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                                <div class="war_situation" style="justify-content: flex-end;">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_bottom2">
+                                                                <div class="row2 mb20">
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Bans</span>
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Picks</span>
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="battle_item">
+                                                        <div class="battle_item_top">
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">4444BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="center">
+                                                                <div class="kda_detail">
+                                                                    <span class="red kad_big">12.5</span>
+                                                                    <span class="red kad_small">2/2/23</span>
+                                                                    <span class="kad_big">KDA</span>
+                                                                    <span class="blue kad_small">2/2/23</span>
+                                                                    <span class="blue kad_big">12.5</span>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">2160.5</span>
+                                                                        <span class="fr time2">2519.4</span>
+                                                                        <div class="average_time">局均经济</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">925</span>
+                                                                        <span class="fr time2">1252</span>
+                                                                        <div class="average_time">局均补刀</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">35'03"</span>
+                                                                        <span class="fr time2">35'03"</span>
+                                                                        <div class="average_time">局均时长</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">36313</span>
+                                                                        <span class="fr time2">63121</span>
+                                                                        <div class="average_time">局均输出</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="battle_item_bottom">
+                                                            <div class="battle_bottom1">
+                                                                <div class="war_situation">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                                <div class="war_situation" style="justify-content: flex-end;">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_bottom2">
+                                                                <div class="row2 mb20">
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Bans</span>
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Picks</span>
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="battle_item">
+                                                        <div class="battle_item_top">
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">555BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="center">
+                                                                <div class="kda_detail">
+                                                                    <span class="red kad_big">12.5</span>
+                                                                    <span class="red kad_small">2/2/23</span>
+                                                                    <span class="kad_big">KDA</span>
+                                                                    <span class="blue kad_small">2/2/23</span>
+                                                                    <span class="blue kad_big">12.5</span>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">2160.5</span>
+                                                                        <span class="fr time2">2519.4</span>
+                                                                        <div class="average_time">局均经济</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">925</span>
+                                                                        <span class="fr time2">1252</span>
+                                                                        <div class="average_time">局均补刀</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">35'03"</span>
+                                                                        <span class="fr time2">35'03"</span>
+                                                                        <div class="average_time">局均时长</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rate_data_left">
+                                                                    <div class="rate_data_top">
+                                                                        <span class="fl time1">36313</span>
+                                                                        <span class="fr time2">63121</span>
+                                                                        <div class="average_time">局均输出</div>
+                                                                    </div>
+                                                                    <div class="compare-bar compare_bar clearfix">
+                                                                        <div class="progress3 fl progress4 red">
+                                                                            <span class="green" style="width: 40%;"></span>
+                                                                        </div>
+                                                                        <div class="progress3 fr blue">
+                                                                            <span class="green" style="width: 60%;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_top_left">
+                                                                <div class="battle_hero">
+                                                                    <div class="heroBox">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                    <div class="heroUse">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
+                                                                <div class="thumbList">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
+                                                                    <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="battle_item_bottom">
+                                                            <div class="battle_bottom1">
+                                                                <div class="war_situation">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                                <div class="war_situation" style="justify-content: flex-end;">
+                                                                    <span class="war_red">一塔</span>
+                                                                    <span class="war_blue">一血</span>
+                                                                    <span>先五杀</span>
+                                                                    <span>先十杀</span>
+                                                                    <span>一小龙</span>
+                                                                    <span>一大龙</span>
+                                                                    <span>一先锋</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="battle_bottom2">
+                                                                <div class="row2 mb20">
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Bans</span>
+                                                                    <div class="heroBan">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                    <span class="bans">Picks</span>
+                                                                    <div class="heroPick">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
+                                                                        <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="lineup_data">
+                                            <div class="dota2_top">
+                                                <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
+                                                <span>阵容数据</span>
+                                            </div>
+                                            <div class="lineup_mid">
+                                                <div class="game_detail_item3">
+                                                    <div class="game_detail_item3_top">
+                                                        <div class="left">
+                                                            <span>3</span>
+                                                        </div>
+                                                        <p>核心</p>
+                                                        <div class="left">
+                                                            <span>4</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pk-detail-con">
+                                                        <div class="progress red">
+                                                            <div class="progress-bar" style="width: 58%;">
+                                                                <i class="lightning"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="game_detail_item3">
+                                                    <div class="game_detail_item3_top">
+                                                        <div class="left">
+                                                            <span>3</span>
+                                                        </div>
+                                                        <p>控制</p>
+                                                        <div class="left">
+                                                            <span>4</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pk-detail-con">
+                                                        <div class="progress red">
+                                                            <div class="progress-bar" style="width: 58%;">
+                                                                <i class="lightning"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="game_detail_item3">
+                                                    <div class="game_detail_item3_top">
+                                                        <div class="left">
+                                                            <span>3</span>
+                                                        </div>
+                                                        <p>先手</p>
+                                                        <div class="left">
+                                                            <span>5</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pk-detail-con">
+                                                        <div class="progress red">
+                                                            <div class="progress-bar" style="width: 78%;">
+                                                                <i class="lightning"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="game_detail_item3">
+                                                    <div class="game_detail_item3_top">
+                                                        <div class="left">
+                                                            <span>3</span>
+                                                        </div>
+                                                        <p>爆发</p>
+                                                        <div class="left">
+                                                            <span>0</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pk-detail-con">
+                                                        <div class="progress red">
+                                                            <div class="progress-bar" style="width: 100%;">
+                                                                <i class="lightning"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="game_detail_item3">
+                                                    <div class="game_detail_item3_top">
+                                                        <div class="left">
+                                                            <span>3</span>
+                                                        </div>
+                                                        <p>逃生</p>
+                                                        <div class="left">
+                                                            <span>4</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pk-detail-con">
+                                                        <div class="progress red">
+                                                            <div class="progress-bar" style="width: 38%;">
+                                                                <i class="lightning"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="game_detail_item3">
+                                                    <div class="game_detail_item3_top">
+                                                        <div class="left">
+                                                            <span>2</span>
+                                                        </div>
+                                                        <p>打野</p>
+                                                        <div class="left">
+                                                            <span>4</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pk-detail-con">
+                                                        <div class="progress red">
+                                                            <div class="progress-bar" style="width: 28%;">
+                                                                <i class="lightning"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="game_detail_item3 mb60">
+                                                <div class="game_detail_item3_top">
+                                                    <div class="left">
+                                                        <span>3</span>
+                                                    </div>
+                                                    <p>推进</p>
+                                                    <div class="left">
+                                                        <span>4</span>
+                                                    </div>
+                                                </div>
+                                                <div class="pk-detail-con">
+                                                    <div class="progress red">
+                                                        <div class="progress-bar" style="width: 38%;">
+                                                            <i class="lightning"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="lineup_bottom">
+                                                <ul class="vs_data2 lineup_vs_data2">
+                                                    <li class="active">
+                                                        <a href="##">
+                                                            胜率
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="##">
+                                                            一血率
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="##">
+                                                            一塔率
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="##">
+                                                            五杀率
+                                                        </a>
+                                                    </li>
+                                                    <li class="active1">
+                                                        <a href="##">
+                                                            十杀率
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="lineup_list">
+                                                    <div class="lineup_item active">
+                                                        <div class="lineup_th">
+                                                            <div class="lineup_thItem red">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem blue lineup_thRever">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>置</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">15%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>上单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>打野</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>ADC</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15"></i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>中单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15"></i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>辅助</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lineup_item">
+                                                        <div class="lineup_th">
+                                                            <div class="lineup_thItem red">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem blue lineup_thRever">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>置</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">25%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>上单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>打野</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>ADC</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15"></i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>中单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15"></i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>辅助</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lineup_item">
+                                                        <div class="lineup_th">
+                                                            <div class="lineup_thItem red">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem blue lineup_thRever">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>置</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">35%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>上单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>打野</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>ADC</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15"></i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>中单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15"></i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>辅助</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lineup_item">
+                                                        <div class="lineup_th">
+                                                            <div class="lineup_thItem red">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem blue lineup_thRever">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>置</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">45%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>上单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>打野</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>ADC</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15"></i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>中单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15"></i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>辅助</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lineup_item">
+                                                        <div class="lineup_th">
+                                                            <div class="lineup_thItem red">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem blue lineup_thRever">
+                                                                <span class="flex15">所有战队(胜/局数)</span>
+                                                                <span class="flex15">当前战队(胜/局数)</span>
+                                                                <span>英雄</span>
+                                                                <span>置</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>上单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>打野</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>ADC</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15"></i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>中单</p>
+                                                        </div>
+                                                        <div class="lineup_td">
+                                                            <div class="lineup_thItem">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">位</span>
+                                                            </div>
+                                                            <div class="lineup_thItem lineup_thRever">
+                                                                <span class="flex15">55%<i>(27/49)</i></span>
+                                                                <span class="flex15"></i></span>
+                                                                <span>
+                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                </span>
+                                                                <span class="dn">置</span>
+                                                            </div>
+                                                            <p>辅助</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+									
+									<!--第一局-->
+                                    
                                 </div>
+							<?php }?>
                             </div>
-                            <div class="battle_details mb20">
-                                <div class="dota2_top">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_vs.png" alt="">
-                                    <span>对战详情</span>
-                                </div>
-                                <div class="battleBox">
-                                    <ul class="vs_data1">
-                                        <li class="active">
-                                            <a href="##">
-                                                一号位
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="##">
-                                                二号位
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="##">
-                                                三号位
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="##">
-                                                四号位
-                                            </a>
-                                        </li>
-                                        <li class="active1">
-                                            <a href="##">
-                                                五号位
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="battle_list">
-                                        <div class="battle_item active">
-                                            <div class="battle_item_top">
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="center">
-                                                    <div class="kda_detail">
-                                                        <span class="red kad_big">12.5</span>
-                                                        <span class="red kad_small">2/2/23</span>
-                                                        <span class="kad_big">KDA</span>
-                                                        <span class="blue kad_small">2/2/23</span>
-                                                        <span class="blue kad_big">12.5</span>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">2160.5</span>
-                                                            <span class="fr time2">2519.4</span>
-                                                            <div class="average_time">局均经济</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">925</span>
-                                                            <span class="fr time2">1252</span>
-                                                            <div class="average_time">局均补刀</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">35'03"</span>
-                                                            <span class="fr time2">35'03"</span>
-                                                            <div class="average_time">局均时长</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">36313</span>
-                                                            <span class="fr time2">63121</span>
-                                                            <div class="average_time">局均输出</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="battle_item_bottom">
-                                                <div class="battle_bottom1">
-                                                    <div class="war_situation">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                    <div class="war_situation" style="justify-content: flex-end;">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_bottom2">
-                                                    <div class="row2 mb20">
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Bans</span>
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row2">
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Picks</span>
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="battle_item">
-                                            <div class="battle_item_top">
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">22222BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="center">
-                                                    <div class="kda_detail">
-                                                        <span class="red kad_big">12.5</span>
-                                                        <span class="red kad_small">2/2/23</span>
-                                                        <span class="kad_big">KDA</span>
-                                                        <span class="blue kad_small">2/2/23</span>
-                                                        <span class="blue kad_big">12.5</span>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">2160.5</span>
-                                                            <span class="fr time2">2519.4</span>
-                                                            <div class="average_time">局均经济</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">925</span>
-                                                            <span class="fr time2">1252</span>
-                                                            <div class="average_time">局均补刀</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">35'03"</span>
-                                                            <span class="fr time2">35'03"</span>
-                                                            <div class="average_time">局均时长</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">36313</span>
-                                                            <span class="fr time2">63121</span>
-                                                            <div class="average_time">局均输出</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="battle_item_bottom">
-                                                <div class="battle_bottom1">
-                                                    <div class="war_situation">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                    <div class="war_situation" style="justify-content: flex-end;">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_bottom2">
-                                                    <div class="row2 mb20">
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Bans</span>
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row2">
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Picks</span>
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="battle_item">
-                                            <div class="battle_item_top">
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">3323BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="center">
-                                                    <div class="kda_detail">
-                                                        <span class="red kad_big">12.5</span>
-                                                        <span class="red kad_small">2/2/23</span>
-                                                        <span class="kad_big">KDA</span>
-                                                        <span class="blue kad_small">2/2/23</span>
-                                                        <span class="blue kad_big">12.5</span>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">2160.5</span>
-                                                            <span class="fr time2">2519.4</span>
-                                                            <div class="average_time">局均经济</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">925</span>
-                                                            <span class="fr time2">1252</span>
-                                                            <div class="average_time">局均补刀</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">35'03"</span>
-                                                            <span class="fr time2">35'03"</span>
-                                                            <div class="average_time">局均时长</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">36313</span>
-                                                            <span class="fr time2">63121</span>
-                                                            <div class="average_time">局均输出</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="battle_item_bottom">
-                                                <div class="battle_bottom1">
-                                                    <div class="war_situation">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                    <div class="war_situation" style="justify-content: flex-end;">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_bottom2">
-                                                    <div class="row2 mb20">
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Bans</span>
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row2">
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Picks</span>
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="battle_item">
-                                            <div class="battle_item_top">
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">4444BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="center">
-                                                    <div class="kda_detail">
-                                                        <span class="red kad_big">12.5</span>
-                                                        <span class="red kad_small">2/2/23</span>
-                                                        <span class="kad_big">KDA</span>
-                                                        <span class="blue kad_small">2/2/23</span>
-                                                        <span class="blue kad_big">12.5</span>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">2160.5</span>
-                                                            <span class="fr time2">2519.4</span>
-                                                            <div class="average_time">局均经济</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">925</span>
-                                                            <span class="fr time2">1252</span>
-                                                            <div class="average_time">局均补刀</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">35'03"</span>
-                                                            <span class="fr time2">35'03"</span>
-                                                            <div class="average_time">局均时长</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">36313</span>
-                                                            <span class="fr time2">63121</span>
-                                                            <div class="average_time">局均输出</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="battle_item_bottom">
-                                                <div class="battle_bottom1">
-                                                    <div class="war_situation">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                    <div class="war_situation" style="justify-content: flex-end;">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_bottom2">
-                                                    <div class="row2 mb20">
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Bans</span>
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row2">
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Picks</span>
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="battle_item">
-                                            <div class="battle_item_top">
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">555BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="center">
-                                                    <div class="kda_detail">
-                                                        <span class="red kad_big">12.5</span>
-                                                        <span class="red kad_small">2/2/23</span>
-                                                        <span class="kad_big">KDA</span>
-                                                        <span class="blue kad_small">2/2/23</span>
-                                                        <span class="blue kad_big">12.5</span>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">2160.5</span>
-                                                            <span class="fr time2">2519.4</span>
-                                                            <div class="average_time">局均经济</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">925</span>
-                                                            <span class="fr time2">1252</span>
-                                                            <div class="average_time">局均补刀</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">35'03"</span>
-                                                            <span class="fr time2">35'03"</span>
-                                                            <div class="average_time">局均时长</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rate_data_left">
-                                                        <div class="rate_data_top">
-                                                            <span class="fl time1">36313</span>
-                                                            <span class="fr time2">63121</span>
-                                                            <div class="average_time">局均输出</div>
-                                                        </div>
-                                                        <div class="compare-bar compare_bar clearfix">
-                                                            <div class="progress3 fl progress4 red">
-                                                                <span class="green" style="width: 40%;"></span>
-                                                            </div>
-                                                            <div class="progress3 fr blue">
-                                                                <span class="green" style="width: 60%;"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_top_left">
-                                                    <div class="battle_hero">
-                                                        <div class="heroBox">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_hero.png" alt="" class="imgauto">
-                                                        </div>
-                                                        <div class="heroUse">
-                                                            <img src="<?php echo $config['site_url'];?>/images/battle_use.png" alt="" class="imgauto">
-                                                        </div>
-                                                    </div>
-                                                    <span class="battle_hero_name">BraxBraxBraxBraxBrax</span>
-                                                    <div class="thumbList">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb1.png" alt="">
-                                                        <img src="<?php echo $config['site_url'];?>/images/zb2.png" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="battle_item_bottom">
-                                                <div class="battle_bottom1">
-                                                    <div class="war_situation">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                    <div class="war_situation" style="justify-content: flex-end;">
-                                                        <span class="war_red">一塔</span>
-                                                        <span class="war_blue">一血</span>
-                                                        <span>先五杀</span>
-                                                        <span>先十杀</span>
-                                                        <span>一小龙</span>
-                                                        <span>一大龙</span>
-                                                        <span>一先锋</span>
-                                                    </div>
-                                                </div>
-                                                <div class="battle_bottom2">
-                                                    <div class="row2 mb20">
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Bans</span>
-                                                        <div class="heroBan">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row2">
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                        <span class="bans">Picks</span>
-                                                        <div class="heroPick">
-                                                            <img src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumitem2.png" alt="">
-                                                            <img src="<?php echo $config['site_url'];?>/images/thumbitem2.png" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lineup_data">
-                                <div class="dota2_top">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
-                                    <span>阵容数据</span>
-                                </div>
-                                <div class="lineup_mid">
-                                    <div class="game_detail_item3">
-                                        <div class="game_detail_item3_top">
-                                            <div class="left">
-                                                <span>3</span>
-                                            </div>
-                                            <p>核心</p>
-                                            <div class="left">
-                                                <span>4</span>
-                                            </div>
-                                        </div>
-                                        <div class="pk-detail-con">
-                                            <div class="progress red">
-                                                <div class="progress-bar" style="width: 58%;">
-                                                    <i class="lightning"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="game_detail_item3">
-                                        <div class="game_detail_item3_top">
-                                            <div class="left">
-                                                <span>3</span>
-                                            </div>
-                                            <p>控制</p>
-                                            <div class="left">
-                                                <span>4</span>
-                                            </div>
-                                        </div>
-                                        <div class="pk-detail-con">
-                                            <div class="progress red">
-                                                <div class="progress-bar" style="width: 58%;">
-                                                    <i class="lightning"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="game_detail_item3">
-                                        <div class="game_detail_item3_top">
-                                            <div class="left">
-                                                <span>3</span>
-                                            </div>
-                                            <p>先手</p>
-                                            <div class="left">
-                                                <span>5</span>
-                                            </div>
-                                        </div>
-                                        <div class="pk-detail-con">
-                                            <div class="progress red">
-                                                <div class="progress-bar" style="width: 78%;">
-                                                    <i class="lightning"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="game_detail_item3">
-                                        <div class="game_detail_item3_top">
-                                            <div class="left">
-                                                <span>3</span>
-                                            </div>
-                                            <p>爆发</p>
-                                            <div class="left">
-                                                <span>0</span>
-                                            </div>
-                                        </div>
-                                        <div class="pk-detail-con">
-                                            <div class="progress red">
-                                                <div class="progress-bar" style="width: 100%;">
-                                                    <i class="lightning"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="game_detail_item3">
-                                        <div class="game_detail_item3_top">
-                                            <div class="left">
-                                                <span>3</span>
-                                            </div>
-                                            <p>逃生</p>
-                                            <div class="left">
-                                                <span>4</span>
-                                            </div>
-                                        </div>
-                                        <div class="pk-detail-con">
-                                            <div class="progress red">
-                                                <div class="progress-bar" style="width: 38%;">
-                                                    <i class="lightning"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="game_detail_item3">
-                                        <div class="game_detail_item3_top">
-                                            <div class="left">
-                                                <span>2</span>
-                                            </div>
-                                            <p>打野</p>
-                                            <div class="left">
-                                                <span>4</span>
-                                            </div>
-                                        </div>
-                                        <div class="pk-detail-con">
-                                            <div class="progress red">
-                                                <div class="progress-bar" style="width: 28%;">
-                                                    <i class="lightning"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="game_detail_item3 mb60">
-                                    <div class="game_detail_item3_top">
-                                        <div class="left">
-                                            <span>3</span>
-                                        </div>
-                                        <p>推进</p>
-                                        <div class="left">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                    <div class="pk-detail-con">
-                                        <div class="progress red">
-                                            <div class="progress-bar" style="width: 38%;">
-                                                <i class="lightning"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="lineup_bottom">
-                                    <ul class="vs_data2">
-                                        <li class="active">
-                                            <a href="##">
-                                                胜率
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="##">
-                                                一血率
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="##">
-                                                一塔率
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="##">
-                                                五杀率
-                                            </a>
-                                        </li>
-                                        <li class="active1">
-                                            <a href="##">
-                                                十杀率
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="lineup_list">
-                                        <div class="lineup_item active">
-                                            <div class="lineup_th">
-                                                <div class="lineup_thItem red">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>位</span>
-                                                </div>
-                                                <div class="lineup_thItem blue lineup_thRever">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>置</span>
-                                                </div>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">15%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>上单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>打野</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>ADC</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15"></i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>中单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15"></i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>辅助</p>
-                                            </div>
-                                        </div>
-                                        <div class="lineup_item">
-                                            <div class="lineup_th">
-                                                <div class="lineup_thItem red">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>位</span>
-                                                </div>
-                                                <div class="lineup_thItem blue lineup_thRever">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>置</span>
-                                                </div>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">25%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>上单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>打野</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>ADC</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15"></i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>中单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15"></i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>辅助</p>
-                                            </div>
-                                        </div>
-                                        <div class="lineup_item">
-                                            <div class="lineup_th">
-                                                <div class="lineup_thItem red">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>位</span>
-                                                </div>
-                                                <div class="lineup_thItem blue lineup_thRever">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>置</span>
-                                                </div>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">35%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>上单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>打野</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>ADC</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15"></i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>中单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15"></i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>辅助</p>
-                                            </div>
-                                        </div>
-                                        <div class="lineup_item">
-                                            <div class="lineup_th">
-                                                <div class="lineup_thItem red">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>位</span>
-                                                </div>
-                                                <div class="lineup_thItem blue lineup_thRever">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>置</span>
-                                                </div>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">45%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>上单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>打野</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>ADC</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15"></i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>中单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15"></i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>辅助</p>
-                                            </div>
-                                        </div>
-                                        <div class="lineup_item">
-                                            <div class="lineup_th">
-                                                <div class="lineup_thItem red">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>位</span>
-                                                </div>
-                                                <div class="lineup_thItem blue lineup_thRever">
-                                                    <span class="flex15">所有战队(胜/局数)</span>
-                                                    <span class="flex15">当前战队(胜/局数)</span>
-                                                    <span>英雄</span>
-                                                    <span>置</span>
-                                                </div>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>上单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>打野</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>ADC</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15"></i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>中单</p>
-                                            </div>
-                                            <div class="lineup_td">
-                                                <div class="lineup_thItem">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15">66%<i>(2/4)</i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">位</span>
-                                                </div>
-                                                <div class="lineup_thItem lineup_thRever">
-                                                    <span class="flex15">55%<i>(27/49)</i></span>
-                                                    <span class="flex15"></i></span>
-                                                    <span>
-                                                            <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                        </span>
-                                                    <span class="dn">置</span>
-                                                </div>
-                                                <p>辅助</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- 比赛详情 -->
                     </div>
                 </div>
