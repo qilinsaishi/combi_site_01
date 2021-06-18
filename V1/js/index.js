@@ -52,9 +52,8 @@ $(function () {
 
     //这是点击info的
     $(".game_detail_div_item li").click(function () {
-        console.log($(".game_detail_div_item li").index(this))
         $(this).addClass("active").siblings().removeClass("active")
-        $(".vs_data2 .vs_data2_item").eq($(".game_detail_div_item li").index(this)).show().siblings().hide();
+        $(".vs_data2 .vs_data2_item").eq($(".game_detail_div_item li").index(this)).addClass("active").siblings().removeClass("active");
     });
 })
 
@@ -67,8 +66,6 @@ $(".game_before_after").on("click", 'li', function () {
     $(".game_before_after li").removeClass("active");
     $(this).addClass("active");
     $(this).parents(".game_detail_item6").find(".vs_data3").find(".vs_data3_left").removeClass("active").eq($(this).index()).addClass("active");
-    // $(".vs_data3 .vs_data3_left").removeClass("active").eq($(this).index()).addClass("active");
-    console.log($(this).parents(".game_detail_item6").find(".vs_data3").find(".vs_data3_left"))
 })
 
 
@@ -124,5 +121,39 @@ $(".suspension").on("click",".suspension_close",function(){
 // 懒加载
 
  // onload是等所有的资源文件加载完毕以后再绑定事件
+
+
+ //这是dota2中比赛详情的tab切换
+ $(function () {
+    //第一个高亮
+    $(".live_box_ul li:first").addClass("active");
+    //展示第二个tab中的第一个div   其他的都隐藏
+    $(".live_box_item:first").addClass("active").siblings().removeClass("active");
+    // $(".live_box_item:first li:first").addClass("active")
+    //展示第二个tab中的第一个div中的第一个vs_data2_item  其他的都隐藏
+    $(".battle_list .battle_item:first").addClass("active").siblings().removeClass("active");
+
+    //点击li
+    $(".live_box_ul li").click(function () {
+        // li选中的添加new   其他的都去掉
+        $(this).addClass("active").siblings().removeClass("active");
+        // console.log($(".game_detail_ul li").index(this))
+        $(".live_box_item").eq($(".live_box_ul li").index(this))
+        .show().siblings().hide();
+    });
+
+    //这是点击live_box_item .battleBox_vs_data1 li的
+    $(".live_box_item .battleBox_vs_data1 li").click(function () {
+        $(this).addClass("active").siblings().removeClass("active")
+        $(".battle_list .battle_item").eq($(".live_box_item .battleBox_vs_data1 li").index(this)).addClass("active").siblings().removeClass("active");
+    });
+
+
+    //这是点击lineup_bottom .lineup_vs_data2 li的
+    $(".lineup_bottom .lineup_vs_data2 li").click(function () {
+        $(this).addClass("active").siblings().removeClass("active")
+        $(".lineup_list .lineup_item").eq($(".lineup_bottom .lineup_vs_data2 li").index(this)).addClass("active").siblings().removeClass("active");
+    });
+})
 
 
