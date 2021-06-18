@@ -972,36 +972,103 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                     </div>
                                                 </div>
                                             </div>
+											<?php $statistical=["winRate"=>"胜率","firstBloodRate"=>"一血率","firstTowerRate"=>"一塔率","fiveKillRate"=>"五杀率","tenKillRate"=>"十杀率"]; ?>
                                             <div class="lineup_bottom">
                                                 <ul class="vs_data2 lineup_vs_data2">
-                                                    <li class="active">
+												<!--胜率，一血率，一塔率，五杀率，十杀率-->
+													<?php foreach($statistical as $statisticalKey=>$statisticalInfo){?>
+                                                    <li <?php if($statisticalKey=="winRate"){ ?>class="active" <?php }?>>
                                                         <a href="##">
-                                                            胜率
+                                                            <?php echo $statisticalInfo;?>
                                                         </a>
                                                     </li>
-                                                    <li class="">
-                                                        <a href="##">
-                                                            一血率
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="##">
-                                                            一塔率
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="##">
-                                                            五杀率
-                                                        </a>
-                                                    </li>
-                                                    <li class="active1">
-                                                        <a href="##">
-                                                            十杀率
-                                                        </a>
-                                                    </li>
+                                                    <?php }?>
                                                 </ul>
                                                 <div class="lineup_list">
-                                                    <div class="lineup_item active">
+													<?php 
+														$position=["上单","打野","ADC","中单","辅助"];
+														//主队
+														if(isset($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'])){
+															foreach($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'] as $awayHeroStatKey=>$awayHeroStatInfo){
+																//赢率
+																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['winRate']=round($awayHeroStatInfo['allWinCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																
+																
+																//一血率
+																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['firstBloodRate']=round($awayHeroStatInfo['allFirstBloodsCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																//一塔率
+																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['firstTowerRate']=round($awayHeroStatInfo['allFirstTowersCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																//五杀率
+																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['fiveKillRate']=round($awayHeroStatInfo['allFiveKillsCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																//十杀率
+																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['tenKillRate']=round($awayHeroStatInfo['allTenKillsCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+															}
+															
+														}
+														//客队
+														if(isset($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'])){
+															foreach($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'] as $homeHeroStatKey=>$homeHeroStatInfo){
+																//赢率
+																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['winRate']=round($homeHeroStatInfo['allWinCount']/$homeHeroStatInfo['allTotal'],2)*100;
+																//一血率
+																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['firstBloodRate']=round($homeHeroStatInfo['allFirstBloodsCount']/$homeHeroStatInfo['allTotal'],2)*100;
+																//一塔率
+																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['firstTowerRate']=round($homeHeroStatInfo['allFirstTowersCount']/$homeHeroStatInfo['allTotal'],2)*100;
+																//五杀率
+																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['fiveKillRate']=round($homeHeroStatInfo['allFiveKillsCount']/$homeHeroStatInfo['allTotal'],2)*100;
+																//十杀率
+																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['tenKillRate']=round($homeHeroStatInfo['allTenKillsCount']/$homeHeroStatInfo['allTotal'],2)*100;
+																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																
+															}
+															
+														}
+														
+														$dataAnalysis=[];
+														$dataAnalysis['awayHeroStat']=[];
+														$dataAnalysis['homeHeroStat']=[];
+												
+													foreach($statistical as $statisticalKey=>$statisticalInfo){
+														if($statisticalKey=='winRate'){
+															//按照赢率排序
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"winRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
+															
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"winRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
+															
+															
+														}elseif($statisticalKey=='firstBloodRate'){
+															//按照一血率排序
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"firstBloodRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
+															
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"firstBloodRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
+															
+															
+														}elseif($statisticalKey=='firstTowerRate'){
+															//按照一塔率排序
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"firstTowerRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
+															
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"firstTowerRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
+														
+														}elseif($statisticalKey=='fiveKillRate'){
+															//按照五杀率排序
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"fiveKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
+															
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"fiveKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
+															
+															
+															
+														}elseif($statisticalKey=='tenKillRate'){
+															//按照十杀率排序
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"tenKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
+															
+															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"tenKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
+															
+														} 
+														$dataAnalysis['awayHeroStat']=$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']??[];
+														$dataAnalysis['homeHeroStat']=$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']??[];
+														?>
+                                                    <div class="lineup_item <?php if($statisticalKey=='winRate'){ ?>active <?php }?>">
                                                         <div class="lineup_th">
                                                             <div class="lineup_thItem red">
                                                                 <span class="flex15">所有战队(胜/局数)</span>
@@ -1016,548 +1083,34 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <span>置</span>
                                                             </div>
                                                         </div>
+														<?php foreach($dataAnalysis['awayHeroStat'] as $key=>$awayHeroStatInfo){?>
                                                         <div class="lineup_td">
                                                             <div class="lineup_thItem">
-                                                                <span class="flex15">15%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span class="flex15"><?php echo $awayHeroStatInfo['winRate']; ?>%<i>(<?php echo $awayHeroStatInfo['allWinCount'];?>/<?php echo $awayHeroStatInfo['allTotal'];?>)</i></span>
+                                                                <span class="flex15"><?php echo ($awayHeroStatInfo['currWinCount']/$awayHeroStatInfo['currTotal'])*100; ?>%<i>(<?php echo $awayHeroStatInfo['currWinCount']; ?>/<?php echo $awayHeroStatInfo['currTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                    <img  class="lineup_img" src="<?php echo $awayHeroStatInfo['heroLogo']; ?>" alt="<?php echo $awayHeroStatInfo['heroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">位</span>
                                                             </div>
                                                             <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
+                                                                <span class="flex15"><?php echo $dataAnalysis['homeHeroStat'][$key]['winRate']; ?>%<i>(<?php echo $dataAnalysis['homeHeroStat'][$key]['allWinCount']; ?>/<?php echo $dataAnalysis['homeHeroStat'][$key]['allTotal']; ?>)</i></span>
+                                                                <span class="flex15"><?php echo ($dataAnalysis['homeHeroStat'][$key]['currWinCount']/$awayHeroStatInfo['currTotal'])*100; ?>%<i>(<?php echo $dataAnalysis['homeHeroStat'][$key]['currWinCount']; ?>/<?php echo $dataAnalysis['homeHeroStat'][$key]['currTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
+                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysis['homeHeroStat'][$key]['heroLogo']; ?>" alt="<?php echo $dataAnalysis['homeHeroStat'][$key]['heroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">置</span>
                                                             </div>
-                                                            <p>上单</p>
+                                                            <p><?php echo $awayHeroStatInfo['postion']; ?></p>
                                                         </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>打野</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>ADC</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15"></i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>中单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15"></i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>辅助</p>
-                                                        </div>
+                                                        
+														<?php }?>
+														
                                                     </div>
-													
+													<?php } ?>
 													<!--胜率-->
-                                                    <div class="lineup_item">
-                                                        <div class="lineup_th">
-                                                            <div class="lineup_thItem red">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem blue lineup_thRever">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>置</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">25%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>上单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>打野</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>ADC</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15"></i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>中单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15"></i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>辅助</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="lineup_item">
-                                                        <div class="lineup_th">
-                                                            <div class="lineup_thItem red">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem blue lineup_thRever">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>置</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">35%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>上单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>打野</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>ADC</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15"></i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>中单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15"></i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>辅助</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="lineup_item">
-                                                        <div class="lineup_th">
-                                                            <div class="lineup_thItem red">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem blue lineup_thRever">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>置</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">45%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>上单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>打野</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>ADC</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15"></i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>中单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15"></i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>辅助</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="lineup_item">
-                                                        <div class="lineup_th">
-                                                            <div class="lineup_thItem red">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem blue lineup_thRever">
-                                                                <span class="flex15">所有战队(胜/局数)</span>
-                                                                <span class="flex15">当前战队(胜/局数)</span>
-                                                                <span>英雄</span>
-                                                                <span>置</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>上单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>打野</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>ADC</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15"></i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>中单</p>
-                                                        </div>
-                                                        <div class="lineup_td">
-                                                            <div class="lineup_thItem">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15">66%<i>(2/4)</i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">位</span>
-                                                            </div>
-                                                            <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15">55%<i>(27/49)</i></span>
-                                                                <span class="flex15"></i></span>
-                                                                <span>
-                                                                    <img  class="lineup_img" src="<?php echo $config['site_url'];?>/images/dota_hero1.png" alt="">
-                                                                </span>
-                                                                <span class="dn">置</span>
-                                                            </div>
-                                                            <p>辅助</p>
-                                                        </div>
-                                                    </div>
+                                                   
+                                                   
                                                 </div>
                                             </div>
                                         </div>
