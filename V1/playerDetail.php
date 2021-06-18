@@ -379,6 +379,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 									foreach($recentMatchInfo['player_detail'] as $round_key => $round_detail)
 									{
 										?>
+                                        <?php if(count($round_detail)>1) {?>
                                             <?php if(($round_detail['win_teamID'] == $recentMatchInfo['home_id'])){$win_side = "home";}else{$win_side="away";}?>
 										<li class="<?php if($side == $win_side){  ?>red<?php }else{ ?>blue<?php } ?>">
 											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['game'];?>-<?php echo $recentMatchInfo['match_id'];?>">
@@ -449,7 +450,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 											</a>
 										</li>
 
-									<?php }}?>
+									<?php }}}?>
                             
 						  <?php }?>
                         </ul>
