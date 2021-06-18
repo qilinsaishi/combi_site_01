@@ -1,7 +1,7 @@
 <?php
 require_once "function/init.php";
 $params = [
-    "matchList"=>["page"=>1,"page_size"=>8,"recent"=>1,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>86400],
+    "matchList"=>["page"=>1,"page_size"=>8,"recent"=>1,"source"=>$config['default_source'],"cache_time"=>86400],
     "tournamentList"=>["page"=>1,"page_size"=>4,"source"=>$config['default_source'],"cache_time"=>86400],
 	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>0,"game"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
