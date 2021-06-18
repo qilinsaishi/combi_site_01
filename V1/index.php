@@ -21,6 +21,7 @@ foreach ($config['game'] as $game => $gameName)
         ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return['dota2TournamentList']['data'] = [];
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['dota2TournamentList']['data']);
 //文章类型
 $newsTypeList = ["News","Stra"];
