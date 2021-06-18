@@ -216,7 +216,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                             <?php generateNav($config,"player");?>
                         </ul>
                     </div>
-                </div>
+                </div>q
             </div>
         </div>
         <div class="container">
@@ -355,7 +355,14 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                             $count = 0;
                             foreach($playerDetailList as $detail)
                             {
-                                $count+=count($detail);
+                                foreach($detail as $roundDetail)
+                                {
+                                    if(count($roundDetail)>1)
+                                    {
+                                        $count++;
+                                    }
+
+                                }
                             }
                             if($count>0){
                             ?>
