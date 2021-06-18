@@ -53,7 +53,7 @@ $(function () {
     //这是点击info的
     $(".game_detail_div_item li").click(function () {
         $(this).addClass("active").siblings().removeClass("active")
-        $(".vs_data2 .vs_data2_item").eq($(".game_detail_div_item li").index(this)).show().siblings().hide();
+        $(".vs_data2 .vs_data2_item").eq($(".game_detail_div_item li").index(this)).addClass("active").siblings().removeClass("active");
     });
 })
 
