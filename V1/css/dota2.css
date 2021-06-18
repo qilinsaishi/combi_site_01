@@ -771,6 +771,9 @@
     }
     .dota2_ul1 li a{
         font-size: .3rem;
+        height: .5rem;
+        line-height: .5rem;
+        display: block;
     }
     .bpBox{
         padding: 0 .16rem;
