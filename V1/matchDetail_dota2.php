@@ -987,86 +987,174 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                 <div class="lineup_list">
 													<?php 
 														$position=["上单","打野","ADC","中单","辅助"];
+														$winRateDataAnalysis=$firstBloodRateDataAnalysis=$firstTowerDataAnalysis=$fiveKillRateDataAnalysis=$tenKillRateDataAnalysis=[];
 														//主队
 														if(isset($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'])){
 															foreach($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'] as $awayHeroStatKey=>$awayHeroStatInfo){
 																//赢率
-																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['winRate']=round($awayHeroStatInfo['allWinCount']/$awayHeroStatInfo['allTotal'],2)*100;
-																
+																$winRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allWinCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																$winRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allWinCount']??0;
+																$winRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currWinCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currWinCount']??0;
+																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
+																$winRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																//英雄
+																$winRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																$winRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//一血率
-																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['firstBloodRate']=round($awayHeroStatInfo['allFirstBloodsCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFirstBloodsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allFirstBloodsCount']??0;
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFirstBloodsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstBloodsCount']??0;
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																//英雄
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
+																
 																//一塔率
-																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['firstTowerRate']=round($awayHeroStatInfo['allFirstTowersCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFirstTowersCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allFirstTowersCount']??0;
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFirstTowersCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstTowersCount']??0;
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
+																$firstTowerDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																//英雄
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
+																
 																//五杀率
-																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['fiveKillRate']=round($awayHeroStatInfo['allFiveKillsCount']/$awayHeroStatInfo['allTotal'],2)*100;
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFiveKillsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allFiveKillsCount']??0;
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFiveKillsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFiveKillsCount']??0;
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																//英雄
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
+																
 																//十杀率
-																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['tenKillRate']=round($awayHeroStatInfo['allTenKillsCount']/$awayHeroStatInfo['allTotal'],2)*100;
-																$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'][$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allTenKillsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allTenKillsCount']??0;
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currTenKillsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currTenKillsCount']??0;
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																//英雄
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 															}
 															
 														}
 														//客队
 														if(isset($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'])){
 															foreach($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'] as $homeHeroStatKey=>$homeHeroStatInfo){
+												
 																//赢率
-																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['winRate']=round($homeHeroStatInfo['allWinCount']/$homeHeroStatInfo['allTotal'],2)*100;
-																//一血率
-																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['firstBloodRate']=round($homeHeroStatInfo['allFirstBloodsCount']/$homeHeroStatInfo['allTotal'],2)*100;
-																//一塔率
-																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['firstTowerRate']=round($homeHeroStatInfo['allFirstTowersCount']/$homeHeroStatInfo['allTotal'],2)*100;
-																//五杀率
-																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['fiveKillRate']=round($homeHeroStatInfo['allFiveKillsCount']/$homeHeroStatInfo['allTotal'],2)*100;
-																//十杀率
-																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$homeHeroStatKey]['tenKillRate']=round($homeHeroStatInfo['allTenKillsCount']/$homeHeroStatInfo['allTotal'],2)*100;
-																$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'][$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
+																$winRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allWinCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																$winRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allWinCount']??0;
+																$winRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currWinCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currWinCount']??0;
+																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
+																//英雄
+																$winRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																$winRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
+																
+																//一血率
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFirstBloodsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allFirstBloodsCount']??0;
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFirstBloodsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFirstBloodsCount']??0;
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
+																//英雄
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
+																
+																//一塔率
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFirstTowersCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allFirstTowersCount']??0;
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFirstTowersCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFirstTowersCount']??0;
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
+																//英雄
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
+																
+																//五杀率
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFiveKillsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allFiveKillsCount']??0;
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFiveKillsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFiveKillsCount']??0;
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
+																//英雄
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
+																
+																//十杀率
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allTenKillsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allTenKillsCount']??0;
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
+																//当前赢率
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currTenKillsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currTenKillsCount']??0;
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
+																//英雄
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 															}
 															
 														}
 														
 														$dataAnalysis=[];
-														$dataAnalysis['awayHeroStat']=[];
-														$dataAnalysis['homeHeroStat']=[];
-												
+														
 													foreach($statistical as $statisticalKey=>$statisticalInfo){
 														if($statisticalKey=='winRate'){
-															//按照赢率排序
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"winRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
-															
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"winRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
-															
-															
+															//按照赢率
+															$dataAnalysis=$winRateDataAnalysis;
 														}elseif($statisticalKey=='firstBloodRate'){
-															//按照一血率排序
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"firstBloodRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
-															
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"firstBloodRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
-															
-															
+															//按照一血率
+															$dataAnalysis=$firstBloodRateDataAnalysis;
 														}elseif($statisticalKey=='firstTowerRate'){
-															//按照一塔率排序
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"firstTowerRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
-															
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"firstTowerRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
+															//按照一塔率
+															$dataAnalysis=$firstTowerDataAnalysis;
 														
 														}elseif($statisticalKey=='fiveKillRate'){
-															//按照五杀率排序
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"fiveKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
-															
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"fiveKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
-															
-															
-															
+															//按照五杀率
+															$dataAnalysis=$fiveKillRateDataAnalysis;
 														}elseif($statisticalKey=='tenKillRate'){
 															//按照十杀率排序
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'],"tenKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']);
-															
-															array_multisort(array_column($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'],"tenKillRate"),SORT_DESC,$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']);
-															
+															$dataAnalysis=$tenKillRateDataAnalysis;
 														} 
-														$dataAnalysis['awayHeroStat']=$matchInfo['lineupContent']['dataAnalysis']['awayHeroStat']??[];
-														$dataAnalysis['homeHeroStat']=$matchInfo['lineupContent']['dataAnalysis']['homeHeroStat']??[];
+													
 														?>
                                                     <div class="lineup_item <?php if($statisticalKey=='winRate'){ ?>active <?php }?>">
                                                         <div class="lineup_th">
@@ -1083,25 +1171,25 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <span>置</span>
                                                             </div>
                                                         </div>
-														<?php foreach($dataAnalysis['awayHeroStat'] as $key=>$awayHeroStatInfo){?>
+														<?php foreach($dataAnalysis as $key=>$dataAnalysisInfo){?>
                                                         <div class="lineup_td">
                                                             <div class="lineup_thItem">
-                                                                <span class="flex15"><?php echo $awayHeroStatInfo['winRate']; ?>%<i>(<?php echo $awayHeroStatInfo['allWinCount'];?>/<?php echo $awayHeroStatInfo['allTotal'];?>)</i></span>
-                                                                <span class="flex15"><?php echo ($awayHeroStatInfo['currWinCount']/$awayHeroStatInfo['currTotal'])*100; ?>%<i>(<?php echo $awayHeroStatInfo['currWinCount']; ?>/<?php echo $awayHeroStatInfo['currTotal']; ?>)</i></span>
+                                                                <span class="flex15"><?php echo $dataAnalysisInfo['awayRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayAllWinCount'];?>/<?php echo $dataAnalysisInfo['awayAllTotal'];?>)</i></span>
+                                                                <span class="flex15"><?php echo $dataAnalysisInfo['awayCurrWinRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayCurrWinCount']; ?>/<?php echo $dataAnalysisInfo['awayCurrTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $awayHeroStatInfo['heroLogo']; ?>" alt="<?php echo $awayHeroStatInfo['heroName']; ?>">
+                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysisInfo['awayheroLogo']; ?>" alt="<?php echo $dataAnalysisInfo['awayheroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">位</span>
                                                             </div>
                                                             <div class="lineup_thItem lineup_thRever">
-                                                                <span class="flex15"><?php echo $dataAnalysis['homeHeroStat'][$key]['winRate']; ?>%<i>(<?php echo $dataAnalysis['homeHeroStat'][$key]['allWinCount']; ?>/<?php echo $dataAnalysis['homeHeroStat'][$key]['allTotal']; ?>)</i></span>
-                                                                <span class="flex15"><?php echo ($dataAnalysis['homeHeroStat'][$key]['currWinCount']/$awayHeroStatInfo['currTotal'])*100; ?>%<i>(<?php echo $dataAnalysis['homeHeroStat'][$key]['currWinCount']; ?>/<?php echo $dataAnalysis['homeHeroStat'][$key]['currTotal']; ?>)</i></span>
+                                                                <span class="flex15"><?php echo $dataAnalysisInfo['homeRate']; ?>%<i>(<?php echo $dataAnalysisInfo['homeAllWinCount']; ?>/<?php echo $dataAnalysisInfo['homeAllTotal']; ?>)</i></span>
+                                                                <span class="flex15"><?php echo $dataAnalysisInfo['homeCurrWinRate']; ?>%<i>(<?php echo $dataAnalysisInfo['homeCurrWinCount']; ?>/<?php echo $dataAnalysisInfo['homeCurrTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysis['homeHeroStat'][$key]['heroLogo']; ?>" alt="<?php echo $dataAnalysis['homeHeroStat'][$key]['heroName']; ?>">
+                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysisInfo['homeheroLogo']; ?>" alt="<?php echo $dataAnalysisInfo['homeheroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">置</span>
                                                             </div>
-                                                            <p><?php echo $awayHeroStatInfo['postion']; ?></p>
+                                                            <p><?php echo $dataAnalysisInfo['postion']; ?></p>
                                                         </div>
                                                         
 														<?php }?>

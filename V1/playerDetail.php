@@ -109,15 +109,17 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
         'kills'=>['killCount','killCountSort','总击杀'],
         'assists'=>['assistsCount','assistsCountSort','总助攻'],
         'deaths'=>['dieCount','dieCountSort','总死亡'],
-        'minute_injury'=>['minuteNumber','minuteNumberSort','分均补刀'],
-        'injury_rate'=>['appearCount','appearCountSort','出场次数'],
-        'injury_inversion_rate'=>['averageKill','averageKillSort','场均击杀'],
-        'minute_damagetaken'=>['averageDie','averageDieSort','场均死亡'],
-        'minute_hits'=>['minuteOutput','minuteOutputSort','分均输出'],
-        'minute_wardsplaced'=>['hurtTransfRate','hurtTransfRateSort','输出转化率'],
-        'minute_wardkilled'=>['minuteBear','minuteBearSort','分均承伤'],
-        'hero_pool'=>['bearRate','bearRateSort','承伤占比'],
+        'minute_number'=>['minuteNumber','minuteNumberSort','分均补刀'],
+        'appear_count'=>['appearCount','appearCountSort','出场次数'],
+        'average_kill'=>['averageKill','averageKillSort','场均击杀'],
+        'average_die'=>['averageDie','averageDieSort','场均死亡'],
+        'average_assists'=>['averageAssists','averageAssistsSort','场均助攻'],
+        'minute_output'=>['minuteOutput','minuteOutputSort','分均输出'],
+        'hurt_transf_rate'=>['hurtTransfRate','hurtTransfRateSort','输出转化率'],
+        'minute_bear'=>['minuteBear','minuteBearSort','分均承伤'],
+        'bear_rate'=>['bearRate','bearRateSort','承伤占比'],
     ];
+
     $return['intergratedPlayer']['data']['player_stat']['base_ability_detail'] = [];
 	foreach($map as $map_key => $map_detail)
     {
@@ -128,80 +130,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
             'score-rank'=>$return['intergratedPlayer']['data']['player_stat'][$map_detail['1']]?? 0,
         ];
     }
-	$return['intergratedPlayer']['data']['player_stat']['base_ability_detail']=[
-		'kills'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['killCount']?? 0,
-			'score-des'=>'总击杀',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['killCountSort']?? 0,
-		],
-		'assists'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['assistsCount']?? 0,
-			'score-des'=>'总助攻',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['assistsCountSort']?? 0,
-		],
-		'deaths'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['dieCount']?? 0,
-			'score-des'=>'总死亡',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['dieCountSort']?? 0,
-		],
-		'minute_injury'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteNumber']?? 0,
-			'score-des'=>'分均补刀',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteNumberSort']?? 0,
-		],
-		'injury_rate'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['appearCount']?? 0,
-			'score-des'=>'出场次数',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['appearCountSort']?? 0,
-		],
-		'injury_inversion_rate'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageKill']?? 0,
-			'score-des'=>'场均击杀',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageKillSort']?? 0,
-		],
-		'minute_damagetaken'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageDie']?? 0,
-			'score-des'=>'场均死亡',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageDieSort']?? 0,
-		],
-		'damagetaken_rate'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['averageAssists']?? 0,
-			'score-des'=>'场均助攻',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['averageAssistsSort']?? 0,
-		],
-		'minute_hits'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteOutput']?? 0,
-			'score-des'=>'分均输出',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteOutputSort']?? 0,
-		],
-		'minute_wardsplaced'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['hurtTransfRate'].'%'?? 0,
-			'score-des'=>'输出转化率',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['hurtTransfRateSort']?? 0,
-		],
-		'minute_wardkilled'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['minuteBear']?? 0,
-			'score-des'=>'分均承伤',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['minuteBearSort']?? 0,
-		],
-		'hero_pool'=>
-		[
-			'score-num'=>$return['intergratedPlayer']['data']['player_stat']['bearRate'].'%'?? 0,
-			'score-des'=>'承伤占比',
-			'score-rank'=>$return['intergratedPlayer']['data']['player_stat']['bearRateSort']?? 0,
-		],
-	];
+
 	
 }
 ?>
