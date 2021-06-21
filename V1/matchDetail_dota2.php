@@ -113,14 +113,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                 <div class="dota2">
                     <ul class="dota2_ul1 clearfix mb20">
                         <li class="active">
-                            <a href="##">
-                                赛前分析
-                            </a>
+                            赛前分析
                         </li>
                         <li >
-                            <a href="##">
-                                比赛详情
-                            </a>
+                            比赛详情
                         </li>
                     </ul>
                     <div class="dota2_div">
@@ -663,29 +659,19 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                             <div class="battleBox">
                                                 <ul class="battleBox_vs_data1 vs_data2">
                                                     <li class="active">
-                                                        <a href="##">
-                                                            一号位
-                                                        </a>
+														一号位
                                                     </li>
                                                     <li class="">
-                                                        <a href="##">
-                                                            二号位
-                                                        </a>
+                                                        二号位
                                                     </li>
                                                     <li class="">
-                                                        <a href="##">
-                                                            三号位
-                                                        </a>
+                                                        三号位
                                                     </li>
                                                     <li class="">
-                                                        <a href="##">
-                                                            四号位
-                                                        </a>
+                                                        四号位
                                                     </li>
                                                     <li class="active1">
-                                                        <a href="##">
-                                                            五号位
-                                                        </a>
+                                                        五号位
                                                     </li>
                                                 </ul>
                                                 <div class="battle_list">
@@ -719,7 +705,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																	}else{
 																		$kda=($playerInfo['playerStat']['killCount'] +$playerInfo['playerStat']['assistsCount']);
 																	}
-																	 echo round($kda,2);?></span>
+																	 echo round($kda,1);?></span>
                                                                     <span class="red kad_small"><?php echo $playerInfo['playerStat']['killCount']??0;?>/<?php echo $playerInfo['playerStat']['dieCount']??0;?>/<?php echo $playerInfo['playerStat']['assistsCount']??0;?></span>
                                                                     <span class="kad_big">KDA</span>
                                                                     <span class="blue kad_small"><?php echo $matchInfo['homeTeam']['playerList'][$playerKey]['playerStat']['killCount']??0;?>/<?php echo $matchInfo['homeTeam']['playerList'][$playerKey]['playerStat']['dieCount']??0;?>/<?php echo $matchInfo['homeTeam']['playerList'][$playerKey]['playerStat']['assistsCount']??0;?></span>
@@ -729,7 +715,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																	}else{
 																		$kda=($matchInfo['homeTeam']['playerList'][$playerKey]['playerStat']['killCount'] +$matchInfo['homeTeam']['playerList'][$playerKey]['playerStat']['assistsCount']);
 																	}
-																	 echo $kda;?></span>
+																	 echo round($kda,1);?></span>
                                                                 </div>
                                                                 <div class="rate_data_left">
                                                                     <div class="rate_data_top">
@@ -1014,9 +1000,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 												<!--胜率，一血率，一塔率，五杀率，十杀率-->
 													<?php foreach($statistical as $statisticalKey=>$statisticalInfo){?>
                                                     <li <?php if($statisticalKey=="winRate"){ ?>class="active" <?php }?>>
-                                                        <a href="##">
-                                                            <?php echo $statisticalInfo;?>
-                                                        </a>
+                                                        <?php echo $statisticalInfo;?>
                                                     </li>
                                                     <?php }?>
                                                 </ul>
