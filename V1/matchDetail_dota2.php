@@ -80,7 +80,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <div class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img data-original="<?php echo $return['matchDetail']['data']['away_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
+                                    <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['away_name']??'';?></span>
@@ -98,7 +98,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <div class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img data-original="<?php echo $return['matchDetail']['data']['home_logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>">
+                                    <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['home_name']??'';?></span>
