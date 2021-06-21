@@ -219,7 +219,7 @@
     float: left;
     /* margin-right: 20px; */
 }
-.event_detail_ul li a{
+.event_detail_ul li{
     display: block;
     font-size: 20px;
     color: #FF6649;
@@ -228,7 +228,7 @@
     line-height: 40px;
     border-radius: 20px;
 }
-.event_detail_ul li.active a{
+.event_detail_ul li.active{
     background: #FF6649;
     color: #fff;
 }
