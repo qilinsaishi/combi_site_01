@@ -615,9 +615,40 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 									<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){?>
                                     <div class="live_box_item active">
                                         <div class="battle_details mb20">
-                                            <div class="dota2_top">
-                                                <img src="<?php echo $config['site_url'];?>/images/dota2_vs.png" alt="">
-                                                <span>对战详情</span>
+                                            <div class="game_detail_item1">
+                                                <div class="left">
+                                                    <div class="imgwidth40 imgheight40">
+                                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
+                                                    </div>
+                                                    <span><?php echo $return['matchDetail']['data']['away_name'];?></span>
+                                                    <?php if($matchInfo['awayTeam']['score']>$matchInfo['homeTeam']['score']){?>
+                                                    <div class="liveBox_img">
+                                                        <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                                    </div>
+													<?php }?>
+                                                </div>
+                                                <div class="center">
+                                                    <span class="game_detail_line1"></span>
+                                                    <span class="game_detail_circle1"></span>
+                                                    <span class="fz font_color_r"><?php echo  $matchInfo['awayTeam']['teamStat']['killCount']??0;?></span>
+                                                    <div class="img_game_detail_vs">
+                                                        <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="" class="imgauto">
+                                                    </div>
+                                                    <span class="fz font_color_b"><?php echo  $matchInfo['homeTeam']['teamStat']['killCount']??0;?></span>
+                                                    <span class="game_detail_circle1"></span>
+                                                    <span class="game_detail_line1"></span>
+                                                </div>
+                                                <div class="left right">
+                                                    <div class="imgwidth40 imgheight40">
+                                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
+                                                    </div>
+                                                    <span><?php echo $return['matchDetail']['data']['home_name'];?></span>
+													<?php if($matchInfo['awayTeam']['score']<=$matchInfo['homeTeam']['score']){?>
+                                                    <div class="liveBox_img">
+                                                        <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                                    </div>
+													<?php }?>
+                                                </div>
                                             </div>
 											<?php  
 												if(isset($matchInfo['homeTeam']['playerList'])){
