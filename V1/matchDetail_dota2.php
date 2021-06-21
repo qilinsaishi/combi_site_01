@@ -156,7 +156,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                             </strong>
                                         </div>
                                         <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['winCount']??'0';?>胜<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['loseCount']??'0';?>负</p>
-                                        <p class="bpBox_kda red">KDA：<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['kda']??'0';?></p>
+                                        <p class="bpBox_kda red">KDA：<?php echo round($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['kda']??'0',2);?></p>
                                         <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgKill']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgDie']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['avgAssists']??'0';?></p>
                                     </div>
                                 </div>
@@ -277,7 +277,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                             </strong>
                                         </div>
                                         <p class="bpBox_result"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['winCount']??'0';?>胜<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['loseCount']??'0';?>负</p>
-                                        <p class="bpBox_kda blue">KDA：<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['kda']??'0';?></p>
+                                        <p class="bpBox_kda blue">KDA：<?php echo round($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['kda']??'0',2);?></p>
                                         <p class="bpBox_Date"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgKill']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgDie']??'0';?>/<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['avgAssists']??'0';?></p>
                                     </div>
                                 </div>
