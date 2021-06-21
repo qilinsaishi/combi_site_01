@@ -148,7 +148,7 @@ unset($return['matchList']);
                 <div class="team_title mb20 clearfix">
                     <div class="team_logo fl">
                         <div class="team_logo_img mauto">
-                            <img class="" data-original="<?php echo $return['tournament']['data']['logo'];?>?x-oss-process=image/resize,m_lfit,h_128,w_128" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>"  src="" alt="<?php echo $return['tournament']['data']['tournament_name'];?>">
+                            <img class="" data-original="<?php echo $return['tournament']['data']['logo'];?>?x-oss-process=image/resize,m_lfit,h_128,w_128" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>"  alt="<?php echo $return['tournament']['data']['tournament_name'];?>">
                         </div>
                     </div>
                     <div class="team_explain fr">

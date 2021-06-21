@@ -595,7 +595,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 									<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){?>
                                     <li <?php if($matchKey==0){?>class="active"<?php }?>>
                                         <div class="game_detail_img1">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_detail1.png" alt="">
+											<?php if($matchInfo['awayTeam']['score']>$matchInfo['homeTeam']['score']){
+												$team_logo_icon=$return['matchDetail']['data']['away_logo'];
+											}else{
+												$team_logo_icon=$return['matchDetail']['data']['home_logo'];
+											}?>
+                                            <img src="<?php echo $team_logo_icon;?>" alt="">
                                         </div>
                                         <span>GAME <?php echo ($matchKey+1);?></span>
                                       
@@ -1227,91 +1232,42 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                             <span class="fl">近期赛事</span>
                         </div>
                         <div class="more fr">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/match/">
                                 <span>更多</span>
                                 <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
                     <ul class="game_match_ul">
+						<?php foreach($return['recentMatchList']['data'] as $matchInfo){ ?>
                         <li class="col-md-12 col-xs-12">
-                            <a href="##">
+                            <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['game'];?>-<?php echo $matchInfo['match_id'];?>">
                                 <div class="game_match_top">
-                                    <span class="game_match_name">常规赛常规常规赛常规常规赛常规</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
+                                    <span class="game_match_name"><?php echo $matchInfo['tournament_info']['tournament_name'];?></span>
+                                    <span class="game_match_time"><?php echo date("m月d日 H:i",strtotime($matchInfo['start_time']));?></span>
                                 </div>
                                 <div class="game_match_bottom clearfix">
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
+                                            <img data-original="<?php echo $matchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" title="<?php echo $matchInfo['home_team_info']['team_name'];?>" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>" class="imgauto">
                                         </div>
-                                        <span>常规赛常规常规</span>
+                                        <span><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                     </div>
                                     <div class="left center">
                                         <span>VS</span>
-                                        <span>英雄联盟</span>
+                                        <span><?php echo $config['game'][$matchInfo['game']]  ?></span>
                                     </div>
                                     <div class="left ov_1">
                                         <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
+                                            <img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" title="<?php echo $matchInfo['away_team_info']['team_name'];?>" alt="<?php echo $matchInfo['away_team_info']['team_name'];?>" class="imgauto">
                                         </div>
-                                        <span>常规赛常规常规</span>
+                                        <span><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        <li class="col-md-12 col-xs-12">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛常规</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-md-12 col-xs-12">
-                            <a href="##">
-                                <div class="game_match_top">
-                                    <span class="game_match_name">常规赛常规</span>
-                                    <span class="game_match_time">4月23日 14:00</span>
-                                </div>
-                                <div class="game_match_bottom clearfix">
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/banner.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                    <div class="left center">
-                                        <span>VS</span>
-                                        <span>英雄联盟</span>
-                                    </div>
-                                    <div class="left ov_1">
-                                        <div class="game_match_img">
-                                            <img src="<?php echo $config['site_url'];?>/images/match.png" alt="" class="imgauto">
-                                        </div>
-                                        <span>常规赛常规常规</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+						<?php }?>
+                        
                     </ul>
                 </div>
                 <?php if(isset($return['hotNewsList']['data']) && count($return['hotNewsList']['data'])>0){?>
