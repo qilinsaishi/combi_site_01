@@ -173,7 +173,7 @@
        text-overflow:ellipsis;
     white-space: nowrap;
 }
-.team_explain_bottom p{
+.team_explain_bottom p,.team_explain_bottom{
     font-size: 18px;
     color: #333;
     line-height: 24px;
@@ -596,7 +596,7 @@
 		border-radius:.25rem;
 		margin-bottom:.2rem;
 	}
-	.team_explain_bottom p{
+	.team_explain_bottom p,.team_explain_bottom{
 		font-size:.24rem;
 		line-height:.32rem;
 		margin-bottom:.1rem;
