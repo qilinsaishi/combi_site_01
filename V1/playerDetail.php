@@ -92,10 +92,19 @@ $radarData=[];
 if($return['intergratedPlayer']['data']['radarData']!="")
 {
 	if($game=='dota2'){
-		$return['intergratedPlayer']['data']['radarData']['kill']['empno']=$return['intergratedPlayer']['data']['player_stat']['killCount'];
-		$return['intergratedPlayer']['data']['radarData']['assists']['empno']=$return['intergratedPlayer']['data']['player_stat']['assistsCount'];
-		$return['intergratedPlayer']['data']['radarData']['join_rate']['empno']=$return['intergratedPlayer']['data']['player_stat']['participationRate'];
+		if(isset($return['intergratedPlayer']['data']['player_stat']['killCount']) && $return['intergratedPlayer']['data']['player_stat']['killCount']>100){
+			$return['intergratedPlayer']['data']['radarData']['kill']['empno']=100;
+		}else{
+			$return['intergratedPlayer']['data']['radarData']['kill']['empno']=$return['intergratedPlayer']['data']['player_stat']['killCount'];
+		}
 		
+		if(isset($return['intergratedPlayer']['data']['player_stat']['assistsCount']) && $return['intergratedPlayer']['data']['player_stat']['assistsCount']>100){
+			$return['intergratedPlayer']['data']['radarData']['assists']['empno']=100;
+		}else{
+			$return['intergratedPlayer']['data']['radarData']['assists']['empno']=$return['intergratedPlayer']['data']['player_stat']['assistsCount'];
+		}
+		
+		$return['intergratedPlayer']['data']['radarData']['join_rate']['empno']=$return['intergratedPlayer']['data']['player_stat']['participationRate'];
 	}
 	
 	$radarData=json_encode(array_values($return['intergratedPlayer']['data']['radarData']),JSON_UNESCAPED_UNICODE);
