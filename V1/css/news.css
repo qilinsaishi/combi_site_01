@@ -144,6 +144,8 @@ box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
     width: 100%;
     border-top: 1px solid #eee;
     padding-top: 28px;
+    font-size: 18px;
+    color: #333;
 }
 .news_top_img{
     width: 820px;
@@ -158,6 +160,11 @@ box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
 }
 .news_top_content{
 	width:820px;
+    word-break: break-all;
+    text-align: justify;
+    font-size: 18px !important;
+    color: #333!important;
+    font-family: shuzi1!important;
 }
 .news_top_content img{
 	/* -o-object-fit:cover;
