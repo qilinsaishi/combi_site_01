@@ -556,7 +556,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 									
                                     <div class="war_report_detail">
                                         <span>本次比赛共计<?php echo count($return['matchDetail']['data']['match_data']['matchData']);?>局</span>
-										<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchInfo){
+										<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){
 												if(isset($matchInfo['homeTeam']['teamStat']['firstBlood']) && $matchInfo['homeTeam']['teamStat']['firstBlood']==0){
 													$firstBloodTeam=$matchInfo['awayTeam']['teamName'] ??'';
 												}else{
@@ -583,7 +583,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 													$fifteenKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
 												}
 											?>
-                                        <p>第一局比赛中： <?php echo $firstBloodTeam; ?>夺得一血，<?php echo $firstTowerTeam; ?>首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?>拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀， <?php echo $fifteenKillTeam; ?>  豪取十五杀。</p>
+                                        <p>第<?php echo ($matchKey+1)?>局比赛中： <?php echo $firstBloodTeam; ?>夺得一血，<?php echo $firstTowerTeam; ?>首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?>拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀， <?php echo $fifteenKillTeam; ?>  豪取十五杀。</p>
 										<?php }?>
                                         
                                         <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_name']?? '';}else{echo $return['matchDetail']['data']['home_name']?? '';}?>取得本次<?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?>的冠军</p>
