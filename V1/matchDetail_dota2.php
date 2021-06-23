@@ -149,7 +149,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                             <div class="bpBox">
                                 <div class="left">
                                     <div class="bpBox_circle">
-                                        <div class="Dred third circle" data-num="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['winRate']??0);?>">
+                                        <div class="Dred third circle" data-num="<?php 
+										$awayWinRate=round($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['winCount']/($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['winCount']+$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['loseCount']),2);
+										echo $awayWinRate;?>">
                                             <strong>
                                                 <p></p>
                                                 <span>胜率</span>
@@ -270,7 +272,8 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                 </div>
                                 <div class="left">
                                     <div class="bpBox_circle">
-                                        <div class="Dblue third circle" data-num="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['winRate']??'0')??'0';?>">
+                                        <div class="Dblue third circle" data-num="<?php 
+										$homeWinRate=round($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['winCount']/($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['winCount']+$return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['loseCount']),2);echo $homeWinRate;?>">
                                             <strong>
                                                 <p></p>
                                                 <span>胜率</span>

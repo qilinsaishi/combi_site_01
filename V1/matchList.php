@@ -28,24 +28,13 @@ $params = [
 //依次加入所有游戏
 foreach ($config['game'] as $game => $gameName)
 {
-	if($game!='dota2'){
-		$params[$game."matchList"] =
-        ["dataType"=>"matchList","source"=>$config['default_source'],"page"=>1,"page_size"=>100,"game"=>$game,"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
-	}
-    
+
+  $params[$game."matchList"] =
+        ["dataType"=>"matchList","source"=>$config['game_source'][$game]??$config['default_source'],"page"=>1,"page_size"=>100,"game"=>$game,"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
+
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
-foreach ($config['game'] as $game2 => $gameName2)
-{
-	if($game2=='dota2'){
-		$params2[$game."matchList"] =
-        ["dataType"=>"matchList","source"=>$config['game_source'][$game2],"page"=>1,"page_size"=>100,"game"=>$game2,"start_date"=>$startDate,"end_date"=>$endDate,"cache_time"=>3600];
-	}
-    
-}
-$return2 = curl_post($config['api_get'],json_encode($params2??[]),1);
-$return['dota2matchList']=$return2['dota2matchList'] ?? [];
-unset($return2['dota2matchList'] );
+
 $return["allmatchList"]['data'] = [];
 $allGameList = array_keys($config['game']);
 array_unshift($allGameList,"all");
