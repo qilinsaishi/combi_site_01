@@ -5,7 +5,7 @@ $params = [
     "information"=>[$id],
     "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
 	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>0,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["information_default_img","contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
     "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
@@ -15,6 +15,14 @@ $return = curl_post($config['api_get'],json_encode($params),1);
 if(!isset($return["information"]['data']['id']))
 {
     render404($config);
+}
+preg_match_all('/(src)=("[^"]*")/i', $return['information']['data']['content'], $matches);
+foreach($matches['2'] as $img)
+{
+    if(!strpos($img,'qilinsaishi'))
+    {
+        $return['information']['data']['content'] = str_replace($img,$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
+    }
 }
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
 $return["information"]['data']['scws_list'] = json_decode($return["information"]['data']['scws_list'],true);
@@ -71,6 +79,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
         $i++;if($i>=5){break;}
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,7 +122,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                 </a >
                 >
                 <a href="<?php echo $config['site_url'];?>/<?php echo $currentType;?>list/<?php echo $return['information']['data']['game'];?>/">
-                    <?php echo  $config['game'][$return['information']['data']['game']]; ?>
+                    <?php if(isset($config['game'][$return['information']['data']['game']])) {echo  $config['game'][$return['information']['data']['game']];} ?>
                 </a >
                 >
                 <span><?php echo $return['information']['data']['title'];?></span>
