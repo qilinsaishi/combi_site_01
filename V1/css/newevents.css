@@ -1107,6 +1107,42 @@
     .team_explain_bottom p{
         margin-bottom: .1rem;
     }
+    /* 2021.6.22新增 */
+    .champion{
+        display: flex;
+        flex-direction: column;
+    }
+    .other .other_div{
+        display: flex;
+        flex-direction: column;
+    }
+    .other .other_div, .others .others_div{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+   .others{
+       padding: 0 .2rem;
+       display: flex;
+       justify-content: space-between;
+   }
+   .money {
+        display: flex;
+        justify-content: center;
+    }
+    .prizePool .champion p{
+        margin-bottom: .1rem;
+    }
+    .other .other_div p{
+        margin-bottom: .1rem;
+    }
+    .others_div p{
+        margin-bottom: .1rem;
+    }
+    .other{
+        margin-bottom: .1rem;
+    }
+    /* 2021.6.22新增 */
     .dn_wap{
         display: none;
     }
