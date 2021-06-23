@@ -23,14 +23,14 @@
     line-height: 38px;
     float: left;
 }
-.dota2_ul1 li a{
+.dota2_ul1 li{
     font-size: 20px;
     color: #FF6649;
 }
 .dota2_ul1 li.active{
     background: #FF6649;
 }
-.dota2_ul1 li.active a{
+.dota2_ul1 li.active {
     color: #fff;
 }
 .dota2_div{
@@ -755,6 +755,25 @@
     display: block;
 }
 /* 2021.6.17dota2新增 */
+/* 2021.6.21新增 */
+.liveBox_img img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+.live_box_detail .game_detail_item1 .left{
+    width: 170px;
+    justify-content: flex-start;
+}
+.live_box_detail .game_detail_item1 .left.right{
+    justify-content: flex-end;
+}
+.live_box_detail .game_detail_item1 .left .imgwidth40{
+    flex-shrink: 0;
+}
+.live_box_detail .game_detail_item1 .imgwidth40 .imgauto{
+    object-fit: cover;
+}
 /* 移动 */
 @media only screen and (max-width: 1024px){
     .dota2_div{
