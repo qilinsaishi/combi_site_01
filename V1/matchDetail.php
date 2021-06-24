@@ -321,11 +321,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){?>
                                                     <td>
-                                                        <a href="##">
                                                             <div class="bans_picks_div">
                                                                 <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                             </div>
-                                                        </a>
                                                     </td>
 													
                                                     <?php }}?>
@@ -338,11 +336,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){?>
                                                     <td>
-                                                        <a href="##">
                                                             <div class="bans_picks_div">
                                                                 <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                             </div>
-                                                        </a>
                                                     </td>
 													
                                                     <?php }}?>
@@ -367,11 +363,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){?>
                                                         <td>
-                                                            <a href="##">
                                                                 <div class="bans_picks_div">
                                                                     <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                                 </div>
-                                                            </a>
                                                         </td>
                                                     <?php }}?>
                                                     </tr>
@@ -383,11 +377,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){?>
                                                         <td>
-                                                            <a href="##">
                                                                 <div class="bans_picks_div">
                                                                     <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                                 </div>
-                                                            </a>
                                                         </td>
                                                     <?php }}?>
                                                     </tr>
