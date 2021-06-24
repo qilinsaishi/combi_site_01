@@ -240,8 +240,15 @@ width: 12.5%;
     background: #FF6649;
     color: #fff;
 } */
-.nav .nav_ul .nav_li:hover .submenu_wrapper{
-    display: block;
+@media only screen and (min-width: 780px){
+    .nav .nav_ul .nav_li:hover .submenu_wrapper{
+        display: block;
+    }
+}
+@media only screen and (max-width: 1200px){
+    .nav .nav_li{
+        padding: 0 10px;
+    }
 }
 .submenu_wrapper{
     width: 180px;
@@ -283,6 +290,9 @@ width: 12.5%;
 .nav .nav_li.active .ti10Box{
     display: none;
 }
+.nav .nav_li:hover .ti10Box{
+    display: none;
+}
 /* 2021.6.24新增 */
   @media only screen and (max-width: 1024px){
     .header{
@@ -300,7 +310,7 @@ width: 12.5%;
         width: 1.49rem;
         height: .47rem;
     }
-    .nav ul{
+    .nav .nav_ul{
         display: -webkit-flex;
         display: -moz-box;
         display: -ms-flexbox;
@@ -312,7 +322,7 @@ width: 12.5%;
         transition: all 3s;
         font-size: 22px;
     }
-    .nav ul li {
+    .nav .nav_ul .nav_li {
         line-height: 100px;
         text-align: center;
         margin-right: 0;
@@ -344,7 +354,7 @@ width: 12.5%;
     .header .nav.on{
         right: 0;
     }
-     .nav ul li a {
+     .nav .nav_ul .nav_li .nav_lia {
         font-size: 26px;
         line-height: 100px;
         color: #fff;
@@ -352,7 +362,7 @@ width: 12.5%;
         text-align: center;
         width: 100%;
     }
-    .nav li.active a{
+    .nav .nav_li.active .nav_lia{
         font-size: 30px;
     }
     .foot p{
@@ -378,5 +388,8 @@ width: 12.5%;
         padding:.4rem .3rem 0;
 		padding-bottom:.4rem;
 		height:auto;
+    }
+    .nav .nav_li.active .nav_lia:after{
+        bottom: 4px;
     }
   }
