@@ -131,9 +131,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     <div class="colorBlock colorBlock_right red"></div>
                                     <div class="teamInfo_img">
 									
-                                        <img data-original="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamLogo']??'').'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamName'] ?? '';?>" class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>"  class="imgauto">
                                     </div>
-                                    <span class="text_left"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamName'] ?? '';?></span>
+                                    <span class="text_left"><?php echo $return['matchDetail']['data']['away_name'];?></span>
                                 </div>
                                 <div class="dota2_vs">
                                     <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
@@ -141,9 +141,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                 <div class="teamInfo teamInfo_reverse">
                                     <div class="colorBlock blue"></div>
                                     <div class="teamInfo_img">
-                                        <img data-original="<?php echo ($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamLogo']??'').'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>"  alt="<?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamName'] ?? '';?>" class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
                                     </div>
-                                    <span class="text_right"><?php echo $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamName'] ?? '';?></span>
+                                    <span class="text_right"><?php echo $return['matchDetail']['data']['home_name'];?></span>
                                 </div>
                             </div>
                             <div class="bpBox">
