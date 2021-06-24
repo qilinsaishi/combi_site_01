@@ -21,7 +21,7 @@ foreach($matches['2'] as $img)
 {
     if(!strpos($img,'qilingsaishi'))
     {
-        $return['information']['data']['content'] = str_replace($img,$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
+        $return['information']['data']['content'] = str_replace('"'.$img.'"',$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
     }
 }
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
