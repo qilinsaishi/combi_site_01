@@ -38,8 +38,12 @@ $additional_config = [
         'player'=>['url'=>"playerlist/","name"=>"电竞选手"],
         'news'=>['url'=>"newslist/","name"=>"电竞资讯"],
         'stra'=>['url'=>"stralist/","name"=>"游戏攻略"],
-        'tournament'=>['url'=>"tournamentlist/","name"=>"赛事专题"],
-		't10'=>['url'=>"t10","name"=>"Ti10"],
+        'tournament'=>['url'=>"tournamentlist/","name"=>"赛事专题",
+            'sub'=>[
+                't10'=>['url'=>"t10","name"=>"Ti10","hot"=>1,"highlight"=>"ti10Box"],
+                's11'=>['url'=>"s11","name"=>"S11"],
+            ]
+        ],
     ]
 ];
 return array_merge($base_config,$additional_config);

@@ -121,9 +121,7 @@ foreach($allGameList as $key => $game)
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,"game");?>
-                        </ul>
                     </div>
                 </div>
             </div>

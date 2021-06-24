@@ -108,9 +108,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,$currentType);?>
-                        </ul>
                     </div>
                 </div>
             </div>

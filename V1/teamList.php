@@ -56,9 +56,7 @@ $keyList = array_keys($return);
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,"team");?>
-                        </ul>
                     </div>
                 </div>
             </div>

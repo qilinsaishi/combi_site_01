@@ -254,17 +254,17 @@ width: 12.5%;
     padding-top: 16px;
     display: none;
 }
-.ti10_bg{
+.hot_menu{
     width: 18px;
     height: 22px;
-    background-image: url("../images/ti10_bg.png");
+    background-image: url("../images/hot_menu.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     margin-right: 8px;
 }
-.submenu .submenu_li:hover .submenu_lia .ti10_bg{
-    background-image: url("../images/ti10_bg_active.png");
+.submenu .submenu_li:hover .submenu_lia .hot_menu{
+    background-image: url("../images/hot_menu_active.png");
 }
 .ti10Box{
     width: 52px;

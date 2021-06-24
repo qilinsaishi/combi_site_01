@@ -48,9 +48,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <span class="line"></span>
                 </div>
                 <div class="nav">
-                    <ul class="clearfix">
                         <?php generateNav($config,"game");?>
-                    </ul>
                 </div>
             </div>
         </div>

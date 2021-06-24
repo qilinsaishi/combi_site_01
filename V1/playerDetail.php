@@ -173,9 +173,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,"player");?>
-                        </ul>
                     </div>
                 </div>
             </div>
