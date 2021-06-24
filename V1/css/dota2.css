@@ -721,7 +721,7 @@
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
-.vs_data2 li a {
+.vs_data2 li {
     font-size: 18px;
     color: #666;
 }
@@ -772,7 +772,12 @@
     flex-shrink: 0;
 }
 .live_box_detail .game_detail_item1 .imgwidth40 .imgauto{
-    object-fit: cover;
+    object-fit: contain;
+}
+.game_detail_img1 img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 /* 移动 */
 @media only screen and (max-width: 1024px){
