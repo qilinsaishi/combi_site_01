@@ -392,4 +392,10 @@ width: 12.5%;
     .nav .nav_li.active .nav_lia:after{
         bottom: 4px;
     }
+    .submenu_wrapper{
+        display: flex;
+    }
+    .ti10Box{
+        display: none;
+    }
   }
