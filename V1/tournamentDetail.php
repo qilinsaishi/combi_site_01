@@ -165,7 +165,7 @@ unset($return['matchList']);
 						
                         <?php foreach($return['tournament']['data']['roundList'] as $key => $roundInfo){?>
                             <li<?php if($key==0){echo ' class="active"';}?>>
-                                <?php echo $roundInfo['round_name'];?>（<?php echo count($matchList[$roundInfo['round_id']]);?>）
+                               <?php echo $roundInfo['round_name'];?>（<?php echo count($matchList[$roundInfo['round_id']]);?>）
                             </li>
                         <?php }?>
 							
