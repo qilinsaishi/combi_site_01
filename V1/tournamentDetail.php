@@ -148,7 +148,7 @@ unset($return['matchList']);
                 <div class="team_title mb20 clearfix">
                     <div class="team_logo fl">
                         <div class="team_logo_img mauto">
-                            <img class="" data-original="<?php echo $return['tournament']['data']['logo'];?>?x-oss-process=image/resize,m_lfit,h_128,w_128" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>"  alt="<?php echo $return['tournament']['data']['tournament_name'];?>">
+                            <img class="" data-original="<?php echo $return['tournament']['data']['logo'];?>?x-oss-process=image/resize,m_lfit,h_128,w_128" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?><?php echo $config['default_oss_img_size']['tournamentList'];?>"  src="" alt="<?php echo $return['tournament']['data']['tournament_name'];?>">
                         </div>
                     </div>
                     <div class="team_explain fr">
@@ -166,7 +166,7 @@ unset($return['matchList']);
                     <ul class="event_detail_ul">
 						
                         <?php foreach($return['tournament']['data']['roundList'] as $key => $roundInfo){?>
-                            <li <?php if($key==0){echo ' class="active"';}?>>
+                            <li<?php if($key==0){echo ' class="active"';}?>>
                                <?php echo $roundInfo['round_name'];?>（<?php echo count($matchList[$roundInfo['round_id']]);?>）
                             </li>
                         <?php }?>
@@ -306,11 +306,7 @@ unset($return['matchList']);
 												<?php } ?>
 												</li>
                                             <?php }?>
-                                        <?php }else{ ?>
-											<div class="null">
-												<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
-											</div>
-										<?php }?>
+                                        <?php }?>
                                     </ul>
                                 </div>
                             </div>
@@ -327,9 +323,8 @@ unset($return['matchList']);
                         </div>
                         <span class="fl team_pbu_name">参赛队伍</span>
                     </div>
-					<?php if(count($return['tournament']['data']['teamList'])>0){?>
                     <ul class="game_team_list_detail">
-                        
+                        <?php if(count($return['tournament']['data']['teamList'])>0){?>
                         <?php foreach($return['tournament']['data']['teamList'] as $key => $teamInfo){
 								if($game=='dota2'){$team_url="javascript:;";}else{$team_url=$config['site_url']."/teamdetail/".$teamInfo['tid'];};
 							?>
@@ -342,13 +337,9 @@ unset($return['matchList']);
                                     </a>
                                 </li>
                         <?php }?>
-                        
+                        <?php }else{?>
+                        <?php }?>
                     </ul>
-					<?php }else{?>
-						<div class="null">
-							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
-						</div>
-                    <?php }?>
                 </div>
                 <div class="mb20 team_news">
                     <div class="team_pub_top clearfix">
@@ -361,7 +352,6 @@ unset($return['matchList']);
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
-					<?php if(is_array($connectedInformationList) && count($connectedInformationList)>0){?>
                     <div class="team_news_mid">
                         <ul class="team_news_mid_ul clearfix">
 							<?php foreach($connectedInformationList as $key => $information){
@@ -394,11 +384,6 @@ unset($return['matchList']);
                            <?php }} ?>
                         </ul>
                     </div>
-					<?php }else{ ?>
-						<div class="null">
-							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
-						</div>
-					<?php }?>
                 </div>
                 <div class="hot_match mb20">
                     <div class="team_pub_top clearfix">
