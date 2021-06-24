@@ -11,6 +11,7 @@ $params = [
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"team","site_id"=>$config['site_id']]
 ];
+
 $return = curl_post($config['api_get'],json_encode($params),1);
 if(!isset($return["intergratedTeam"]['data']['tid']))
 {
@@ -60,6 +61,7 @@ else
 {
     $connectedInformationList = $return2["keywordMapList"]["data"];
 }
+$return["intergratedTeam"]["data"]['team_stat']=($return["intergratedTeam"]["data"]['team_stat']==0) ?[]:$return["intergratedTeam"]["data"]['team_stat'];
 if($game=='dota2'){
 	$return["intergratedTeam"]["data"]['team_stat']['victory_rate']=$return["intergratedTeam"]["data"]['team_stat']['winRate']??0;
 	$return["intergratedTeam"]["data"]['team_stat']['victory_rate_rank']=$return["intergratedTeam"]["data"]['team_stat']['winRateSort']??0;
@@ -155,7 +157,7 @@ if($game=='dota2'){
                             </div>
                             <div class="team_explain_name clearfix">
                                 <p class="clearfix fl">英文名：<span class="English_name fr"><span class="English_name fr"><?php echo $return['intergratedTeam']['data']['en_name'];?></span></p>
-                                <p class="clearfix fl">别称：<span class="chinese_name fr"><?php echo $return['intergratedTeam']['data']['aka'] ?></span></p>
+                                <p class="clearfix fl">别称：<span class="chinese_name fr"><?php echo $return['intergratedTeam']['data']['aka']??'' ?></span></p>
                             </div>
                             <div class="team_explain_bottom">
                                 <?php echo $description;?>
