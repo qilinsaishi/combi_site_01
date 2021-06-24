@@ -504,8 +504,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                 </span>
                                             <span class="td">
 													 <span class="span_red">
-													<?php  if( $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamName']==$battleDetailInfo['radiantName'] ){echo $battleDetailInfo['radiantScore'] ??'';}else{echo $battleDetailInfo['direScore'] ??'';} ?>
-													</span>:<?php  if( $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamName']==$battleDetailInfo['radiantName'] ){echo $battleDetailInfo['direScore'] ??'';}else{echo $battleDetailInfo['radiantScore'] ??'';} ?>
+													 
+													<?php  if( $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamName']==$battleDetailInfo['radiantName'] ){echo $battleDetailInfo['radiantScore'] ??'';}else{echo $battleDetailInfo['direScore'] ??'';} ?>
+													</span>:<?php  if( $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamName']==$battleDetailInfo['radiantName'] ){echo $battleDetailInfo['direScore'] ??'';}else{echo $battleDetailInfo['radiantScore'] ??'';} ?>
                                                 </span>
                                             <span class="td">
 													<?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['firstBloodTeamId']){  ?>
