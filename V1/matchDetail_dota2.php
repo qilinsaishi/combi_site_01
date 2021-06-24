@@ -438,27 +438,27 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 													
                                                 </span>
                                             <span class="td">
-													<?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['firstBloodTeamId']){  ?>
+													<?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamId']==$battleDetailInfo['firstBloodTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['firstTowerTeamId']){  ?>
+                                                    <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamId']==$battleDetailInfo['firstTowerTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['fiveKillTeamId']){  ?>
+                                                    <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamId']==$battleDetailInfo['fiveKillTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['tenKillTeamId']){  ?>
+                                                    <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamId']==$battleDetailInfo['tenKillTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                   <?php if($return['matchDetail']['data']['away_id']==$battleDetailInfo['firstRoushanTeamId']){  ?>
+                                                   <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][0]['teamId']==$battleDetailInfo['firstRoushanTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
@@ -509,27 +509,27 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 													</span>:<?php  if( $return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamName']==$battleDetailInfo['radiantName'] ){echo $battleDetailInfo['direScore'] ??'';}else{echo $battleDetailInfo['radiantScore'] ??'';} ?>
                                                 </span>
                                             <span class="td">
-													<?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['firstBloodTeamId']){  ?>
+													<?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamId']==$battleDetailInfo['firstBloodTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['firstTowerTeamId']){  ?>
+                                                    <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamId']==$battleDetailInfo['firstTowerTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['fiveKillTeamId']){  ?>
+                                                    <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamId']==$battleDetailInfo['fiveKillTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                    <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['tenKillTeamId']){  ?>
+                                                    <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamId']==$battleDetailInfo['tenKillTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
                                             <span class="td">
-                                                   <?php if($return['matchDetail']['data']['home_id']==$battleDetailInfo['firstRoushanTeamId']){  ?>
+                                                   <?php if($return['matchDetail']['data']['match_pre']['teamBaseData']['teamVoList'][1]['teamId']==$battleDetailInfo['firstRoushanTeamId']){  ?>
                                                     <i class="dota2_dot red"></i>
 													<?php }?>
                                                 </span>
