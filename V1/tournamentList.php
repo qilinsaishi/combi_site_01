@@ -73,9 +73,7 @@ foreach($tournamentList as $game => $t_list)
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,"tournament");?>
-                        </ul>
                     </div>
                 </div>
             </div>

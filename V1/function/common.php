@@ -122,18 +122,50 @@
     }
     function generateNav($config,$current = "index")
     {
+        echo '<ul class="clearfix nav_ul">';
         $navList = $config['navList'];
         foreach($navList as $key => $value)
         {
+            $hasSubMenu = (isset($value['sub']) && count($value['sub'])>0)?1:0;
             if($key == $current)
             {
-                echo '<li class="active"><a href="'.$config['site_url'].'/'.$value['url'].'">'.$value['name'].'</a></li>';
+                echo '<li class="nav_li active"><a class="nav_lia" href="'.$config['site_url'].'/'.$value['url'].'">'.$value['name'].'</a>';
             }
             else
             {
-                echo '<li><a href="'.$config['site_url'].'/'.$value['url'].'">'.$value['name'].'</a></li>';
+                echo '<li class="nav_li"><a class="nav_lia" href="'.$config['site_url'].'/'.$value['url'].'">'.$value['name'].'</a>';
             }
+            //如果有子菜单
+            if($hasSubMenu)
+            {
+                $highlight = 0;
+                foreach($value['sub'] as $subMenu)
+                {
+                    if($highlight ==0 && isset($subMenu['highlight']) && trim($subMenu['highlight'])!="")
+                    {
+                        echo '<div class="'.$subMenu['highlight'].'">';
+                        echo $subMenu['name'];
+                        echo '</div>';
+                        $highlight = 1;
+                    }
+                }
+                echo '<div class="submenu_wrapper"><ul class="submenu"><li class="overflow_triangle"></li>';
+                foreach($value['sub'] as $subMenu)
+                {
+                    echo '<li class="submenu_li">
+                            <a href="'.$config['site_url'].'/'.$subMenu['url'].'" class="submenu_lia">';
+                    if(isset($subMenu['hot']) && $subMenu['hot']>0)
+                    {
+                        echo '<div class="hot_menu"></div>';
+                    }
+                    echo '<span>'.$subMenu['name'].'</span>';
+                    echo '</a></li>';
+                }
+                echo '</ul></div>';
+            }
+            echo '</li>';
         }
+        echo '</ul>';
         return;
     }
     function renderHeaderJsCss($config,$customCss = [])

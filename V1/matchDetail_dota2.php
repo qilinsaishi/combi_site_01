@@ -65,9 +65,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                     <span class="line"></span>
                 </div>
                 <div class="nav">
-                    <ul class="clearfix">
                         <?php generateNav($config,"game");?>
-                    </ul>
                 </div>
             </div>
         </div>

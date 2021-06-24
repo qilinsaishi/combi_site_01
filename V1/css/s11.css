@@ -1,0 +1,204 @@
+.s11 .format{
+
+}
+.s11_format_ul{
+    display: flex;
+    margin-bottom: 32px;
+    /* justify-content: space-between */
+}
+.s11_format_li{
+    width: 232px;
+}
+.s11_format_li_top{
+    margin: 0 auto;
+    padding-top: 12px;
+    width: 210px;
+    height: 72px;
+    margin-bottom: 22px;
+}
+.s11_format_li.active .s11_format_li_top{
+    background-image: url("../images/s11_format_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.s11_format_li.active .match_name,.s11_format_li.active .match_time{
+    color: #fff
+}
+.s11_format_li:hover .s11_format_li_top{
+    background-image: url("../images/s11_format_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.s11_format_li:hover .match_name,.s11_format_li:hover .match_time{
+    color: #fff
+}
+.s11_format_li_top .match_name{
+    font-size: 24px;
+    color: #333;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: block;
+    text-align: center;
+}
+.s11_format_li_top .match_time{
+    font-size: 18px;
+    color: #333;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: block;
+    text-align: center;
+}
+.s11_format_li_bot{
+    width: 232px;
+    height: 4px;
+    background: #9797C2;
+    /* border-radius: 2px; */
+    position: relative;
+}
+.s11_format_li:nth-child(1) .s11_format_li_bot{
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.s11_format_li:nth-last-child(1n) .s11_format_li_bot{
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.s11_format_li_bot .dot{
+    width: 18px;
+    height: 18px;
+    background: #222266;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    margin-left: -9px;
+    bottom: -7px;
+    z-index: 2;
+}
+.s11_format_li_bot .dot i{
+    width: 12px;
+    height: 12px;
+    background: #545EFF;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 3;
+    display: none;
+}
+.s11_format_li.active .s11_format_li_bot .dot{
+    width: 28px;
+    height: 28px;
+    bottom: -12px;
+    margin-left: -14px;
+}
+.s11_format_li:hover .s11_format_li_bot .dot{
+    width: 28px;
+    height: 28px;
+    bottom: -12px;
+    margin-left: -14px;
+}
+.s11_format_li.active .s11_format_li_bot .dot i{
+    display: block;
+}
+.s11_format_li:hover .s11_format_li_bot .dot i{
+    display: block;
+}
+.format_finals{
+    display: flex;
+    justify-content: center;
+}
+.format_finals .left{
+    margin-right: 4px;
+}
+.s11_format_detail{
+    width: 1160px;
+    height: 190px;
+    background-image: url("../images/s11_formatbg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.s11_format_item{
+    padding-top: 28px;
+    width: 1120px;
+    text-align: justify;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 26px;
+    display: none;
+}
+.s11_format_item.active{
+    display: block;
+}
+/* 移动 */
+@media only screen and (max-width: 1024px){
+    .team_explain_top .name {
+        margin-bottom: .1rem;
+        width: 100%;
+        font-size: .36rem;
+    }
+    .format_detail{
+        display: flex;
+    }
+    .s11_format_ul{
+        width: 2.1rem;
+        flex-direction: column;
+        flex-shrink: 0;
+    }
+    .s11_format_li{
+        width: 2.1rem;
+        height: .79rem;
+        border-bottom: .01rem solid #eee;
+    }
+    .s11_format_li_bot{
+        display: none;
+    }
+    .s11_format_detail{
+        width: 4.7rem;
+        height: 3.92rem;
+        margin-left: .1rem;
+        padding: .3rem;
+        background-image: url("../images/s11_format_wap_bg.png");
+    }
+    .s11_format_li_top{
+        width: 2.1rem;
+        height: .78rem;
+    }
+    .s11_format_li_top .match_name{
+        font-size: .24rem;
+        height: .24rem;
+        line-height: .24rem;
+        margin-bottom: .1rem;
+    }
+    .s11_format_li_top .match_time{
+        font-size: .18rem;
+        height: .18rem;
+        line-height: .18rem;
+        color: #666;
+    }
+    .s11_format_li_top{
+        padding-top: .12rem;
+        margin-bottom: .04rem;
+    }
+    .format_finals .left{
+        display: none;
+    }
+    .s11_format_item{
+        width: 4.1rem;
+        font-size: .22rem;
+        line-height: .34rem;
+        padding-top: 0;
+    }
+}

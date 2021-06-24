@@ -42,9 +42,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
-                            <?php generateNav($config,"t10");?>
-                        </ul>
+                            <?php generateNav($config,"tournament");?>
                     </div>
                 </div>
             </div>

@@ -72,9 +72,7 @@ foreach($newsTypeList as $newsType)
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,"index");?>
-                        </ul>
                     </div>
                 </div>
             </div>

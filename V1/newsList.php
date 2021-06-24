@@ -60,9 +60,7 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,$type);?>
-                        </ul>
                     </div>
                 </div>
             </div>
