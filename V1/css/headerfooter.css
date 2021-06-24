@@ -2,24 +2,25 @@
     width: 100%;
     height: 88px;
 }
-.nav ul{
+.nav .nav_ul{
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     -webkit-align-items: center;
        -moz-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     height: 88px;
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
     max-width: 970px;
 }
-.nav li{
+.nav .nav_li{
+    height: 88px;
     font-size: 18px;
     float: left;
     /* margin-right: 84px; */
@@ -37,7 +38,7 @@
             align-items: center;
    
 }
-.nav li a{
+.nav .nav_li .nav_lia{
     color: #666;
     display: -webkit-flex;
     display: -moz-box;
@@ -48,16 +49,16 @@
         -ms-flex-align: center;
             align-items: center;
 }
-.nav li.active{
+.nav .nav_li.active{
     font-size: 24px;
     min-width:8%;
 }
-.nav li.active a{
+.nav .nav_li.active .nav_lia{
     color: #ff6649;
     font-weight: 500;
     position: relative;
 }
-.nav li.active a:after{
+.nav .nav_li.active .nav_lia:after{
 width: 26px;
 height: 4px;
 display: block;
@@ -70,7 +71,7 @@ left: 0;
 right: 0;
 margin: 0 auto;
 }
-.nav li:nth-last-child(1){
+.nav .nav_li:nth-last-child(1){
     margin-right: 0;
 }
 .header .logo{
@@ -179,6 +180,110 @@ width: 12.5%;
     height: 40px;
     line-height: 40px;
 }
+/* 2021.6.24新增 */
+.submenu{
+    width: 180px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    position: relative;
+}
+/* .submenu::after{
+    content: " ";
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    background: #fff;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -14px;
+    z-index: 1;
+} */
+.overflow_triangle{
+    width:0;
+    height:0;
+    border:10px solid;
+    border-color:  transparent transparent #fff;
+    position: absolute;
+    left: 50%;
+    margin-left: -10px;
+    top: -20px;
+}
+
+.submenu_lia{
+    display: flex;
+    width: 172px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 32px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.nav .nav_ul .nav_li{
+    position: relative;
+}
+.submenu .submenu_li:hover .submenu_lia{
+    background: #FF6649;
+    color: #fff;
+}
+/* .submenu .submenu_li.active .submenu_lia{
+    background: #FF6649;
+    color: #fff;
+} */
+.nav .nav_ul .nav_li:hover .submenu_wrapper{
+    display: block;
+}
+.submenu_wrapper{
+    width: 180px;
+    height: auto;
+    position: absolute;
+    top: 88px;
+    z-index: 2;
+    left: 50%;
+    margin-left: -90px;
+    padding-top: 16px;
+    display: none;
+}
+.ti10_bg{
+    width: 18px;
+    height: 22px;
+    background-image: url("../images/ti10_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-right: 8px;
+}
+.submenu .submenu_li:hover .submenu_lia .ti10_bg{
+    background-image: url("../images/ti10_bg_active.png");
+}
+.ti10Box{
+    width: 52px;
+    height: 22px;
+    background: #FF6649;
+    border-radius: 8px 8px 0px 0px;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    margin-left: -26px;
+    bottom: 0;
+}
+.nav .nav_li.active .ti10Box{
+    display: none;
+}
+/* 2021.6.24新增 */
   @media only screen and (max-width: 1024px){
     .header{
         height: 1rem;
