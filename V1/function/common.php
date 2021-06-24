@@ -138,7 +138,6 @@
             //如果有子菜单
             if($hasSubMenu)
             {
-                echo "\n";
                 $highlight = 0;
                 foreach($value['sub'] as $subMenu)
                 {
@@ -147,13 +146,10 @@
                         echo '<div class="'.$subMenu['highlight'].'">';
                         echo $subMenu['name'];
                         echo '</div>';
-                        echo "\n";
                         $highlight = 1;
                     }
                 }
                 echo '<div class="submenu_wrapper"><ul class="submenu"><li class="overflow_triangle"></li>';
-                echo "\n";
-
                 foreach($value['sub'] as $subMenu)
                 {
                     echo '<li class="submenu_li">
@@ -167,7 +163,7 @@
                 }
                 echo '</ul></div>';
             }
-            echo '</li>'."\n";
+            echo '</li>';
         }
         echo '</ul>';
         return;
