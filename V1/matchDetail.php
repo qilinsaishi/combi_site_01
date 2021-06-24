@@ -141,17 +141,20 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             $round_minute = $round_info['game_time_m']??"0"+($round_info['game_time_m']??0)/60;?>
                             <div class="game_detail_div_item<?php if($key==0){echo ' active';} ?>">
                                 <div class="game_detail_item1">
-                                    <div class="left">
+                                    <!--<div >-->
+										  <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>" class="left">
                                         <div class="imgwidth40 imgheight40">
                                             <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                         </div>
                                         <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
+										
                                         <!--- 如果主队胜利-->
                                             <div class="imgwidth30 imgheight30">
                                                 <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?> active <?php }?>">
                                             </div>
                                         <!--- 如果主队胜利-->
-                                    </div>
+										</a>
+                                    <!--</div>-->
                                     <div class="center">
                                         <span class="game_detail_line1"></span>
                                         <span class="game_detail_circle1"></span>
@@ -163,17 +166,20 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <span class="game_detail_circle1"></span>
                                         <span class="game_detail_line1"></span>
                                     </div>
-                                    <div class="left right">
+                                    <!--<div >-->
                                         <!--- 如果客队胜利-->
+										 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>" class="left right">
                                             <div class="imgwidth30 imgheight30">
                                                 <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['away_id']){?> active <?php }?>">
                                             </div>
                                         <!--- 如果客队胜利-->
                                         <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
+										
                                         <div class="imgwidth40 imgheight40">
                                             <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                         </div>
-                                    </div>
+										</a>
+                                    <!--</div>-->
                                 </div>
                                 <!--- 主客队的背锅侠和mvp-->
                                 <div class="game_detail_item2 win_<?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){echo "left";}else{echo "right";}?>">
