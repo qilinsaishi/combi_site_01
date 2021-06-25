@@ -107,8 +107,8 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <!--</div>-->
                     </div>
                     <div class="game_team_depiction">
-                        <p class="active"><!--主队描述--></p>
-                        <p class="active"><!--客队描述--></p>
+                        <p class="active"><!--主队描述--><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['away_team_info']['description'])));?></p>
+                        <p class="active"><!--客队描述--><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['home_team_info']['description'])));?></p>
                     </div>
                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
@@ -1409,7 +1409,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
         <?php renderCertification();?>
     </div>
 </div>
-<?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
+
 <?php renderFooterJsCss($config,[],["jquery.lineProgressbar","echarts.min","circle-progress"]);?>
 <script>
     //圆形进度条

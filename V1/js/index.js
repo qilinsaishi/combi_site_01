@@ -31,6 +31,7 @@ $(document).ready(function () {
     $(".game_title_more").toggleClass("active")
 })
 
+
 // vs_data1切换
 $(function () {
     //第一个高亮
