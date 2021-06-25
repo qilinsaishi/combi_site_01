@@ -121,9 +121,7 @@ if($game=='dota2'){
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                              <?php generateNav($config,"team");?>
-                        </ul>
                     </div>
                 </div>
             </div>

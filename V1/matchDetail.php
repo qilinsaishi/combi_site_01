@@ -48,9 +48,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <span class="line"></span>
                 </div>
                 <div class="nav">
-                    <ul class="clearfix">
                         <?php generateNav($config,"game");?>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -141,17 +139,20 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             $round_minute = $round_info['game_time_m']??"0"+($round_info['game_time_m']??0)/60;?>
                             <div class="game_detail_div_item<?php if($key==0){echo ' active';} ?>">
                                 <div class="game_detail_item1">
-                                    <div class="left">
+                                    <!--<div >-->
+										  <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>" class="left">
                                         <div class="imgwidth40 imgheight40">
                                             <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                         </div>
                                         <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
+										
                                         <!--- 如果主队胜利-->
                                             <div class="imgwidth30 imgheight30">
                                                 <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?> active <?php }?>">
                                             </div>
                                         <!--- 如果主队胜利-->
-                                    </div>
+										</a>
+                                    <!--</div>-->
                                     <div class="center">
                                         <span class="game_detail_line1"></span>
                                         <span class="game_detail_circle1"></span>
@@ -163,17 +164,20 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <span class="game_detail_circle1"></span>
                                         <span class="game_detail_line1"></span>
                                     </div>
-                                    <div class="left right">
+                                    <!--<div >-->
                                         <!--- 如果客队胜利-->
+										 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>" class="left right">
                                             <div class="imgwidth30 imgheight30">
                                                 <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['away_id']){?> active <?php }?>">
                                             </div>
                                         <!--- 如果客队胜利-->
                                         <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
+										
                                         <div class="imgwidth40 imgheight40">
                                             <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                         </div>
-                                    </div>
+										</a>
+                                    <!--</div>-->
                                 </div>
                                 <!--- 主客队的背锅侠和mvp-->
                                 <div class="game_detail_item2 win_<?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){echo "left";}else{echo "right";}?>">
@@ -321,11 +325,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_ban"))=="blue_ban"){?>
                                                     <td>
-                                                        <a href="##">
                                                             <div class="bans_picks_div">
                                                                 <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                             </div>
-                                                        </a>
                                                     </td>
 													
                                                     <?php }}?>
@@ -338,11 +340,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                 <?php $i=1;foreach($round_info as $key_ban => $ban){
                                                     if(substr($key_ban,0,strlen("blue_pick_"))=="blue_pick_" && count(explode("_",$key_ban))==3){?>
                                                     <td>
-                                                        <a href="##">
                                                             <div class="bans_picks_div">
                                                                 <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                             </div>
-                                                        </a>
                                                     </td>
 													
                                                     <?php }}?>
@@ -367,11 +367,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_ban"))=="red_ban"){?>
                                                         <td>
-                                                            <a href="##">
                                                                 <div class="bans_picks_div">
                                                                     <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                                 </div>
-                                                            </a>
                                                         </td>
                                                     <?php }}?>
                                                     </tr>
@@ -383,11 +381,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     $c = $count-$i;
                                                     if(substr($key_ban,0,strlen("red_pick_"))=="red_pick_" && count(explode("_",$key_ban))==3){?>
                                                         <td>
-                                                            <a href="##">
                                                                 <div class="bans_picks_div">
                                                                     <img class="imgauto" data-original="<?php echo $ban;?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="">
                                                                 </div>
-                                                            </a>
                                                         </td>
                                                     <?php }}?>
                                                     </tr>

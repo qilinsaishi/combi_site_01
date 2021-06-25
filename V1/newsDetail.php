@@ -19,9 +19,9 @@ if(!isset($return["information"]['data']['id']))
 preg_match_all('/(src)=("[^"]*")/i', $return['information']['data']['content'], $matches);
 foreach($matches['2'] as $img)
 {
-    if(!strpos($img,'qilinsaishi'))
+    if(!strpos($img,'qilingsaishi'))
     {
-        $return['information']['data']['content'] = str_replace($img,$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
+        $return['information']['data']['content'] = str_replace('"'.$img.'"',$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
     }
 }
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
@@ -108,9 +108,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <span class="line"></span>
                     </div>
                     <div class="nav">
-                        <ul class="clearfix">
                             <?php generateNav($config,$currentType);?>
-                        </ul>
                     </div>
                 </div>
             </div>
