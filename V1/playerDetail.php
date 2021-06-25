@@ -7,7 +7,7 @@ if($pid<=0)
 }
 $params = [
     "intergratedPlayer"=>[$pid],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img","default_hero_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
@@ -333,14 +333,20 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                             <span class="span3">英雄</span>
                             <span class="span4">KDA</span>
                             <span class="span5">出装</span>
+							<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
                             <span class="span6">技能</span>
+							<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){?>
+							<span class="span6">赛事</span>
+							<?php }?>
+						
                             <span class="span7">符文</span>
+							
                         </div>
                         <ul class="player_matchs_content">
 							<?php
 						  foreach($return['intergratedPlayer']['data']['recentMatchList'] as $recentMatchInfo)
 						  { 
-							   	if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list']['scoregg'])){$side = "home";}else{$side="away";}
+							   	if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list'][$return['intergratedPlayer']['data']['teamInfo']['original_source']])){$side = "home";}else{$side="away";}
 
 								if(count($recentMatchInfo['player_detail'])>0)
 								{
@@ -359,22 +365,27 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 													<div class="team1">
 														<img class="imgauto" src="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
 													</div>
-													<div class="player_vs">GAME <?php echo $round_key+1;?></div>
+													<div class="player_vs">GAME <?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){ echo $round_key+1;}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){echo $round_detail['boxNum'];} ?></div>
 													<div class="team2">
 														<img class="imgauto" src="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
 													</div>
 												</div>
 												<div class="player_matchs_div3">
 													<div class="player_matchs_div3_img">
-														<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
+														<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
+														<?php 
+														foreach($round_detail as $round_son_key=>$round_son_detail){ 
 															if((strpos($round_son_key,'hero_')!==false) && (strpos($round_son_key,'pic')!==false) ){
 														?>
 													
 														<img class="imgauto" src="<?php echo $round_son_detail; ?>" alt="">
-															<?php }}?>
+														<?php }}}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){ ?>
+														<img class="imgauto" data-original="<?php echo $round_detail['HeroLogo']; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $round_detail['HeroName']; ?>">
+														<?php }?>
 													</div>
 												</div>
 												<div class="player_matchs_div4">
+													<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
 													<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
 													if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'_kills')!==false) ){
 														echo $round_son_detail;
@@ -384,29 +395,49 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 													}}?>/<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
 													if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'_assists')!==false) ){
 														echo $round_son_detail;
-													}}?>
+													}}}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){?>
+													<?php echo $round_detail['killCount']; ?>/<?php echo $round_detail['dieCount']; ?>/<?php echo $round_detail['assistsCount']; ?>
+													
+													<?php } ?>
+													
 												
 												</div>
 												<div class="player_matchs_div5 clearfix">
+													<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
 													<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
 															if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'equip_')!==false) ){
 														?>
 													<div>
 														<img src="<?php echo $round_son_detail; ?>" class="imgauto" alt="">
 													</div>
-													<?php }}?>
+													<?php }}}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){
+														if(isset($round_detail['equipmentList']) && count($round_detail['equipmentList'])>0){
+															foreach($round_detail['equipmentList'] as $equipmentInfo){
+														
+														?>
+													<div>
+														<img src="<?php echo $equipmentInfo['logo']; ?>" class="imgauto" alt="<?php echo $equipmentInfo['nameZh']; ?>">
+													</div>
+													<?php }}} ?>
 													
 													
 												</div>
+													
 												<div class="player_matchs_div6 clearfix">
+												<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
 													<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
 															if((strpos($round_son_key,'skill_')!==false) ){
 														?>
 													<div>
 														<img data-original="<?php echo $round_son_detail; ?>" src="<?php echo $return['defaultConfig']['data']['default_skills_img']['value'];?>" class="imgauto" alt="">
 													</div>
-													<?php }}?>
+												<?php }}}else{?>
+													<div>
+														<img data-original="<?php echo $recentMatchInfo['tournament_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?>" class="imgauto" alt="<?php echo $recentMatchInfo['tournament_info']['tournament_name'];?>">
+													</div>	
+												<?php }?>
 												</div>
+													
 												<div class="player_matchs_div7 clearfix">
 													<div>
 														<img src="<?php echo $return['defaultConfig']['data']['default_fuwen_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="">
