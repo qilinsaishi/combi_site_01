@@ -288,7 +288,6 @@ foreach($allGameList as $key => $game)
                                             </div>
                                         <div class="one_day_item">
                                             <ul class="one_day_bottom">
-                                                <li class="one_day_botitem">
                                                     <!-- 循环游戏 -->
                                                     <?php foreach($dateGameList as $game => $currentGameList){?>
                                                         <div class="game3_classify clearfix">
@@ -300,6 +299,9 @@ foreach($allGameList as $key => $game)
                                                             <?php foreach($currentGameList as $currentTournament => $currentTournamentList){ ?>
                                                                 <!-- 循环比赛 -->
                                                                 <?php foreach($currentTournamentList as $key => $matchInfo){
+                                                                    ?>
+                                                <li class="one_day_botitem">
+                                                <?php
                                                                     if($key==0){?>
                                                                         <div class="game3_classify2 clearfix">
                                                                             <div class="fl clearfix game3_classify2_detail">
@@ -439,7 +441,9 @@ foreach($allGameList as $key => $game)
                                                                     <div class="li_bg">
                                                                         <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                                     </div>
-                                                                <?php }}?>
+                                                                <?php }?>
+                                                                </li>
+                                                            <?php }?>
                                                             <!-- 循环比赛 -->
                                                             <!-- 循环赛事 -->
                                                             <?php }else{?>
@@ -453,7 +457,6 @@ foreach($allGameList as $key => $game)
                                                     <?php }?>
                                                     <!-- 循环赛事 -->
                                                     <!-- 循环游戏 -->
-                                                </li>
                                             </ul>
                                         </div>
                                         </div>
