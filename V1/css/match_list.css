@@ -1,0 +1,92 @@
+.header{
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    background: #fff;
+    z-index: 11;
+}
+.navigation{
+    padding-top: 108px;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    background-color: #F5F6F7;
+}
+.calendar{
+    position: fixed;
+    width: 860px;
+    z-index: 11;
+    background-color: #F5F6F7;
+}
+.game_left{
+    padding-top: 150px;
+}
+.game3_detail{
+    padding-top: 200px;
+}
+.game_right{
+    padding-top: 150px;
+}
+.game3_detail_ul{
+    position: fixed;
+    z-index: 10;
+    background-color: #F5F6F7;
+    width: 860px;
+    top: 344px;
+}
+.game3_days{
+    padding-top: 60px;
+}
+ .game3_detail_ul li{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+ .game3_detail_ul li{
+    font-size: 20px;
+    color: #FF6649;
+    padding: 0 20px;
+}
+.game3_detail_ul li.active {
+    display: block;
+    background: #FF6649;
+    border-radius: 20px;
+    color: #fff;
+}
+ .game3_detail_ul li {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+.game3_detail_ul a {
+    font-size: 20px;
+    color: #FF6649;
+    padding: 0 20px;
+}
+ .game3_detail_ul li.active a {
+    display: block;
+    background: #FF6649;
+    border-radius: 20px;
+    color: #fff;
+}
+.calendar1 li {
+    font-size: 18px;
+    color: #333;
+    height: 18px;
+    line-height: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.calendar1 li span.week {
+    margin-bottom: 18px;
+}
+@media only screen and (max-width: 1024px){
+    .calendar{
+        width: 100%;
+    }
+}
