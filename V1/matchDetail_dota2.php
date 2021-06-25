@@ -78,11 +78,11 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <!--<div >-->
 							<a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>" class="game_team1">
                             <div class="game_team1_img">
-                                <div class="game_team1_img1">
-                                    <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
+                                <div class="game_team1_img1"> 
+                                    <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                 </div>
                             </div>
-                            <span><?php echo $return['matchDetail']['data']['away_name']??'';?></span>
+                            <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name']??'';?></span>
 							</a>
                         <!--</div>-->
                         <div class="game_type">
@@ -99,10 +99,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 							<a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>" class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>">
+                                    <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
                                 </div>
                             </div>
-                            <span><?php echo $return['matchDetail']['data']['home_name']??'';?></span>
+                            <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name']??'';?></span>
 							</a>
                         <!--</div>-->
                     </div>
@@ -135,10 +135,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 									
                                     <div class="teamInfo_img">
 										
-                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>"  class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>"  class="imgauto">
 									
                                     </div>
-                                    <span class="text_left"><?php echo $return['matchDetail']['data']['away_name'];?></span>
+                                    <span class="text_left"><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
 									</a>
 									
                                 
@@ -149,10 +149,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     <div class="colorBlock blue"></div>
 									
                                     <div class="teamInfo_img">
-                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
 										
                                     </div>
-                                    <span class="text_right"><?php echo $return['matchDetail']['data']['home_name'];?></span>
+                                    <span class="text_right"><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
 									</a>
                                
                             </div>
@@ -598,7 +598,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                         <p>第<?php echo ($matchKey+1)?>局比赛中： <?php echo $firstBloodTeam; ?>夺得一血，<?php echo $firstTowerTeam; ?>首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?>拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀， <?php echo $fifteenKillTeam; ?>  豪取十五杀。</p>
 										<?php }?>
                                         
-                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_name']?? '';}else{echo $return['matchDetail']['data']['home_name']?? '';}?>取得本次<?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?>的冠军</p>
+                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_team_info']['team_name']?? '';}else{echo $return['matchDetail']['data']['home_team_info']['team_name']?? '';}?>取得本次<?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?>的冠军</p>
                                     </div>
 									
                                 </div>
@@ -607,9 +607,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     <li <?php if($matchKey==0){?>class="active"<?php }?>>
                                         <div class="game_detail_img1">
 											<?php if($matchInfo['awayTeam']['score']>$matchInfo['homeTeam']['score']){
-												$team_logo_icon=$return['matchDetail']['data']['away_logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
 											}else{
-												$team_logo_icon=$return['matchDetail']['data']['home_logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
 											}?>
                                             <img src="<?php echo $team_logo_icon;?>" alt="">
                                         </div>
@@ -630,9 +630,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                 
 													<a class="left" href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>">
                                                     <div class="imgwidth40 imgheight40">
-                                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
+                                                        <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                                     </div>
-                                                    <span><?php echo $return['matchDetail']['data']['away_name'];?></span>
+                                                    <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
 													
                                                     <?php if($matchInfo['awayTeam']['score']>$matchInfo['homeTeam']['score']){?>
                                                     <div class="liveBox_img">
@@ -655,9 +655,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                 
 													<a class="left right" href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>">
                                                     <div class="imgwidth40 imgheight40">
-                                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
+                                                        <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                                     </div>
-                                                    <span><?php echo $return['matchDetail']['data']['home_name'];?></span>
+                                                    <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
 													
 													<?php if($matchInfo['awayTeam']['score']<=$matchInfo['homeTeam']['score']){?>
                                                     <div class="liveBox_img">
