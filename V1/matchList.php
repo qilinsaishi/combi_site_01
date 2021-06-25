@@ -623,4 +623,4 @@ foreach($allGameList as $key => $game)
     </script>
 </body>
 
-</html>git
+</html>
