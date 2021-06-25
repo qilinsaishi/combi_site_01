@@ -250,7 +250,7 @@ foreach($allGameList as $key => $game)
                                                 {
                                                     echo '<tr>';
                                                 }?>
-                                                <td <?php if(date("m",strtotime($date))!=date("m",strtotime($currentDate))){?>class="grey"<?php }if($date==$currentDate){?> class="active"<?php }?>><a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo $date;?>"><?php echo date("m.d",strtotime($date));?></a></td>
+                                                <td <?php if(date("m",strtotime($date))!=date("m",strtotime($currentDate))){?>class="grey"<?php }if($date==$currentDate){?> class="active"<?php }?>><a href="javascript:void(0);" onclick="submitDate('<?php echo $date;?>')"><?php echo date("m.d",strtotime($date));?></a></td>
                                                 <?php
                                                 if($i%7==0)
                                                 {
@@ -611,7 +611,16 @@ foreach($allGameList as $key => $game)
             $(this).addClass("active");
             $(this).parents(".game3_detail").find(".game3_days").find(".game3_days_item").removeClass("active").eq($(this).index()).addClass("active");
         })
+        function submitDate(date){
+            url = window.location.href;
+            form = $("<form method='post' action="+url+'/'+"></form>");
+            input = $("<input type='hidden'>").val(date).attr('name','date');
+            form.append(input);
+            form.appendTo(document.body)
+            //....继续添加字段
+            form.submit();
+        }
     </script>
 </body>
 
-</html>
+</html>git
