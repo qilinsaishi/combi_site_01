@@ -78,11 +78,11 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <!--<div >-->
 							<a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>" class="game_team1">
                             <div class="game_team1_img">
-                                <div class="game_team1_img1">
-                                    <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
+                                <div class="game_team1_img1"> 
+                                    <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                 </div>
                             </div>
-                            <span><?php echo $return['matchDetail']['data']['away_name']??'';?></span>
+                            <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name']??'';?></span>
 							</a>
                         <!--</div>-->
                         <div class="game_type">
@@ -99,16 +99,16 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 							<a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>" class="game_team1">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
-                                    <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>">
+                                    <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
                                 </div>
                             </div>
-                            <span><?php echo $return['matchDetail']['data']['home_name']??'';?></span>
+                            <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name']??'';?></span>
 							</a>
                         <!--</div>-->
                     </div>
                     <div class="game_team_depiction">
-                        <p class="active"><!--主队描述--></p>
-                        <p class="active"><!--客队描述--></p>
+                        <p class="active"><!--主队描述--><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['away_team_info']['description'])));?></p>
+                        <p class="active"><!--客队描述--><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['home_team_info']['description'])));?></p>
                     </div>
                     <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
@@ -135,10 +135,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 									
                                     <div class="teamInfo_img">
 										
-                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>"  class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>"  class="imgauto">
 									
                                     </div>
-                                    <span class="text_left"><?php echo $return['matchDetail']['data']['away_name'];?></span>
+                                    <span class="text_left"><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
 									</a>
 									
                                 
@@ -149,10 +149,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     <div class="colorBlock blue"></div>
 									
                                     <div class="teamInfo_img">
-                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
+                                        <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
 										
                                     </div>
-                                    <span class="text_right"><?php echo $return['matchDetail']['data']['home_name'];?></span>
+                                    <span class="text_right"><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
 									</a>
                                
                             </div>
@@ -598,7 +598,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                         <p>第<?php echo ($matchKey+1)?>局比赛中： <?php echo $firstBloodTeam; ?>夺得一血，<?php echo $firstTowerTeam; ?>首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?>拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀， <?php echo $fifteenKillTeam; ?>  豪取十五杀。</p>
 										<?php }?>
                                         
-                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_name']?? '';}else{echo $return['matchDetail']['data']['home_name']?? '';}?>取得本次<?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?>的冠军</p>
+                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_team_info']['team_name']?? '';}else{echo $return['matchDetail']['data']['home_team_info']['team_name']?? '';}?>取得本次<?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?>的冠军</p>
                                     </div>
 									
                                 </div>
@@ -607,9 +607,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     <li <?php if($matchKey==0){?>class="active"<?php }?>>
                                         <div class="game_detail_img1">
 											<?php if($matchInfo['awayTeam']['score']>$matchInfo['homeTeam']['score']){
-												$team_logo_icon=$return['matchDetail']['data']['away_logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
 											}else{
-												$team_logo_icon=$return['matchDetail']['data']['home_logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
 											}?>
                                             <img src="<?php echo $team_logo_icon;?>" alt="">
                                         </div>
@@ -630,9 +630,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                 
 													<a class="left" href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>">
                                                     <div class="imgwidth40 imgheight40">
-                                                        <img data-original="<?php echo $return['matchDetail']['data']['away_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_name'];?>" class="imgauto">
+                                                        <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                                     </div>
-                                                    <span><?php echo $return['matchDetail']['data']['away_name'];?></span>
+                                                    <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
 													
                                                     <?php if($matchInfo['awayTeam']['score']>$matchInfo['homeTeam']['score']){?>
                                                     <div class="liveBox_img">
@@ -655,9 +655,9 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                 
 													<a class="left right" href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>">
                                                     <div class="imgwidth40 imgheight40">
-                                                        <img data-original="<?php echo $return['matchDetail']['data']['home_logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_name'];?>" class="imgauto">
+                                                        <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_40,w_40';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                                     </div>
-                                                    <span><?php echo $return['matchDetail']['data']['home_name'];?></span>
+                                                    <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
 													
 													<?php if($matchInfo['awayTeam']['score']<=$matchInfo['homeTeam']['score']){?>
                                                     <div class="liveBox_img">
@@ -1033,11 +1033,21 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 														if(isset($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'])){
 															foreach($matchInfo['lineupContent']['dataAnalysis']['awayHeroStat'] as $awayHeroStatKey=>$awayHeroStatInfo){
 																//赢率
-																$winRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allWinCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																if($awayHeroStatInfo['allTotal']>0){
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allWinCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayRate']=0;
+																}
+																
 																$winRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allWinCount']??0;
 																$winRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currWinCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																if($awayHeroStatInfo['currTotal']>0){
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currWinCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=0;
+																}
+																
 																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currWinCount']??0;
 																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																$winRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
@@ -1046,12 +1056,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$winRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//一血率
-																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFirstBloodsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																if($awayHeroStatInfo['allTotal']>0){
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFirstBloodsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayRate']=0;
+																}
+																
 																
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allFirstBloodsCount']??0;
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFirstBloodsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																if($awayHeroStatInfo['currTotal']>0){
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFirstBloodsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=0;
+																}
+																
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstBloodsCount']??0;
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
@@ -1060,12 +1080,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//一塔率
-																$firstTowerDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFirstTowersCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																if($awayHeroStatInfo['allTotal']>0){
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFirstTowersCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayRate']=0;
+																}
+																
 																
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allFirstTowersCount']??0;
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFirstTowersCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																if($awayHeroStatInfo['currTotal']>0){
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFirstTowersCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=0;
+																}
+																
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstTowersCount']??0;
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																$firstTowerDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
@@ -1074,12 +1104,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//五杀率
-																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFiveKillsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																if($awayHeroStatInfo['allTotal']>0){
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allFiveKillsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=0;
+																}
+																
 																
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFiveKillsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																if($awayHeroStatInfo['currTotal']>0){
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currFiveKillsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=0;
+																}
+																
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
@@ -1088,12 +1128,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//十杀率
-																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allTenKillsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																if(isset($awayHeroStatInfo['allTotal']) && $awayHeroStatInfo['allTotal']>0){
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=number_format($awayHeroStatInfo['allTenKillsCount']/$awayHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayRate']=0;
+																}
+																
 																
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayAllWinCount']=$awayHeroStatInfo['allTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayAllTotal']=$awayHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currTenKillsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																if($awayHeroStatInfo['currTotal']>0){
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=number_format($awayHeroStatInfo['currTenKillsCount']/$awayHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinRate']=0;
+																}
+																
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['postion']=$position[$awayHeroStatKey];
@@ -1108,11 +1158,21 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 															foreach($matchInfo['lineupContent']['dataAnalysis']['homeHeroStat'] as $homeHeroStatKey=>$homeHeroStatInfo){
 												
 																//赢率
-																$winRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allWinCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																if($homeHeroStatInfo['allTotal']>0){
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allWinCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeRate']=0;
+																}
+																
 																$winRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allWinCount']??0;
 																$winRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currWinCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																if($homeHeroStatInfo['currTotal']>0){
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currWinCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=0;
+																}
+																
 																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currWinCount']??0;
 																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																//英雄
@@ -1121,12 +1181,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																
 																
 																//一血率
-																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFirstBloodsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																if($homeHeroStatInfo['allTotal']>0){
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFirstBloodsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeRate']=0;
+																}
+																
 																
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allFirstBloodsCount']??0;
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFirstBloodsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																if($homeHeroStatInfo['currTotal']>0){
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFirstBloodsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=0;
+																}
+																
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFirstBloodsCount']??0;
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																//英雄
@@ -1134,12 +1204,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//一塔率
-																$firstTowerDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFirstTowersCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																if($homeHeroStatInfo['allTotal']>0){
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFirstTowersCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeRate']=0;
+																}
+																
 																
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allFirstTowersCount']??0;
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFirstTowersCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																if($homeHeroStatInfo['currTotal']>0){
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFirstTowersCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=0;
+																}
+																
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFirstTowersCount']??0;
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																//英雄
@@ -1147,12 +1227,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//五杀率
-																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFiveKillsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																if($homeHeroStatInfo['allTotal']>0){
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allFiveKillsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=0;
+																}
+																
 																
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFiveKillsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																if($homeHeroStatInfo['currTotal']){
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currFiveKillsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=0;
+																}
+																
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																//英雄
@@ -1160,12 +1250,22 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//十杀率
-																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allTenKillsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																if($homeHeroStatInfo['allTotal']>0){
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=number_format($homeHeroStatInfo['allTenKillsCount']/$homeHeroStatInfo['allTotal'],3)*100;
+																}else{
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeRate']=0;
+																}
+																
 																
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeAllWinCount']=$homeHeroStatInfo['allTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeAllTotal']=$homeHeroStatInfo['allTotal']??0;
 																//当前赢率
-																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currTenKillsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																if($homeHeroStatInfo['currTotal']>0){
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=number_format($homeHeroStatInfo['currTenKillsCount']/$homeHeroStatInfo['currTotal'],3)*100;
+																}else{
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinRate']=0;
+																}
+																
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																//英雄
@@ -1409,7 +1509,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
         <?php renderCertification();?>
     </div>
 </div>
-<?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
+
 <?php renderFooterJsCss($config,[],["jquery.lineProgressbar","echarts.min","circle-progress"]);?>
 <script>
     //圆形进度条
