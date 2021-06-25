@@ -1,6 +1,14 @@
 <?php
 require_once "function/init.php";
-$currentDate = $_GET['date']??date("Y-m-d");
+$postDate = $_POST['date']??0;
+if(strtotime($postDate)>0)
+{
+    $currentDate =  $postDate;
+}
+else
+{
+    $currentDate = $_GET['date']??date("Y-m-d");
+}
 $currentGame = $_GET['game']??"all";
 if(strtotime($currentDate)==0)
 {
