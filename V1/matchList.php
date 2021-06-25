@@ -1,6 +1,14 @@
 <?php
 require_once "function/init.php";
-$currentDate = $_GET['date']??date("Y-m-d");
+$postDate = $_POST['date']??0;
+if(strtotime($postDate)>0)
+{
+    $currentDate =  $postDate;
+}
+else
+{
+    $currentDate = $_GET['date']??date("Y-m-d");
+}
 $currentGame = $_GET['game']??"all";
 if(strtotime($currentDate)==0)
 {
@@ -126,7 +134,7 @@ foreach($allGameList as $key => $game)
                 </a >
                 >
                 <?php if($currentGame!="all"){?>
-                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo $currentDate;?>">
+                        <a href="javascript:void(0);" onclick="submitDate('<?php echo $currentDate;?>','<?php echo $currentGame;?>')">
                         <?php echo $config['game'][$currentGame];?>
                     </a >
                     >
@@ -156,7 +164,7 @@ foreach($allGameList as $key => $game)
                             ?>
                             <div class="min_calendar_bottom">
                                 <div class="left fl">
-                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date('Y-m-d',strtotime($currentDate)-7*86400);?>" class="prev_week">
+                                    <a href="javascript:void(0);" onclick="submitDate('<?php echo date('Y-m-d',strtotime($currentDate)-7*86400);?>','<?php echo $currentGame;?>')"  class="prev_week">
                                         <i class="iconfont icon-shangyige"></i>
                                     </a>
                                 </div>
@@ -168,7 +176,7 @@ foreach($allGameList as $key => $game)
                                                 $date = date("Y-m-d",(strtotime($dateRange['startDate'])+$key*86400));
                                             ?>
                                                 <li <?php if($date==$currentDate){echo 'class="active"';}?>>
-                                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo $date;?>">
+                                                        <a href="javascript:void(0);" onclick="submitDate('<?php echo $date;?>','<?php echo $currentGame;?>')">
                                                         <span class="week"><?php echo $day;?></span>
                                                         <span class="time2"><?php echo date("m.d",strtotime($date));?></span>
                                                     </a>
@@ -177,7 +185,7 @@ foreach($allGameList as $key => $game)
                                     </ul>
                                 </div>
                                 <div class="right fr">
-                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date('Y-m-d',strtotime($currentDate)+7*86400);?>" class="next_week">
+                                    <a href="javascript:void(0);" onclick="submitDate('<?php echo date('Y-m-d',strtotime($currentDate)+7*86400);?>','<?php echo $currentGame;?>')"  class="next_week">
                                         <i class="iconfont icon-xiayige"></i>
                                     </a>
                                  </div>
@@ -193,20 +201,20 @@ foreach($allGameList as $key => $game)
                                 </div>
                                 <div class="time3">
                                     <div class="year">
-                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y",strtotime($currentDate)-365*86400).date("-m-d",strtotime($currentDate))?>" class="prev_year">
+                                        <a href="javascript:void(0);" onclick="submitDate('<?php echo date("Y",strtotime($currentDate)-365*86400).date("-m-d",strtotime($currentDate));?>','<?php echo $currentGame;?>')"  class="prev_year">
                                             <i class="iconfont icon-shangyige"></i>
                                         </a>
                                         <span><?php echo date("Y",strtotime($currentDate));?>年</span>
-                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y",strtotime($currentDate)+365*86400).date("-m-d",strtotime($currentDate))?>" class="prev_year">
+                                        <a href="javascript:void(0);" onclick="submitDate('<?php echo date("Y",date("Y",strtotime($currentDate)+365*86400).date("-m-d",strtotime($currentDate)));?>','<?php echo $currentGame;?>')"  class="prev_year">
                                             <i class="iconfont icon-xiayige"></i>
                                         </a>
                                     </div>
                                     <div class="month">
-                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y-m-d",strtotime($currentDate)-30*86400)?>" class="prev_month">
+                                        <a href="javascript:void(0);" onclick="submitDate('<?php echo  date("Y-m-d",strtotime($currentDate)-30*86400);?>','<?php echo $currentGame;?>')"  class="prev_month">
                                             <i class="iconfont icon-shangyige"></i>
                                         </a>
                                         <span><?php echo date("m",strtotime($currentDate));?>月</span>
-                                        <a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo date("Y-m-d",strtotime($currentDate)+30*86400)?>" class="prev_month">
+                                        <a href="javascript:void(0);" onclick="submitDate('<?php echo date("Y-m-d",strtotime($currentDate)+30*86400);?>','<?php echo $currentGame;?>')"  class="prev_month">
                                             <i class="iconfont icon-xiayige"></i>
                                         </a>
                                     </div>
@@ -242,7 +250,7 @@ foreach($allGameList as $key => $game)
                                                 {
                                                     echo '<tr>';
                                                 }?>
-                                                <td <?php if(date("m",strtotime($date))!=date("m",strtotime($currentDate))){?>class="grey"<?php }if($date==$currentDate){?> class="active"<?php }?>><a href="<?php echo $config['site_url'];?>/match/<?php echo $currentGame;?>/<?php echo $date;?>"><?php echo date("m.d",strtotime($date));?></a></td>
+                                                <td <?php if(date("m",strtotime($date))!=date("m",strtotime($currentDate))){?>class="grey"<?php }if($date==$currentDate){?> class="active"<?php }?>><a href="javascript:void(0);" onclick="submitDate('<?php echo $date;?>','<?php echo $currentGame;?>')"><?php echo date("m.d",strtotime($date));?></a></td>
                                                 <?php
                                                 if($i%7==0)
                                                 {
@@ -263,13 +271,13 @@ foreach($allGameList as $key => $game)
                     <div class="game3_detail">
                         <ul class="game3_detail_ul clearfix">
                             <li <?php if($currentGame=="all"){?>class="active"<?php }?>>
-                                <a href="<?php echo $config['site_url'];?>/match/all/<?php echo $currentDate;?>">
+                                <a href="javascript:void(0);" onclick="submitDate('<?php echo $currentDate;?>','all')">
                                     综合
                                 </a>
                             </li>
                             <?php foreach($config['game'] as $game => $game_name){?>
                                 <li <?php if($currentGame==$game){?>class="active"<?php }?>>
-                                    <a href="<?php echo $config['site_url'];?>/match/<?php echo $game;?>/<?php echo $currentDate;?>">
+                                    <a href="javascript:void(0);" onclick="submitDate('<?php echo $currentDate;?>','<?php echo $game;?>')">
                                         <?php echo $game_name;?>
                                     </a>
                                 </li>
@@ -288,7 +296,6 @@ foreach($allGameList as $key => $game)
                                             </div>
                                         <div class="one_day_item">
                                             <ul class="one_day_bottom">
-                                                <li class="one_day_botitem">
                                                     <!-- 循环游戏 -->
                                                     <?php foreach($dateGameList as $game => $currentGameList){?>
                                                         <div class="game3_classify clearfix">
@@ -300,6 +307,9 @@ foreach($allGameList as $key => $game)
                                                             <?php foreach($currentGameList as $currentTournament => $currentTournamentList){ ?>
                                                                 <!-- 循环比赛 -->
                                                                 <?php foreach($currentTournamentList as $key => $matchInfo){
+                                                                    ?>
+                                                <li class="one_day_botitem">
+                                                <?php
                                                                     if($key==0){?>
                                                                         <div class="game3_classify2 clearfix">
                                                                             <div class="fl clearfix game3_classify2_detail">
@@ -439,7 +449,9 @@ foreach($allGameList as $key => $game)
                                                                     <div class="li_bg">
                                                                         <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                                     </div>
-                                                                <?php }}?>
+                                                                <?php }?>
+                                                                </li>
+                                                            <?php }?>
                                                             <!-- 循环比赛 -->
                                                             <!-- 循环赛事 -->
                                                             <?php }else{?>
@@ -453,7 +465,6 @@ foreach($allGameList as $key => $game)
                                                     <?php }?>
                                                     <!-- 循环赛事 -->
                                                     <!-- 循环游戏 -->
-                                                </li>
                                             </ul>
                                         </div>
                                         </div>
@@ -600,6 +611,22 @@ foreach($allGameList as $key => $game)
             $(this).addClass("active");
             $(this).parents(".game3_detail").find(".game3_days").find(".game3_days_item").removeClass("active").eq($(this).index()).addClass("active");
         })
+        function submitDate(date,game){
+            url = '<?php echo $config['site_url'];?>/match';
+            if(game=='')
+            {
+                form = $("<form method='post' action="+url+'/'+"></form>");
+            }else
+            {
+                form = $("<form method='post' action="+url+'/'+game+'/'+"></form>");
+            }
+
+            input = $("<input type='hidden'>").val(date).attr('name','date');
+            form.append(input);
+            form.appendTo(document.body)
+            //....继续添加字段
+            form.submit();
+        }
     </script>
 </body>
 
