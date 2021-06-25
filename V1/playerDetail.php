@@ -217,10 +217,10 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 							<?php } ?>
                         </div>
                         <div class="team_explain_name clearfix">
-                            <p class="clearfix fl">英文名：<span class="English_name fr"><?php echo $return['intergratedPlayer']['data']['en_name'] ?></span></p>
-                            <p class="clearfix fl">别称：<span class="chinese_name fr"><?php echo $return['intergratedPlayer']['data']['aka'] ?></span></p>
-                            <p class="clearfix fl">昵称：<span class="English_name fr"><?php echo $return['intergratedPlayer']['data']['player_name'];?></span></p>
-                            <p class="clearfix fl">地区：<span class="chinese_name fr"><?php echo $return['intergratedPlayer']['data']['country'];?></span></p>
+                            <p class="clearfix fl"><span class='team_explain_left'>英文名：</span><span class="English_name fr"><?php echo $return['intergratedPlayer']['data']['en_name'] ?></span></p>
+                            <p class="clearfix fl"><span class='team_explain_left'>别称：</span><span class="chinese_name fr"><?php echo $return['intergratedPlayer']['data']['aka'] ?></span></p>
+                            <p class="clearfix fl"><span class='team_explain_left'>昵称：</span><span class="English_name fr"><?php echo $return['intergratedPlayer']['data']['player_name'];?></span></p>
+                            <p class="clearfix fl"><span class='team_explain_left'>地区：</span><span class="chinese_name fr"><?php echo $return['intergratedPlayer']['data']['country'];?></span></p>
                         </div>
                         <div class="team_explain_bottom">
                             <?php echo $description;?>
@@ -445,7 +445,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         </div>
                         <div class="player_team_bot clearfix">
                             <div class="left fl">
-                                <img class="imgauto"  data-original="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
+                                <img   data-original="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['logo']?>?x-oss-process=image/resize,m_lfit,h_128,w_128" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   alt="<?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>">
                             </div>
                             <div class="right fl">
                                 <div class="team_explain_top clearfix">

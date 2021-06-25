@@ -87,7 +87,7 @@
     /* max-width: 150px; */
     overflow:hidden;
     text-overflow:ellipsis;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 .team_explain_bottom {
     font-size: 18px;
@@ -534,7 +534,23 @@ width: 80px;
 }
 
 /* 6.11新增 */
-
+/* 2021.6.25新增 */
+.English_name, .chinese_name{
+    word-break: break-all;
+    max-width: 520px;
+}
+.player_team_bot .left img{
+    display: block;
+    margin: 0 auto;
+}
+.team_explain_name .team_explain_left{
+    color: #999;
+    width: 80px;
+}
+.team_explain_name p{
+    display: flex;
+}
+/* 2021.6.25新增 */
 @media only screen and (max-width: 1024px){
     .team_explain{
         width: 100%;
@@ -677,7 +693,7 @@ width: 80px;
         margin-bottom: 0;
     }
     .team_explain_name p{
-        width: 90%;
+        width: 100%;
     }
     .English_name, .chinese_name{
         float: none;
@@ -772,4 +788,21 @@ width: 80px;
     .game_team_list_detail li:nth-child(4n){
         margin-right: 0;
     }
+    /* 2021.6.25新增 */
+    .team_explain_name p{
+        display: flex;
+    }
+    .player_team_bot .right {
+        width: 70%;
+    }
+    .team_explain_name .team_explain_left {
+        color: #999;
+        width: 1rem;
+        flex-shrink: 0;
+        text-align: right;
+    }
+    .team_explain_name span{
+        font-size: .24rem;
+    }
+    /* 2021.6.25新增 */
 }
