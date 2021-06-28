@@ -176,7 +176,7 @@ foreach($allGameList as $key => $game)
                                             {
                                                 $date = date("Y-m-d",(strtotime($dateRange['startDate'])+$key*86400));
                                             ?>
-                                                <li <?php if($date==$currentDate){echo 'class="active"';}?>>
+                                                <li <?php if($date==$currentDate){echo 'class="active calendar1_li"';}?>>
                                                         <span class="week"><?php echo $day;?></span>
                                                         <span class="time2"><?php echo date("m.d",strtotime($date));?></span>
                                                 </li>
@@ -596,7 +596,6 @@ foreach($allGameList as $key => $game)
         function myfun() 　　{ 　　 
             $('.calendar1').find('li').each(function() {
                 if($('.active').is('.calendar1_li')){
-                    console.log($(".calendar1_li.active").index())
                     if($('.active').is('.all')){
                     $("html").animate({
                         scrollTop:$(".all .one_day").eq($(".calendar1_li.active").index()).offset().top-404
@@ -622,7 +621,7 @@ foreach($allGameList as $key => $game)
     /*用window.onload调用myfun()*/　
     // 不要括号
     window.onload = myfun;
-
+   
 
         function submitDate(date,game){
             url = '<?php echo $config['site_url'];?>/match';
@@ -644,62 +643,34 @@ foreach($allGameList as $key => $game)
             $(".game3_detail_ul li").removeClass("active");
             $(this).addClass("active");
             $(this).parents(".game3_left").find(".game3_days").find(".game3_days_item").removeClass("active").eq($(this).index()).addClass("active");
+             myfun();
         })
 
 
 
         $(".calendar1 ul").children("li").click(function(){
-            console.log($(this))
             $(".calendar1 ul li").removeClass("active");
             $(this).addClass("active");
             if($('.active').is('.all')){
-                // alert(1)
                 $("html").animate({
                     scrollTop:$(".all .one_day").eq($(this).index()).offset().top-404
                 })
             }else if($('.active').is('.lol')){
-                // alert(2)
                 $("html").animate({
                     scrollTop:$(".lol .one_day").eq($(this).index()).offset().top-404
                 })
             }
             else if($('.active').is('.kpl')){
-                // alert(3)
                 $("html").animate({
                     scrollTop:$(".kpl .one_day").eq($(this).index()).offset().top-404
                 })
             }
             else if($('.active').is('.dota2')){
-                // alert(4)
                 $("html").animate({
                     scrollTop:$(".dota2 .one_day").eq($(this).index()).offset().top-404
                 })
             }
-            // $("html").animate({
-            //     scrollTop:$(".all .one_day").eq($(this).index()).offset().top-404
-            // })
-            // $("html").animate({
-            //     scrollTop:$(".lol .one_day").eq($(this).index()).offset().top-404
-            // })
         })
-        // $(".calendar1 ul").children("li").click(function(){
-        //     console.log($(this))
-        //     $("html").animate({
-        //         scrollTop:$(".lol .one_day").eq($(this).index()).offset().top-404
-        //     })
-        // })
-        // $(".calendar1 ul").children("li").click(function(){
-        //     console.log($(this))
-        //     $("html").animate({
-        //         scrollTop:$(".kpl .one_day").eq($(this).index()).offset().top-404
-        //     })
-        // })
-        // $(".calendar1 ul").children("li").click(function(){
-        //     console.log($(this))
-        //     $("html").animate({
-        //         scrollTop:$(".dota2 .one_day").eq($(this).index()).offset().top-404
-        //     })
-        // })
         $(".calendar").on("click",".open_calendar",function(){
             $(".max_calendar").addClass("active")
         })
