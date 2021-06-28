@@ -589,16 +589,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 												}else{
 													$fifteenKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
 												}
-												if($matchInfo['homeTeam']['score']>$matchInfo['awayTeam']['score']){
+												if($matchInfo['homeTeam']['teamStat']['win']==1){
 													$gameWinTeam=$matchInfo['homeTeam']['teamName'] ??'';
-												}elseif($matchInfo['homeTeam']['score']<$matchInfo['awayTeam']['score']){
-													$gameWinTeam=$matchInfo['awayTeam']['teamName'] ??'';
 												}else{
-													if($matchInfo['homeTeam']['teamStat']['killCount']>$matchInfo['awayTeam']['teamStat']['killCount']){
-														$gameWinTeam=$matchInfo['homeTeam']['teamName'] ??'';
-													}else{
-														$gameWinTeam=$matchInfo['awayTeam']['teamName'] ??'';
-													}
+													$gameWinTeam=$matchInfo['awayTeam']['teamName'] ??'';
 												}
 												$economyLinesList=(is_array($matchInfo['economyLinesList']) && count($matchInfo['economyLinesList'])>0)?array_pop($matchInfo['economyLinesList']):[] ;
 												$expLinesList=(is_array($matchInfo['expLinesList']) && count($matchInfo['expLinesList'])>0)?array_pop($matchInfo['expLinesList']):[] ;
@@ -625,27 +619,11 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     <li <?php if($matchKey==0){?>class="active"<?php }?>>
                                         <div class="game_detail_img1">
 											<?php 
-											if($matchInfo['homeTeam']['score']>$matchInfo['awayTeam']['score']){
-												if($return['matchDetail']['data']['teamInfo']['site_id']==$matchInfo['home_id']){
-													$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
-												}else{
-													$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
-												}
+											if($matchInfo['homeTeam']['teamStat']['win']==1){
+												$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
 												
-											}elseif($matchInfo['homeTeam']['score']<$matchInfo['awayTeam']['score']){
-												if($return['matchDetail']['data']['teamInfo']['site_id']==$matchInfo['away_id']){
-													
-												$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
-												}else{
-													$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
-												}
 											}else{
-												if($matchInfo['homeTeam']['teamStat']['killCount']>$matchInfo['awayTeam']['teamStat']['killCount']){
-													$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
-												}else{
-													$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
-												}
-												
+												$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
 											}
 											?>
                                             <img src="<?php echo $team_logo_icon;?>" alt="">
@@ -671,7 +649,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                     </div>
                                                     <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
 													
-                                                    <?php if($matchInfo['homeTeam']['score']>$matchInfo['awayTeam']['score']){?>
+                                                    <?php if($matchInfo['homeTeam']['teamStat']['win']==1){?>
                                                     <div class="liveBox_img">
                                                         <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
                                                     </div>
@@ -696,7 +674,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                     </div>
                                                     <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
 													
-													<?php if($matchInfo['homeTeam']['score']<=$matchInfo['awayTeam']['score']){?>
+													<?php if($matchInfo['awayTeam']['teamStat']['win']==1){?>
                                                     <div class="liveBox_img">
                                                         <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
                                                     </div>
