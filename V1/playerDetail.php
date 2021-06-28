@@ -334,7 +334,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 							<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
                             <span class="span6">技能</span>
 							<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){?>
-							<span class="span6">赛事</span>
+							<span class="span6 span6_dota2">赛事</span>
 							<?php }?>
 							<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
                             <span class="span7">符文</span>
@@ -420,21 +420,25 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 													
 													
 												</div>
-													
-												<div class="player_matchs_div6 clearfix">
-												<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
+                                                <?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
+                                                    <div class="player_matchs_div6 clearfix">
+												
 													<?php foreach($round_detail as $round_son_key=>$round_son_detail){ 
 															if((strpos($round_son_key,'skill_')!==false) ){
 														?>
 													<div>
 														<img data-original="<?php echo $round_son_detail; ?>" src="<?php echo $return['defaultConfig']['data']['default_skills_img']['value'];?>" class="imgauto" alt="">
 													</div>
-												<?php }}}else{?>
+												<?php }}?>
 													
-														<?php echo $recentMatchInfo['tournament_info']['tournament_name'];?>
-													
-												<?php }?>
 												</div>
+                                                <?php }else{?>
+                                                    <div class="player_matchs_div6 player_matchs_div6_dota2 clearfix"><?php echo $recentMatchInfo['tournament_info']['tournament_name'];?></div>
+
+                                                <?php }?>
+
+													
+											
 												<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>	
 												<div class="player_matchs_div7 clearfix">
 													<div>
