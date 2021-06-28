@@ -562,7 +562,25 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     </div>
 									
                                     <div class="war_report_detail">
-                                        <span>本次比赛共计<?php echo count($return['matchDetail']['data']['match_data']['matchData']);?>局</span>
+										<div class="war_report_detail_top">
+											<?php 
+												$is_display=0;
+												if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){
+													$totalWinTeam=$return['matchDetail']['data']['away_team_info']['team_name']?? '';
+													$totalLoseTeam=$return['matchDetail']['data']['home_team_info']['team_name']?? '';
+													$totalWinScore=$return['matchDetail']['data']['away_score']??0;
+													$totalLoseScore=$return['matchDetail']['data']['home_score']??0;
+													$is_display=1;
+												}elseif($return['matchDetail']['data']['away_score']<$return['matchDetail']['data']['home_score']){
+													$totalWinTeam=$return['matchDetail']['data']['home_team_info']['team_name']?? '';
+													$totalLoseTeam=$return['matchDetail']['data']['away_team_info']['team_name']?? '';
+													$totalWinScore=$return['matchDetail']['data']['home_score']??0;
+													$totalLoseScore=$return['matchDetail']['data']['away_score']??0;
+													$is_display=1;
+												}?>
+                                            <img src="<?php echo $config['site_url'];?>/images/dota2_war_report.png" alt="">
+                                            <p>本次比赛共计<?php echo count($return['matchDetail']['data']['match_data']['matchData']);?>局<?php if($is_display==1){?>，最终恭喜<?php echo $totalWinTeam; ?><span><?php echo $totalWinScore;?>:<?php echo $totalLoseScore;?></span>战胜<?php echo $totalLoseTeam; ?>取得本场比赛的胜利<?php }else{?>。<?php }?></p>
+                                        </div>
 										<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){
 												if(isset($matchInfo['homeTeam']['teamStat']['firstBlood']) && $matchInfo['homeTeam']['teamStat']['firstBlood']==0){
 													$firstBloodTeam=$matchInfo['awayTeam']['teamName'] ??'';
@@ -600,17 +618,33 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 												$expDiff=$expLinesList['diff']??0;
 												
 												
+												
 											?>
-                                        <p>第【<?php echo ($matchKey+1)?>】局</p>
-										<p>本局比赛，<?php echo $firstBloodTeam; ?> 夺得一血，<?php echo $firstTowerTeam; ?> 首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?> 拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀，<?php echo $fifteenKillTeam; ?> 豪取十五杀。</p>
-										<p>全局比赛中：</p>
-										<p><?php echo $matchInfo['homeTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>拉开<?php  }else{?>落后<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($expDiff>0){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['homeTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['homeTeam']['teamStat']['crystalCount']??0;?></p>
-										<p><?php echo $matchInfo['awayTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['awayTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>落后<?php }else{?>拉开<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($matchInfo['awayTeam']['teamStat']['expCount']>$matchInfo['homeTeam']['teamStat']['expCount']){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['awayTeam']['teamStat']['crystalCount']??0;?></p>
-										<p>最终 <?php echo $gameWinTeam ??''; ?> 获得本局比赛的胜利。</p>
+										
+                                        <!-- 一局对赛 -->
+                                        <div class="firstStep">
+                                            <span><?php echo ($matchKey+1)?></span>
+                                            <p>第<?php echo ($matchKey+1)?>局：用时<?php echo date("i",$matchInfo['lengthTime'])?>:<?php echo date("s",$matchInfo['lengthTime'])?>，最终 <?php echo $gameWinTeam ??''; ?>  获得本局比赛的胜利</p>
+                                        </div>
+                                        <p class="pl38">本局比赛，<?php echo $firstBloodTeam; ?>  夺得一血，<?php echo $firstTowerTeam; ?> 首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?> 拿下五杀，<?php echo $tenKillTeam; ?> 
+                                            取得十杀，<?php echo $fifteenKillTeam; ?> 豪取十五杀</p>
+                                        <div class="secondStep">
+                                            <div class="secondStep_img">
+                                                <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_20,w_20';?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
+                                            </div>
+                                            <p><?php echo $matchInfo['homeTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>拉开<?php  }else{?>落后<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($expDiff>0){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['homeTeam']['teamStat']['crystalCount']??0;?></p>
+                                        </div>
+                                        <div class="thirdStep">
+                                            <div class="thirdStep_img">
+                                                <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_20,w_20';?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                            </div>
+                                            <p><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>落后<?php }else{?>拉开<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($matchInfo['awayTeam']['teamStat']['expCount']>$matchInfo['homeTeam']['teamStat']['expCount']){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['awayTeam']['teamStat']['crystalCount']??0;?></p>
+                                        </div>
+                                        <!-- 一局对赛 -->
+                                        
 
 										<?php }?>
-                                        
-                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_team_info']['team_name']?? '';}else{echo $return['matchDetail']['data']['home_team_info']['team_name']?? '';}?>取得本场比赛的胜利</p>
+                                       
                                     </div>
 									
                                 </div>
