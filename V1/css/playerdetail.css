@@ -370,20 +370,20 @@
 }
 .player_matchs_div3,.span3{
     width: 40px;
-    margin-right: 28px;
+    margin-right: 40px;
 }
 .player_matchs_div4,.span4{
     width: 80px;
     text-align: center;
-    margin-right: 46px;
+    margin-right: 54px;
 }
 .player_matchs_div5,.span5{
     width: 210px;
-    margin-right: 44px;
+    margin-right: 52px;
 }
 .player_matchs_div6,.span6{
     width: 60px;
-    margin-right: 44px;
+    margin-right: 52px;
 }
 /* 比赛战绩 */
 /* 战队介绍和队员介绍 */
@@ -577,7 +577,7 @@ width: 80px;
 }
 .player_matchs_div3 {
     width: 40px;
-    margin-right: 28px;
+    margin-right: 40px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -586,7 +586,7 @@ width: 80px;
 .player_matchs_div4 {
     width: 80px;
     text-align: center;
-    margin-right: 46px;
+    margin-right: 54px;
     height: 100%;
     line-height: 100%;
     display: flex;
