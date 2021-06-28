@@ -344,7 +344,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 							<?php
 						  foreach($return['intergratedPlayer']['data']['recentMatchList'] as $recentMatchInfo)
 						  { 
-							   	if(in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list'][$return['intergratedPlayer']['data']['teamInfo']['original_source']])){$side = "home";}else{$side="away";}
+							   	if(is_array($return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list'][$return['intergratedPlayer']['data']['teamInfo']['original_source']]) && in_array($recentMatchInfo['home_id'],$return['intergratedPlayer']['data']['teamInfo']['intergrated_site_id_list'][$return['intergratedPlayer']['data']['teamInfo']['original_source']])){$side = "home";}else{$side="away";}
 
 								if(count($recentMatchInfo['player_detail'])>0)
 								{
