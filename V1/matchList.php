@@ -452,12 +452,10 @@ foreach($allGameList as $key => $game)
                                                             <!-- 循环比赛 -->
                                                             <!-- 循环赛事 -->
                                                             <?php }else{?>
-                                                    <div class="one_day">
 
                                                     <div class="null">
                                                                 <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                                             </div>
-                                                    </div>
                                                             <?php }?>
                                                     <?php }?>
                                                     <!-- 循环赛事 -->
@@ -477,85 +475,87 @@ foreach($allGameList as $key => $game)
                     </div>
                 </div>
                 <div class="game_right">
-                    <div class="game_team">
-                        <div class="title clearfix">
-                            <div class="fl clearfix">
-                                <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                    <div class='game_right_'>
+                        <div class="game_team">
+                            <div class="title clearfix">
+                                <div class="fl clearfix">
+                                    <div class="game_fire fl">
+                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    </div>
+                                    <span class="fl">热门战队</span>
                                 </div>
-                                <span class="fl">热门战队</span>
-                            </div>
-                            <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/teamlist/">
-                                    <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <ul class="game_team_list_detail">
-                            <?php foreach($return['hotTeamList']['data'] as $teamInfo){?>
-                                <li class="active col-xs-6">
-                                    <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
-                                        <div class="a1">
-                                            <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
-                                        </div>
-                                        <span><?php echo $teamInfo['team_name'];?></span>
+                                <div class="more fr">
+                                    <a href="<?php echo $config['site_url'];?>/teamlist/">
+                                        <span>更多</span>
+                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                     </a>
-                                </li>
-                            <?php }?>
-                        </ul>
-                    </div>
-                    <div class="game_player">
-                        <div class="title clearfix">
-                            <div class="fl clearfix">
-                                <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
-                                <span class="fl">热门选手</span>
                             </div>
-                            <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/playerlist/">
-                                    <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                                </a>
-                            </div>
+                            <ul class="game_team_list_detail">
+                                <?php foreach($return['hotTeamList']['data'] as $teamInfo){?>
+                                    <li class="active col-xs-6">
+                                        <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
+                                            <div class="a1">
+                                                <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                            </div>
+                                            <span><?php echo $teamInfo['team_name'];?></span>
+                                        </a>
+                                    </li>
+                                <?php }?>
+                            </ul>
                         </div>
-                        <ul class="game_player_ul clearfix">
+                        <div class="game_player">
+                            <div class="title clearfix">
+                                <div class="fl clearfix">
+                                    <div class="game_fire fl">
+                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    </div>
+                                    <span class="fl">热门选手</span>
+                                </div>
+                                <div class="more fr">
+                                    <a href="<?php echo $config['site_url'];?>/playerlist/">
+                                        <span>更多</span>
+                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <ul class="game_player_ul clearfix">
 
-                            <?php foreach($return['hotPlayerList']['data'] as $playerInfo){?>
-                                <li>
-                                    <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
-                                        <div class="game_player_img">
-                                            <img  data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"  alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
-                                        </div>
-                                        <span><?php echo $playerInfo['player_name'];?></span>
-                                    </a>
-                                </li>
-                            <?php }?>
-                        </ul>
-                    </div>
-                    <div class="game_news">
-                        <div class="title clearfix">
-                            <div class="fl clearfix">
-                                <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
-                                </div>
-                                <span class="fl">热门资讯</span>
-                            </div>
-                            <div class="more fr">
-                                <a href="<?php echo $config['site_url'];?>/newslist/">
-                                    <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
-                                </a>
-                            </div>
+                                <?php foreach($return['hotPlayerList']['data'] as $playerInfo){?>
+                                    <li>
+                                        <a href="<?php echo $config['site_url'];?>/playerdetail/<?php echo $playerInfo['pid'];?>">
+                                            <div class="game_player_img">
+                                                <img  data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"  alt="<?php echo $playerInfo['player_name'];?>" class="imgauto">
+                                            </div>
+                                            <span><?php echo $playerInfo['player_name'];?></span>
+                                        </a>
+                                    </li>
+                                <?php }?>
+                            </ul>
                         </div>
-                        <ul>
-                            <?php foreach($return['hotNewsList']['data'] as $info){?>
-                                <li>
-                                    <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>"><?php echo $info['title'];?></a>
-                                </li>
-                            <?php }?>
-                        </ul>
+                        <div class="game_news">
+                            <div class="title clearfix">
+                                <div class="fl clearfix">
+                                    <div class="game_fire fl">
+                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    </div>
+                                    <span class="fl">热门资讯</span>
+                                </div>
+                                <div class="more fr">
+                                    <a href="<?php echo $config['site_url'];?>/newslist/">
+                                        <span>更多</span>
+                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <ul>
+                                <?php foreach($return['hotNewsList']['data'] as $info){?>
+                                    <li>
+                                        <a href="<?php echo $config['site_url'];?>/newsdetail/<?php echo $info['id'];?>"><?php echo $info['title'];?></a>
+                                    </li>
+                                <?php }?>
+                            </ul>
+                        </div>                                        
                     </div>
                 </div>
             </div>
@@ -593,6 +593,37 @@ foreach($allGameList as $key => $game)
     </div>
     <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
     <script>
+        function myfun() 　　{ 　　 
+            $('.calendar1').find('li').each(function() {
+                if($('.active').is('.calendar1_li')){
+                    console.log($(".calendar1_li.active").index())
+                    if($('.active').is('.all')){
+                    $("html").animate({
+                        scrollTop:$(".all .one_day").eq($(".calendar1_li.active").index()).offset().top-404
+                        })
+                    }else if($('.active').is('.lol')){
+                        $("html").animate({
+                            scrollTop:$(".lol .one_day").eq($(".calendar1_li.active").index()).offset().top-404
+                        })
+                    }
+                    else if($('.active').is('.kpl')){
+                        $("html").animate({
+                            scrollTop:$(".kpl .one_day").eq($(".calendar1_li.active").index()).offset().top-404
+                        })
+                    }
+                    else if($('.active').is('.dota2')){
+                        $("html").animate({
+                            scrollTop:$(".dota2 .one_day").eq($(".calendar1_li.active").index()).offset().top-404
+                        })
+                    }
+                }
+            })
+        } 　　
+    /*用window.onload调用myfun()*/　
+    // 不要括号
+    window.onload = myfun;
+
+
         function submitDate(date,game){
             url = '<?php echo $config['site_url'];?>/match';
             if(game=='')
