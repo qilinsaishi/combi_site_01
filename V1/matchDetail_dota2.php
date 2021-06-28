@@ -109,10 +109,10 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                 </div>
                 <div class="dota2">
                     <ul class="dota2_ul1 clearfix mb20">
-                        <li class="active">
+                        <li <?php if($return['matchDetail']['data']['round_detailed']==0){?>class="active"<?php }?>>
                             赛前分析
                         </li>
-                        <li >
+                        <li <?php if($return['matchDetail']['data']['round_detailed']==1){?>class="active"<?php }?>>
                             比赛详情
                         </li>
                     </ul>

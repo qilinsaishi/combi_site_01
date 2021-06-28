@@ -884,4 +884,16 @@ width: 80px;
         font-size: .24rem;
     }
     /* 2021.6.25新增 */
+    /* 2021.6.28新增 */
+    .player_matchs_div1, .span1{
+        display: flex;
+        align-items: center;
+    }
+    .team1 img, .team2 img{
+        display: block;
+    }
+    .player_matchs_div3_img img{
+        display: block;
+    }
+    /* 2021.6.28新增 */
 }
