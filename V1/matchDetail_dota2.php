@@ -589,11 +589,28 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 												}else{
 													$fifteenKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
 												}
+												if($matchInfo['homeTeam']['score']>=$matchInfo['awayTeam']['score']){
+													$gameWinTeam=$matchInfo['homeTeam']['teamName'] ??'';
+												}else{
+													$gameWinTeam=$matchInfo['awayTeam']['teamName'] ??'';
+												}
+												$economyLinesList=(is_array($matchInfo['economyLinesList']) && count($matchInfo['economyLinesList'])>0)?array_pop($matchInfo['economyLinesList']):[] ;
+												$expLinesList=(is_array($matchInfo['expLinesList']) && count($matchInfo['expLinesList'])>0)?array_pop($matchInfo['expLinesList']):[] ;
+												$economicDiff=$economyLinesList['diff']??0;
+												$expDiff=$expLinesList['diff']??0;
+												
+												
 											?>
-                                        <p>第<?php echo ($matchKey+1)?>局比赛中： <?php echo $firstBloodTeam; ?>夺得一血，<?php echo $firstTowerTeam; ?>首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?>拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀， <?php echo $fifteenKillTeam; ?>  豪取十五杀。</p>
+                                        <p>第【<?php echo ($matchKey+1)?>】局</p>
+										<p>本局比赛，<?php echo $firstBloodTeam; ?> 夺得一血，<?php echo $firstTowerTeam; ?> 首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?> 拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀，<?php echo $fifteenKillTeam; ?> 豪取十五杀。</p>
+										<p>全局比赛中：</p>
+										<p><?php echo $matchInfo['homeTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>拉开<?php  }else{?>落后<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($expDiff>0){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['homeTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['homeTeam']['teamStat']['crystalCount']??0;?></p>
+										<p><?php echo $matchInfo['awayTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['awayTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>落后<?php }else{?>拉开<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($matchInfo['awayTeam']['teamStat']['expCount']>$matchInfo['homeTeam']['teamStat']['expCount']){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['awayTeam']['teamStat']['crystalCount']??0;?></p>
+										<p>最终 <?php echo $gameWinTeam ??''; ?> 获得本局比赛的胜利。</p>
+
 										<?php }?>
                                         
-                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_team_info']['team_name']?? '';}else{echo $return['matchDetail']['data']['home_team_info']['team_name']?? '';}?>取得本次<?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?>的冠军</p>
+                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_team_info']['team_name']?? '';}else{echo $return['matchDetail']['data']['home_team_info']['team_name']?? '';}?>取得本场比赛的胜利</p>
                                     </div>
 									
                                 </div>
@@ -601,10 +618,21 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 									<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){?>
                                     <li <?php if($matchKey==0){?>class="active"<?php }?>>
                                         <div class="game_detail_img1">
-											<?php if($matchInfo['awayTeam']['score']>$matchInfo['homeTeam']['score']){
-												$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+											<?php 
+											if($matchInfo['homeTeam']['score']>=$matchInfo['awayTeam']['score']){
+												if($return['matchDetail']['data']['teamInfo']['site_id']==$matchInfo['home_id']){
+													$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												}else{
+													$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												}
+												
 											}else{
+												if($return['matchDetail']['data']['teamInfo']['site_id']==$matchInfo['away_id']){
+													
 												$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												}else{
+													$team_logo_icon=$return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
+												}
 											}?>
                                             <img src="<?php echo $team_logo_icon;?>" alt="">
                                         </div>
@@ -629,7 +657,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                     </div>
                                                     <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
 													
-                                                    <?php if($matchInfo['homeTeam']['score']>$matchInfo['awayTeam']['score']){?>
+                                                    <?php if($matchInfo['homeTeam']['score']>=$matchInfo['awayTeam']['score']){?>
                                                     <div class="liveBox_img">
                                                         <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
                                                     </div>
@@ -654,7 +682,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                     </div>
                                                     <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
 													
-													<?php if($matchInfo['homeTeam']['score']<=$matchInfo['awayTeam']['score']){?>
+													<?php if($matchInfo['homeTeam']['score']<$matchInfo['awayTeam']['score']){?>
                                                     <div class="liveBox_img">
                                                         <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
                                                     </div>

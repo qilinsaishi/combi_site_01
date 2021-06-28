@@ -11,7 +11,6 @@ $params=[
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-$return['ti9teamList']['data'] = [];
 $return['teamList']['data'] = [];
 
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);

@@ -336,9 +336,9 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 							<?php }elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){?>
 							<span class="span6">赛事</span>
 							<?php }?>
-						
+							<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>
                             <span class="span7">符文</span>
-							
+							<?php }?>
                         </div>
                         <ul class="player_matchs_content">
 							<?php
@@ -354,7 +354,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                                         <?php if(count($round_detail)>1) {?>
                                             <?php if(($round_detail['win_teamID'] == $recentMatchInfo['home_id'])){$win_side = "home";}else{$win_side="away";}?>
 										<li class="<?php if($side == $win_side){  ?>red<?php }else{ ?>blue<?php } ?>">
-											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['game'];?>-<?php echo $recentMatchInfo['match_id'];?>">
+											<a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $recentMatchInfo['game'];?>-<?php echo $recentMatchInfo['match_id'];?>" target="_blank">
 												<div class="player_matchs_div1">
 													<span class="result"><?php if($side == $win_side){  ?>胜<?php }else{ ?>败<?php } ?></span>
 													<span class="time"><?php echo date("Y.m.d",strtotime($recentMatchInfo['start_time']));?></span>
@@ -430,12 +430,12 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 														<img data-original="<?php echo $round_son_detail; ?>" src="<?php echo $return['defaultConfig']['data']['default_skills_img']['value'];?>" class="imgauto" alt="">
 													</div>
 												<?php }}}else{?>
-													<div>
-														<img data-original="<?php echo $recentMatchInfo['tournament_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'];?>" class="imgauto" alt="<?php echo $recentMatchInfo['tournament_info']['tournament_name'];?>">
-													</div>	
+													
+														<?php echo $recentMatchInfo['tournament_info']['tournament_name'];?>
+													
 												<?php }?>
 												</div>
-													
+												<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>	
 												<div class="player_matchs_div7 clearfix">
 													<div>
 														<img src="<?php echo $return['defaultConfig']['data']['default_fuwen_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="">
@@ -444,6 +444,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 														<img src="<?php echo $return['defaultConfig']['data']['default_fuwen_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="">
 													</div>
 												</div>
+												<?php }?>
 											</a>
 										</li>
 
