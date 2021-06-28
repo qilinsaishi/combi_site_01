@@ -287,9 +287,9 @@ width: 12.5%;
     margin-left: -26px;
     bottom: 0;
 }
-.nav .nav_li.active .ti10Box{
+/* .nav .nav_li.active .ti10Box{
     display: none;
-}
+} */
 .nav .nav_li:hover .ti10Box{
     display: none;
 }
