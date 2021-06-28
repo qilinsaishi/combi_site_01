@@ -269,9 +269,7 @@ foreach($allGameList as $key => $game)
                     </div>
                     <ul class="game3_detail_ul clearfix">
                         <li <?php if($currentGame=="all"){?>class="active"<?php }?>>
-                            <a href="javascript:void(0);" onclick="submitDate('<?php echo $currentDate;?>','all')">
                                 综合
-                            </a>
                         </li>
                         <?php foreach($config['game'] as $game => $game_name){?>
                             <li <?php if($currentGame==$game){?>class="active"<?php }?>>
@@ -599,21 +597,21 @@ foreach($allGameList as $key => $game)
                     if($('.active').is('.all')){
                     $("html").animate({
                         scrollTop:$(".all .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        })
+                        },300)
                     }else if($('.active').is('.lol')){
                         $("html").animate({
                             scrollTop:$(".lol .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        })
+                        },300)
                     }
                     else if($('.active').is('.kpl')){
                         $("html").animate({
                             scrollTop:$(".kpl .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        })
+                        },300)
                     }
                     else if($('.active').is('.dota2')){
                         $("html").animate({
                             scrollTop:$(".dota2 .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        })
+                        },300)
                     }
                 }
             })

@@ -435,16 +435,18 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 													
 												<?php }?>
 												</div>
-												<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>	
+											
 												<div class="player_matchs_div7 clearfix">
+														<?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){?>	
 													<div>
 														<img src="<?php echo $return['defaultConfig']['data']['default_fuwen_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="">
 													</div>
 													<div>
 														<img src="<?php echo $return['defaultConfig']['data']['default_fuwen_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="">
 													</div>
+													<?php }?>
 												</div>
-												<?php }?>
+												
 											</a>
 										</li>
 
