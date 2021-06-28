@@ -551,6 +551,85 @@ width: 80px;
     display: flex;
 }
 /* 2021.6.25新增 */
+/* 2021.6.28新增 */
+.player_matchs_div5_dota2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.player_matchs_content li a{
+    display: flex;
+    align-items: center;
+}
+.player_matchs_div5_dota2 img{
+    display: block;
+}
+.player_matchs_div5 .player_matchs_div5_dota2{
+    margin-right: 7px;
+}
+.player_matchs_div2{
+    width: 150px;
+    margin-right: 66px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.player_matchs_div3 {
+    width: 40px;
+    margin-right: 28px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.player_matchs_div4 {
+    width: 80px;
+    text-align: center;
+    margin-right: 46px;
+    height: 100%;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.player_matchs_div5{
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: space-between;
+}
+.player_vs{
+    padding: 0 6px;
+}
+.player_matchs_div5 div img, .player_matchs_div6 div img, .player_matchs_div7 div img{
+    display: block;
+}
+.player_matchs_name{
+    font-size: 0;
+    display: flex;
+}
+.player_matchs_name .span6_dota2{
+    display: flex;
+    margin-left: auto;
+    justify-content: center;
+    width: 120px;
+}
+.player_matchs_div6_dota2{
+    display: flex;
+    margin-left: auto;
+    justify-content: flex-end;
+    font-size: 18px;
+    width: 120px;
+}
+/* .player_matchs_div6_dota2:hover{
+   
+} */
+.player_matchs_content li a:hover {
+    color: #333;
+}
+/* 2021.6.28新增 */
 @media only screen and (max-width: 1024px){
     .team_explain{
         width: 100%;
