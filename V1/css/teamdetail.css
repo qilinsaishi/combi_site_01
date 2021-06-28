@@ -36,6 +36,9 @@
 .team_logo_img{
     width: 128px;
     height: 128px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
 }
 .team_explain{
     width: 864px;

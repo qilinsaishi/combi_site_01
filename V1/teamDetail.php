@@ -389,7 +389,8 @@ if($game=='dota2'){
                                <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $game;?>-<?php echo $recentMatchInfo['match_id'];?>" class="clearfix">
 							   
                                    <div class="team_results_explain fl clearfix">
-                                         <?php if(in_array($recentMatchInfo['home_id'],$return['intergratedTeam']['data']['intergrated_site_id_list'][$return['intergratedTeam']['data']['original_source']])){$side = "home";}else{$side="away";}
+                                         <?php
+										 if(is_array($return['intergratedTeam']['data']['intergrated_site_id_list'][$return['intergratedTeam']['data']['original_source']]) && in_array($recentMatchInfo['home_id'],$return['intergratedTeam']['data']['intergrated_site_id_list'][$return['intergratedTeam']['data']['original_source']])){$side = "home";}else{$side="away";}
 									   if(($recentMatchInfo['home_score'] >= $recentMatchInfo['away_score'])){$win_side = "home";}else{$win_side="away";}
 									  
 									   if($side == $win_side)
@@ -421,7 +422,7 @@ if($game=='dota2'){
                                             <div class="team_results_vs">
                                                 <span class="team1_name"><?php echo $recentMatchInfo['home_team_info']['team_name'] ;?></span>
                                                 <div class="team1_img">
-                                                    <img class="imgauto" data-original="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
+                                                    <img class="imgauto" data-original="<?php echo $recentMatchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
                                                 </div>
                                                 <div class="vs_img honor_bottom_img1">
                                                     <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">

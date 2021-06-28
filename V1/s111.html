@@ -40,7 +40,7 @@
                             <li class="nav_li"><a href="##" class="nav_lia">电竞选手</a></li>
                             <li class="on nav_li"><a href="##" class="nav_lia">电竞资讯</a></li>
                             <li class="nav_li"><a href="" class="nav_lia">游戏攻略</a></li>
-                            <li class="active nav_li">
+                            <li class=" nav_li active">
                                 <a href="##" class="nav_lia">赛事专题</a>
                                 <div class="ti10Box">
                                     Ti10
@@ -508,9 +508,9 @@
     <script src="./js/jquery.lineProgressbar.js"></script>
    
  <script>
-    //  $(".nav_lia").on("click",function(){
-    //     $(this).parent().find(".submenu_wrapper").toggle("active")
-    //  })
+     $(".nav_lia").on("click",function(){
+        $(this).parent().find(".submenu_wrapper").toggle("active")
+     })
 
     $(".s11_format_ul").on("click","li",function(){
         $(".s11_format_ul li").removeClass("active");

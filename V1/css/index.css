@@ -10,6 +10,7 @@
       height: 488px;
       position: relative;
       padding-top: 19%;
+      display: none;
   }
   .banner_img{
       width: 100%;

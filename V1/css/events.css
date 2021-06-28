@@ -420,16 +420,20 @@
     background-repeat: no-repeat;
     padding-left: 10px;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 .location span{
     font-size: 18px;
     vertical-align: middle;
+    margin-right: 6px;
 }
 .sd{
     display: inline-block;
     width: 24px;
     height: 24px;
     vertical-align: middle;
+    margin-right: 8px;
 }
 .sd img{
     display: none;
