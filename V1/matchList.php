@@ -9,16 +9,16 @@ else
 {
     $currentDate = $_GET['date']??date("Y-m-d");
 }
-$dateRange = generateCalendarDateRange($currentDate,"week");
+//$dateRange = generateCalendarDateRange($currentDate,"week");
 $currentGame = $_GET['game']??"all";
 if(strtotime($currentDate)==0)
 {
     $currentDate = date("Y-m-d");
 }
 $dateList = [];
-$startDate = $dateRange['startDate'];
+$startDate = $currentDate;
 $date = $startDate;
-$endDate = $dateRange['endDate'];
+$endDate = date("Y-m-d",strtotime($currentDate)+2*86400);
 do
 {
     $dateList[] = $date;
@@ -101,7 +101,7 @@ foreach($allGameList as $key => $game)
     <title><?php echo $currentDate;?><?php if($currentGame=="all"){?>最新电竞赛事赛程-<?php }else{?><?php echo $config['game'][$currentGame];?>最新比赛_<?php echo $config['game'][$currentGame];?>近期赛事大全-<?php } ?><?php echo $config['site_name'];?></title>
     <meta name="Keywords" content="<?php if($currentGame=="all"){?>电竞赛事赛程,电竞比赛<?php }else{?><?php echo $config['game'][$currentGame];?>赛事,<?php echo $config['game'][$currentGame];?>近期有哪些比赛,<?php echo $config['game'][$currentGame];?>比赛<?php } ?>">
     <meta name="description" content="<?php echo $config['site_name'];?><?php if($currentGame=="all"){?>提供最新电子竞技赛事,为广大电竞玩家提供最新电竞赛事赛程信息,了解最新最全电竞赛事赛程信息,请关注<?php }else{?>提供<?php echo $config['game'][$currentGame];?>近期赛事信息,想要了解<?php echo $config['game'][$currentGame];?>最新比赛,掌握一手<?php echo $config['game'][$currentGame];?>赛事赛程,<?php echo $config['game'][$currentGame];?>有哪些比赛,请关注<?php } ?><?php echo $config['site_name'];?>">
-    <?php renderHeaderJsCss($config,["right","game3","match_list","../fonts/iconfont"]);?>
+    <?php renderHeaderJsCss($config,["right","game3","../fonts/iconfont"]);?>
 
 </head>
 
@@ -177,8 +177,10 @@ foreach($allGameList as $key => $game)
                                                 $date = date("Y-m-d",(strtotime($dateRange['startDate'])+$key*86400));
                                             ?>
                                                 <li <?php if($date==$currentDate){echo 'class="active calendar1_li"';}?>>
+                                                    <a href="javascript:void(0);" onclick="submitDate('<?php echo $date;?>','<?php echo $currentGame;?>')">
                                                         <span class="week"><?php echo $day;?></span>
                                                         <span class="time2"><?php echo date("m.d",strtotime($date));?></span>
+                                                    </a>
                                                 </li>
                                         <?php }?>
                                     </ul>
@@ -267,17 +269,22 @@ foreach($allGameList as $key => $game)
                             </div>
                         </div>
                     </div>
-                    <ul class="game3_detail_ul clearfix">
-                        <li <?php if($currentGame=="all"){?>class="active"<?php }?>>
-                                综合
-                        </li>
-                        <?php foreach($config['game'] as $game => $game_name){?>
-                            <li <?php if($currentGame==$game){?>class="active"<?php }?>>
-                                    <?php echo $game_name;?>
-                            </li>
-                        <?php }?>
-                    </ul>
+
                     <div class="game3_detail">
+                        <ul class="game3_detail_ul clearfix">
+                            <li <?php if($currentGame=="all"){?>class="active"<?php }?>>
+                                <a href="javascript:void(0);" onclick="submitDate('<?php echo $currentDate;?>','all')">
+                                    综合
+                                </a>
+                            </li>
+                            <?php foreach($config['game'] as $game => $game_name){?>
+                                <li <?php if($currentGame==$game){?>class="active"<?php }?>>
+                                    <a href="javascript:void(0);" onclick="submitDate('<?php echo $currentDate;?>','<?php echo $game;?>')">
+                                        <?php echo $game_name;?>
+                                    </a>
+                                </li>
+                            <?php }?>
+                        </ul>
                         <div class="game3_days">
                             <?php foreach($allGameList as $key => $game){?>
                                 <!-- 游戏 -->
@@ -590,37 +597,7 @@ foreach($allGameList as $key => $game)
         </div>
     </div>
     <?php renderFooterJsCss($config,[],["jquery.lineProgressbar"]);?>
-    <script>
-        function myfun() 　　{ 　　 
-            $('.calendar1').find('li').each(function() {
-                if($('.active').is('.calendar1_li')){
-                    if($('.active').is('.all')){
-                    $("html").animate({
-                        scrollTop:$(".all .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        },300)
-                    }else if($('.active').is('.lol')){
-                        $("html").animate({
-                            scrollTop:$(".lol .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        },300)
-                    }
-                    else if($('.active').is('.kpl')){
-                        $("html").animate({
-                            scrollTop:$(".kpl .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        },300)
-                    }
-                    else if($('.active').is('.dota2')){
-                        $("html").animate({
-                            scrollTop:$(".dota2 .one_day").eq($(".calendar1_li.active").index()).offset().top-404
-                        },300)
-                    }
-                }
-            })
-        } 　　
-    /*用window.onload调用myfun()*/　
-    // 不要括号
-    window.onload = myfun;
-   
-
+    <script>　　
         function submitDate(date,game){
             url = '<?php echo $config['site_url'];?>/match';
             if(game=='')
@@ -637,54 +614,6 @@ foreach($allGameList as $key => $game)
             //....继续添加字段
             form.submit();
         }
-        $(".game3_detail_ul").on("click", 'li', function () {
-            $(".game3_detail_ul li").removeClass("active");
-            $(this).addClass("active");
-            $(this).parents(".game3_left").find(".game3_days").find(".game3_days_item").removeClass("active").eq($(this).index()).addClass("active");
-             myfun();
-        })
-
-
-
-        $(".calendar1 ul").children("li").click(function(){
-            $(".calendar1 ul li").removeClass("active");
-            $(this).addClass("active");
-            if($('.active').is('.all')){
-                $("html").animate({
-                    scrollTop:$(".all .one_day").eq($(this).index()).offset().top-404
-                })
-            }else if($('.active').is('.lol')){
-                $("html").animate({
-                    scrollTop:$(".lol .one_day").eq($(this).index()).offset().top-404
-                })
-            }
-            else if($('.active').is('.kpl')){
-                $("html").animate({
-                    scrollTop:$(".kpl .one_day").eq($(this).index()).offset().top-404
-                })
-            }
-            else if($('.active').is('.dota2')){
-                $("html").animate({
-                    scrollTop:$(".dota2 .one_day").eq($(this).index()).offset().top-404
-                })
-            }
-        })
-        $(".calendar").on("click",".open_calendar",function(){
-            $(".max_calendar").addClass("active")
-        })
-        $(".calendar").on("click",".stop_calendar",function(){
-            $(".max_calendar").removeClass("active")
-        })
-
-        $(".game3_detail").on("click",".game3_detail_ul li",function(){
-            $(".game3_detail_ul li").removeClass("active");
-            $(this).addClass("active");
-            $(this).parents(".game3_detail").find(".game3_days").find(".game3_days_item").removeClass("active").eq($(this).index()).addClass("active");
-        })
-
-        $(".suspension").on("click",".suspension_close",function(){
-            $("..suspension").css("display","none")
-        })
     </script>
 </body>
 
