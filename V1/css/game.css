@@ -1361,7 +1361,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
         padding: 0 20px;
     }
     .game_team_depiction p{
-        font-size: 24px;
+        font-size: .24rem;
     }
     .vs_data3_left .title{
         height: 60px;

@@ -481,12 +481,17 @@
 .heroUse{
     width: 38px;
     height: 38px;
+	border-radius: 50%;
+    overflow: hidden;
 }
 .heroBox{
     z-index: 1;
 }
 .heroUse{
     z-index: 2;
+}
+.heroUse img{
+	display:block;
 }
 .battle_hero .imgauto{
     object-fit: cover;
@@ -522,6 +527,10 @@
     width: 30px;
     height: 30px;
     margin-bottom: 4px;
+	object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
 }
 .kad_big{
     font-size: 18px;
