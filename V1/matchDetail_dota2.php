@@ -12,7 +12,7 @@ $source=$config['game_source'][$game]??$config['default_source'];
 
 $params = [
     "matchDetail"=>["source"=>$source,"match_id"=>$match_id,"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_hero_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_hero_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img","default_equipment_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "recentMatchList"=>["dataType"=>"matchList","page"=>1,"page_size"=>3,"source"=>$source,"cacheWith"=>"currentPage","cache_time"=>86400],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>$game,"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>$game,"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -109,16 +109,16 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                 </div>
                 <div class="dota2">
                     <ul class="dota2_ul1 clearfix mb20">
-                        <li <?php if($return['matchDetail']['data']['round_detailed']==0){?>class="active"<?php }?>>
+                        <li <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])==0){?>class="active"<?php } ?>>
                             赛前分析
                         </li>
-                        <li <?php if($return['matchDetail']['data']['round_detailed']==1){?>class="active"<?php }?>>
+                        <li <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])>0){?>class="active"<?php } ?>>
                             比赛详情
                         </li>
                     </ul>
                     <div class="dota2_div">
                         <!-- 赛前分析 -->
-                        <div class="dota2_item active">
+                        <div class="dota2_item <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])==0){?>active"<?php } ?>">
                             <div class="dota2_top">
                                 <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
                                 <span>近期战队数据对比</span>
@@ -553,7 +553,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 
 						
                         <!-- 比赛详情 -->
-                        <div class="dota2_item live_box ">
+                        <div class="dota2_item live_box <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) &&count($return['matchDetail']['data']['match_data']['matchData'])>0){?>active<?php } ?>">
 							<?php if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])>0){?>
                                 <div class="war_report mb20">
                                     <div class="dota2_top">
@@ -562,7 +562,25 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     </div>
 									
                                     <div class="war_report_detail">
-                                        <span>本次比赛共计<?php echo count($return['matchDetail']['data']['match_data']['matchData']);?>局</span>
+										<div class="war_report_detail_top">
+											<?php 
+												$is_display=0;
+												if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){
+													$totalWinTeam=$return['matchDetail']['data']['away_team_info']['team_name']?? '';
+													$totalLoseTeam=$return['matchDetail']['data']['home_team_info']['team_name']?? '';
+													$totalWinScore=$return['matchDetail']['data']['away_score']??0;
+													$totalLoseScore=$return['matchDetail']['data']['home_score']??0;
+													$is_display=1;
+												}elseif($return['matchDetail']['data']['away_score']<$return['matchDetail']['data']['home_score']){
+													$totalWinTeam=$return['matchDetail']['data']['home_team_info']['team_name']?? '';
+													$totalLoseTeam=$return['matchDetail']['data']['away_team_info']['team_name']?? '';
+													$totalWinScore=$return['matchDetail']['data']['home_score']??0;
+													$totalLoseScore=$return['matchDetail']['data']['away_score']??0;
+													$is_display=1;
+												}?>
+                                            <img src="<?php echo $config['site_url'];?>/images/dota2_war_report.png" alt="">
+                                            <p>本次比赛共计<?php echo count($return['matchDetail']['data']['match_data']['matchData']);?>局<?php if($is_display==1){?>，最终恭喜<?php echo $totalWinTeam; ?><span><?php echo $totalWinScore;?>:<?php echo $totalLoseScore;?></span>战胜<?php echo $totalLoseTeam; ?>取得本场比赛的胜利<?php }else{?>。<?php }?></p>
+                                        </div>
 										<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){
 												if(isset($matchInfo['homeTeam']['teamStat']['firstBlood']) && $matchInfo['homeTeam']['teamStat']['firstBlood']==0){
 													$firstBloodTeam=$matchInfo['awayTeam']['teamName'] ??'';
@@ -600,17 +618,33 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 												$expDiff=$expLinesList['diff']??0;
 												
 												
+												
 											?>
-                                        <p>第【<?php echo ($matchKey+1)?>】局</p>
-										<p>本局比赛，<?php echo $firstBloodTeam; ?> 夺得一血，<?php echo $firstTowerTeam; ?> 首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?> 拿下五杀， <?php echo $tenKillTeam; ?> 取得十杀，<?php echo $fifteenKillTeam; ?> 豪取十五杀。</p>
-										<p>全局比赛中：</p>
-										<p><?php echo $matchInfo['homeTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>拉开<?php  }else{?>落后<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($expDiff>0){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['homeTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['homeTeam']['teamStat']['crystalCount']??0;?></p>
-										<p><?php echo $matchInfo['awayTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['awayTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>落后<?php }else{?>拉开<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($matchInfo['awayTeam']['teamStat']['expCount']>$matchInfo['homeTeam']['teamStat']['expCount']){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['awayTeam']['teamStat']['crystalCount']??0;?></p>
-										<p>最终 <?php echo $gameWinTeam ??''; ?> 获得本局比赛的胜利。</p>
+										
+                                        <!-- 一局对赛 -->
+                                        <div class="firstStep">
+                                            <span><?php echo ($matchKey+1)?></span>
+                                            <p>第<?php echo ($matchKey+1)?>局：用时<?php echo date("i",$matchInfo['lengthTime'])?>:<?php echo date("s",$matchInfo['lengthTime'])?>，最终 <?php echo $gameWinTeam ??''; ?>  获得本局比赛的胜利</p>
+                                        </div>
+                                        <p class="pl38">本局比赛，<?php echo $firstBloodTeam; ?>  夺得一血，<?php echo $firstTowerTeam; ?> 首先攻下第一座防御塔，<?php echo $fiveKillTeam; ?> 拿下五杀，<?php echo $tenKillTeam; ?> 
+                                            取得十杀，<?php echo $fifteenKillTeam; ?> 豪取十五杀</p>
+                                        <div class="secondStep">
+                                            <div class="secondStep_img">
+                                                <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_20,w_20';?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
+                                            </div>
+                                            <p><?php echo $matchInfo['homeTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>拉开<?php  }else{?>落后<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($expDiff>0){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['homeTeam']['teamStat']['crystalCount']??0;?></p>
+                                        </div>
+                                        <div class="thirdStep">
+                                            <div class="thirdStep_img">
+                                                <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_20,w_20';?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                            </div>
+                                            <p><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>落后<?php }else{?>拉开<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($matchInfo['awayTeam']['teamStat']['expCount']>$matchInfo['homeTeam']['teamStat']['expCount']){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['awayTeam']['teamStat']['crystalCount']??0;?></p>
+                                        </div>
+                                        <!-- 一局对赛 -->
+                                        
 
 										<?php }?>
-                                        
-                                        <p>最终恭喜<?php if($return['matchDetail']['data']['away_score']>$return['matchDetail']['data']['home_score']){echo $return['matchDetail']['data']['away_team_info']['team_name']?? '';}else{echo $return['matchDetail']['data']['home_team_info']['team_name']?? '';}?>取得本场比赛的胜利</p>
+                                       
                                     </div>
 									
                                 </div>
@@ -635,7 +669,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     
                                    
                                 </ul>
-                                <div class="live_box_detail">
+                                <div class="live_box_detail ">
 								
 									<!--第一局-->
 									<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){?>
@@ -729,7 +763,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <div class="thumbList">
 																	<?php if(isset($playerInfo['equipmentList']) && count($playerInfo['equipmentList'])>0){
 																		foreach($playerInfo['equipmentList'] as $equipmentInfo){?>
-                                                                    <img src="<?php echo $equipmentInfo['logo']?? '';?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
+                                                                    <img  data-original="<?php echo $equipmentInfo['logo']?? '';?>" src="<?php echo $return['defaultConfig']['data']['default_equipment_img']['value'];?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
 																	<?php }}?>
                                                                 </div>
                                                             </div>
@@ -828,7 +862,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <div class="thumbList">
 																	<?php if(isset($matchInfo['awayTeam']['playerList'][$playerKey]['equipmentList']) && count($matchInfo['awayTeam']['playerList'][$playerKey]['equipmentList'])>0){
 																		foreach($matchInfo['awayTeam']['playerList'][$playerKey]['equipmentList'] as $equipmentInfo){?>
-                                                                    <img src="<?php echo $equipmentInfo['logo']?? '';?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
+                                                                    <img  data-original="<?php echo $equipmentInfo['logo']?? '';?>" src="<?php echo $return['defaultConfig']['data']['default_equipment_img']['value'];?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
 																	<?php }}?>
                                                                    
                                                                 </div>
@@ -858,7 +892,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                     <div class="heroBan">
 																		<?php if(isset($matchInfo['homeTeam']['ban']) && count($matchInfo['homeTeam']['ban'])>0){ 
 																		 foreach($matchInfo['homeTeam']['ban'] as $banInfo){ ?>
-                                                                        <img src="<?php echo $banInfo['logo']??''; ?>" alt="<?php echo $banInfo['nameZh']??''; ?>">
+                                                                        <img data-original="<?php echo $banInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $banInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                         
                                                                     </div>
@@ -866,7 +900,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                     <div class="heroBan">
                                                                         <?php if(isset($matchInfo['awayTeam']['ban']) && count($matchInfo['awayTeam']['ban'])>0){ 
 																		 foreach($matchInfo['awayTeam']['ban'] as $banInfo){ ?>
-                                                                        <img src="<?php echo $banInfo['logo']??''; ?>" alt="<?php echo $banInfo['nameZh']??''; ?>">
+                                                                        <img  data-original="<?php echo $banInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"  alt="<?php echo $banInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                     </div>
                                                                 </div>
@@ -874,14 +908,14 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                     <div class="heroPick">
                                                                        <?php if(isset($matchInfo['homeTeam']['pick']) && count($matchInfo['homeTeam']['pick'])>0){ 
 																		 foreach($matchInfo['homeTeam']['pick'] as $pickInfo){ ?>
-                                                                        <img src="<?php echo $pickInfo['logo']??''; ?>" alt="<?php echo $pickInfo['nameZh']??''; ?>">
+                                                                        <img data-original="<?php echo $pickInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"  alt="<?php echo $pickInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                     </div>
                                                                     <span class="bans">Picks</span>
                                                                     <div class="heroPick">
                                                                         <?php if(isset($matchInfo['awayTeam']['pick']) && count($matchInfo['awayTeam']['pick'])>0){ 
 																		 foreach($matchInfo['awayTeam']['pick'] as $pickInfo){ ?>
-                                                                        <img src="<?php echo $pickInfo['logo']??''; ?>" alt="<?php echo $pickInfo['nameZh']??''; ?>">
+                                                                        <img data-original="<?php echo $pickInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $pickInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                     </div>
                                                                 </div>
@@ -1067,7 +1101,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$winRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
 																//英雄
-																$winRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$winRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//一血率
@@ -1091,7 +1130,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
 																//英雄
-																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//一塔率
@@ -1115,7 +1159,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$firstTowerDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
 																//英雄
-																$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//五杀率
@@ -1138,8 +1187,14 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
+																
 																//英雄
-																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//十杀率
@@ -1162,8 +1217,14 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
+																
 																//英雄
-																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 															}
 															
@@ -1191,7 +1252,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currWinCount']??0;
 																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$winRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$winRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																
@@ -1215,7 +1281,13 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstBloodsCount']??0;
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+														
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//一塔率
@@ -1238,7 +1310,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstTowersCount']??0;
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//五杀率
@@ -1261,7 +1338,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//十杀率
@@ -1284,7 +1366,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 															}
 															
@@ -1333,7 +1420,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['homeRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayAllWinCount'];?>/<?php echo $dataAnalysisInfo['homeAllTotal'];?>)</i></span>
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['homeCurrWinRate']; ?>%<i>(<?php echo $dataAnalysisInfo['homeCurrWinCount']; ?>/<?php echo $dataAnalysisInfo['homeCurrTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysisInfo['homeheroLogo']; ?>" alt="<?php echo $dataAnalysisInfo['homeheroName']; ?>">
+                                                                    <img  class="lineup_img"  data-original="<?php echo $dataAnalysisInfo['homeheroLogo']; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"  alt="<?php echo $dataAnalysisInfo['homeheroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">位</span>
                                                             </div>
@@ -1341,7 +1428,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['awayRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayAllWinCount']; ?>/<?php echo $dataAnalysisInfo['awayAllTotal']; ?>)</i></span>
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['awayCurrWinRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayCurrWinCount']; ?>/<?php echo $dataAnalysisInfo['awayCurrTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysisInfo['awayheroLogo']; ?>" alt="<?php echo $dataAnalysisInfo['awayheroName']; ?>">
+                                                                    <img  class="lineup_img"  data-original="<?php echo $dataAnalysisInfo['awayheroLogo']; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"   alt="<?php echo $dataAnalysisInfo['awayheroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">置</span>
                                                             </div>

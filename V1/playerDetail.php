@@ -7,7 +7,7 @@ if($pid<=0)
 }
 $params = [
     "intergratedPlayer"=>[$pid],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img","default_hero_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img","default_hero_img","default_equipment_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
@@ -378,7 +378,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 													
 														<img class="imgauto" src="<?php echo $round_son_detail; ?>" alt="">
 														<?php }}}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){ ?>
-														<img class="imgauto" data-original="<?php echo $round_detail['HeroLogo']; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $round_detail['HeroName']; ?>">
+														<img class="imgauto" data-original="<?php if(strpos($round_detail['HeroLogo'],'esports-cdn.namitiyu.com')===false){ echo $round_detail['HeroLogo'];}else{echo "";} ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $round_detail['HeroName']; ?>">
 														<?php }?>
 													</div>
 												</div>
@@ -414,7 +414,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 														
 														?>
 													<div>
-														<img src="<?php echo $equipmentInfo['logo']; ?>" class="imgauto" alt="<?php echo $equipmentInfo['nameZh']; ?>">
+														<img data-original="<?php if(strpos($equipmentInfo['logo'],'esports-cdn.namitiyu.com')===false){echo $equipmentInfo['logo'];}else{echo "";} ?>" src="<?php echo $return['defaultConfig']['data']['default_equipment_img']['value'];?>"  class="imgauto" alt="<?php echo $equipmentInfo['nameZh']; ?>">
 													</div>
 													<?php }}} ?>
 													
