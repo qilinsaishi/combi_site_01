@@ -858,7 +858,7 @@
     font-weight: 400;
 }
 .war_report_detail .firstStep p{
-    font-weight: 500;
+    font-weight: 550;
 }
 .war_report_detail_top p{
     font-weight: 550;
@@ -1070,4 +1070,15 @@
     .vs_data2{
 		width:100%;
 	}
+
+    .war_report_detail_top p span{
+        flex-shrink: 0;
+    }
+    .war_report_detail_top p{
+        display: block;
+        height: auto;
+    }
+    .war_report_detail_top{
+        height: auto;
+    }
 }
