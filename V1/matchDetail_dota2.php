@@ -1101,7 +1101,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$winRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$winRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
 																//英雄
-																$winRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$winRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$winRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//一血率
@@ -1125,7 +1130,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
 																//英雄
-																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$firstBloodRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//一塔率
@@ -1149,7 +1159,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$firstTowerDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
 																//英雄
-																$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$firstTowerDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//五杀率
@@ -1172,8 +1187,14 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
+																
 																//英雄
-																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$fiveKillRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 																
 																//十杀率
@@ -1196,8 +1217,14 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrWinCount']=$homeHeroStatInfo['currTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeCurrTotal']=$homeHeroStatInfo['currTotal']??0;
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['postion']=$position[$homeHeroStatKey];
+																
 																//英雄
-																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??0;
+																if(strpos($homeHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']=$homeHeroStatInfo['heroLogo']??'';
+																}else{
+																	$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroLogo']='';
+																}
+																
 																$tenKillRateDataAnalysis[$homeHeroStatKey]['homeheroName']=$homeHeroStatInfo['heroName']??0;
 															}
 															
@@ -1225,7 +1252,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currWinCount']??0;
 																$winRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$winRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$winRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$winRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																
@@ -1249,7 +1281,13 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstBloodsCount']??0;
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+														
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$firstBloodRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//一塔率
@@ -1272,7 +1310,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFirstTowersCount']??0;
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$firstTowerDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//五杀率
@@ -1295,7 +1338,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currFiveKillsCount']??0;
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$fiveKillRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 																
 																//十杀率
@@ -1318,7 +1366,12 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrWinCount']=$awayHeroStatInfo['currTenKillsCount']??0;
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayCurrTotal']=$awayHeroStatInfo['currTotal']??0;
 																//英雄
-																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??0;
+																if(strpos($awayHeroStatInfo['heroLogo'],'esports-cdn.namitiyu.com')===false){
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']=$awayHeroStatInfo['heroLogo']??'';
+																}else{
+																	$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroLogo']='';
+																}
+																
 																$tenKillRateDataAnalysis[$awayHeroStatKey]['awayheroName']=$awayHeroStatInfo['heroName']??0;
 															}
 															
@@ -1367,7 +1420,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['homeRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayAllWinCount'];?>/<?php echo $dataAnalysisInfo['homeAllTotal'];?>)</i></span>
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['homeCurrWinRate']; ?>%<i>(<?php echo $dataAnalysisInfo['homeCurrWinCount']; ?>/<?php echo $dataAnalysisInfo['homeCurrTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysisInfo['homeheroLogo']; ?>" alt="<?php echo $dataAnalysisInfo['homeheroName']; ?>">
+                                                                    <img  class="lineup_img"  data-original="<?php echo $dataAnalysisInfo['homeheroLogo']; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"  alt="<?php echo $dataAnalysisInfo['homeheroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">位</span>
                                                             </div>
@@ -1375,7 +1428,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['awayRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayAllWinCount']; ?>/<?php echo $dataAnalysisInfo['awayAllTotal']; ?>)</i></span>
                                                                 <span class="flex15"><?php echo $dataAnalysisInfo['awayCurrWinRate']; ?>%<i>(<?php echo $dataAnalysisInfo['awayCurrWinCount']; ?>/<?php echo $dataAnalysisInfo['awayCurrTotal']; ?>)</i></span>
                                                                 <span>
-                                                                    <img  class="lineup_img" src="<?php echo $dataAnalysisInfo['awayheroLogo']; ?>" alt="<?php echo $dataAnalysisInfo['awayheroName']; ?>">
+                                                                    <img  class="lineup_img"  data-original="<?php echo $dataAnalysisInfo['awayheroLogo']; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"   alt="<?php echo $dataAnalysisInfo['awayheroName']; ?>">
                                                                 </span>
                                                                 <span class="dn">置</span>
                                                             </div>
