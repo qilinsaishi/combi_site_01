@@ -109,16 +109,16 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                 </div>
                 <div class="dota2">
                     <ul class="dota2_ul1 clearfix mb20">
-                        <li class="active">
+                        <li <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])==0){?>class="active"<?php } ?>>
                             赛前分析
                         </li>
-                        <li >
+                        <li <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])>0){?>class="active"<?php } ?>>
                             比赛详情
                         </li>
                     </ul>
                     <div class="dota2_div">
                         <!-- 赛前分析 -->
-                        <div class="dota2_item active">
+                        <div class="dota2_item <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])==0){?>active"<?php } ?>">
                             <div class="dota2_top">
                                 <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
                                 <span>近期战队数据对比</span>
@@ -553,7 +553,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 
 						
                         <!-- 比赛详情 -->
-                        <div class="dota2_item live_box ">
+                        <div class="dota2_item live_box <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) &&count($return['matchDetail']['data']['match_data']['matchData'])>0){?>active<?php } ?>">
 							<?php if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])>0){?>
                                 <div class="war_report mb20">
                                     <div class="dota2_top">
@@ -669,7 +669,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                     
                                    
                                 </ul>
-                                <div class="live_box_detail">
+                                <div class="live_box_detail ">
 								
 									<!--第一局-->
 									<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){?>
