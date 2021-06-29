@@ -1070,3 +1070,23 @@ color: #fff;
     }
 }
 /* 面包屑导航 */
+/* ti10，s11参赛队伍 */
+@media only screen and (max-width: 1024px){
+    .hot_team {
+        border: 0!important;
+    }
+    .hot_team .dota2_teams .a1{
+        width: .82rem;
+        height: .82rem;
+    }
+    .hot_team .dota2_teams .game_team_img{
+        width: .82rem;
+        height: .82rem;
+    }
+    .hot_team .dota2_teams li{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
+/* ti10，s11参赛队伍 */
