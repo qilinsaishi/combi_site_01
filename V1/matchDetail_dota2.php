@@ -12,7 +12,7 @@ $source=$config['game_source'][$game]??$config['default_source'];
 
 $params = [
     "matchDetail"=>["source"=>$source,"match_id"=>$match_id,"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_hero_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_hero_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img","default_equipment_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "recentMatchList"=>["dataType"=>"matchList","page"=>1,"page_size"=>3,"source"=>$source,"cacheWith"=>"currentPage","cache_time"=>86400],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>$game,"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
     "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>$game,"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
@@ -763,7 +763,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <div class="thumbList">
 																	<?php if(isset($playerInfo['equipmentList']) && count($playerInfo['equipmentList'])>0){
 																		foreach($playerInfo['equipmentList'] as $equipmentInfo){?>
-                                                                    <img src="<?php echo $equipmentInfo['logo']?? '';?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
+                                                                    <img  data-original="<?php echo $equipmentInfo['logo']?? '';?>" src="<?php echo $return['defaultConfig']['data']['default_equipment_img']['value'];?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
 																	<?php }}?>
                                                                 </div>
                                                             </div>
@@ -862,7 +862,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                 <div class="thumbList">
 																	<?php if(isset($matchInfo['awayTeam']['playerList'][$playerKey]['equipmentList']) && count($matchInfo['awayTeam']['playerList'][$playerKey]['equipmentList'])>0){
 																		foreach($matchInfo['awayTeam']['playerList'][$playerKey]['equipmentList'] as $equipmentInfo){?>
-                                                                    <img src="<?php echo $equipmentInfo['logo']?? '';?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
+                                                                    <img  data-original="<?php echo $equipmentInfo['logo']?? '';?>" src="<?php echo $return['defaultConfig']['data']['default_equipment_img']['value'];?>" alt="<?php echo $equipmentInfo['nameZh']?? '';?>">
 																	<?php }}?>
                                                                    
                                                                 </div>
@@ -892,7 +892,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                     <div class="heroBan">
 																		<?php if(isset($matchInfo['homeTeam']['ban']) && count($matchInfo['homeTeam']['ban'])>0){ 
 																		 foreach($matchInfo['homeTeam']['ban'] as $banInfo){ ?>
-                                                                        <img src="<?php echo $banInfo['logo']??''; ?>" alt="<?php echo $banInfo['nameZh']??''; ?>">
+                                                                        <img data-original="<?php echo $banInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $banInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                         
                                                                     </div>
@@ -900,7 +900,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                     <div class="heroBan">
                                                                         <?php if(isset($matchInfo['awayTeam']['ban']) && count($matchInfo['awayTeam']['ban'])>0){ 
 																		 foreach($matchInfo['awayTeam']['ban'] as $banInfo){ ?>
-                                                                        <img src="<?php echo $banInfo['logo']??''; ?>" alt="<?php echo $banInfo['nameZh']??''; ?>">
+                                                                        <img  data-original="<?php echo $banInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"  alt="<?php echo $banInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                     </div>
                                                                 </div>
@@ -908,14 +908,14 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                                     <div class="heroPick">
                                                                        <?php if(isset($matchInfo['homeTeam']['pick']) && count($matchInfo['homeTeam']['pick'])>0){ 
 																		 foreach($matchInfo['homeTeam']['pick'] as $pickInfo){ ?>
-                                                                        <img src="<?php echo $pickInfo['logo']??''; ?>" alt="<?php echo $pickInfo['nameZh']??''; ?>">
+                                                                        <img data-original="<?php echo $pickInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>"  alt="<?php echo $pickInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                     </div>
                                                                     <span class="bans">Picks</span>
                                                                     <div class="heroPick">
                                                                         <?php if(isset($matchInfo['awayTeam']['pick']) && count($matchInfo['awayTeam']['pick'])>0){ 
 																		 foreach($matchInfo['awayTeam']['pick'] as $pickInfo){ ?>
-                                                                        <img src="<?php echo $pickInfo['logo']??''; ?>" alt="<?php echo $pickInfo['nameZh']??''; ?>">
+                                                                        <img data-original="<?php echo $pickInfo['logo']??''; ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $pickInfo['nameZh']??''; ?>">
 																		 <?php }}?>
                                                                     </div>
                                                                 </div>

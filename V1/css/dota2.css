@@ -483,6 +483,7 @@
     height: 38px;
 	border-radius: 50%;
     overflow: hidden;
+	border:2px solid #fff;
 }
 .heroBox{
     z-index: 1;
