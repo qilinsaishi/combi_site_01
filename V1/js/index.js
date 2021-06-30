@@ -3,7 +3,7 @@
         $(".banner").css("height", banner)
     });
 //懒加载
-var Height = $(window).height();t)
+var Height = $(window).height()
  $(function(){
 		//初始化插件
 		$('img').lazyload({
