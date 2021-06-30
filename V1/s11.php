@@ -4,9 +4,11 @@ require_once "function/init.php";
 $params = [
     "tournamentList"=>["page"=>1,"page_size"=>4,"game"=>$config['s11']['game'],"source"=>$config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "champList"=>["dataType"=>"intergratedTeamList","tid"=>array_unique(array_column($config['s11']['history'],"tid")),"page"=>1,"page_size"=>10,"fields"=>'tid,team_name,logo',"game"=>[$config['s11']['game']],"cache_time"=>86400*7],
     "currentPage"=>["name"=>"s11","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return['champList']['data'] = array_combine(array_column($return['champList']['data'],"tid"),$return['champList']['data']);
 ?>
 <html lang="en">
 
@@ -480,7 +482,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                         英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
                                     </div>
                                     <p class="s11_previous_conP"><?php echo $history_info['event_name'];?>英雄联盟总决赛于<?php echo $history_info['date'];?>在<?php echo $history_info['location'];?>举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：<?php echo $history_info['champ']['team_name'];?>，所属赛区：<?php echo $history_info['champ']['district'];?>赛区</p>
+                                    <p class="s11_previous_conP">冠军队伍：<?php echo $return['champList']['data'][$history_info['tid']]['team_name']??$history_info['team_name'];?>，所属赛区：<?php echo $history_info['district'];?>赛区</p>
                                 </div>
                             </div>
                             <?php $i++;}?>
@@ -498,11 +500,15 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                 <p class="s11_champions_title"><?php echo $year;?>全球总决赛冠军</p>
                                 <div class="s11_champions_con">
                                     <div class="left">
-                                        <span><?php echo $history_info['champ']['district'];?>赛区</span>
-                                        <span><?php echo $history_info['champ']['team_name'];?></span>
+                                        <span><?php echo $history_info['district'];?>赛区</span>
+                                        <span><?php echo $return['champList']['data'][$history_info['tid']]['team_name']??$history_info['team_name'];?></span>
                                     </div>
                                     <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
+                                        <?php if(isset($return['champList']['data'][$history_info['tid']])){?>
+                                            <img data-original="<?php echo $return['champList']['data'][$history_info['tid']]['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $return['champList']['data'][$history_info['tid']]['team_name'];?>">
+                                        <?php }else{?>
+                                        <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $history_info['team_name'];?>">
+                                        <?php }?>
                                     </div>
                                 </div>
                             </div>
