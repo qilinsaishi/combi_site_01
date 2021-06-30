@@ -22,9 +22,15 @@ $base_config = [
     ],
     'ti10'=>[
         'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],
-        'event_name'=>"Ti10",
+        'event_name'=>"Ti10国际邀请赛",
         'game'=>"dota2",
-        'ti9_ranking'=>["ig"=>1321,"eg"=>1322,"secret"=>1323,"vp"=>1318,"obheon"=>0,"tp"=>1311,"psg"=>1316,"bc"=>1313,"fnatic"=>0,"vg"=>1324,"qc"=>0,"alliance"=>1320]
+        'ti9_ranking'=>["eg"=>1322,"ig"=>1321,"psg/lgd"=>1316,"quincy crew"=>1317,"vp"=>1318,"t1"=>1315,"secret"=>1323,"vg"=>1324,"aster"=>1312,"alliance"=>1320,"bc"=>1313,"tp"=>1311,"team spirit"=>1305,'sg'=>1297]
+    ],
+    's11'=>[
+        //'keyword'=>["TI10","DOTA2国际邀请赛","ti10","Ti10"],
+        'event_name'=>"S11全球总决赛",
+        'game'=>"lol",
+        'ti9_ranking'=>["eg"=>1322,"ig"=>1321,"psg/lgd"=>1316,"quincy crew"=>1317,"vp"=>1318,"t1"=>1315,"secret"=>1323,"vg"=>1324,"aster"=>1312,"alliance"=>1320,"bc"=>1313,"tp"=>1311,"team spirit"=>1305,'sg'=>1297]
     ]
 ];
 
