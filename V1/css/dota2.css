@@ -791,8 +791,8 @@
 }
 .war_report_detail_top{
     display: flex;
-    height: 20px;
-    align-items: center;
+    /* height: 20px; */
+    align-items: flex-start;
     margin-bottom: 12px;
 }
 .war_report_detail_top img{
@@ -800,6 +800,7 @@
     height: 20px;
     margin-right: 10px;
     flex-shrink: 0;
+	margin-top:4px;
 }
 .war_report_detail_top p{
     font-size: 20px;
@@ -807,8 +808,9 @@
     font-weight: 500;
     display: flex;
     align-items: center;
-    height: 20px;
-    line-height: 20px;
+	display:block;
+    /* height: 20px; */
+    line-height: 28px;
 }
 .war_report_detail_top p span{
     color: #FF6649;
@@ -817,6 +819,7 @@
     height: 20px;
     line-height: 20px;
     margin: 0 2px;
+	flex-shrink:0;
 }
 .war_report_detail .firstStep{
     font-size: 18px;
