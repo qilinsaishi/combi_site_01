@@ -1,6 +1,10 @@
-.s11 .format{
-
+.s11_format{
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 30px 20px;
 }
+
 .s11_format_ul{
     display: flex;
     margin-bottom: 32px;
@@ -212,9 +216,8 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     font-size: 24px;
-    height: 140px;
     color: #fff;
     text-align: center;
     line-height: 140px;
@@ -249,6 +252,10 @@
 .sq,.cw{
     display: flex;
 }
+.sq{
+    height: 140px;
+    margin-bottom: 10px;
+}
 .sqcw .city_name{
     font-size: 24px;
     color: #fff;
@@ -274,7 +281,7 @@
 }
 .qd_active{
     background-image: url("../images/qd_active.png");
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 .cd_active{
     background-image: url("../images/cd_active.png");
@@ -290,11 +297,14 @@
 }
 .s11_previous{
     width: 1200px;
-    height: 435px;
     background: #FFFFFF;
     border: 1px solid #EEEEEE;
     border-radius: 8px;
-    padding: 20px 20px 0 18px;
+    padding: 20px 20px 20px 18px;
+    background-image: url("../images/s11_pre_bg.png");
+    background-size: contain;
+    background-position: top right;
+    background-repeat: no-repeat;
 }
 .s11_previous_conItem{
     padding-left: 44px;
@@ -354,7 +364,7 @@
     margin-left: -50px;
     top: 20px;
 }
-.s11_previous_ulLi.active span{
+.s11_previous_ulLi.active span,.s11_previous_ulLi:hover span{
     font-size: 20px;
     color: #0F1AD3;
 }
@@ -374,7 +384,7 @@
     top: 50%;
     margin-top: -5px;
 }
-.s11_previous_ulLi.active::after{
+.s11_previous_ulLi.active::after,.s11_previous_ulLi:hover::after{
     width: 24px;
     height: 24px;
     background-image: url("../images/s11_pre_dot_active.png");
@@ -503,7 +513,7 @@
         padding-top: 0;
     }
     .s11_city{
-        padding: .3rem .3rem 0 .3rem;
+        padding: .3rem .3rem .2rem .3rem;
     }
     .s11_city_detail{
         flex-direction: column;
@@ -569,6 +579,8 @@
      .sq, .cw{
          justify-content: space-between;
          width: 6.9rem;
+         height: 3rem;
+         margin-bottom: .1rem;
      }
      .sqcw .city_name{
          font-size: .3rem;
@@ -616,8 +628,12 @@
      }
      .s11_previous{
          width: 7.5rem;
-         height: 6.7rem;
-         padding: .3rem .3rem 0 .3rem;
+         padding: .3rem .3rem 0.2rem .3rem;
+         background-image: url("../images/s11_pre_bg_wap.png");
+        background-size: cover;
+        background-position: top right;
+        background-repeat: no-repeat;
+        border: 0;
      }
      .s11_previous_champions{
          width: 6.9rem;
@@ -640,5 +656,28 @@
         line-height: .26rem;
         text-align: left;
         flex-shrink: 0;
+    }
+    .s11_previous_ulLi{
+        margin-bottom: .72rem;
+        width: 1.16rem;
+        height: .02rem;
+    }
+    .s11_champions_con .left span{
+        font-size: .22rem;
+        line-height: .22rem;
+        height: .22rem;
+    }
+    .s11_previous_con{
+        margin-bottom: .2rem;
+    }
+    .s11_previous_ul_wrapper{
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .s11_previous_ul {
+        display: flex;
+        width: 11.6rem;
+        height: .86rem;
+        padding-top: .12rem;
     }
 }
