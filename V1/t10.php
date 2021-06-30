@@ -5,7 +5,7 @@ $rankingList = array_unique(array_values($config['ti10']['ti9_ranking']));
 $params=[
     "connectInfo"=>["dataType"=>"keywordMapList","fields"=>"content_id","source_type"=>"another","word"=>$config['ti10']['keyword'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
     "teamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
-    "hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"source"=>"scoregg","cache_time"=>86400*7],
+    "dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$config['ti10']['game'],"source"=>$config['game_source'][$config['ti10']['game']] ?? $config['default_source'],"cache_time"=>86400],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
@@ -88,7 +88,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/format_icon.png" alt="">
                         </div>
-                        <h2 class="fl team_pbu_name">Ti10国际邀请赛赛制</h2>
+                        <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>赛制</h2>
                     </div>
                     <div class="format_detail">
                         <p class="format_p">地区预选赛赛制</p>
@@ -110,7 +110,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
-                        <h2 class="fl team_pbu_name">Ti10国际邀请赛最新资讯</h2>
+                        <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>最新资讯</h2>
                         <a href="<?php echo $config['site_url']."/newslist/dota2/";?>" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
@@ -150,7 +150,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
-                        <h2 class="fl team_pbu_name">Ti10国际邀请赛参赛队伍</h2>
+                        <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>参赛队伍</h2>
                     </div>
                     <ul class="dota2_teams clearfix">
                         <?php foreach($return['teamList']['data'] as $key => $teamInfo){?>
@@ -167,7 +167,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                 </div>
                 <?php }?>
                 <div class="prizePool mb20">
-                    <h2 class="title">Ti10国际邀请赛奖金池</h2>
+                    <h2 class="title"><?php echo $config['ti10']['event_name'];?>奖金池</h2>
                     <div class="m_wrapper">
 
                     </div>
@@ -219,7 +219,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/ranking.png" alt="">
                         </div>
-                        <h2 class="fl team_pbu_name">Ti10国际邀请赛冠军预测</h2>
+                        <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>冠军预测</h2>
                     </div>
                     <div class="clearfix thumbs">
                         <div class="top_three fl clearfix dn_wap">
@@ -360,14 +360,14 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
-                        <a href="<?php echo $config['site_url'];?>/tournamentlist/" class="team_pub_more fr">
+                        <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $config['ti10']['game'];?>" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
                         <ul class="clearfix">
-                            <?php foreach($return['hotTournamentList']['data'] as $key => $tournamentInfo){?>
+                            <?php foreach($return['dota2TournamentList']['data'] as $key => $tournamentInfo){?>
                                 <li>
                                     <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>">
                                         <img data-original="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" class="imgauto1">
