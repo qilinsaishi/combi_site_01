@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
 require_once "function/init.php";
+$params = [
+    "tournamentList"=>["page"=>1,"page_size"=>4,"game"=>$config['s11']['game'],"source"=>$config['default_source'],"cache_time"=>86400],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "currentPage"=>["name"=>"s11","site_id"=>$config['site_id']]
+];
+$return = curl_post($config['api_get'],json_encode($params),1);
 ?>
 <html lang="en">
 
@@ -883,42 +889,27 @@ require_once "function/init.php";
                 </div>
                 <!-- 冠军回顾 -->
                 <div class="hot_match mb20">
+
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
-                        <h2 class="fl team_pbu_name">热门赛事</h2>
-                        <a href="##" class="team_pub_more fr">
+                        <span class="fl team_pbu_name">热门赛事</span>
+                        <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $config['s11']['game'];?>" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
                         <ul class="clearfix">
-                            <li>
-                                <a href="##">
-                                    <img src="<?php echo $config['site_url'];?>/images/event_1.png" alt="" class="imgauto1">
-                                    <span>2021 LPL春季赛</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <img src="<?php echo $config['site_url'];?>/images/event_2.png" alt="" class="imgauto1">
-                                    <span>2021 LPL春季赛</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <img src="<?php echo $config['site_url'];?>/images/event_1.png" alt="" class="imgauto1">
-                                    <span>2021 LPL春季赛</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <img src="<?php echo $config['site_url'];?>/images/event_2.png" alt="" class="imgauto1">
-                                    <span>2021 LPL春季赛</span>
-                                </a>
-                            </li>
+                            <?php foreach($return['tournamentList']['data'] as $key => $tournamentInfo){?>
+                                <li>
+                                    <a href="<?php echo $config['site_url'];?>/tournamentdetail/<?php echo $tournamentInfo['game']."-".$tournamentInfo['tournament_id'];?>">
+                                        <img data-original="<?php echo $tournamentInfo['logo'].$config['default_oss_img_size']['tournamentList'];?>" src="<?php echo $return['defaultConfig']['data']['default_tournament_img']['value'].$config['default_oss_img_size']['tournamentList'];?>" alt="<?php echo $tournamentInfo['tournament_name'];?>" class="imgauto1">
+                                        <span><?php echo $tournamentInfo['tournament_name'];?></span>
+                                    </a>
+                                </li>
+                            <?php }?>
                         </ul>
                     </div>
                 </div>
