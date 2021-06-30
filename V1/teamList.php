@@ -3,7 +3,6 @@ require_once "function/init.php";
 $info['page']['page_size'] = 30;
 $page = $_GET['page']??1;
 $currentGame = $_GET['game']??'all';
-//echo $page."-".$currentGame;die();
 if($page==''){
     $page=1;
 }
