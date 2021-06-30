@@ -15,18 +15,8 @@ $return = curl_post($config['api_get'],json_encode($params),1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
-    <title>赛事专题</title>
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/css/reset.css">
-    <script src="<?php echo $config['site_url'];?>/js/flexible.js"></script>
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/css/headerfooter.css">
-    <!-- 本页新增的css events.css -->
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/css/events.css">
-    <!-- 本页新增css -->
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/fonts/iconfont.css">
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/css/newevents.css">
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/css/animate.min.css">
-    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/css/s11.css">
+    <title>S11英雄联盟LOL2021全球总决赛_S11全球总决赛赛程时间_S11全球总决赛举办地-<?php echo $config['site_name'];?></title>
+    <?php renderHeaderJsCss($config,["newevents","events","../fonts/iconfont","animate.min.css","s11"]);?>
 </head>
 
 <body>
@@ -247,136 +237,6 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="hot_team mb20">
-                    <div class="team_pub_top clearfix">
-                        <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
-                        </div>
-                        <h2 class="fl team_pbu_name">Ti10国际邀请赛参赛队伍</h2>
-                    </div>
-                    <ul class="dota2_teams clearfix">
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div> -->
 
                 <div class="hot_team mb20">
                     <div class="team_pub_top clearfix">
@@ -608,7 +468,8 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                     </div>
                     <div class="s11_previous_detail">
                         <div class="s11_previous_con">
-                            <div class="s11_previous_conItem active">
+                            <?php $i=1;foreach($config['s11']['history'] as $year => $history_info){?>
+                            <div class="s11_previous_conItem <?php if($i==1){echo "active";}?>">
                                 <div class="s11_previous_conLogo">
                                     <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
                                     <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
@@ -618,164 +479,35 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                                     <div class="s11_previous_conP">
                                         英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
                                     </div>
-                                    <p class="s11_previous_conP">S10英雄联盟总决赛于2020年10月31日在中国·上海浦东足球场举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：Damwon Gaming，所属赛区：LCK赛区</p>
+                                    <p class="s11_previous_conP"><?php echo $history_info['event_name'];?>英雄联盟总决赛于<?php echo $history_info['date'];?>在<?php echo $history_info['location'];?>举办</p>
+                                    <p class="s11_previous_conP">冠军队伍：<?php echo $history_info['champ']['team_name'];?>，所属赛区：<?php echo $history_info['champ']['district'];?>赛区</p>
                                 </div>
                             </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S9英雄联盟总决赛于2019年11月10日在法国·巴黎雅高酒店竞技场举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：FunPlus Phoenix，所属赛区：LPL赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S8英雄联盟总决赛于2018年11月3日在韩国·仁川文鹤体育场举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：Invictus Gaming，所属赛区：LPL赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S7英雄联盟总决赛于2017年11月4日在中国·北京国家体育场举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：Samsung Galaxy，所属赛区：LCK赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S6英雄联盟总决赛于2016年10月29日在美国·洛杉矶斯台普斯中心举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：SKTelecom T1，所属赛区：LCK赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S5英雄联盟总决赛于2015年10月31日在德国·柏林梅赛德斯奔驰体育场举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：SKTelecom T1，所属赛区：LCK赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S4英雄联盟总决赛于2014年10月19日在韩国·首尔上岩世界杯体育场举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：Samsung White，所属赛区：LCK赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S3英雄联盟总决赛于2013年10月5日在美国·洛杉矶 斯台普斯中心举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：SKTelecom T1，所属赛区：LCK赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S2英雄联盟总决赛于2012年10月14日在美国·南加州 盖伦中心举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：Taipei Assassins，所属赛区：LMS赛区</p>
-                                </div>
-                            </div>
-                            <div class="s11_previous_conItem">
-                                <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
-                                    <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
-                                </div>
-                                <div class="s11_previous_conDetail">
-                                    <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
-                                    <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
-                                    </div>
-                                    <p class="s11_previous_conP">S1英雄联盟总决赛于2011年6月20日在瑞典·Dreamhack展会举办</p>
-                                    <p class="s11_previous_conP">冠军队伍：Fnatic team，所属赛区：LCS.EU赛区</p>
-                                </div>
-                            </div>
+                            <?php $i++;}?>
                         </div>
                         <div class="s11_previous_ul_wrapper">
                             <ul class="s11_previous_ul">
-                                <li class="s11_previous_ulLi active"><span>2020</span></li>
-                                <li class="s11_previous_ulLi"><span>2019</span></li>
-                                <li class="s11_previous_ulLi"><span>2018</span></li>
-                                <li class="s11_previous_ulLi"><span>2017</span></li>
-                                <li class="s11_previous_ulLi"><span>2016</span></li>
-                                <li class="s11_previous_ulLi"><span>2015</span></li>
-                                <li class="s11_previous_ulLi"><span>2014</span></li>
-                                <li class="s11_previous_ulLi"><span>2013</span></li>
-                                <li class="s11_previous_ulLi"><span>2012</span></li>
-                                <li class="s11_previous_ulLi"><span>2011</span></li>
+                                <?php $i=1;foreach($config['s11']['history'] as $year => $history_info){?>
+                                    <li class="s11_previous_ulLi <?php if($i==1){echo "active";}?>"><span><?php echo $year;?></span></li>
+                                <?php $i++;}?>
                             </ul>
                         </div>
                         <div class="s11_previous_champions">
-                            <div class="s11_champions_item active">
-                                <p class="s11_champions_title">2020全球总决赛冠军</p>
+                            <?php $i=1;foreach($config['s11']['history'] as $year => $history_info){?>
+                            <div class="s11_champions_item <?php if($i==1){echo "active";}?>">
+                                <p class="s11_champions_title"><?php echo $year;?>全球总决赛冠军</p>
                                 <div class="s11_champions_con">
                                     <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
+                                        <span><?php echo $history_info['champ']['district'];?>赛区</span>
+                                        <span><?php echo $history_info['champ']['team_name'];?></span>
                                     </div>
                                     <div class="right">
                                         <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
                                     </div>
                                 </div>
                             </div>
+                                <?php $i++;}?>
+
                             <div class="s11_champions_item">
                                 <p class="s11_champions_title">2019全球总决赛冠军</p>
                                 <div class="s11_champions_con">
@@ -790,90 +522,6 @@ $return = curl_post($config['api_get'],json_encode($params),1);
                             </div>
                             <div class="s11_champions_item">
                                 <p class="s11_champions_title">2018全球总决赛冠军</p>
-                                <div class="s11_champions_con">
-                                    <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
-                                    </div>
-                                    <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="s11_champions_item">
-                                <p class="s11_champions_title">2017全球总决赛冠军</p>
-                                <div class="s11_champions_con">
-                                    <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
-                                    </div>
-                                    <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="s11_champions_item">
-                                <p class="s11_champions_title">2016全球总决赛冠军</p>
-                                <div class="s11_champions_con">
-                                    <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
-                                    </div>
-                                    <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="s11_champions_item">
-                                <p class="s11_champions_title">2015全球总决赛冠军</p>
-                                <div class="s11_champions_con">
-                                    <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
-                                    </div>
-                                    <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="s11_champions_item">
-                                <p class="s11_champions_title">2014全球总决赛冠军</p>
-                                <div class="s11_champions_con">
-                                    <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
-                                    </div>
-                                    <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="s11_champions_item">
-                                <p class="s11_champions_title">2013全球总决赛冠军</p>
-                                <div class="s11_champions_con">
-                                    <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
-                                    </div>
-                                    <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="s11_champions_item">
-                                <p class="s11_champions_title">2012全球总决赛冠军</p>
-                                <div class="s11_champions_con">
-                                    <div class="left">
-                                        <span>LCK赛区</span>
-                                        <span>IG</span>
-                                    </div>
-                                    <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="s11_champions_item">
-                                <p class="s11_champions_title">2011全球总决赛冠军</p>
                                 <div class="s11_champions_con">
                                     <div class="left">
                                         <span>LCK赛区</span>
