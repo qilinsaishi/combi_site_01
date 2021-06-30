@@ -600,34 +600,34 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                         </div>
 										<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){
 												if(isset($matchInfo['homeTeam']['teamStat']['firstBlood']) && $matchInfo['homeTeam']['teamStat']['firstBlood']==0){
-													$firstBloodTeam=$matchInfo['awayTeam']['teamName'] ??'';
+													$firstBloodTeam=$return['matchDetail']['data']['away_team_info']['team_name'];
 												}else{
-													$firstBloodTeam=$matchInfo['homeTeam']['teamName'] ??'';
+													$firstBloodTeam=$return['matchDetail']['data']['home_team_info']['team_name'];
 												}
 												if(isset($matchInfo['homeTeam']['teamStat']['firstTower']) && $matchInfo['homeTeam']['teamStat']['firstTower']==0){
-													$firstTowerTeam=$matchInfo['awayTeam']['teamName'] ??'';
+													$firstTowerTeam=$return['matchDetail']['data']['away_team_info']['team_name'];
 												}else{
-													$firstTowerTeam=$matchInfo['homeTeam']['teamName'] ??'';
+													$firstTowerTeam=$return['matchDetail']['data']['home_team_info']['team_name'];
 												}
 												if(isset($matchInfo['homeTeam']['teamStat']['fiveKill']) && $matchInfo['homeTeam']['teamStat']['fiveKill']==0){
-													$fiveKillTeam=$matchInfo['awayTeam']['teamName'] ??'';
+													$fiveKillTeam=$return['matchDetail']['data']['away_team_info']['team_name'];
 												}else{
-													$fiveKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
+													$fiveKillTeam=$return['matchDetail']['data']['home_team_info']['team_name'];
 												}
 												if(isset($matchInfo['homeTeam']['teamStat']['tenKill']) && $matchInfo['homeTeam']['teamStat']['tenKill']==0){
-													$tenKillTeam=$matchInfo['awayTeam']['teamName'] ??'';
+													$tenKillTeam=$return['matchDetail']['data']['away_team_info']['team_name'];
 												}else{
-													$tenKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
+													$tenKillTeam=$return['matchDetail']['data']['home_team_info']['team_name'];
 												}
 												if(isset($matchInfo['homeTeam']['teamStat']['fifteenKill']) && $matchInfo['homeTeam']['teamStat']['fifteenKill']==0){
-													$fifteenKillTeam=$matchInfo['awayTeam']['teamName'] ??'';
+													$fifteenKillTeam=$return['matchDetail']['data']['away_team_info']['team_name'];
 												}else{
-													$fifteenKillTeam=$matchInfo['homeTeam']['teamName'] ??'';
+													$fifteenKillTeam=$return['matchDetail']['data']['home_team_info']['team_name'];
 												}
 												if($matchInfo['homeTeam']['teamStat']['win']==1){
-													$gameWinTeam=$matchInfo['homeTeam']['teamName'] ??'';
+													$gameWinTeam=$return['matchDetail']['data']['home_team_info']['team_name'];
 												}else{
-													$gameWinTeam=$matchInfo['awayTeam']['teamName'] ??'';
+													$gameWinTeam=$return['matchDetail']['data']['away_team_info']['team_name'];
 												}
 												$economyLinesList=(is_array($matchInfo['economyLinesList']) && count($matchInfo['economyLinesList'])>0)?array_pop($matchInfo['economyLinesList']):[] ;
 												$expLinesList=(is_array($matchInfo['expLinesList']) && count($matchInfo['expLinesList'])>0)?array_pop($matchInfo['expLinesList']):[] ;
