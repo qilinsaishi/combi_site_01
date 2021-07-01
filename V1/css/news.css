@@ -221,17 +221,27 @@ box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
         width: 100%;
     }
     .news_top_content p{
-        font-size: .24rem;
-        line-height: .36rem;
+        font-size: .26em!important;
+        line-height: .42rem;
+        font-weight: 400;
+		color: #333!important;
+    }
+    .news_top_content *{
+        font-size: .26rem!important;
+        line-height: .42rem;
+        font-weight: 400;
+		color: #333!important;
     }
 	.news_top_content{
 		width:100%;
+        font-size: .26rem!important;
+        line-height: .42rem;
 	}
 	.news_top_content p span{
-		font-size: .24rem !important;
-		line-height: .36rem;
+		font-size: .26rem !important;
+		line-height: .42rem;
 		font-weight: 400;
-		color: #333;
+		color: #333!important;
 	}
     /* 2021.6.8新增 */
     .team_pbu_name{
@@ -285,4 +295,10 @@ box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
 	.news_img{
 		flex-shrink: 0;
 	}
+    .news_label span{
+        font-size: .24rem;
+        height: .4rem;
+        line-height: .4rem;
+        padding: 0 .2rem;
+    }
 }
