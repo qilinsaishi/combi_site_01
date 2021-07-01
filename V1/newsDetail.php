@@ -21,7 +21,7 @@ foreach($matches['2'] as $img)
 {
     if(!strpos($img,'qilingsaishi'))
     {
-        $return['information']['data']['content'] = str_replace('"'.$img.'"',$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
+        $return['information']['data']['content'] = str_replace(trim($img,'"'),$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
     }
 }
 $return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
@@ -93,7 +93,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
     <title><?php echo $return['information']['data']['title']?>_<?php echo $config['game'][$return['information']['data']['game']];?><?php echo $currentType=="news"?"电竞资讯":"游戏攻略"; ?>-<?php echo $config['site_name'];?></title>
     <?php renderHeaderJsCss($config,["right","news"]);?>
 </head>
-
+f
 <body>
     <div class="wrapper">
         <div class="header">
