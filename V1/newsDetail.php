@@ -19,7 +19,7 @@ if(!isset($return["information"]['data']['id']))
 preg_match_all('/(src)=("[^"]*")/i', $return['information']['data']['content'], $matches);
 foreach($matches['2'] as $img)
 {
-    if(!strpos($img,'qilingsaishi'))
+    if(!strpos($img,'qilingsaishi') && !strpos($img,'mxbs'))
     {
         $return['information']['data']['content'] = str_replace(trim($img,'"'),$return['defaultConfig']['data']['default_information_img']['value'], $return['information']['data']['content']);
     }
