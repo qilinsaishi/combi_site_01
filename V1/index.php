@@ -2,6 +2,7 @@
 require_once "function/init.php";
 $params = [
     "matchList"=>["page"=>1,"page_size"=>8,"recent"=>1,"source"=>$config['default_source'],"cache_time"=>3600],
+    "dota2matchList"=>["dataType"=>"matchList","page"=>1,"page_size"=>3,"recent"=>1,"source"=>$config['game_source']['dota2'],"cache_time"=>3600],
     "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
 	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>2,"game"=>'dota2',"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
@@ -21,7 +22,12 @@ foreach ($config['game'] as $game => $gameName)
         ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
+$return['matchList']['data'] = array_merge($return['matchList']['data'],$return['dota2matchList']['data']);
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['dota2TournamentList']['data']);
+unset($return['dota2matchList']);
+array_multisort(array_column($return['matchList']['data'],"start_time",SORT_ASC),$return['matchList']['data']);
+$return['matchList']['data'] = array_slice($return['matchList']['data'],0,8);
+
 //文章类型
 $newsTypeList = ["News","Stra"];
 //返回值键名数组
