@@ -5,6 +5,10 @@ $params = [
     "tournamentList"=>["page"=>1,"page_size"=>4,"game"=>$config['s11']['game'],"source"=>$config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "champList"=>["dataType"=>"intergratedTeamList","tid"=>array_unique(array_column($config['s11']['history'],"tid")),"page"=>1,"page_size"=>10,"fields"=>'tid,team_name,logo',"game"=>[$config['s11']['game']],"cache_time"=>86400*7],
+    "teamList"=>["dataType"=>"intergratedTeamList","tid"=>array_values($config['s11']['teamList']),"page"=>1,"page_size"=>100,"fields"=>'tid,team_name,logo',"game"=>[$config['s11']['game']],"cache_time"=>86400*7],
+    "newsList" =>
+        ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>[$config['s11']['game']],"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']["news"],"cache_time"=>86400],
+    "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"s11","site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
@@ -240,135 +244,28 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                     </div>
                 </div>
 
-                <div class="hot_team mb20">
-                    <div class="team_pub_top clearfix">
-                        <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
+                <?php if(count($return['teamList']['data'])>0){?>
+                    <div class="hot_team mb20">
+                        <div class="team_pub_top clearfix">
+                            <div class="team_pub_img fl">
+                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
+                            </div>
+                            <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>参赛队伍</h2>
                         </div>
-                        <span class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>参赛队伍</span>
+                        <ul class="dota2_teams clearfix">
+                            <?php foreach($return['teamList']['data'] as $key => $teamInfo){?>
+                                <li class="col-xs-2">
+                                    <a href="<?php echo $config["site_url"]."/teamdetail/".$teamInfo['tid'];?>">
+                                        <div class="a1">
+                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php }?>
+                        </ul>
+
                     </div>
-                    <ul class="dota2_teams clearfix">
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="col-xs-2">
-                            <a href="##">
-                                <div class="a1">
-                                    <img src="<?php echo $config['site_url'];?>/images/dota2_team.png" alt="" class="game_team_img">
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <?php }?>
 
                 <div class="mb20 team_news">
                     <div class="team_pub_top clearfix">
@@ -376,90 +273,40 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>最新资讯</h2>
-                        <a href="##" class="team_pub_more fr">
+                        <a href="<?php echo $config['site_url']."/newslist/".$config['s11']['game']."/";?>" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="team_news_mid">
                         <ul class="team_news_mid_ul clearfix">
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
+                            <?php foreach($return['newsList']['data'] as $key => $info){if($key<=3){?>
+                                <li>
+                                    <a href="<?php echo $config["site_url"]."/newsdetail/".$info['id'];?>">
+                                        <div class="team_news_img">
+                                            <div class="img">
+                                                <img class="imgauto" data-original="<?php echo $info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $info['title'];?>">
+                                            </div>
+                                            <p><?php echo $info['title'];?></p>
                                         </div>
-                                        <p>竞燃杯｜企业电竞联赛竞燃杯｜企业电竞联赛</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>CSGO精英对抗赛CSGO精英对抗赛</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>竞燃杯｜企业电竞联赛竞燃杯｜企业电竞联赛</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="team_news_img">
-                                        <div class="img">
-                                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/banner.png" alt="">
-                                        </div>
-                                        <p>CSGO精英对抗赛CSGO精英对抗赛</p>
-                                    </div>
-                                </a>
-                            </li>
+                                    </a>
+                                </li>
+                            <?php }}?>
                         </ul>
                     </div>
                     <div class="team_news_bot">
                         <ul class="team_news_bot_ul clearfix">
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    dota2新手快速入门教程｜快速上手dota2新手快速入门教程｜快速上手
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a href="##">
-                                    英雄联盟｜11.7版本更新了什么 11.7版本更新内英雄联盟｜11.7版本更新了什么 11.7版本更新内
-                                </a>
-                            </li>
+                            <?php foreach($return['newsList']['data'] as $key => $info){if($key>3){?>
+                                <li class="fl">
+                                    <a href="<?php echo $config["site_url"]."/newsdetail/".$info['id'];?>">
+                                        <?php echo $info['title'];?>
+                                    </a>
+                                </li>
+                            <?php }}?>
                         </ul>
                     </div>
                 </div>
+
                 <!-- 冠军回顾 -->
                 <div class="s11_previous mb20">
                     <div class="team_pub_top clearfix">
@@ -578,18 +425,13 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                 </div>
             </div>
             <ul class="row links_list clearfix">
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
-                <li><a href="##">凤凰电竞</a></li>
+                <?php
+                foreach($return['links']['data'] as $linksInfo)
+                {   ?>
+                    <li><a href="<?php echo $linksInfo['url'];?>"><?php echo $linksInfo['name'];?></a></li>
+                <?php }?>
             </ul>
-            <p>Copyright © 2021 www.qilindianjing.com</p>
-            <p>网站内容来源于网络，如果侵犯您的权益请联系删除</p>
+            <?php renderCertification();?>
         </div>
     </div>
     <div class="suspension">

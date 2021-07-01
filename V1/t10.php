@@ -111,7 +111,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>最新资讯</h2>
-                        <a href="<?php echo $config['site_url']."/newslist/dota2/";?>" class="team_pub_more fr">
+                        <a href="<?php echo $config['site_url']."/newslist/".$config['ti10']['game']."/";?>" class="team_pub_more fr">
                             <span>更多</span>
                             <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
@@ -123,7 +123,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 <a href="<?php echo $config["site_url"]."/newsdetail/".$info['id'];?>">
                                     <div class="team_news_img">
                                         <div class="img">
-                                            <img class="imgauto" src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                            <img class="imgauto" data-original="<?php echo $info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $info['title'];?>">
                                         </div>
                                         <p><?php echo $info['title'];?></p>
                                     </div>
