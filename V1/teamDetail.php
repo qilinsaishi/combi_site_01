@@ -17,6 +17,9 @@ if(!isset($return["intergratedTeam"]['data']['tid']))
 {
     render404($config);
 }
+//获取当前战队的游戏
+$game=$return['intergratedTeam']['data']['game'] ?? $config['default_game'];
+$return['intergratedTeam']['data']['description']=($return['intergratedTeam']['data']['description']=='暂无')?"":$return['intergratedTeam']['data']['description'];
 if($return['intergratedTeam']['data']['description']!="")
 {
     if(substr($return['intergratedTeam']['data']['description'],0,1)=='"' && substr($return['intergratedTeam']['data']['description'],-1)=='"')
@@ -31,14 +34,45 @@ if($return['intergratedTeam']['data']['description']!="")
 }
 else
 {
-    $description = "暂无";
+	$team_name1=$return['intergratedTeam']['data']['team_name']??'';
+	$en_name=$return['intergratedTeam']['data']['en_name']??'';
+	$team_name2=$team_name1;
+	if((strpos($team_name1,'战队')===false)){
+		$team_name1=$team_name1.'战队';
+	}
+	if((strpos($team_name2,'俱乐部')===false)){
+		if($en_name !=''){
+			$team_name2=$en_name.'电子竞技俱乐部';
+		}else{
+			$team_name2=$team_name2.'电子竞技俱乐部';
+		}
+		
+	}
+	$game_name=$config['game'][$game];
+	$playerString='';
+	$count=count($return['intergratedTeam']['data']['playerList']);
+	if($count>0){
+		foreach($return['intergratedTeam']['data']['playerList'] as $playerKey=>$playerInfo){
+			if($playerKey<=4){
+				$playerString.=$playerInfo['player_name'].'，';
+			}
+		
+		}
+	}
+	$playerString=trim($playerString,'，');
+	if($count>=4){
+		$playerString=$playerString.'等';
+	}
+	
+    $description = $team_name1.'，全称'.$team_name2.'，'.$game_name.'职业电竞俱乐部，旗下成员包括'.$playerString;
+	
+   // $description = "暂无";
 }
 if(count($return['intergratedTeam']['data']['aka'])>0){
 	$return['intergratedTeam']['data']['aka']=implode(',',array_filter($return['intergratedTeam']['data']['aka']));
 }
 
-//获取当前战队的游戏
-$game=$return['intergratedTeam']['data']['game'] ?? $config['default_game'];
+
 $source=$config['game_source'][$game]??$config['default_source'];
 //当前游戏下面的资讯
 $params2=[
