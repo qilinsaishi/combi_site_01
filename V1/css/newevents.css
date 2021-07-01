@@ -969,8 +969,8 @@
         margin: 0 auto;
     }
     .top_twoimg{
-        width: .58rem;
-        height: .58rem;
+        /* width: .58rem; */
+        height: .38rem;
     }
     .thumbstwo{
         height: .32rem;
@@ -1002,7 +1002,7 @@
     }
     .top_oneimg{
         width: .8rem;
-        height: .8rem;
+        /* height: .8rem; */
     }
     .thumbstop{
         width: .32rem;
