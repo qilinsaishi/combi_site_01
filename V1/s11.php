@@ -24,7 +24,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
     <title><?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['s11_title']['value']);?></title>
     <meta name=”Keywords” Content="<?php echo $return['defaultConfig']['data']['s11_keywords']['value'];?>">
     <meta name="description" content="<?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['s11_desc']['value']);?>">
-    <?php renderHeaderJsCss($config,["newevents","events","../fonts/iconfont","animate.min.css","s11"]);?>
+    <?php renderHeaderJsCss($config,["newevents","events","../fonts/iconfont","animate.min","s11"]);?>
 </head>
 
 <body>
