@@ -1,11 +1,10 @@
 <?php
 require_once "function/init.php";
 $currentGame = $_GET['game']??'all';
-
-if($currentGame=="")
-{
-    $currentGame = "all";
+if(!isset($config['game'][$currentGame])){
+	$currentGame ='all';
 }
+
 $params = [
     "tournamentList"=>["page"=>1,"page_size"=>1000,"source"=>$config['default_source'],"cache_time"=>86400],
 	"dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>1000,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],

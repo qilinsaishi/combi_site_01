@@ -11,6 +11,9 @@ else
 }
 //$dateRange = generateCalendarDateRange($currentDate,"week");
 $currentGame = $_GET['game']??"all";
+if(!isset($config['game'][$currentGame])){
+	$currentGame ='all';
+}
 if(strtotime($currentDate)==0)
 {
     $currentDate = date("Y-m-d");

@@ -4,7 +4,10 @@ $pageSize = 20;
 $page = $_GET['page']??1;
 $currentGame = $_GET['game']??'all';
 $type = $_GET['type']??"news";
-if($page==''){
+if(!isset($config['game'][$currentGame])){
+	$currentGame ='all';
+}
+if($page=='' || $page<=0){
     $page=1;
 }
 $params = [
