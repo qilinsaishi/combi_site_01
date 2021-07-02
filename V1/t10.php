@@ -7,7 +7,7 @@ $params=[
     "teamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
     "dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$config['ti10']['game'],"source"=>$config['game_source'][$config['ti10']['game']] ?? $config['default_source'],"cache_time"=>86400],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img","t10_title","t10_keywords","t10_desc"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
@@ -23,13 +23,13 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
     <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <?php renderHeaderJsCss($config,["newevents","events","../fonts/iconfont"]);?>
-    <title>TI10_2021年DOTA2国际邀请赛ti10赛事赛程奖金规则热门资讯-<?php echo $config['site_name'];?></title>
-    <meta name=”Keywords” Content=”TI10,dota2ti10,ti10赛程,ti10奖金″>
-    <meta name="description" content="2021年DOTA2国际邀请赛ti10专题报道,<?php echo $config['site_name'];?>带大家了解2021dota2TI10国际邀请赛时间,TI10最新资讯,TI10总奖金池信息,dota2国际邀请赛2021年度夺冠热门,ti10最新赛程信息。">
+
 </head>
 <body>
     <div class="wrapper">
-        <div class="header">
+        <div class="header">    <title><?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['t10_title']['value']);?></title>
+            <meta name=”Keywords” Content="<?php echo $return['defaultConfig']['data']['t10_keywords']['value'];?>">
+            <meta name="description" content="<?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['t10_desc']['value']);?>">
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">

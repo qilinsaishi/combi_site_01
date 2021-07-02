@@ -3,7 +3,7 @@
 require_once "function/init.php";
 $params = [
     "tournamentList"=>["page"=>1,"page_size"=>4,"game"=>$config['s11']['game'],"source"=>$config['default_source'],"cache_time"=>86400],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img","android_url","ios_url","s11_title","s11_keywords","s11_desc"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "champList"=>["dataType"=>"intergratedTeamList","tid"=>array_unique(array_column($config['s11']['history'],"tid")),"page"=>1,"page_size"=>10,"fields"=>'tid,team_name,logo',"game"=>[$config['s11']['game']],"cache_time"=>86400*7],
     "teamList"=>["dataType"=>"intergratedTeamList","tid"=>array_values($config['s11']['teamList']),"page"=>1,"page_size"=>100,"fields"=>'tid,team_name,logo',"game"=>[$config['s11']['game']],"cache_time"=>86400*7],
     "newsList" =>
@@ -21,7 +21,9 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
-    <title>S11英雄联盟LOL2021全球总决赛_S11全球总决赛赛程时间_S11全球总决赛举办地-<?php echo $config['site_name'];?></title>
+    <title><?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['s11_title']['value']);?></title>
+    <meta name=”Keywords” Content="<?php echo $return['defaultConfig']['data']['s11_keywords']['value'];?>">
+    <meta name="description" content="<?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['s11_desc']['value']);?>">
     <?php renderHeaderJsCss($config,["newevents","events","../fonts/iconfont","animate.min.css","s11"]);?>
 </head>
 
