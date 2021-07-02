@@ -49,7 +49,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
         <div class="container clearfix">
             <div class="row">
                 <div class="logo"><a href="index.html">
-                        <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                        <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                 </div>
                 <div class="hamburger" id="hamburger-6">
                     <span class="line"></span>
@@ -258,7 +258,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                                                 </span>
                                         </div>-->
 										<div class="null">
-											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+											<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 										</div>
                                        
                                     </div>
@@ -311,7 +311,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                                                 </span>
                                         </div>-->
                                         <div class="null">
-											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+											<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 										</div>
                                       
                                     </div>
@@ -1975,7 +1975,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                         <div class="more fr">
                             <a href="##">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -2072,7 +2072,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                             <div class="more fr">
                                 <a href="<?php echo $config['site_url'];?>/newslist/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -2096,7 +2096,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                         <div class="more fr">
                             <a href="<?php echo $config['site_url'];?>/teamlist/">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -2124,7 +2124,7 @@ $return['matchDetail']['data']['match_pre']=json_decode($return['matchDetail']['
                         <div class="more fr">
                             <a href="<?php echo $config['site_url'];?>/playerlist/">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>

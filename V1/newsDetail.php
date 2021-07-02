@@ -99,7 +99,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -169,7 +169,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                                 <?php }}else{?>
                                     <!-- 暂无内容 -->
                                     <div class="null">
-                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                         <span>暂无内容</span>
                                     </div>
                                     <!-- 暂无内容 -->
@@ -191,7 +191,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                             <div class="more fr">
                                 <a href="<?php echo $config['site_url'];?>/<?php echo $currentType;?>list/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -214,7 +214,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                             <div class="more fr">
                                 <a href="<?php echo $config['site_url'];?>/tournamentlist/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -240,7 +240,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                             <div class="more fr">
                                 <a href="<?php echo $config['site_url'];?>/teamlist/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -268,7 +268,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                             <div class="more fr">
                                 <a href="<?php echo $config['site_url'];?>/playerlist/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -309,14 +309,14 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
     </div>
 	<div class="suspension">
         <div class="suspension_close">
-            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" data-original="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
         </div>
 		<div class="suspension_img">
-			<img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+			<img src="<?php echo $config['site_url'];?>/images/suspension.png" data-original="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
 		</div>
 		<div class="qrcode">
 			<div class="qrcode_img">
-				<img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
+				<img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" data-original="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
 			</div>
 		</div>
 	</div>

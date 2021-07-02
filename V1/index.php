@@ -69,7 +69,7 @@ foreach($newsTypeList as $newsType)
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                        <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                        <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                         <!-- <img src="<?php echo $config['site_url'];?>/images/logo@2x.png" alt=""> -->
                     </div>
                     <div class="hamburger" id="hamburger-6">
@@ -107,7 +107,7 @@ foreach($newsTypeList as $newsType)
                     <div class="more">
                         <a href="<?php echo $config['site_url'];?>/match/">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -195,7 +195,7 @@ foreach($newsTypeList as $newsType)
                                     <div class="more">
                                         <a href="<?php echo $config['site_url'];?>/teamlist/<?php echo $game;?>/">
                                             <span>更多</span>
-                                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@ foreach($newsTypeList as $newsType)
                             </ul>
 							<?php }else{?>
 								<div class="null">
-									<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+									<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 								</div>
 							<?php } ?>
                         </div>
@@ -246,7 +246,7 @@ foreach($newsTypeList as $newsType)
                         <div class="more">
                             <a href="<?php echo $config['site_url'];?>/playerlist/">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -277,7 +277,7 @@ foreach($newsTypeList as $newsType)
                             </ul>
 							<?php }else{?>
 								<div class="null">
-									<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+									<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 								</div>
 							<?php } ?>
                         </div>
@@ -295,7 +295,7 @@ foreach($newsTypeList as $newsType)
                             <div class="more">
                                 <a href="<?php echo $config['site_url'];?>/newslist/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -351,7 +351,7 @@ foreach($newsTypeList as $newsType)
                                         </div>
                                         <?php }else{?>
                                     <div class="null">
-                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                     </div>
                                 <?php }?>
                                     </div>
@@ -366,7 +366,7 @@ foreach($newsTypeList as $newsType)
                             <div class="more">
                                 <a href="<?php echo $config['site_url'];?>/stralist/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -425,7 +425,7 @@ foreach($newsTypeList as $newsType)
 
                                 <?php }else{?>
                                     <div class="null">
-                                        <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                        <img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                     </div>
                                 <?php }?>
                                     </div>
@@ -443,7 +443,7 @@ foreach($newsTypeList as $newsType)
                     <div class="more">
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                 </div>

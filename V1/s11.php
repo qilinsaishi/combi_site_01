@@ -31,7 +31,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="index.html">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -275,7 +275,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                         <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>最新资讯</h2>
                         <a href="<?php echo $config['site_url']."/newslist/".$config['s11']['game']."/";?>" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="team_news_mid">
@@ -398,7 +398,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $config['s11']['game'];?>" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
@@ -436,7 +436,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
     </div>
     <div class="suspension">
         <div class="suspension_img">
-            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" data-original="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
         <div class="qrcode">
             <div class="qrcode_img">

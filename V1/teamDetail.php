@@ -147,7 +147,7 @@ if($game=='dota2'){
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -228,7 +228,7 @@ if($game=='dota2'){
                     </ul>
 					<?php }else{?>
 						<div class="null">
-							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 						</div>
 					<?php } ?>
                 </div>
@@ -397,7 +397,7 @@ if($game=='dota2'){
                         </ul>
 						<?php }else{?>
 							 <div class="null">
-								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 						<?php } ?>
                     </div>
@@ -477,7 +477,7 @@ if($game=='dota2'){
                         </ul>
 						<?php }else{?>
 							 <div class="null">
-								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 						<?php } ?>
                     </div>
@@ -492,7 +492,7 @@ if($game=='dota2'){
                         <h2 class="fl team_pbu_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资讯</h2>
                         <a href="<?php echo $config['site_url']; ?>/newslist/" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
 					<?php if(isset($connectedInformationList) && count($connectedInformationList)>0){?>
@@ -531,7 +531,7 @@ if($game=='dota2'){
                     </div>
 					<?php }else{?>
 							 <div class="null">
-								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 					<?php } ?>
                 </div>
@@ -545,7 +545,7 @@ if($game=='dota2'){
                         <h2 class="fl team_pbu_name">热门战队</h2>
                         <a href="<?php echo $config['site_url'];?>/teamlist/" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
 					<?php if(isset($return2['hotTeamList']['data']) && count($return2['hotTeamList']['data'])>0){ ?>
@@ -565,7 +565,7 @@ if($game=='dota2'){
                     </ul>
 					<?php }else{?>
 						<div class="null">
-							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 						</div>
 					<?php } ?>
                 </div>
@@ -579,7 +579,7 @@ if($game=='dota2'){
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
@@ -598,7 +598,7 @@ if($game=='dota2'){
                         </ul>
 						<?php }else{?>
 							<div class="null">
-								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 						<?php } ?>
                     </div>
@@ -626,14 +626,14 @@ if($game=='dota2'){
     </div>
     <div class="suspension">
         <div class="suspension_close">
-            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" data-original="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
         </div>
         <div class="suspension_img">
-            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" data-original="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
+                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" data-original="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
             </div>
         </div>
     </div>

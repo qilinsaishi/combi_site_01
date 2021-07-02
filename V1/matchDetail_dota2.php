@@ -52,7 +52,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
         <div class="container clearfix">
             <div class="row">
                 <div class="logo"><a href="index.html">
-                        <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                        <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                 </div>
                 <div class="hamburger" id="hamburger-6">
                     <span class="line"></span>
@@ -487,7 +487,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                         </div>
 											<?php }}else{?>
 										<div class="null">
-											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+											<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 										</div>
 										<?php }?>
                                     </div>
@@ -558,7 +558,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                         </div>
 											<?php }}else{?>
 										<div class="null">
-											<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+											<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 										</div>
 										<?php }?>
                                       
@@ -1469,7 +1469,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                 </div>
 								<?php }else{?>
 								<div class="null">
-									<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+									<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 								</div>
 								<?php } ?>
                             </div>
@@ -1489,7 +1489,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <div class="more fr">
                             <a href="<?php echo $config['site_url'];?>/match/">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -1537,7 +1537,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                             <div class="more fr">
                                 <a href="<?php echo $config['site_url'];?>/newslist/">
                                     <span>更多</span>
-                                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -1561,7 +1561,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <div class="more fr">
                             <a href="<?php echo $config['site_url'];?>/teamlist/">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -1589,7 +1589,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <div class="more fr">
                             <a href="<?php echo $config['site_url'];?>/playerlist/">
                                 <span>更多</span>
-                                <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                             </a>
                         </div>
                     </div>

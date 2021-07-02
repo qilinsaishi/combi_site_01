@@ -27,7 +27,7 @@ $return = curl_post($config['api_get'],json_encode($params),1);
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -149,14 +149,14 @@ $return = curl_post($config['api_get'],json_encode($params),1);
     </div>
     <div class="suspension">
         <div class="suspension_close">
-            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" data-original="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
         </div>
         <div class="suspension_img">
-            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" data-original="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
+                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" data-original="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
             </div>
         </div>
     </div>
