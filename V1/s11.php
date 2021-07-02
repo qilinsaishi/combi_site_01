@@ -328,7 +328,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                                 <div class="s11_previous_conDetail">
                                     <span class="s11_previous_conTitle">关于英雄联盟全球总决赛</span>
                                     <div class="s11_previous_conP">
-                                        英雄联盟全球总决赛（League of Legends World Championship）是英雄联盟一年一度最为盛大的比赛，也是英雄联盟电竞赛事中最高荣誉、最高含金量、最高竞技水平、最高知名度的比赛。
+                                        LOL全球总决赛迄今为止已经举办了S1-S10（“S”即Season，意为赛季）十届的比赛。全球12个赛区及联赛分别是：中国LPL、韩国LCK、欧洲LEC、北美洲LCS、独联体LCL、巴西CBLOL、东南亚PCS、拉丁美洲LLA、土耳其TCL、大洋洲LCO、日本LJL、越南VCS。
                                     </div>
                                     <p class="s11_previous_conP"><?php echo $history_info['event_name'];?>英雄联盟总决赛于<?php echo $history_info['date'];?>在<?php echo $history_info['location'];?>举办</p>
                                     <p class="s11_previous_conP">冠军队伍：<?php echo $return['champList']['data'][$history_info['tid']]['team_name']??$history_info['team_name'];?>，所属赛区：<?php echo $history_info['district'];?>赛区</p>
@@ -354,9 +354,9 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                                     </div>
                                     <div class="right">
                                         <?php if(isset($return['champList']['data'][$history_info['tid']])){?>
-                                            <img data-original="<?php echo $return['champList']['data'][$history_info['tid']]['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $return['champList']['data'][$history_info['tid']]['team_name'];?>">
+                                            <img data-original="<?php echo $return['champList']['data'][$history_info['tid']]['logo'];?>?x-oss-process=image/resize,m_lfit,h_64,w_64" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>?x-oss-process=image/resize,m_lfit,h_64,w_64" alt="<?php echo $return['champList']['data'][$history_info['tid']]['team_name'];?>">
                                         <?php }else{?>
-                                        <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $history_info['team_name'];?>">
+                                        <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>?x-oss-process=image/resize,m_lfit,h_64,w_64" alt="<?php echo $history_info['team_name'];?>">
                                         <?php }?>
                                     </div>
                                 </div>
