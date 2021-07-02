@@ -279,7 +279,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             </div>
                         </div>
                         <div class="dn_pc top_threes">
-                            <?php $teamInfo = $return['ti9teamList']['data'][0];?>
+                            <?php $teamInfo = $return['ti9teamList']['data'][1];?>
                             <div class="top_two">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
@@ -295,7 +295,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <p class="likes">100</p>
                                     </div>
                             </div>
-                            <?php $teamInfo = $return['ti9teamList']['data'][1];?>
+                            <?php $teamInfo = $return['ti9teamList']['data'][0];?>
                             <div class="top_one">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
