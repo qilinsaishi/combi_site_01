@@ -399,29 +399,19 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                 <div class="game_detail_item5">
                                     <ul class="vs_data1">
                                         <li class="active">
-                                            <a href="##">
-                                                输出
-                                            </a>
+                                        输出
                                         </li>
                                         <li>
-                                            <a href="##">
-                                                承伤
-                                            </a>
+                                        承伤
                                         </li>
                                         <li>
-                                            <a href="##">
-                                                经济
-                                            </a>
+                                        经济
                                         </li>
                                         <li>
-                                            <a href="##">
-                                                补刀
-                                            </a>
+                                        补刀
                                         </li>
                                         <li>
-                                            <a href="##">
-                                                LFL评分
-                                            </a>
+                                        LFL评分
                                         </li>
                                     </ul>
                                     <div class="vs_data2">
