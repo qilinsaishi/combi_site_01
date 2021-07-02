@@ -176,7 +176,9 @@ unset($return['matchList']);
                             <div class="event_detail_div <?php if($key==0){echo ' active';}?>">
                                 <div class="scroll">
                                     <ul class="event_detail_item">
-                                        <?php if(count($matchList[$roundInfo['round_id']])>0){ krsort($matchList[$roundInfo['round_id']]);?>
+                                        <?php if(count($matchList[$roundInfo['round_id']])>0){ 
+										//按时间倒序排列
+										array_multisort(array_column($matchList[$roundInfo['round_id']],"start_time"),SORT_DESC,$matchList[$roundInfo['round_id']]);?>
                                         <?php foreach($matchList[$roundInfo['round_id']] as $matchInfo){?>
                                                 <li>
 													<?php if($game=='lol' || $game=='kpl') {   
