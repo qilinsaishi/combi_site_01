@@ -21,7 +21,7 @@
         $totalPage = ceil($total_count/$page_size);
         if($current_page>1)
         {
-            echo '<a href="'.$url."/".($current_page-1).'" class="paging_pre"> <img src="'.$domain.'/images/esport_right.png" alt="" class="active img_transform"></a>';
+            echo '<a href="'.$url."/".($current_page-1).'" class="paging_pre"> <img src="'.$domain.'/images/esport_right.png" data-original="'.$domain.'/images/esport_right.png" alt="" class="active img_transform"></a>';
         }
         if($totalPage<=$p+$p2)
         {
@@ -38,7 +38,7 @@
                 {
                     echo '<a '.(($i-$current_page)==0?'class="paging_num active"   ':'class="paging_num " ').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" data-original="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$p2;$i>0;$i--)
                 {
                     echo '<a class="paging_num" href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
@@ -50,7 +50,7 @@
                 {
                     echo '<a '.(($i-$current_page)==0?'class="paging_num active"  ':'class="paging_num " ').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" data-original="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$p2;$i>0;$i--)
                 {
                     echo '<a class="paging_num" href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
@@ -62,12 +62,12 @@
                 {
                     echo '<a class="paging_num" href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a class="esport_more" href="'.$url."/".($current_page-$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page-$p).'"><img src="'.$domain.'/images/esport_more.png" data-original="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$current_page-2;$i<=$current_page+2;$i++)
                 {
                     echo '<a '.(($i-$current_page)==0?'class="paging_num active"  ':'class="paging_num "').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" alt=""></a>';
+                echo '<a class="esport_more" href="'.$url."/".($current_page+$p).'"><img src="'.$domain.'/images/esport_more.png" data-original="'.$domain.'/images/esport_more.png" alt=""></a>';
                 for($i=$p2;$i>0;$i--)
                 {
                     echo '<a class="paging_num" href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
@@ -91,7 +91,7 @@
         }
         if($current_page<$totalPage)
         {
-            echo '<a href="'.$url."/".($current_page+1).'" class="paging_next"><img src="'.$domain.'/images/esport_right.png" alt="" class="active "></a>';
+            echo '<a href="'.$url."/".($current_page+1).'" class="paging_next"><img src="'.$domain.'/images/esport_right.png" data-original="'.$domain.'/images/esport_right.png" alt="" class="active "></a>';
         }
     }
     function processCache($cacheConfig,$dataType,$params=[])

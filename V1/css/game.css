@@ -672,6 +672,9 @@
     border-radius: 50%;
     overflow: hidden;
 }
+.vs_player_game img{
+	display:block;
+}
 .vs_player_game{
     left: 0;
     z-index: 2;
@@ -1414,7 +1417,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
         margin-right: .14rem;
         margin-bottom: .14rem;
     }
-    .bans_pincks td .bans_picks_div img.vs_player_game img{
+    .bans_pincks td .bans_picks_div img,.vs_player_game img{
         display: block!important;
     }
     .bans_pincks td .bans_picks_div img{

@@ -17,7 +17,8 @@ if(!isset($return["intergratedPlayer"]['data']['pid']))
     render404($config);
 }
 
-
+//获取当前战队的游戏
+$game=$return['intergratedPlayer']['data']['game'] ?? $config['default_game'];
 if($return['intergratedPlayer']['data']['description']!="")
 {
     if(substr($return['intergratedPlayer']['data']['description'],0,1)=='"' && substr($return['intergratedPlayer']['data']['description'],-1)=='"')
@@ -31,14 +32,25 @@ if($return['intergratedPlayer']['data']['description']!="")
     }
 }
 else
-{
-    $description = "暂无";
+{//{真名}，游戏ID：{昵称}，｛游戏名称｝职业选手，现效力于｛队伍名称｝，司职｛位置｝。
+	$game_name=$config['game'][$game];
+	$real_name=(isset($return['intergratedPlayer']['data']['cn_name']) && $return['intergratedPlayer']['data']['cn_name'] !='') ? $return['intergratedPlayer']['data']['cn_name']:($return['intergratedPlayer']['data']['en_name']!='' ? $return['intergratedPlayer']['data']['en_name']:$return['intergratedPlayer']['data']['player_name']);
+	$gameID=$return['intergratedPlayer']['data']['player_name']??'';
+	$team_name=$return['intergratedPlayer']['data']['teamInfo']['team_name']??'';
+	if((strpos($team_name,'战队')===false)){
+		$team_name=$team_name.'战队';
+	}elseif((strpos($team_name,'俱乐部')===false)){
+		$team_name=$team_name.'战队';
+	}
+	$position=$return['intergratedPlayer']['data']['position']??'';
+    $description = $real_name.'，游戏ID：'.$gameID.'，'.$game_name.'职业选手，现效力于'.$team_name.'，司职'.$position.'。';
 }
 
 //战队别称
 if(count($return['intergratedPlayer']['data']['teamInfo']['aka'])>0){
 	$return['intergratedPlayer']['data']['teamInfo']['aka']=implode(',',array_filter($return['intergratedPlayer']['data']['teamInfo']['aka']));
 }
+$return['intergratedPlayer']['data']['teamInfo']['description']=($return['intergratedPlayer']['data']['teamInfo']['description']=="暂无") ?"":$return['intergratedPlayer']['data']['teamInfo']['description'];
 //战队描述
 if($return['intergratedPlayer']['data']['teamInfo']['description']!="")
 {
@@ -54,7 +66,32 @@ if($return['intergratedPlayer']['data']['teamInfo']['description']!="")
 }
 else
 {
-    $description = "暂无";
+	//战队名｝战队，｛战队名｝，｛游戏名｝职业电竞俱乐部，旗下成员包括｛｝等。
+	$team_name1=$return['intergratedPlayer']['data']['teamInfo']['team_name']??'';
+	$team_name2=$team_name1;
+	if((strpos($team_name1,'战队')===false)){
+		$team_name1=$team_name1.'战队';
+	}
+	if((strpos($team_name2,'俱乐部')===false)){
+		$team_name2=$team_name2.'电子竞技俱乐部';
+	}
+	$game_name=$config['game'][$game];
+	$playerString=$return['intergratedPlayer']['data']['player_name'].'，';
+	$count=count($return['intergratedPlayer']['data']['playerList']);
+	if($count>0){
+		foreach($return['intergratedPlayer']['data']['playerList'] as $playerKey=>$playerInfo){
+			if($playerKey<=3){
+				$playerString.=$playerInfo['player_name'].'，';
+			}
+		
+		}
+	}
+	$playerString=trim($playerString,'，');
+	if($count>=4){
+		$playerString=$playerString.'等';
+	}
+	
+    $team_description = $team_name1.'，'.$team_name2.'，'.$game_name.'职业电竞俱乐部，旗下成员包括'.$playerString;
 }
 
 //队员别称
@@ -62,8 +99,7 @@ if(count($return['intergratedPlayer']['data']['aka'])>0){
 	$return['intergratedPlayer']['data']['aka']=implode(',',array_filter($return['intergratedPlayer']['data']['aka']));
 }
 
-//获取当前战队的游戏
-$game=$return['intergratedPlayer']['data']['game'] ?? $config['default_game'];
+
 $source=$config['game_source'][$game]??$config['default_source'];
 //当前游戏下面的资讯
 $params2=[
@@ -165,7 +201,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -458,12 +494,12 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         </ul>
                             <?php }else{?>
                                 <div class="null">
-                                    <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                 </div>
                             <?php } ?>
 						<?php }else{?>
 							 <div class="null">
-								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 						<?php } ?>
                     </div>
@@ -520,7 +556,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         </ul>
 						<?php }else{?>
 						<div class="null">
-							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 						</div>
 						<?php } ?>
                     </div>
@@ -535,7 +571,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         <h2 class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>资讯</h2>
                         <a href="<?php echo $config['site_url'];?>/newslist/" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
 					<?php if(isset($connectedInformationList) && count($connectedInformationList)>0){?>
@@ -573,7 +609,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                     </div>
 					<?php }else{?>
 							 <div class="null">
-								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 					<?php } ?>
                 </div>
@@ -587,7 +623,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         <h2 class="fl team_pbu_name">热门战队</h2>
                         <a href="<?php echo $config['site_url'];?>/teamlist/" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
 					<?php if(isset($return2['hotTeamList']['data'] ) && count($return2['hotTeamList']['data'] )>0){ ?>
@@ -606,7 +642,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                     </ul>
 					<?php }else{?>
 						<div class="null">
-							<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+							<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 						</div>
 					<?php } ?>
                 </div>
@@ -620,7 +656,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
@@ -638,7 +674,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                         </ul>
 						<?php }else{?>
 							<div class="null">
-								<img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+								<img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
 							</div>
 						<?php } ?>
                     </div>
@@ -666,14 +702,14 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
     </div>
     <div class="suspension">
         <div class="suspension_close">
-            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" data-original="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
         </div>
         <div class="suspension_img">
-            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" data-original="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
+                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" data-original="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
             </div>
         </div>
     </div>

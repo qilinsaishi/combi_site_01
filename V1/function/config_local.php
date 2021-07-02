@@ -42,6 +42,7 @@ $base_config = [
                 '2012'=>['event_name'=>'S2',"date"=>'2012年10月14日','location'=>'美国·南加州 盖伦中心','tid'=>0,'team_name'=>"Taipei Assassins",'district'=>"LMS"],
                 '2011'=>['event_name'=>'S1',"date"=>'2011年6月20日','location'=>'瑞典·Dreamhack展会','tid'=>190,'team_name'=>"Fnatic team",'district'=>"LCS.EU"],
             ],
+        'teamList'=>["BLG"=>226,"EDG"=>237,"FPX"=>233,"IG"=>231,"北京JDG"=>232,"杭州LGD"=>225,"苏州LNG"=>228,"OMG"=>222,"RA"=>229,"RNG"=>234,"RW"=>221,"SN"=>236,"TES"=>235,"TT"=>223,"UP"=>224,"深圳V5"=>227,"西安WE"=>230],
     ]
 ];
 

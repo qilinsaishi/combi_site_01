@@ -11,6 +11,9 @@ else
 }
 //$dateRange = generateCalendarDateRange($currentDate,"week");
 $currentGame = $_GET['game']??"all";
+if(!isset($config['game'][$currentGame])){
+	$currentGame ='all';
+}
 if(strtotime($currentDate)==0)
 {
     $currentDate = date("Y-m-d");
@@ -111,7 +114,7 @@ foreach($allGameList as $key => $game)
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -459,7 +462,7 @@ foreach($allGameList as $key => $game)
                                                             <?php }else{?>
 
                                                     <div class="null">
-                                                                <img src="<?php echo $config['site_url'];?>/images/null.png" alt="">
+                                                                <img src="<?php echo $config['site_url'];?>/images/null.png" data-original="<?php echo $config['site_url'];?>/images/null.png" alt="">
                                                             </div>
                                                             <?php }?>
                                                     <?php }?>
@@ -492,7 +495,7 @@ foreach($allGameList as $key => $game)
                                 <div class="more fr">
                                     <a href="<?php echo $config['site_url'];?>/teamlist/">
                                         <span>更多</span>
-                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                        <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -520,7 +523,7 @@ foreach($allGameList as $key => $game)
                                 <div class="more fr">
                                     <a href="<?php echo $config['site_url'];?>/playerlist/">
                                         <span>更多</span>
-                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                        <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -549,7 +552,7 @@ foreach($allGameList as $key => $game)
                                 <div class="more fr">
                                     <a href="<?php echo $config['site_url'];?>/newslist/">
                                         <span>更多</span>
-                                        <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                                        <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -585,14 +588,14 @@ foreach($allGameList as $key => $game)
     </div>
 	<div class="suspension">
         <div class="suspension_close">
-            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" data-original="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
         </div>
         <div class="suspension_img">
-            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" data-original="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
+                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" data-original="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
             </div>
         </div>
     </div>

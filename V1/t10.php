@@ -7,7 +7,7 @@ $params=[
     "teamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
     "dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$config['ti10']['game'],"source"=>$config['game_source'][$config['ti10']['game']] ?? $config['default_source'],"cache_time"=>86400],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
+    "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img","t10_title","t10_keywords","t10_desc"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
@@ -23,17 +23,17 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
     <meta name="viewport" content="width=640, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <?php renderHeaderJsCss($config,["newevents","events","../fonts/iconfont"]);?>
-    <title>TI10_2021年DOTA2国际邀请赛ti10赛事赛程奖金规则热门资讯-<?php echo $config['site_name'];?></title>
-    <meta name=”Keywords” Content=”TI10,dota2ti10,ti10赛程,ti10奖金″>
-    <meta name="description" content="2021年DOTA2国际邀请赛ti10专题报道,<?php echo $config['site_name'];?>带大家了解2021dota2TI10国际邀请赛时间,TI10最新资讯,TI10总奖金池信息,dota2国际邀请赛2021年度夺冠热门,ti10最新赛程信息。">
+
 </head>
 <body>
     <div class="wrapper">
-        <div class="header">
+        <div class="header">    <title><?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['t10_title']['value']);?></title>
+            <meta name=”Keywords” Content="<?php echo $return['defaultConfig']['data']['t10_keywords']['value'];?>">
+            <meta name="description" content="<?php echo str_replace("#site_name#",$config['site_name'],$return['defaultConfig']['data']['t10_desc']['value']);?>">
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -111,9 +111,9 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>最新资讯</h2>
-                        <a href="<?php echo $config['site_url']."/newslist/dota2/";?>" class="team_pub_more fr">
+                        <a href="<?php echo $config['site_url']."/newslist/".$config['ti10']['game']."/";?>" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="team_news_mid">
@@ -123,7 +123,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 <a href="<?php echo $config["site_url"]."/newsdetail/".$info['id'];?>">
                                     <div class="team_news_img">
                                         <div class="img">
-                                            <img class="imgauto" src="<?php echo $info['logo'];?>" alt="<?php echo $info['title'];?>">
+                                            <img class="imgauto" data-original="<?php echo $info['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_information_img']['value'].$config['default_oss_img_size']['informationList'];?>"  alt="<?php echo $info['title'];?>">
                                         </div>
                                         <p><?php echo $info['title'];?></p>
                                     </div>
@@ -279,7 +279,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             </div>
                         </div>
                         <div class="dn_pc top_threes">
-                            <?php $teamInfo = $return['ti9teamList']['data'][0];?>
+                            <?php $teamInfo = $return['ti9teamList']['data'][1];?>
                             <div class="top_two">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
@@ -295,7 +295,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <p class="likes">100</p>
                                     </div>
                             </div>
-                            <?php $teamInfo = $return['ti9teamList']['data'][1];?>
+                            <?php $teamInfo = $return['ti9teamList']['data'][0];?>
                             <div class="top_one">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
@@ -362,7 +362,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $config['ti10']['game'];?>" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="hot_match_bot">
@@ -400,14 +400,14 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
     </div>
     <div class="suspension">
         <div class="suspension_close">
-            <img src="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/t_close.png" data-original="<?php echo $config['site_url'];?>/images/t_close.png" alt="">
         </div>
         <div class="suspension_img">
-            <img src="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
+            <img src="<?php echo $config['site_url'];?>/images/suspension.png" data-original="<?php echo $config['site_url'];?>/images/suspension.png" alt="">
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
+                <img src="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" data-original="<?php echo $return['defaultConfig']['data']['download_qr_code']['value'].$config['default_oss_img_size']['qr_code'];?>" alt="扫码下载">
             </div>
         </div>
     </div>
