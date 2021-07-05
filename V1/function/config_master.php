@@ -64,6 +64,7 @@ $additional_config = [
         'tournament'=>['url'=>"tournamentlist/","name"=>"赛事专题",
             'sub'=>[
                 't10'=>['url'=>"t10","name"=>"Ti10","hot"=>1,"highlight"=>"ti10Box"],
+                's11'=>['url'=>"s11","name"=>"S11"],
             ]
         ],
     ]
