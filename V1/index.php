@@ -503,22 +503,18 @@ foreach($newsTypeList as $newsType)
     <script>
         // 热门战队tab切换
         $(".game_fenlei").on("click",'li',function(){
-            $("img").trigger("sporty");
             $(".game_fenlei li").removeClass("active").eq($(this).index()).addClass("active");
             $(".game_team_div").removeClass("active").eq($(this).index()).addClass("active");
         })
         $(".hot_player_list").on("click",'li',function(){
-            $("img").trigger("sporty");
             $(".hot_player_list li").removeClass("active").eq($(this).index()).addClass("active");
             $(".hot_player_detail_div").removeClass("active").eq($(this).index()).addClass("active");
         })
         $(".news_dianjing1").on("click",'li',function(){
-            $("img").trigger("sporty");
             $(".news_dianjing1 li").removeClass("active").eq($(this).index()).addClass("active");
             $(".news_dianjing_tab1 .news_dianjing_detail").removeClass("active").eq($(this).index()).addClass("active");
         })
         $(".news_dianjing2").on("click",'li',function(){
-            $("img").trigger("sporty");
             $(".news_dianjing2 li").removeClass("active").eq($(this).index()).addClass("active");
             $(".news_dianjing_tab2 .news_dianjing_detail").removeClass("active").eq($(this).index()).addClass("active");
         })

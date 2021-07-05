@@ -526,7 +526,6 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
 
 
             $(".s11_previous_ul").on("click", "li", function () {
-                $("img").trigger("sporty");
                 $(".s11_previous_ul li").removeClass("active");
                 $(this).addClass("active");
                 $(this).parents(".s11_previous_detail").find(".s11_previous_con").find(".s11_previous_conItem").removeClass("active").eq($(this).index()).addClass("active");
