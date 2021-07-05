@@ -6,13 +6,15 @@ $params=[
     "connectInfo"=>["dataType"=>"keywordMapList","fields"=>"content_id","source_type"=>"another","word"=>$config['ti10']['keyword'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
     "teamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
     "dota2TournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$config['ti10']['game'],"source"=>$config['game_source'][$config['ti10']['game']] ?? $config['default_source'],"cache_time"=>86400],
+    "tournamentList"=>["page"=>1,"page_size"=>2,"source"=>$config['default_source'],"cache_time"=>86400],
     "links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","bounas_pool","default_tournament_img","t10_title","t10_keywords","t10_desc"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return['teamList']['data'] = [];
-
+$return['dota2TournamentList']['data']=array_merge($return['dota2TournamentList']['data'],$return['tournamentList']['data']);
+$return['dota2TournamentList']['data'] = array_slice($return['dota2TournamentList']['data'],0,4);
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
 ?>
 <html lang="en">
