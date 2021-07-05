@@ -47,12 +47,36 @@ foreach ($urlList as $url) {
 }
 if (count($t) > 0) {
     push2Baidu($t, $config);
+    push2Shenma($t, $config);
 }
 function push2Baidu($urls, $config)
 {
     if (count($urls) > 0) {
         $url = explode('//', $config['site_url']);
         $api = 'http://data.zz.baidu.com/urls?site=' . $url[1] . '&token=' . $config['baidu_token'];
+        $api = htmlspecialchars_decode($api);
+        $ch = curl_init();
+        $options = array(
+            CURLOPT_URL => $api,
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => implode("\n", $urls),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+        );
+        curl_setopt_array($ch, $options);
+        $result = curl_exec($ch);
+    } else {
+        $result = json_encode(["empty"]);
+    }
+    $result = json_decode($result, true);
+    print_R($result);
+    return $result;
+}
+function push2Shenma($urls, $config)
+{
+    if (count($urls) > 0) {
+        $url = explode('//', $config['site_url']);
+        $api = 'data.zhanzhang.sm.cn/push?site=' . $url[1] . '&token=' . $config['shenma']['token'].'&user_name='.$config['shenma']['user_name'].'&resource_name='.$config['shenma']['resource_name'];
         $api = htmlspecialchars_decode($api);
         $ch = curl_init();
         $options = array(
