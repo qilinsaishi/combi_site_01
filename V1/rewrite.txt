@@ -27,3 +27,4 @@ rewrite  ^/stralist/   /newsList.php?type=stra?  last;
 rewrite  ^/404  /404.php  last;
 rewrite  ^/t10  /t10.php  last;
 rewrite  ^/s11  /s11.php  last;
+rewrite  ^/preview/(.*)$  /preview.php  last;
