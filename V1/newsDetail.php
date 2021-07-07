@@ -131,7 +131,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <h1 class="title"><?php echo $return['information']['data']['title']?></h1>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
                         <div class="news_top_content">
-                            <?php echo html_entity_decode($return['information']['data']['content']);?>
+                            <?php echo $return['information']['data']['content'];?>
                         </div>
                         <div class="news_label clearfix">
                             <?php $i=0;if(count($return["information"]['data']['baidu_word_list'])>0){ foreach($return["information"]['data']['baidu_word_list'] as $key => $word){?>

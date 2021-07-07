@@ -201,9 +201,9 @@ box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
     font-family: shuzi1!important;
     line-height: 28px;
 }
-.news_top_content p br{
+ /*.news_top_content p br{
     display: none;
-}
+}*/
 /* 2021.6.2新增 */
 /* 新闻详情页 */
 @media only screen and (max-width: 1024px){
