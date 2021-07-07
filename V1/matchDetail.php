@@ -1,6 +1,17 @@
+
 <?php
 require_once "function/init.php";
 $match_id = $_GET['match_id']??0;
+
+$game = $_GET['game']??-1;
+if($match_id >= 1000000)
+{
+    if($game == 0)
+    {
+        render301($config,"matchdetail/dota2-".$match_id);
+        die();
+    }
+}
 $params = [
     "matchDetail"=>["source"=>$config['default_source'],"match_id"=>$match_id,"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_hero_img"],"fields"=>["name","key","value"],"site_id"=>$config["site_id"]],
@@ -16,6 +27,12 @@ $return = curl_post($config['api_get'],json_encode($params),1);
 if(!isset($return["matchDetail"]['data']['match_id']))
 {
     render404($config);
+    die();
+}
+if($game == 0)
+{
+    render301($config,"matchdetail/".$return['matchDetail']['data']['game']."-".$match_id);
+    die();
 }
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
 ?>

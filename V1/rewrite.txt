@@ -7,6 +7,7 @@ rewrite  ^/teamlist/  /teamList.php  last;
 rewrite  ^/matchdetail/lol-(.*)$  /matchDetail.php?match_id=$1?  last;
 rewrite  ^/matchdetail/kpl-(.*)$  /matchDetail.php?match_id=$1?  last;
 rewrite  ^/matchdetail/dota2-(.*)$  /matchDetail_dota2.php?match_id=$1?  last;
+rewrite  ^/matchdetail/(.*)$  /matchDetail.php?match_id=$1?  last;
 rewrite  ^/match/(.*)/(.*)$  /matchList.php?date=$2&game=$1?  last;
 rewrite  ^/match/(.*)$  /matchList.php?game=$1?  last;
 rewrite  ^/match/  /matchList.php  last;

@@ -1,6 +1,5 @@
 <?php
 require_once "function/init.php";
-
 $match_id = $_GET['match_id']??0;
 $game='dota2';
 $match_id=intval($match_id);

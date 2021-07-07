@@ -236,6 +236,11 @@ var _hmt = _hmt || [];
         exit;
         return true;
     }
+function render301($config,$url)
+{
+    header('location:'.$config['site_url'] . '/'.$url);
+    return true;
+}
     function  replace_html_tag( $string ,  $tagname  = "<img><br>"){
         $string = html_entity_decode($string);
         $string = strip_tags($string,$tagname); // 保留 <span>标签
