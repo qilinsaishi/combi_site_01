@@ -101,7 +101,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                             <span class="span2"><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'] ?? '';?></span>
                             <div class="game_vs">
                                 <span class="span1"><?php echo $return['matchDetail']['data']['home_score']??'0';?></span>
-                                <img src="<?php echo $config['site_url'];?>/images/vs.png" alt="">
+                                <img data-original="<?php echo $config['site_url'];?>/images/vs.png" src="<?php echo $config['site_url'];?>/images/vs.png" alt="">
                                 <span class="span2"><?php echo $return['matchDetail']['data']['away_score']??'0';?></span>
                             </div>
                             <p><?php echo date("Y.m.d H:i",strtotime($return['matchDetail']['data']['start_time']))?>·<?php echo generateMatchStatus($return['matchDetail']['data']['start_time']);?></p>
@@ -121,7 +121,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <p class="active"><!--主队描述--><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['home_team_info']['description'])));?></p>
                         <p class="active"><!--客队描述--><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['away_team_info']['description'])));?></p>
                     </div>
-                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
+                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
                 <div class="dota2">
                     <ul class="dota2_ul1 clearfix mb20">
@@ -136,7 +136,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <!-- 赛前分析 -->
                         <div class="dota2_item <?php if(is_array($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])==0){?>active"<?php } ?>">
                             <div class="dota2_top">
-                                <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" data-original="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
                                 <span>近期战队数据对比</span>
                             </div>
                             <div class="dota2_div1_team">
@@ -154,7 +154,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 									
                                 
                                 <div class="dota2_vs">
-                                    <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
+                                    <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" data-original="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
                                 </div>
 								<a class="teamInfo teamInfo_reverse" href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>">
                                     <div class="colorBlock blue"></div>
@@ -573,7 +573,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 							<?php if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($return['matchDetail']['data']['match_data']['matchData'])>0){?>
                                 <div class="war_report mb20">
                                     <div class="dota2_top">
-                                        <img src="<?php echo $config['site_url'];?>/images/report.png" alt="">
+                                        <img src="<?php echo $config['site_url'];?>/images/report.png" data-original="<?php echo $config['site_url'];?>/images/report.png" alt="">
                                         <span>对战战报</span>
                                     </div>
 									
@@ -594,7 +594,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 													$totalLoseScore=$return['matchDetail']['data']['away_score']??0;
 													$is_display=1;
 												}?>
-                                            <img src="<?php echo $config['site_url'];?>/images/dota2_war_report.png" alt="">
+                                            <img src="<?php echo $config['site_url'];?>/images/dota2_war_report.png" data-original="<?php echo $config['site_url'];?>/images/dota2_war_report.png"  alt="">
                                             <p>本次比赛共计<?php echo count($return['matchDetail']['data']['match_data']['matchData']);?>局<?php if($is_display==1){?>，最终恭喜<?php echo $totalWinTeam; ?><span><?php echo $totalWinScore;?>:<?php echo $totalLoseScore;?></span>战胜<?php echo $totalLoseTeam; ?>取得本场比赛的胜利<?php }else{?>。<?php }?></p>
                                         </div>
 										<?php foreach($return['matchDetail']['data']['match_data']['matchData'] as $matchKey=>$matchInfo){
@@ -646,7 +646,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                             取得十杀，<?php echo $fifteenKillTeam; ?> 豪取十五杀</p>
                                         <div class="secondStep">
                                             <div class="secondStep_img">
-                                                <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_20,w_20';?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
+                                                <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_20,w_20';?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'].'?x-oss-process=image/resize,m_lfit,h_20,w_20';?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
                                             </div>
                                             <p><?php echo $matchInfo['homeTeam']['teamName'] ?? '';?> 获得<?php echo $matchInfo['homeTeam']['teamStat']['killCount']??0;?>次击杀，经济<?php if($economicDiff>0){?>拉开<?php  }else{?>落后<?php }?><?php echo abs($economicDiff);?>，经验值<?php if($expDiff>0){?>拉开<?php }else{?>落后<?php }?><?php echo abs($expDiff);?>，推塔数<?php echo $matchInfo['awayTeam']['teamStat']['towerCount']??0;?>，摧毁兵营<?php echo $matchInfo['homeTeam']['teamStat']['crystalCount']??0;?></p>
                                         </div>
@@ -676,7 +676,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 												$team_logo_icon=$return['matchDetail']['data']['away_team_info']['logo'].'?x-oss-process=image/resize,m_lfit,h_30,w_30';
 											}
 											?>
-                                            <img src="<?php echo $team_logo_icon;?>" alt="">
+                                            <img src="<?php echo $team_logo_icon;?>" data-original="<?php echo $team_logo_icon;?>"  alt="">
                                         </div>
                                         <span>GAME <?php echo ($matchKey+1);?></span>
                                       
@@ -701,7 +701,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 													
                                                     <?php if($matchInfo['homeTeam']['teamStat']['win']==1){?>
                                                     <div class="liveBox_img">
-                                                        <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                                        <img data-original="<?php echo $config['site_url'];?>/images/victory.png" src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
                                                     </div>
 													<?php }?>
 													</a>
@@ -711,7 +711,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                                     <span class="game_detail_circle1"></span>
                                                     <span class="fz font_color_r"><?php echo  $matchInfo['homeTeam']['teamStat']['killCount']??0;?></span>
                                                     <div class="img_game_detail_vs">
-                                                        <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="" class="imgauto">
+                                                        <img data-original="<?php echo $config['site_url'];?>/images/game_detail_vs.png" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="" class="imgauto">
                                                     </div>
                                                     <span class="fz font_color_b"><?php echo  $matchInfo['awayTeam']['teamStat']['killCount']??0;?></span>
                                                     <span class="game_detail_circle1"></span>
@@ -726,7 +726,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
 													
 													<?php if($matchInfo['awayTeam']['teamStat']['win']==1){?>
                                                     <div class="liveBox_img">
-                                                        <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
+                                                        <img data-original="<?php echo $config['site_url'];?>/images/victory.png" src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto">
                                                     </div>
 													<?php }?>
 													</a>
@@ -945,7 +945,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                                         </div>
                                         <div class="lineup_data">
                                             <div class="dota2_top">
-                                                <img src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/dota2_recent.png"  src="<?php echo $config['site_url'];?>/images/dota2_recent.png" alt="">
                                                 <span>阵容数据</span>
                                             </div>
                                             <div class="lineup_mid">
@@ -1481,7 +1481,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">近期赛事</span>
                         </div>
@@ -1529,7 +1529,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门资讯</span>
                             </div>
@@ -1553,7 +1553,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">热门战队</span>
                         </div>
@@ -1581,7 +1581,7 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">热门选手</span>
                         </div>

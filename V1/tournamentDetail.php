@@ -197,7 +197,7 @@ unset($return['matchList']);
 																<div class="game3_team1_allplayer">
 																	<?php $i=0;foreach($matchInfo['home_player_list']??[] as $playerInfo){$i++;?>
 																		<div class="game3_team1_player">
-																			<img src="<?php echo $playerInfo['logo'];?>" class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
+																			<img  data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"  class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
 																		</div>
 																		<?php if($i>=5){break;}}?>
 																</div>
@@ -243,7 +243,7 @@ unset($return['matchList']);
 																<div class="game3_team1_allplayer">
 																	<?php $i=0;foreach($matchInfo['away_player_list']??[] as $playerInfo){$i++;?>
 																		<div class="game3_team1_player">
-																			<img src="<?php echo $playerInfo['logo'];?>" class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
+																			<img data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"   class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
 																		</div>
 																		<?php if($i>=5){break;}}?>
 																</div>
@@ -344,7 +344,7 @@ unset($return['matchList']);
                 <div class="mb20 team_news">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/news.png"  src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">相关资讯</span>
                         <a href="##" class="team_pub_more fr">
@@ -388,7 +388,7 @@ unset($return['matchList']);
                 <div class="hot_match mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/events.png"  src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentList" class="team_pub_more fr">

@@ -246,7 +246,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 							<?php if(isset($return['intergratedPlayer']['data']['position']) && $return['intergratedPlayer']['data']['position'] !=''){ ?>
                             <div class="classify fl">
                                 <div class="player_location">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/fuzhu.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/fuzhu.png" src="<?php echo $config['site_url'];?>/images/fuzhu.png" alt="">
                                 </div>
                                 <span><?php echo $return['intergratedPlayer']['data']['position'];?></span>
                             </div>
@@ -268,7 +268,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                 <div class="mb20 player_data">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_data.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/player_data.png" src="<?php echo $config['site_url'];?>/images/player_data.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name">基础数据</h2>
                         
@@ -337,7 +337,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                 <div class="mb20 player_record">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/player_match.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/player_match.png" src="<?php echo $config['site_url'];?>/images/player_match.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>比赛战绩</h2>
                         
@@ -397,11 +397,11 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 												</div>
 												<div class="player_matchs_div2">
 													<div class="team1">
-														<img class="imgauto" src="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
+														<img class="imgauto" data-original="<?php echo $recentMatchInfo['home_team_info']['logo'] ;?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
 													</div>
 													<div class="player_vs">GAME <?php if($return['intergratedPlayer']['data']['teamInfo']['original_source']=='scoregg'){ echo $round_key+1;}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){echo $round_detail['boxNum'];} ?></div>
 													<div class="team2">
-														<img class="imgauto" src="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
+														<img class="imgauto" data-original="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
 													</div>
 												</div>
 												<div class="player_matchs_div3">
@@ -412,7 +412,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 															if((strpos($round_son_key,'hero_')!==false) && (strpos($round_son_key,'pic')!==false) ){
 														?>
 													
-														<img class="imgauto" src="<?php echo $round_son_detail; ?>" alt="">
+														<img class="imgauto" data-original="<?php echo $round_son_detail; ?>" src="<?php echo $round_son_detail; ?>" alt="">
 														<?php }}}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){ ?>
 														<img class="imgauto" data-original="<?php if(strpos($round_detail['HeroLogo'],'esports-cdn.namitiyu.com')===false){ echo $round_detail['HeroLogo'];}else{echo "";} ?>" src="<?php echo $return['defaultConfig']['data']['default_hero_img']['value'];?>" alt="<?php echo $round_detail['HeroName']; ?>">
 														<?php }?>
@@ -442,7 +442,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 															if((strpos($round_son_key,'star_')!==false) && (strpos($round_son_key,'equip_')!==false) ){
 														?>
 													<div>
-														<img src="<?php echo $round_son_detail; ?>" class="imgauto" alt="">
+														<img src="<?php echo $round_son_detail; ?>" data-original="<?php echo $round_son_detail; ?>"  class="imgauto" alt="">
 													</div>
 													<?php }}}elseif($return['intergratedPlayer']['data']['teamInfo']['original_source']=='shangniu'){
 														if(isset($round_detail['equipmentList']) && count($round_detail['equipmentList'])>0){
@@ -503,7 +503,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
 							</div>
 						<?php } ?>
                     </div>
-                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
+                    <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png"  alt="" class="game_title_more">
                 </div>
                 <!-- 比赛战绩 -->
                 <!-- 战队介绍和队员介绍 -->
@@ -511,7 +511,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                     <div class="player_team_explain fl">
                         <div class="team_pub_top clearfix">
                             <div class="team_pub_img fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/hots.png" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                             </div>
                             <h2 class="fl team_pbu_name"><?php echo  $return['intergratedPlayer']['data']['teamInfo']['team_name'] ?>战队简介</h2>
                         </div>
@@ -566,7 +566,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                 <div class="mb20 team_news">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" data-original="<?php echo $config['site_url'];?>/images/news.png"  alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $return['intergratedPlayer']['data']['player_name'];?>资讯</h2>
                         <a href="<?php echo $config['site_url'];?>/newslist/" class="team_pub_more fr">
@@ -618,7 +618,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                 <div class="hot_team mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/hots.png"  src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name">热门战队</h2>
                         <a href="<?php echo $config['site_url'];?>/teamlist/" class="team_pub_more fr">
@@ -651,7 +651,7 @@ if($game=='dota2'){//组合成scoregg 一样的数组格式
                 <div class="hot_match mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
+                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" data-original="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/" class="team_pub_more fr">

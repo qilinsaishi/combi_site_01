@@ -56,7 +56,7 @@ if(isset($return["information"]['data']['keywords_list']['team']) && count($retu
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['hotTournamentList']['data']);
 $return['information']['data']['content'] = html_entity_decode($return['information']['data']['content']);
-$return['information']['data']['content'] = str_replace(array("&nbsp;","<p><br/></p>")," ",$return['information']['data']['content']);
+$return['information']['data']['content'] = str_replace(array("&nbsp;")," ",$return['information']['data']['content']);
 if(isset($return2["keywordPlayerList"]['data']) && count($return2["keywordPlayerList"]['data'])>0)
 {
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['player'],"id"),array_keys($return["information"]['data']['keywords_list']['player']));

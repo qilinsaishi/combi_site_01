@@ -121,7 +121,7 @@ $keyList = array_keys($return);
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">近期赛事</span>
                             </div>
@@ -172,7 +172,7 @@ $keyList = array_keys($return);
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门战队</span>
                             </div>
@@ -201,7 +201,7 @@ $keyList = array_keys($return);
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门资讯</span>
                             </div>

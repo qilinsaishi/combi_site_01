@@ -149,7 +149,7 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">最新赛事</span>
                             </div>
@@ -175,7 +175,7 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png"  src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门战队</span>
                             </div>
@@ -203,7 +203,7 @@ $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门选手</span>
                             </div>
