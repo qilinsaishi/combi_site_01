@@ -56,7 +56,7 @@ if(isset($return["information"]['data']['keywords_list']['team']) && count($retu
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['hotTournamentList']['data']);
 $return['information']['data']['content'] = html_entity_decode($return['information']['data']['content']);
-$return['information']['data']['content'] = str_replace("&nbsp;"," ",$return['information']['data']['content']);
+$return['information']['data']['content'] = str_replace(array("&nbsp;","<p><br/></p>")," ",$return['information']['data']['content']);
 if(isset($return2["keywordPlayerList"]['data']) && count($return2["keywordPlayerList"]['data'])>0)
 {
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['player'],"id"),array_keys($return["information"]['data']['keywords_list']['player']));
@@ -142,7 +142,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                     <div class="news_detail">
                         <div class="team_pub_top clearfix">
                             <div class="team_pub_img fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/news.png" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                             </div>
                             <span class="fl team_pbu_name">相关<?php echo $currentType=="news"?"资讯":"攻略";?></span>
                         </div>
@@ -184,7 +184,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png"src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门<?php echo $currentType=="news"?"资讯":"攻略";?></span>
                             </div>
@@ -207,7 +207,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">最新赛事</span>
                             </div>
@@ -233,7 +233,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png"  src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门战队</span>
                             </div>
@@ -261,7 +261,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门选手</span>
                             </div>
