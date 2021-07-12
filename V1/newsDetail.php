@@ -6,8 +6,8 @@ $params = [
     "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
 	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>0,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["information_default_img","contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
-    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"newsDetail","id"=>$id,"site_id"=>$config['site_id']]
 ];
