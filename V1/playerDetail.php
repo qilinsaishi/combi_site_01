@@ -9,7 +9,7 @@ $params = [
     "intergratedPlayer"=>[$pid],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_skills_img","default_fuwen_img","default_information_img","default_hero_img","default_equipment_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
+    "currentPage"=>["name"=>"player","pid"=>$pid,"site_id"=>$config['site_id']]
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
 if(!isset($return["intergratedPlayer"]['data']['pid']))
@@ -106,7 +106,7 @@ $params2=[
 	 "keywordMapList"=>["fields"=>"content_id","site"=>$config['site_id'],"source_type"=>"player","source_id"=>$return["intergratedPlayer"]['data']['intergrated_id_list'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
 	"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>7,"fields"=>'tid,team_name,logo',"game"=>$game,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400],
 	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$game,"source"=>$source,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400],
-	"currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
+	"currentPage"=>["name"=>"player","pid"=>$pid,"site_id"=>$config['site_id']]
 ];
 
 
