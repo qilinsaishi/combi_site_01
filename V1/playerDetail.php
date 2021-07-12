@@ -105,7 +105,8 @@ $source=$config['game_source'][$game]??$config['default_source'];
 $params2=[
 	 "keywordMapList"=>["fields"=>"content_id","site"=>$config['site_id'],"source_type"=>"player","source_id"=>$return["intergratedPlayer"]['data']['intergrated_id_list'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
 	"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>7,"fields"=>'tid,team_name,logo',"game"=>$game,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400],
-	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$game,"source"=>$source,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$game,"source"=>$source,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400],
+	"currentPage"=>["name"=>"player","site_id"=>$config['site_id']]
 ];
 
 
