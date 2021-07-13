@@ -2,7 +2,12 @@
     width: 860px;
     float: left;
 }
-
+@font-face {
+    font-family: "shuzi";
+    src: url("../font/shuzi.ttf") format("truetype");
+    font-weight:normal;
+    font-style:normal;
+  }
 .game_title{
     width: 860px;
     /* height: 336px; */

@@ -123,11 +123,7 @@ a:focus{text-decoration: none}
         padding-right: 0; */
     }
 }
-/*声明 思源字体-Light*/
-@font-face {
-    font-family: "shuzi";
-    src: url("../font/shuzi.ttf") format("truetype");
-  }
+
 /* 热门赛事 */
   .game_match_ul{
     min-height: 304px;
@@ -1090,3 +1086,10 @@ color: #fff;
     }
 }
 /* ti10，s11参赛队伍 */
+
+
+/* 导航栏修改 */
+.menu_triangle{
+    margin-left: 6px;
+}
+/* 导航栏修改 */

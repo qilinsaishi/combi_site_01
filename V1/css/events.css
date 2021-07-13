@@ -2,6 +2,12 @@
     background: #F5F6F7;
     width: 100%;
 }
+@font-face {
+    font-family: "shuzi";
+    src: url("../font/shuzi.ttf") format("truetype");
+    font-weight:normal;
+    font-style:normal;
+  }
 .header{
     height: 88px;
     background: #FFFFFF;

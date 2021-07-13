@@ -182,7 +182,6 @@
                 echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css?v='.$version.'" type="text/css" />';
             }
         }
-        echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/flexible.js" type="text/javascript"></script>';
         echo '<script>
 var _hmt = _hmt || [];
@@ -203,6 +202,7 @@ var _hmt = _hmt || [];
                 echo '<link rel="stylesheet" href="'.$config['site_url'].'/css/'.$file.'.css" type="text/css" />';
             }
         }
+        echo '<script src="'.$config['site_url'].'/js/jquery.min.js" type="text/javascript"></script>';
         foreach($customJs as $file)
         {
             if(trim($file)!="")

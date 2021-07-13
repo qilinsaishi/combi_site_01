@@ -3,6 +3,12 @@
     box-shadow: -5px 6px 30px 0px rgba(51, 51, 51, 0.08);
     margin-bottom: 30px;
 }
+@font-face {
+    font-family: "shuzi";
+    src: url("../font/shuzi.ttf") format("truetype");
+    font-weight:normal;
+    font-style:normal;
+  }
 .wrapper{
     background: #F5F6F7;
 }
