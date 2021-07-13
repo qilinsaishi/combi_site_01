@@ -165,7 +165,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
 										
                                         <!--- 如果主队胜利-->
                                             <div class="imgwidth30 imgheight30">
-                                                <img  src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?> active <?php }?>">
+											<?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?> 
+                                                <img data-original="<?php echo $config['site_url'];?>/images/victory.png"  src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto active ">
+												<?php }?>
                                             </div>
                                         <!--- 如果主队胜利-->
 										</a>
@@ -185,7 +187,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <!--- 如果客队胜利-->
 										 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>" class="left right">
                                             <div class="imgwidth30 imgheight30">
-                                                <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['away_id']){?> active <?php }?>">
+												<?php if($round_info['win_teamID']==$return['matchDetail']['data']['away_id']){?>
+                                                <img data-original="<?php echo $config['site_url'];?>/images/victory.png" src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto  active ">
+												<?php }?>
                                             </div>
                                         <!--- 如果客队胜利-->
                                         <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
@@ -533,7 +537,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                             <div class="jn-icon-wrap mid">
                                                                 <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_skill_"))=="_skill_" && !is_null($value)){?>
                                                                     <div class="property-img property-img1">
-                                                                        <img src="<?php echo $value;?>"
+                                                                        <img data-original="<?php echo $value;?>" src="<?php echo $value;?>"
                                                                              class="jn-icon">
                                                                     </div>
                                                                 <?php }}?>
@@ -549,7 +553,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <td>
                                                             <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_star_equip_"))=="_star_equip_"){?>
                                                             <div class="property-img mid">
-                                                                <img src="<?php echo $value;?>">
+                                                                <img src="<?php echo $value;?>" data-original="<?php echo $value;?>">
                                                             </div>
                                                             <?php }}?>
                                                         </td>
@@ -608,7 +612,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                         <div class="jn-icon-wrap mid">
                                                             <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_skill_"))=="_skill_" && !is_null($value)){?>
                                                                 <div class="property-img property-img1">
-                                                                    <img src="<?php echo $value;?>"
+                                                                    <img data-original="<?php echo $value;?>" src="<?php echo $value;?>"
                                                                          class="jn-icon">
                                                                 </div>
                                                             <?php }}?>
@@ -624,7 +628,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                                     <td>
                                                         <?php foreach($player_info as $pk => $value){ if(substr($pk,0,strlen("_star_equip_"))=="_star_equip_"){?>
                                                             <div class="property-img mid">
-                                                                <img src="<?php echo $value;?>">
+                                                                <img data-original="<?php echo $value;?>" src="<?php echo $value;?>">
                                                             </div>
                                                         <?php }}?>
                                                     </td>
