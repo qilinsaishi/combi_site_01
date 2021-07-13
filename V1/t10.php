@@ -12,7 +12,7 @@ $params=[
     "ti9teamList"=>["dataType"=>"intergratedTeamList","tid"=>$rankingList,"page"=>1,"page_size"=>30,"game"=>"dota2","fields"=>'tid,team_name,logo',"cache_time"=>86400*7],
 ];
 $return = curl_post($config['api_get'],json_encode($params),1);
-$return['teamList']['data'] = [];
+//$return['teamList']['data'] = [];
 $return['dota2TournamentList']['data']=array_merge($return['dota2TournamentList']['data'],$return['tournamentList']['data']);
 $return['dota2TournamentList']['data'] = array_slice($return['dota2TournamentList']['data'],0,4);
 $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['value']);
@@ -35,7 +35,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
             <div class="container clearfix">
                 <div class="row">
                     <div class="logo"><a href="<?php echo $config['site_url'];?>">
-                            <img src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
+                            <img  src="<?php echo $config['site_url'];?>/images/logo.png" data-original="<?php echo $config['site_url'];?>/images/logo.png"></a>
                     </div>
                     <div class="hamburger" id="hamburger-6">
                         <span class="line"></span>
@@ -54,7 +54,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                 <div class="team_title mb20 clearfix schedule">
                     <div class="team_logo fl">
                         <div class="team_logo_img mauto">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/dota2_logo.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/dota2_logo.png" src="<?php echo $config['site_url'];?>/images/dota2_logo.png" alt="">
                         </div>
                     </div>
                     <div class="team_explain fr">
@@ -77,10 +77,10 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                         </div>
                     </div>
                     <div class="left_bg">
-                        <img src="<?php echo $config['site_url'];?>/images/events_topbg.png" alt="">
+                        <img  data-original="<?php echo $config['site_url'];?>/images/events_topbg.png" src="<?php echo $config['site_url'];?>/images/events_topbg.png" alt="">
                     </div>
                     <div class="right_bg">
-                        <img src="<?php echo $config['site_url'];?>/images/events_topbg.png" alt="">
+                        <img data-original="<?php echo $config['site_url'];?>/images/events_topbg.png" src="<?php echo $config['site_url'];?>/images/events_topbg.png" alt="">
                     </div>
                 </div>
                 <!-- 比赛介绍 -->
@@ -88,7 +88,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                 <div class="format mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/format_icon.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/format_icon.png" src="<?php echo $config['site_url'];?>/images/format_icon.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>赛制</h2>
                     </div>
@@ -110,7 +110,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                 <div class="mb20 team_news">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                            <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/news.png" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>最新资讯</h2>
                         <a href="<?php echo $config['site_url']."/newslist/".$config['ti10']['game']."/";?>" class="team_pub_more fr">
@@ -150,7 +150,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                     <div class="hot_team mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/hots.png" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>参赛队伍</h2>
                     </div>
@@ -159,7 +159,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <li class="col-xs-2">
                                 <a href="<?php echo $config["site_url"]."/teamdetail/".$teamInfo['tid'];?>">
                                     <div class="a1">
-                                        <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                        <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                     </div>
                                 </a>
                             </li>
@@ -219,7 +219,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                 <div class="thumbsUp mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/ranking.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/ranking.png" src="<?php echo $config['site_url'];?>/images/ranking.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['ti10']['event_name'];?>冠军预测</h2>
                     </div>
@@ -230,7 +230,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
                                         <img src="<?php echo $teamInfo['logo'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $teamInfo['team_name'];?>">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/thumbstop.png" src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
                                     </div>
                                     <p class="top_name"><?php echo $teamInfo['team_name'];?></p>
                                 </a>
@@ -247,7 +247,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
                                         <img src="<?php echo $teamInfo['logo'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/thumbstwo.png" src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
                                     </div>
                                     <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
                                 </a>
@@ -262,8 +262,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 <div class="top_thre">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>" class="clearfix">
                                     <div class="fl team">
-                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" alt="<?php echo $teamInfo['team_name'];?>" class="top_threeimg">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbsthree">
+                                        <img data-original="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" alt="<?php echo $teamInfo['team_name'];?>" class="top_threeimg">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/thumbsthree.png"  src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbsthree">
                                     </div>
                                 </a>
                                     <div class="fl three_detali">
@@ -285,8 +285,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <div class="top_two">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
-                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
+                                        <img data-original="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80"  src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_80,w_80" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/thumbstwo.png" src="<?php echo $config['site_url'];?>/images/thumbstwo.png" alt="" class="thumbstwo">
                                     </div>
                                     <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
                                 </a>
@@ -301,8 +301,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <div class="top_one">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
-                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" alt="<?php echo $teamInfo['team_name'];?>" class="top_oneimg">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
+                                        <img data-original="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" alt="<?php echo $teamInfo['team_name'];?>" class="top_oneimg">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/thumbstop.png" src="<?php echo $config['site_url'];?>/images/thumbstop.png" alt="" class="thumbstop">
                                     </div>
                                     <p class="top_name"><?php echo $teamInfo['team_name'];?></p>
                                 </a>
@@ -317,8 +317,8 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                             <div class="top_three">
                                 <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                     <div class="team">
-                                        <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
-                                        <img src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbstwo">
+                                        <img  data-original="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_58,w_58" alt="<?php echo $teamInfo['team_name'];?>" class="top_twoimg">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/thumbsthree.png" src="<?php echo $config['site_url'];?>/images/thumbsthree.png" alt="" class="thumbstwo">
                                     </div>
                                     <p class="two_name"><?php echo $teamInfo['team_name'];?></p>
                                 </a>
@@ -337,7 +337,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                         <span class="ranking_span"><?php echo $key+1;?></span>
                                         <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $teamInfo['tid'];?>">
                                         <div class="thumb_others_img">
-                                            <img src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_54,w_54" alt="<?php echo $teamInfo['team_name'];?>">
+                                            <img  data-original="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_54,w_54"  src="<?php echo $teamInfo['logo'];?>?x-oss-process=image/resize,m_lfit,h_54,w_54" alt="<?php echo $teamInfo['team_name'];?>">
                                         </div>
                                         <span class="thumb_others_name"><?php echo $teamInfo['team_name'];?></span>
                                         </a>
@@ -359,7 +359,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
 
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/events.png"  src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $config['ti10']['game'];?>" class="team_pub_more fr">

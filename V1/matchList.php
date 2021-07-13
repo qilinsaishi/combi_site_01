@@ -30,8 +30,8 @@ do
 while($date<=$endDate);
 $currentDay = date("w",strtotime($currentDate));
 $params = [
-    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
 	"defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
@@ -154,7 +154,7 @@ foreach($allGameList as $key => $game)
                             <div class="calendar_top clearfix">
                                 <div class="war_calendar fl">
                                     <div class="war_calendar_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/rili.png" alt="">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/rili.png" src="<?php echo $config['site_url'];?>/images/rili.png" alt="">
                                     </div>
                                     <span>对战日历</span>
                                 </div>
@@ -199,7 +199,7 @@ foreach($allGameList as $key => $game)
                             <div class="calendar_top clearfix">
                                 <div class="war_calendar fl">
                                     <div class="war_calendar_img">
-                                        <img src="<?php echo $config['site_url'];?>/images/rili.png" alt="">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/rili.png" src="<?php echo $config['site_url'];?>/images/rili.png" alt="">
                                     </div>
                                     <span>对战日历</span>
                                 </div>
@@ -334,7 +334,7 @@ foreach($allGameList as $key => $game)
                                                                             <a href="<?php echo $config['site_url'];?>/matchdetail/<?php echo $matchInfo['game'];?>-<?php echo $matchInfo['match_id'];?>">
                                                                                 <div class="game3_team1_top clearfix">
                                                                                     <div class="game3_team1_top_img fl">
-                                                                                        <img src="<?php echo $matchInfo['home_team_info']['logo'];?>" class="imgauto" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
+                                                                                        <img data-original="<?php echo $matchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" class="imgauto" alt="<?php echo $matchInfo['home_team_info']['team_name'];?>">
                                                                                     </div>
                                                                                     <span class="game3_team1_top_name fl"><?php echo $matchInfo['home_team_info']['team_name'];?></span>
                                                                                 </div>
@@ -342,7 +342,7 @@ foreach($allGameList as $key => $game)
                                                                                     <div class="game3_team1_allplayer">
                                                                                         <?php $i=0;foreach($matchInfo['home_player_list']??[] as $playerInfo){$i++;?>
                                                                                             <div class="game3_team1_player">
-                                                                                                <img src="<?php echo $playerInfo['logo'];?>" class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
+                                                                                                <img data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"  class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
                                                                                             </div>
                                                                                             <?php if($i>=5){break;}}?>
                                                                                     </div>
@@ -381,14 +381,14 @@ foreach($allGameList as $key => $game)
                                                                                 <div class="game3_team1_top clearfix">
                                                                                     <span class="game3_team1_top_name fl"><?php echo $matchInfo['away_team_info']['team_name'];?></span>
                                                                                     <div class="game3_team1_top_img fl">
-                                                                                        <img src="<?php echo $matchInfo['away_team_info']['logo'];?>" class="imgauto" alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
+                                                                                        <img data-original="<?php echo $matchInfo['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  class="imgauto" alt="<?php echo $matchInfo['away_team_info']['team_name'];?>">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="game3_team1_bottom red">
                                                                                     <div class="game3_team1_allplayer">
                                                                                         <?php $i=0;foreach($matchInfo['away_player_list']??[] as $playerInfo){$i++;?>
                                                                                             <div class="game3_team1_player">
-                                                                                                <img src="<?php echo $playerInfo['logo'];?>" class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
+                                                                                                <img data-original="<?php echo $playerInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_player_img']['value'];?><?php echo $config['default_oss_img_size']['playerList'];?>"  class="imgauto" alt="<?php echo $playerInfo['player_name'];?>">
                                                                                             </div>
                                                                                             <?php if($i>=5){break;}}?>
                                                                                     </div>
@@ -452,7 +452,7 @@ foreach($allGameList as $key => $game)
                                                                     </div>
                                                                   
                                                                     <div class="li_bg">
-                                                                        <img src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
+                                                                        <img data-original="<?php echo $config['site_url'];?>/images/game3_li_bg.png" src="<?php echo $config['site_url'];?>/images/game3_li_bg.png" alt="">
                                                                     </div>
                                                                 <?php }?>
                                                                 </li>
@@ -516,7 +516,7 @@ foreach($allGameList as $key => $game)
                             <div class="title clearfix">
                                 <div class="fl clearfix">
                                     <div class="game_fire fl">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                        <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                     </div>
                                     <span class="fl">热门选手</span>
                                 </div>
@@ -545,7 +545,7 @@ foreach($allGameList as $key => $game)
                             <div class="title clearfix">
                                 <div class="fl clearfix">
                                     <div class="game_fire fl">
-                                        <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                        <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                     </div>
                                     <span class="fl">热门资讯</span>
                                 </div>

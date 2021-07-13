@@ -52,7 +52,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                 <div class="team_title mb20 clearfix schedule">
                     <div class="team_logo fl">
                         <div class="team_logo_img mauto">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/s11_logo_top.png" alt="">
+                            <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/s11_logo_top.png" src="<?php echo $config['site_url'];?>/images/s11_logo_top.png" alt="">
                         </div>
                     </div>
                     <div class="team_explain fr">
@@ -77,10 +77,10 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                         </div>
                     </div>
                     <div class="left_bg">
-                        <img src="<?php echo $config['site_url'];?>/images/s11_top_bg.png" alt="">
+                        <img src="<?php echo $config['site_url'];?>/images/s11_top_bg.png" data-original="<?php echo $config['site_url'];?>/images/s11_top_bg.png" alt="">
                     </div>
                     <div class="right_bg">
-                        <img src="<?php echo $config['site_url'];?>/images/s11_top_bg.png" alt="">
+                        <img src="<?php echo $config['site_url'];?>/images/s11_top_bg.png" data-original="<?php echo $config['site_url'];?>/images/s11_top_bg.png" alt="">
                     </div>
                 </div>
                 <!-- 比赛介绍 -->
@@ -88,7 +88,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                 <div class="s11_format mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/format_icon.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/format_icon.png" src="<?php echo $config['site_url'];?>/images/format_icon.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>赛程时间·赛制</h2>
                     </div>
@@ -133,7 +133,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                             <li class="s11_format_li">
                                 <div class="s11_format_li_top format_finals">
                                     <div class="left">
-                                        <img src="<?php echo $config['site_url'];?>/images/s11_format_logo.png" alt="">
+                                        <img  data-original="<?php echo $config['site_url'];?>/images/s11_format_logo.png" src="<?php echo $config['site_url'];?>/images/s11_format_logo.png" alt="">
                                     </div>
                                     <div class="right">
                                         <span class="match_name">总决赛</span>
@@ -171,7 +171,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                 <div class="s11_city mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/s11_city.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/s11_city.png" src="<?php echo $config['site_url'];?>/images/s11_city.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>举办城市</h2>
                     </div>
@@ -179,13 +179,13 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                         <div class="sz">
                             <div class="sz_normality">
                                 <div class="con">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_format_logo.png" alt="">
+                                    <img data-original="<?php echo $config['site_url'];?>/images/s11_format_logo.png" src="<?php echo $config['site_url'];?>/images/s11_format_logo.png" alt="">
                                     <span>深圳</span>
                                 </div>
                             </div>
                             <div class="sz_active">
                                 <div class="con">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_format_logo.png" alt="">
+                                    <img  data-original="<?php echo $config['site_url'];?>/images/s11_format_logo.png"  src="<?php echo $config['site_url'];?>/images/s11_format_logo.png" alt="">
                                     <span>深圳</span>
                                 </div>
                                 <div class="content">
@@ -250,7 +250,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                     <div class="hot_team mb20">
                         <div class="team_pub_top clearfix">
                             <div class="team_pub_img fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
+                                <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/hots.png"  src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                             </div>
                             <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>参赛队伍</h2>
                         </div>
@@ -259,7 +259,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                                 <li class="col-xs-2">
                                     <a href="<?php echo $config["site_url"]."/teamdetail/".$teamInfo['tid'];?>">
                                         <div class="a1">
-                                            <img src="<?php echo $teamInfo['logo'];?>" alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
+                                            <img data-original="<?php echo $teamInfo['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $teamInfo['team_name'];?>" class="game_team_img">
                                         </div>
                                     </a>
                                 </li>
@@ -272,12 +272,12 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                 <div class="mb20 team_news">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/news.png" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>最新资讯</h2>
                         <a href="<?php echo $config['site_url']."/newslist/".$config['s11']['game']."/";?>" class="team_pub_more fr">
                             <span>更多</span>
-                            <img src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
+                            <img  src="<?php echo $config['site_url'];?>/images/more.png" data-original="<?php echo $config['site_url'];?>/images/more.png" alt="">
                         </a>
                     </div>
                     <div class="team_news_mid">
@@ -313,7 +313,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                 <div class="s11_previous mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/s11_previous_icon.png" alt="">
+                            <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/s11_previous_icon.png" src="<?php echo $config['site_url'];?>/images/s11_previous_icon.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $config['s11']['event_name'];?>历届冠军回顾</h2>
                     </div>
@@ -322,7 +322,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                             <?php $i=1;foreach($config['s11']['history'] as $year => $history_info){?>
                             <div class="s11_previous_conItem <?php if($i==1){echo "active";}?>">
                                 <div class="s11_previous_conLogo">
-                                    <img src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
+                                    <img data-original="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" src="<?php echo $config['site_url'];?>/images/s11_previous_conLogo.png" alt="">
                                     <span class="s11_previous_conD">关于英雄联盟全球总决赛</span>
                                 </div>
                                 <div class="s11_previous_conDetail">
@@ -356,7 +356,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                                         <?php if(isset($return['champList']['data'][$history_info['tid']])){?>
                                             <img data-original="<?php echo $return['champList']['data'][$history_info['tid']]['logo'];?>?x-oss-process=image/resize,m_lfit,h_64,w_64" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>?x-oss-process=image/resize,m_lfit,h_64,w_64" alt="<?php echo $return['champList']['data'][$history_info['tid']]['team_name'];?>">
                                         <?php }else{?>
-                                        <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>?x-oss-process=image/resize,m_lfit,h_64,w_64" alt="<?php echo $history_info['team_name'];?>">
+                                        <img  src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?>?x-oss-process=image/resize,m_lfit,h_64,w_64" alt="<?php echo $history_info['team_name'];?>">
                                         <?php }?>
                                     </div>
                                 </div>
@@ -371,7 +371,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                                         <span>IG</span>
                                     </div>
                                     <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
+                                        <img data-original="<?php echo $config['site_url'];?>/images/ig.png"  src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +383,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
                                         <span>IG</span>
                                     </div>
                                     <div class="right">
-                                        <img src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
+                                        <img  data-original="<?php echo $config['site_url'];?>/images/ig.png" src="<?php echo $config['site_url'];?>/images/ig.png" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -395,7 +395,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
 
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/events.png" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/<?php echo $config['s11']['game'];?>" class="team_pub_more fr">
@@ -442,7 +442,7 @@ $return['champList']['data'] = array_combine(array_column($return['champList']['
         </div>
         <div class="qrcode">
             <div class="qrcode_img">
-                <img src="<?php echo $config['site_url'];?>/images/qrcode.png" alt="">
+                <img src="<?php echo $config['site_url'];?>/images/qrcode.png" data-original="<?php echo $config['site_url'];?>/images/qrcode.png"  alt="">
             </div>
         </div>
     </div>

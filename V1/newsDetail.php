@@ -6,8 +6,8 @@ $params = [
     "tournamentList"=>["page"=>1,"page_size"=>3,"source"=>$config['default_source'],"cache_time"=>86400],
 	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>0,"source"=>$config['game_source']['dota2'] ?? $config['default_source'],"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["information_default_img","contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
-    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"newsDetail","id"=>$id,"site_id"=>$config['site_id']]
 ];
@@ -56,7 +56,7 @@ if(isset($return["information"]['data']['keywords_list']['team']) && count($retu
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
 $return['tournamentList']['data']=array_merge($return['tournamentList']['data'],$return['hotTournamentList']['data']);
 $return['information']['data']['content'] = html_entity_decode($return['information']['data']['content']);
-$return['information']['data']['content'] = str_replace("&nbsp;"," ",$return['information']['data']['content']);
+$return['information']['data']['content'] = str_replace(array("&nbsp;")," ",$return['information']['data']['content']);
 if(isset($return2["keywordPlayerList"]['data']) && count($return2["keywordPlayerList"]['data'])>0)
 {
     $keywordList = array_combine(array_column($return["information"]['data']['keywords_list']['player'],"id"),array_keys($return["information"]['data']['keywords_list']['player']));
@@ -131,7 +131,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <h1 class="title"><?php echo $return['information']['data']['title']?></h1>
                         <p class="news_time"><?php echo date("Y.m.d H:i:s",strtotime($return['information']['data']['site_time']));?></p>
                         <div class="news_top_content">
-                            <?php echo html_entity_decode($return['information']['data']['content']);?>
+                            <?php echo $return['information']['data']['content'];?>
                         </div>
                         <div class="news_label clearfix">
                             <?php $i=0;if(count($return["information"]['data']['baidu_word_list'])>0){ foreach($return["information"]['data']['baidu_word_list'] as $key => $word){?>
@@ -142,7 +142,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                     <div class="news_detail">
                         <div class="team_pub_top clearfix">
                             <div class="team_pub_img fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/news.png" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                             </div>
                             <span class="fl team_pbu_name">相关<?php echo $currentType=="news"?"资讯":"攻略";?></span>
                         </div>
@@ -184,7 +184,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png"src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门<?php echo $currentType=="news"?"资讯":"攻略";?></span>
                             </div>
@@ -207,7 +207,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">最新赛事</span>
                             </div>
@@ -233,7 +233,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png"  src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门战队</span>
                             </div>
@@ -261,7 +261,7 @@ if(isset($return2["keywordTeamList"]['data']) && count($return2["keywordTeamList
                         <div class="title clearfix">
                             <div class="fl clearfix">
                                 <div class="game_fire fl">
-                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                                 </div>
                                 <span class="fl">热门选手</span>
                             </div>

@@ -1,13 +1,24 @@
+
 <?php
 require_once "function/init.php";
 $match_id = $_GET['match_id']??0;
+
+$game = $_GET['game']??-1;
+if($match_id >= 1000000)
+{
+    if($game == 0)
+    {
+        render301($config,"matchdetail/dota2-".$match_id);
+        die();
+    }
+}
 $params = [
     "matchDetail"=>["source"=>$config['default_source'],"match_id"=>$match_id,"cache_time"=>86400],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_hero_img"],"fields"=>["name","key","value"],"site_id"=>$config["site_id"]],
     "recentMatchList"=>["dataType"=>"matchList","page"=>1,"recent"=>1,"page_size"=>3,"source"=>$config['default_source'],"cacheWith"=>"currentPage","cache_time"=>3600],
     "hotNewsList"=>["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>8,"game"=>array_keys($config['game']),"fields"=>'id,title,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7],
-    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
-    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7],
+    "hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
+    "hotPlayerList"=>["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>9,"game"=>array_keys($config['game']),"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
     "currentPage"=>["name"=>"matchDetail","match_id"=>$match_id,"source"=>$config['default_source'],"site_id"=>$config['site_id']]
 ];
@@ -16,6 +27,12 @@ $return = curl_post($config['api_get'],json_encode($params),1);
 if(!isset($return["matchDetail"]['data']['match_id']))
 {
     render404($config);
+    die();
+}
+if($game == 0)
+{
+    render301($config,"matchdetail/".$return['matchDetail']['data']['game']."-".$match_id);
+    die();
 }
 $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']['data']['match_pre'],true);
 ?>
@@ -92,7 +109,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <span class="span2"><?php echo $return['matchDetail']['data']['tournament_info']['tournament_name'];?></span>
                             <div class="game_vs">
                                 <span class="span1"><?php echo $return['matchDetail']['data']['home_score'];?></span>
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/vs.png" alt="<?php echo $return['matchDetail']['data']['home_score'].":".$return['matchDetail']['data']['away_score'];?>">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/vs.png" src="<?php echo $config['site_url'];?>/images/vs.png" alt="<?php echo $return['matchDetail']['data']['home_score'].":".$return['matchDetail']['data']['away_score'];?>">
                                 <span class="span2"><?php echo $return['matchDetail']['data']['away_score'];?></span>
                             </div>
                             <p><?php echo date("Y.m.d H:i:s",strtotime($return['matchDetail']['data']['start_time']))?>·<?php echo generateMatchStatus($return['matchDetail']['data']['start_time']);?></p>
@@ -112,7 +129,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                         <p class="active"><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['home_team_info']['description'])));?></p>
                         <p class="active"><?php echo strip_tags(html_entity_decode(checkJson($return['matchDetail']['data']['away_team_info']['description'])));?></p>
                     </div>
-                    <img src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
+                    <img data-original="<?php echo $config['site_url'];?>/images/more.png" src="<?php echo $config['site_url'];?>/images/more.png" alt="" class="game_title_more">
                 </div>
                 <!--- 比赛双方基本信息-->
                 <!--- 比赛信息-->
@@ -123,9 +140,9 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <li <?php if($key==0){echo ' class="active"';} ?>>
                                     <div class="game_detail_img1">
                                         <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?>
-                                            <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
+                                            <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>">
                                         <?php }else{?>
-                                            <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
+                                            <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
                                         <?php }?>
                                     </div>
                                     <span>GAME <?php echo ($key+1);?></span>
@@ -142,13 +159,13 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <!--<div >-->
 										  <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>" class="left">
                                         <div class="imgwidth40 imgheight40">
-                                            <img src="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
+                                            <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                         </div>
                                         <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?></span>
 										
                                         <!--- 如果主队胜利-->
                                             <div class="imgwidth30 imgheight30">
-                                                <img src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?> active <?php }?>">
+                                                <img  src="<?php echo $config['site_url'];?>/images/victory.png" alt="" class="imgauto <?php if($round_info['win_teamID']==$return['matchDetail']['data']['home_id']){?> active <?php }?>">
                                             </div>
                                         <!--- 如果主队胜利-->
 										</a>
@@ -158,7 +175,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <span class="game_detail_circle1"></span>
                                         <span class="fz font_color_r"><?php echo $round_info['kills_a']??0;?></span>
                                         <div class="img_game_detail_vs">
-                                            <img src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="<?php echo ($round_info['kills_a']??0).":".($round_info['kills_b']??0);?>" class="imgauto">
+                                            <img data-original="<?php echo $config['site_url'];?>/images/game_detail_vs.png" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="<?php echo ($round_info['kills_a']??0).":".($round_info['kills_b']??0);?>" class="imgauto">
                                         </div>
                                         <span class="fz font_color_b"><?php echo $round_info['kills_b']??0;?></span>
                                         <span class="game_detail_circle1"></span>
@@ -174,7 +191,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?></span>
 										
                                         <div class="imgwidth40 imgheight40">
-                                            <img src="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
+                                            <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
                                         </div>
 										</a>
                                     <!--</div>-->
@@ -210,7 +227,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <div class="game_detail_item3_top">
                                         <div class="left">
                                             <div class="left_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k" class="imgauto">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/gold_coin.png" src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k" class="imgauto">
                                             </div>
                                             <span><?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k</span>
                                         </div>
@@ -220,7 +237,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                         <div class="left">
                                             <span><?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k</span>
                                             <div class="left_img">
-                                                <img src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k" class="imgauto">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/gold_coin.png" src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k" class="imgauto">
                                             </div>
                                         </div>
                                     </div>
@@ -235,29 +252,29 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <div class="game_detail_div1_item3">
                                         <div class="left">
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_a']??0;?>" class="autoimg">
+                                                <img  data-original="<?php echo $config['site_url'];?>/images/kpl_dalong.png" src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_a']??0;?>" class="autoimg">
                                             </div>
                                             <span><?php echo $round_info['dragon_a']??0;?></span>
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_a']??0;?>" class="autoimg">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png"  src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_a']??0;?>" class="autoimg">
                                             </div>
                                             <span><?php echo $round_info['baron_a']??0;?></span>
                                             <div class="img1 img2">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/kpl_ta.png"  src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                             </div>
                                             <span><?php echo $round_info['red_tower']??0;?></span>
                                         </div>
                                         <div class="left right">
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_b']??0;?>" class="autoimg">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/kpl_dalong.png" src="<?php echo $config['site_url'];?>/images/kpl_dalong.png" alt="<?php echo $round_info['dragon_b']??0;?>" class="autoimg">
                                             </div>
                                             <span><?php echo $round_info['dragon_b']??0;?></span>
                                             <div class="img1">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_b']??0;?>" class="autoimg">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" src="<?php echo $config['site_url'];?>/images/kpl_xiaolong.png" alt="<?php echo $round_info['baron_b']??0;?>" class="autoimg">
                                             </div>
                                             <span><?php echo $round_info['baron_b']??0;?></span>
                                             <div class="img1 img2">
-                                                <img src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/kpl_ta.png" src="<?php echo $config['site_url'];?>/images/kpl_ta.png" alt="" class="autoimg">
                                             </div>
                                             <span><?php echo $round_info['blue_tower']??0;?></span>
                                         </div>
@@ -1005,7 +1022,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">近期赛事</span>
                         </div>
@@ -1053,7 +1070,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">热门资讯</span>
                         </div>
@@ -1077,7 +1094,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_fire.png"  src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">热门战队</span>
                         </div>
@@ -1105,7 +1122,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                     <div class="title clearfix">
                         <div class="fl clearfix">
                             <div class="game_fire fl">
-                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
+                                <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/game_fire.png" src="<?php echo $config['site_url'];?>/images/game_fire.png" alt="">
                             </div>
                             <span class="fl">热门选手</span>
                         </div>

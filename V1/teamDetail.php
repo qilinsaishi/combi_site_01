@@ -9,7 +9,7 @@ $params = [
     "intergratedTeam"=>[$tid],
     "defaultConfig"=>["keys"=>["contact","download_qr_code","sitemap","default_team_img","default_player_img","default_tournament_img","default_information_img"],"fields"=>["name","key","value"],"site_id"=>$config['site_id']],
 	"links"=>["page"=>1,"page_size"=>6,"site_id"=>$config['site_id']],
-    "currentPage"=>["name"=>"team","site_id"=>$config['site_id']]
+    "currentPage"=>["name"=>"team","tid"=>$tid,"site_id"=>$config['site_id']]
 ];
 
 $return = curl_post($config['api_get'],json_encode($params),1);
@@ -77,8 +77,9 @@ $source=$config['game_source'][$game]??$config['default_source'];
 //当前游戏下面的资讯
 $params2=[
 	 "keywordMapList"=>["fields"=>"content_id","source_type"=>"team","source_id"=>$return["intergratedTeam"]['data']['intergrated_id_list'],"page_size"=>10,"content_type"=>"information","list"=>["page_size"=>10,"fields"=>"id,title,create_time,logo"]],
-	"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>7,"fields"=>'tid,team_name,logo',"game"=>$game,"except_team"=>$tid,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400*7],
+	"hotTeamList"=>["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>7,"fields"=>'tid,team_name,logo',"game"=>$game,"except_team"=>$tid,"rand"=>1,"cacheWith"=>"currentPage","cache_time"=>86400],
 	"hotTournamentList"=>["dataType"=>"tournamentList","page"=>1,"page_size"=>4,"game"=>$game,"source"=>$source,"rand"=>1,"cache_time"=>86400*7],
+	"currentPage"=>["name"=>"team","tid"=>$tid,"site_id"=>$config['site_id']]
 ];
 
 $return2 = curl_post($config['api_get'],json_encode($params2),1);
@@ -205,7 +206,7 @@ if($game=='dota2'){
                 <div class="team_member mb20">
                     <div class="team_member_top clearfix">
                         <div class="team_member_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team_number.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/team_number.png"  src="<?php echo $config['site_url'];?>/images/team_number.png" alt="">
                         </div>
                         <h2 class="fl team_number_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队成员</h2>
                     </div>
@@ -237,7 +238,7 @@ if($game=='dota2'){
                 <div class="team_data mb20">
                     <div class="team_data_top clearfix">
                         <div class="team_data_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team_data.png" alt="">
+                            <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/team_data.png"  src="<?php echo $config['site_url'];?>/images/team_data.png" alt="">
                         </div>
                         <h2 class="fl team_data_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队基础数据</h2>
                         <div class="team_data_frequency fr clearfix">
@@ -339,7 +340,7 @@ if($game=='dota2'){
                 <div class="team_honor mb20">
                     <div class="team_honor_top clearfix">
                         <div class="team_honor_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/team_honor.png" alt="">
+                            <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/team_honor.png"  src="<?php echo $config['site_url'];?>/images/team_honor.png" alt="">
                         </div>
                         <h2 class="fl team_honor_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队历史荣誉</h2>
                     </div>
@@ -365,29 +366,29 @@ if($game=='dota2'){
                                     <div class="w25 max_span">
                                         <div class="honor_bottom_img1">
 											
-                                            <img class="imgauto" src="<?php echo $honorInfo['ranking_icon']?>" alt="">
+                                            <img class="imgauto" data-original="<?php echo $honorInfo['ranking_icon']?>" src="<?php echo $honorInfo['ranking_icon']?>" alt="">
                                         </div>
                                         <span><?php echo $honorInfo['ranking']?></span>
                                     </div>
                                     <div class="w25 max_span">
                                         <div class="honor_bottom_img2">
-											<img class="imgauto" src="<?php echo $honorInfo['t_image']?>" alt="">
+											<img class="imgauto" data-original="<?php echo $honorInfo['t_image']?>" src="<?php echo $honorInfo['t_image']?>" alt="">
                                         </div>
                                         <span><?php echo $honorInfo['t_name']?></span>
                                     </div>
                                     <div class="w25">
                                         <div class="honor_bottom_img2">
-                                            <img class="imgauto" src="<?php echo $honorInfo['team_a_image']?>" alt="<?php echo $honorInfo['team_name_a']?>">
+                                            <img class="imgauto" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  data-original="<?php echo $honorInfo['team_a_image']?>"   alt="<?php echo $honorInfo['team_name_a']?>">
                                         </div>
                                         <div class="honor_bottom_vs">
                                             <span class="red span_left"><?php echo $honorInfo['team_a_win']?></span>
                                             <div class="honor_bottom_img1">
-                                                <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
+                                                <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_detail_vs.png" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
                                             </div>
                                             <span class="blue span_right"><?php echo $honorInfo['team_b_win']?></span>
                                         </div>
                                         <div class="honor_bottom_img2">
-                                            <img class="imgauto" src="<?php echo $honorInfo['team_b_image']?>" alt="<?php echo $honorInfo['team_name_b']?>">
+                                            <img class="imgauto" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  data-original="<?php echo $honorInfo['team_b_image']?>" alt="<?php echo $honorInfo['team_name_b']?>">
                                         </div>
                                     </div>
                                 </a>
@@ -408,7 +409,7 @@ if($game=='dota2'){
                 <div class="mb20 team_results">
                     <div class="team_results_top clearfix">
                         <div class="team_results_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/teamdetail_vs_active.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/teamdetail_vs_active.png" src="<?php echo $config['site_url'];?>/images/teamdetail_vs_active.png" alt="">
                         </div>
                         <h2 class="fl team_results_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队近期战绩</h2>
                     </div>
@@ -459,7 +460,7 @@ if($game=='dota2'){
                                                     <img class="imgauto" data-original="<?php echo $recentMatchInfo['home_team_info']['logo'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" alt="<?php echo $recentMatchInfo['home_team_info']['team_name'] ;?>">
                                                 </div>
                                                 <div class="vs_img honor_bottom_img1">
-                                                    <img class="imgauto" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
+                                                    <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/game_detail_vs.png" src="<?php echo $config['site_url'];?>/images/game_detail_vs.png" alt="">
                                                 </div>
                                                 <div class="team2_img">
                                                     <img class="imgauto" data-original="<?php echo $recentMatchInfo['away_team_info']['logo'] ;?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"   alt="<?php echo $recentMatchInfo['away_team_info']['team_name'] ;?>">
@@ -487,7 +488,7 @@ if($game=='dota2'){
                 <div class="mb20 team_news">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/news.png" src="<?php echo $config['site_url'];?>/images/news.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name"><?php echo $return['intergratedTeam']['data']['team_name'];?>战队资讯</h2>
                         <a href="<?php echo $config['site_url']; ?>/newslist/" class="team_pub_more fr">
@@ -540,7 +541,7 @@ if($game=='dota2'){
                 <div class="hot_team mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
+                            <img class="imgauto"  data-original="<?php echo $config['site_url'];?>/images/hots.png"  src="<?php echo $config['site_url'];?>/images/hots.png" alt="">
                         </div>
                         <h2 class="fl team_pbu_name">热门战队</h2>
                         <a href="<?php echo $config['site_url'];?>/teamlist/" class="team_pub_more fr">
@@ -574,7 +575,7 @@ if($game=='dota2'){
                 <div class="hot_match mb20">
                     <div class="team_pub_top clearfix">
                         <div class="team_pub_img fl">
-                            <img class="imgauto" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
+                            <img class="imgauto" data-original="<?php echo $config['site_url'];?>/images/events.png" src="<?php echo $config['site_url'];?>/images/events.png" alt="">
                         </div>
                         <span class="fl team_pbu_name">热门赛事</span>
                         <a href="<?php echo $config['site_url'];?>/tournamentlist/" class="team_pub_more fr">

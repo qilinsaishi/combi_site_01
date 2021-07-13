@@ -13,13 +13,13 @@ $params = [
 foreach ($config['game'] as $game => $gameName)
 {
     $params[$game."TeamList"] =
-        ["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>$game,"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7];
+        ["dataType"=>"intergratedTeamList","page"=>1,"page_size"=>14,"game"=>$game,"rand"=>1,"fields"=>'tid,team_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400];
     $params[$game."PlayerList"] =
-        ["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>16,"game"=>$game,"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400*7];
+        ["dataType"=>"intergratedPlayerList","page"=>1,"page_size"=>16,"game"=>$game,"rand"=>1,"fields"=>'pid,player_name,logo',"cacheWith"=>"currentPage","cache_time"=>86400];
     $params[$game."NewsList"] =
-        ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400*7];
+        ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['news'],"cache_time"=>86400];
     $params[$game."StraList"] =
-        ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400*7];
+        ["dataType"=>"informationList","site"=>$config['site_id'],"page"=>1,"page_size"=>10,"game"=>$game,"fields"=>'id,title,logo,site_time',"type"=>$config['informationType']['stra'],"cache_time"=>86400];
 }
 $return = curl_post($config['api_get'],json_encode($params),1);
 $return['matchList']['data'] = array_merge($return['matchList']['data'],$return['dota2matchList']['data']);
@@ -88,14 +88,14 @@ foreach($newsTypeList as $newsType)
                 <div class="button">
                     <a href="<?php echo $return['defaultConfig']['data']['ios_url']['value'];?>" target="_blank" rel="nofollow" >
                     <div class="download_ios download">
-                        <img src="<?php echo $config['site_url'];?>/images/ios.png" alt="">
+                        <img src="<?php echo $config['site_url'];?>/images/ios.png" data-original="<?php echo $config['site_url'];?>/images/ios.png" alt="">
                         <span>IOS下载</span>
 
                     </div>
                     </a>
                     <a href="<?php echo $return['defaultConfig']['data']['android_url']['value'];?>" target="_blank" rel="nofollow">
                     <div class="download_android download">
-                        <img src="<?php echo $config['site_url'];?>/images/android.png" alt="">
+                        <img data-original="<?php echo $config['site_url'];?>/images/android.png" src="<?php echo $config['site_url'];?>/images/android.png" alt="">
                         <span>Android下载</span>
                     </div>
                     </a>
@@ -180,9 +180,9 @@ foreach($newsTypeList as $newsType)
         <div class="game_team">
             <div class="container">
                 <div class="game_team_title">
-                    <img src="<?php echo $config['site_url'];?>/images/dot.png" alt="">
+                    <img src="<?php echo $config['site_url'];?>/images/dot.png" data-original="<?php echo $config['site_url'];?>/images/dot.png" alt="">
                     <span>热门战队</span>
-                    <img src="<?php echo $config['site_url'];?>/images/dot.png" alt="" class="rotate">
+                    <img src="<?php echo $config['site_url'];?>/images/dot.png" data-original="<?php echo $config['site_url'];?>/images/dot.png" alt="" class="rotate">
                 </div>
                 <div class="row">
                     <div class="game_team_list">
@@ -224,11 +224,11 @@ foreach($newsTypeList as $newsType)
 
                         <li class="<?php if($game == $config['default_game']){echo "active";}else{echo "a1";}?>">
                             <div class="tab1">
-                                <img src="<?php echo $config['site_url'];?>/images/tab1.png" alt="">
+                                <img src="<?php echo $config['site_url'];?>/images/tab1.png"  data-original="<?php echo $config['site_url'];?>/images/tab1.png" alt="">
                             </div>
                             <div class="game_fenlei_container">
                                 <div class="game_fenlei_div">
-                                    <img src="<?php echo $config['site_url'];?>/images/<?php echo $game;?>_white.png" alt="" class="a1">
+                                    <img  src="<?php echo $config['site_url'];?>/images/<?php echo $game;?>_white.png" alt="" class="a1">
                                     <img src="<?php echo $config['site_url'];?>/images/<?php echo $game;?>_orange.png" alt="" class="a2">
                                 </div>
                             </div>
