@@ -231,17 +231,19 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <div class="game_detail_item3_top">
                                         <div class="left">
                                             <div class="left_img">
-                                                <img data-original="<?php echo $config['site_url'];?>/images/gold_coin.png" src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k" class="imgauto">
+												<?php $money_a=$round_info['money_a']??0; ?>
+                                                <img data-original="<?php echo $config['site_url'];?>/images/gold_coin.png" src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$money_a/1000);?>k" class="imgauto">
                                             </div>
-                                            <span><?php echo sprintf("%10.1f",$round_info['money_a']??0/1000);?>k</span>
+                                            <span><?php echo sprintf("%10.1f",$money_a/1000);?>k</span>
                                         </div>
                                         <!--- 轮次时间-->
                                         <p><?php echo ($round_info['game_time_m']??"??").":".($round_info['game_time_s']??"??");?></p>
                                         <!--- 轮次时间-->
                                         <div class="left">
-                                            <span><?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k</span>
+											<?php $money_b=$round_info['money_b']??0; ?>
+                                            <span><?php echo sprintf("%10.1f",$money_b/1000);?>k</span>
                                             <div class="left_img">
-                                                <img data-original="<?php echo $config['site_url'];?>/images/gold_coin.png" src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$round_info['money_b']??0/1000);?>k" class="imgauto">
+                                                <img data-original="<?php echo $config['site_url'];?>/images/gold_coin.png" src="<?php echo $config['site_url'];?>/images/gold_coin.png" alt="<?php echo sprintf("%10.1f",$money_b/1000);?>k" class="imgauto">
                                             </div>
                                         </div>
                                     </div>
