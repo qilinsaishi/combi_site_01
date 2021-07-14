@@ -212,7 +212,7 @@ var _hmt = _hmt || [];
         }
         echo '<script src="'.$config['site_url'].'/js/bootstrap.js" type="text/javascript"></script>';
         echo '<script src="'.$config['site_url'].'/js/index.js" type="text/javascript"></script>';
-        echo '<script src="'.$config['site_url'].'/js/jquery.lazyload.js" type="text/javascript"></script>';
+        echo '<script src="'.$config['site_url'].'/js/jquery.lazyload.js?v=3" type="text/javascript"></script>';
     }
     function renderCertification()
     {

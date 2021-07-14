@@ -87,13 +87,13 @@
             var $self = $(self);
 
             self.loaded = false;
-			if ($self.attr("data-" + settings.data_attribute) === undefined ||
+			/*if ($self.attr("data-" + settings.data_attribute) === undefined ||
 			$self.attr("data-" + settings.data_attribute) === false || 
 			$self.attr("data-" + settings.data_attribute) == 0) {
                 if ($self.is("img")) {
                     $self.attr("data-" + settings.data_attribute, $self.attr("src"));
                 }
-            }
+            }*/
             /* If no src attribute given use data:uri. */
             if ($self.attr("src") === undefined || $self.attr("src") === false) {
                 if ($self.is("img")) {
