@@ -69,7 +69,7 @@ $bounas_pool = explode(",",$return["defaultConfig"]["data"]["bounas_pool"]['valu
                                 Championships。简称Ti，创立于2011年，是一个全球性的电子竞技赛事，每年一届，由ValveCorporation（V社）主办,奖杯为V社特制冠军盾牌，每一届冠军队伍及人员将记录在游戏泉水的冠军盾中。
                             </p>
                             <p>
-                                <span>TI10国际邀请赛时间：</span>8月5日至8月8日举办小组赛，8月10日至15日举办正式比赛，举办地点将位于瑞典首都斯德哥尔摩。
+                                <span>TI10国际邀请赛时间：</span>10月7日至10月10日举办小组赛，10月12日至10月17日举办正式比赛，举办地点将位于罗马尼亚首都布加勒斯特Arena Nationala体育馆。
                             </p>
                             <p>
                                 <span>TI10国际邀请赛奖金：</span>本届ti10国际邀请赛奖金池高达<span><?php echo $bounas_pool[0];?>美金（约合人民币2.5亿元）</span>
