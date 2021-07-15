@@ -87,14 +87,18 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                 <div class="game_title">
                     <div class="game_title_top">
                         <!--<div >-->
-							<a href="<?php if($return['matchDetail']['data']['home_team_info']['tid']>0){?><?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?><?php }else{?>javascripts:;<?php }?>" class="game_team1">
+							<?php if($return['matchDetail']['data']['home_team_info']['tid']>0){?>
+							<a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>" class="game_team1">
+							<?php } ?>
                             <div class="game_team1_img">
                                 <div class="game_team1_img1"> 
                                     <img data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['home_team_info']['team_name']??'';?></span>
+							<?php if($return['matchDetail']['data']['home_team_info']['tid']>0){?>
 							</a>
+							<?php } ?>
                         <!--</div>-->
                         <div class="game_type">
                             <span class="span1"><?php echo $config['game'][$game];?></span>
@@ -107,14 +111,18 @@ if(isset($return['matchDetail']['data']['match_data']['matchData']) && count($re
                             <p><?php echo date("Y.m.d H:i",strtotime($return['matchDetail']['data']['start_time']))?>·<?php echo generateMatchStatus($return['matchDetail']['data']['start_time']);?></p>
                         </div>
                         <!--<div >-->
-							<a href="<?php if($return['matchDetail']['data']['away_team_info']['tid']>0){?><?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?><?php }else{?>javascripts:;<?php }?>" class="game_team1">
+							<?php if($return['matchDetail']['data']['away_team_info']['tid']>0){?>
+							<a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>" class="game_team1">
+							<?php } ?>
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
                                     <img data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'].$config['default_oss_img_size']['teamList'];?>" src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>"  alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>">
                                 </div>
                             </div>
                             <span><?php echo $return['matchDetail']['data']['away_team_info']['team_name']??'';?></span>
+							<?php if($return['matchDetail']['data']['away_team_info']['tid']>0){?>
 							</a>
+							<?php } ?>
                         <!--</div>-->
                     </div>
                     <div class="game_team_depiction">
