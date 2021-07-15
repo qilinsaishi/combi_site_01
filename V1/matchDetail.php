@@ -94,7 +94,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                 <div class="game_title">
                     <div class="game_title_top">
                         <div class="game_team1">
-                            <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?>">
+                            <a href="<?php if($return['matchDetail']['data']['home_team_info']['tid']>0){?><?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['home_team_info']['tid'];?><?php }else{?>javascripts:;<?php }?>">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
                                     <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" data-original="<?php echo $return['matchDetail']['data']['home_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['home_team_info']['team_name'];?>" class="imgauto">
@@ -115,7 +115,7 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                             <p><?php echo date("Y.m.d H:i:s",strtotime($return['matchDetail']['data']['start_time']))?>·<?php echo generateMatchStatus($return['matchDetail']['data']['start_time']);?></p>
                         </div>
                         <div class="game_team1">
-                            <a href="<?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?>">
+                            <a href="<?php if($return['matchDetail']['data']['away_team_info']['tid']>0){?><?php echo $config['site_url'];?>/teamdetail/<?php echo $return['matchDetail']['data']['away_team_info']['tid'];?><?php }else{?>javascripts:;<?php }?>">
                             <div class="game_team1_img">
                                 <div class="game_team1_img1">
                                     <img src="<?php echo $return['defaultConfig']['data']['default_team_img']['value'];?><?php echo $config['default_oss_img_size']['teamList'];?>" data-original="<?php echo $return['matchDetail']['data']['away_team_info']['logo'];?>" alt="<?php echo $return['matchDetail']['data']['away_team_info']['team_name'];?>" class="imgauto">
