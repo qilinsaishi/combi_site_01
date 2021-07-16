@@ -257,7 +257,20 @@ $return['matchDetail']['data']['match_pre'] = json_decode($return['matchDetail']
                                     <!--- 主客队的金钱收益-->
                                     <div class="pk-detail-con">
                                         <div class="progress blue">
-                                            <div class="progress-bar" style="width: <?php echo !isset($round_info['money_a'])?0:(intval(100*($round_info['money_a']??0)/((($round_info['money_a']??0)+($round_info['money_b']??0)))));?>%;">
+											<?php 
+												$progress_money_a=$round_info['money_a']??0;
+												$progress_money_b=$round_info['money_b']??0; 
+												$total_progress_money=($progress_money_a+$progress_money_b);
+												if($total_progress_money>0){
+													$total_progress_rate_a=($progress_money_a/$total_progress_money)*100;
+													$total_progress_rate_b=($progress_money_b/$total_progress_money)*100;
+												}else{
+													$total_progress_rate_a=0;
+													$total_progress_rate_b=0;
+												}
+											
+											?>
+                                            <div class="progress-bar" style="width: <?php echo $total_progress_rate_a;?>%;">
                                                 <i class="lightning"></i>
                                             </div>
                                         </div>
